@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.password-icon{
+    position: absolute;
+    top: 20px;
+    right: 5px;
+    cursor: pointer;
+}
