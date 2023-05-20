@@ -1,10 +1,9 @@
 import React from 'react'
-import LoginForm from './components/LoginForm'
-
+import SignUpForm from './components/SignUp'
 function App() {
   return (
     <div>
-      <LoginForm />
+      <SignUpForm />
     </div>
   )
 }
