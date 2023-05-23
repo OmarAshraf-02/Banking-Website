@@ -73,7 +73,7 @@ const ViewLoanRequests = () => {
          borderRadius="3px"
          m = "4px 0px 20px 0px"
          >
-            <InputBase value={searchTerm} onChange={onChange} sx ={{ml:2 , flex:1}} placeHolder = "Search" />
+            <InputBase value={searchTerm} onChange={onChange} sx ={{ml:2 , flex:1}} placeHolder = "Hello" />
             <IconButton type = "button" sx={{p:1}}>
                 <SearchIcon />
             </IconButton>

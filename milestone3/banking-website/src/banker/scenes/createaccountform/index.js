@@ -4,6 +4,8 @@ import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import { useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+
 
 const CreateAccountForm = () => {
   const [loading , setLoading] = useState(false);  
@@ -121,7 +123,7 @@ const CreateAccountForm = () => {
               />
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
-              {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained">
+              {loading ? <CircularProgress color="secondary"/> : <Button type="submit" color="secondary" variant="contained">
                 Create New User
               </Button>}
             </Box>

@@ -11,6 +11,10 @@ import ViewAccountRequests from './banker/scenes/viewaccountrequests';
 import ViewLoanRequests from './banker/scenes/viewloanrequests';
 import ViewCardRequests from './banker/scenes/viewcardrequests';
 import ViewReports from './banker/scenes/viewreports';
+import CreateLoanForm from './banker/scenes/createloanform';
+import CreateCardForm from './banker/scenes/createcardform';
+import NotifyUser from './banker/scenes/notify';
+import ViewTransactions from './banker/scenes/viewtransactions';
 
 
 function App() {
@@ -32,6 +36,10 @@ function App() {
                 <Route path = "/loanRequests" element={<ViewLoanRequests/>} />
                 <Route path = "/cardRequests" element={<ViewCardRequests/>} />
                 <Route path = "/viewReport" element={<ViewReports/>} />
+                <Route path = "/createLoan" element={<CreateLoanForm/>} />
+                <Route path = "/createCard" element={<CreateCardForm/>} />
+                <Route path = "notify" element = {<NotifyUser />} />
+                <Route path = "/viewTransactions" element={<ViewTransactions />} />
               </Routes>
             </main>
           </div>

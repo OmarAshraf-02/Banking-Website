@@ -1,4 +1,165 @@
 import { tokens } from "../themes";
+export const transactions = [
+  {
+    id: 1,
+    senderName: 'Lionel Messi',
+    receiverName: 'Cristiano Ronaldo',
+    senderId: '123456',
+    receiverId: '789012',
+    amount: 1000,
+    transferType: 'Domestic'
+  },
+  {
+    id: 2,
+    senderName: 'Neymar Jr.',
+    receiverName: 'Kylian Mbappé',
+    senderId: '345678',
+    receiverId: '901234',
+    amount: 2000,
+    transferType: 'Internal'
+  },
+  {
+    id: 3,
+    senderName: 'Robert Lewandowski',
+    receiverName: 'Kevin De Bruyne',
+    senderId: '567890',
+    receiverId: '123456',
+    amount: 1500,
+    transferType: 'International'
+  },
+  {
+    id: 4,
+    senderName: 'Mohamed Salah',
+    receiverName: 'Sergio Ramos',
+    senderId: '789012',
+    receiverId: '345678',
+    amount: 2500,
+    transferType: 'Domestic'
+  },
+  {
+    id: 5,
+    senderName: 'Harry Kane',
+    receiverName: 'Virgil van Dijk',
+    senderId: '901234',
+    receiverId: '567890',
+    amount: 1800,
+    transferType: 'Internal'
+  },
+  {
+    id: 6,
+    senderName: 'Gareth Bale',
+    receiverName: 'Eden Hazard',
+    senderId: '234567',
+    receiverId: '890123',
+    amount: 2200,
+    transferType: 'International'
+  },
+  {
+    id: 7,
+    senderName: 'Paul Pogba',
+    receiverName: 'Antoine Griezmann',
+    senderId: '456789',
+    receiverId: '012345',
+    amount: 1300,
+    transferType: 'Domestic'
+  },
+  {
+    id: 8,
+    senderName: 'Sadio Mané',
+    receiverName: 'Manuel Neuer',
+    senderId: '678901',
+    receiverId: '234567',
+    amount: 1900,
+    transferType: 'Internal'
+  },
+  {
+    id: 9,
+    senderName: 'Edinson Cavani',
+    receiverName: 'Harry Maguire',
+    senderId: '890123',
+    receiverId: '456789',
+    amount: 1700,
+    transferType: 'International'
+  },
+  {
+    id: 10,
+    senderName: 'Raheem Sterling',
+    receiverName: 'Marco Reus',
+    senderId: '012345',
+    receiverId: '678901',
+    amount: 2100,
+    transferType: 'Domestic'
+  }
+];
+
+console.log(transactions);
+
+
+
+export const marvelCharacters = [
+  {
+    name: 'Iron Man',
+    notification: 'New armor design revealed!',
+    id: '1234567890',
+    position: 'Admin'
+  },
+  {
+    name: 'Spider-Man',
+    notification: 'Web-slinging adventure continues!',
+    id: '2345678901',
+    position: 'Banker'
+  },
+  {
+    name: 'Captain America',
+    notification: 'Protecting the world from threats!',
+    id: '3456789012',
+    position: 'Admin'
+  },
+  {
+    name: 'Black Widow',
+    notification: 'Espionage mission in progress!',
+    id: '4567890123',
+    position: 'Banker'
+  },
+  {
+    name: 'Thor',
+    notification: 'Summoning the power of Mjolnir!',
+    id: '5678901234',
+    position: 'Admin'
+  },
+  {
+    name: 'Hulk',
+    notification: 'Unleashing the strongest Avenger!',
+    id: '6789012345',
+    position: 'Banker'
+  },
+  {
+    name: 'Black Panther',
+    notification: 'Wakanda forever!',
+    id: '7890123456',
+    position: 'Admin'
+  },
+  {
+    name: 'Doctor Strange',
+    notification: 'Guardian of the mystical arts!',
+    id: '8901234567',
+    position: 'Banker'
+  },
+  {
+    name: 'Captain Marvel',
+    notification: 'Cosmic superheroine ready for action!',
+    id: '9012345678',
+    position: 'Admin'
+  },
+  {
+    name: 'Ant-Man',
+    notification: 'Shrinking into action!',
+    id: '0123456789',
+    position: 'Banker'
+  }
+];
+
+
 export const f1Drivers = [
   {
     name: "Lewis Hamilton",

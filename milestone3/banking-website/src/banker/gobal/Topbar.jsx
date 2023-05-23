@@ -24,9 +24,6 @@ function TopBar(){
             <IconButton type = "button" sx={{p:1}}>
                 <SearchIcon />
             </IconButton> */}
-            <Typography variant="h3" color={colors.grey[100]}>
-                    The GUC Bank Banker's Admin Panel
-              </Typography>
          </Box>
          <Box display="flex">
          <IconButton onClick={colorMode.toggleColorMode}>
