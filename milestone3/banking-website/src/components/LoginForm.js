@@ -26,7 +26,7 @@ function LoginForm(){
             </div>
             <div className="flex flex-col justify-center">
                 <form onSubmit={handleSubmit} className="max-w-[500px] w-full mx-auto bg-gray-900 p-8 px-8 rounded-lg">
-                    <h1 className="text-4xl dark:text-white font-bold text-center">Welcome to GUC Bank!</h1>
+                    <h1 className="text-4xl dark:text-white font-bold text-center">Welcome to 404 Bank!</h1>
                         <div className="flex flex-col text-gray-400 py-2 ">
                             <label>Bank ID</label>
                             <input className="rounded-lg bg-gray-700 mt-2 p-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none" type="text" placeHolder = "Please Enter your BankID" name="name" value={userName} onChange={handleUserNameChange}/>
