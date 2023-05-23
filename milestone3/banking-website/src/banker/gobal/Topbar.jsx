@@ -17,16 +17,16 @@ function TopBar(){
 
     return (<Box display = "flex" justifyContent="space-between" p={2}>
         <Box display="flex" 
-        backgroundColor = {colors.primary[400]}
+        // backgroundColor = {colors.primary[400]}
          borderRadius="3px"
          >
-            <InputBase sx ={{ml:2 , flex:1}} placeHolder = "Search" />
+            {/* <InputBase sx ={{ml:2 , flex:1}} placeHolder = "Search" />
             <IconButton type = "button" sx={{p:1}}>
                 <SearchIcon />
-            </IconButton>
-            {/* <Typography variant="h3" color={colors.grey[100]}>
+            </IconButton> */}
+            <Typography variant="h3" color={colors.grey[100]}>
                     The GUC Bank Banker's Admin Panel
-              </Typography> */}
+              </Typography>
          </Box>
          <Box display="flex">
          <IconButton onClick={colorMode.toggleColorMode}>

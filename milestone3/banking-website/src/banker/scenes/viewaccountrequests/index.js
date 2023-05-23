@@ -1,18 +1,27 @@
-import { Box, useTheme, Button } from "@mui/material";
+import { Box, useTheme, Button , IconButton } from "@mui/material";
+import InputBase from "@mui/material/InputBase";
 import Header from "../../components/Header";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import SearchIcon from "@mui/icons-material/Search";
 import { tokens } from "../../../themes";
 import { actors } from "../../../data/mockdata";
+import { useState } from "react";
 
 const ViewAccountRequests = () => {
+  const [searchTerm , setSearchTerms] = useState('');
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const mappedArray = actors.map((actor)=>{
-    const x = 'dfjaljfl'
+  const onChange = (event) => {
+    setSearchTerms(event.target.value);
+  };
+  const filteredArray = actors.filter((actor) => {
+    return actor.name.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+  const mappedArray = filteredArray.map((actor)=>{
     return (
         <Accordion >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -54,6 +63,19 @@ const ViewAccountRequests = () => {
   return (
     <Box m="20px">
       <Header title="Bank Account Requests" subtitle="View Bank Account Requests and Deal with them" />
+      <Box display="flex" 
+        backgroundColor = {colors.primary[400]}
+         borderRadius="3px"
+         m = "4px 0px 20px 0px"
+         >
+            <InputBase value={searchTerm} onChange={onChange} sx ={{ml:2 , flex:1}} placeHolder = "Search" />
+            <IconButton type = "button" sx={{p:1}}>
+                <SearchIcon />
+            </IconButton>
+            {/* <Typography variant="h3" color={colors.grey[100]}>
+                    The GUC Bank Banker's Admin Panel
+              </Typography> */}
+         </Box>
       {mappedArray}
     </Box>
   );

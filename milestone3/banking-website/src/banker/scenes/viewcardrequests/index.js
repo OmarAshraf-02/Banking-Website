@@ -1,6 +1,9 @@
-import { Box, useTheme, Button } from "@mui/material";
+import { Box, useTheme, Button , IconButton } from "@mui/material";
 import Header from "../../components/Header";
+import InputBase from "@mui/material/InputBase";
+import { useState } from "react";
 import Accordion from "@mui/material/Accordion";
+import SearchIcon from "@mui/icons-material/Search";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
@@ -9,9 +12,16 @@ import { tokens } from "../../../themes";
 import { seriesCharacters } from "../../../data/mockdata";
 
 const ViewCardRequests = () => {
+  const [searchTerm , setSearchTerms] = useState('');
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const mappedArray = seriesCharacters.map((character)=>{
+  const onChange = (event) => {
+    setSearchTerms(event.target.value);
+  };
+  const filteredArray = seriesCharacters.filter((driver) => {
+    return driver.bankAccount.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+  const mappedArray = filteredArray.map((character)=>{
     return (
         <Accordion >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -55,6 +65,19 @@ const ViewCardRequests = () => {
   return (
     <Box m="20px">
       <Header title="Cards Requests" subtitle="View Customers' Card Requests and Deal with them" />
+      <Box display="flex" 
+        backgroundColor = {colors.primary[400]}
+         borderRadius="3px"
+         m = "4px 0px 20px 0px"
+         >
+            <InputBase value={searchTerm} onChange={onChange} sx ={{ml:2 , flex:1}} placeHolder = "Search" />
+            <IconButton type = "button" sx={{p:1}}>
+                <SearchIcon />
+            </IconButton>
+            {/* <Typography variant="h3" color={colors.grey[100]}>
+                    The GUC Bank Banker's Admin Panel
+              </Typography> */}
+         </Box>
       {mappedArray}
     </Box>
   );
