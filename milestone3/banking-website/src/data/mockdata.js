@@ -1,4 +1,481 @@
 import { tokens } from "../themes";
+export const transactions = [
+  {
+    id: 1,
+    senderName: 'Lionel Messi',
+    receiverName: 'Cristiano Ronaldo',
+    senderId: '123456',
+    receiverId: '789012',
+    amount: 1000,
+    transferType: 'Domestic'
+  },
+  {
+    id: 2,
+    senderName: 'Neymar Jr.',
+    receiverName: 'Kylian Mbappé',
+    senderId: '345678',
+    receiverId: '901234',
+    amount: 2000,
+    transferType: 'Internal'
+  },
+  {
+    id: 3,
+    senderName: 'Robert Lewandowski',
+    receiverName: 'Kevin De Bruyne',
+    senderId: '567890',
+    receiverId: '123456',
+    amount: 1500,
+    transferType: 'International'
+  },
+  {
+    id: 4,
+    senderName: 'Mohamed Salah',
+    receiverName: 'Sergio Ramos',
+    senderId: '789012',
+    receiverId: '345678',
+    amount: 2500,
+    transferType: 'Domestic'
+  },
+  {
+    id: 5,
+    senderName: 'Harry Kane',
+    receiverName: 'Virgil van Dijk',
+    senderId: '901234',
+    receiverId: '567890',
+    amount: 1800,
+    transferType: 'Internal'
+  },
+  {
+    id: 6,
+    senderName: 'Gareth Bale',
+    receiverName: 'Eden Hazard',
+    senderId: '234567',
+    receiverId: '890123',
+    amount: 2200,
+    transferType: 'International'
+  },
+  {
+    id: 7,
+    senderName: 'Paul Pogba',
+    receiverName: 'Antoine Griezmann',
+    senderId: '456789',
+    receiverId: '012345',
+    amount: 1300,
+    transferType: 'Domestic'
+  },
+  {
+    id: 8,
+    senderName: 'Sadio Mané',
+    receiverName: 'Manuel Neuer',
+    senderId: '678901',
+    receiverId: '234567',
+    amount: 1900,
+    transferType: 'Internal'
+  },
+  {
+    id: 9,
+    senderName: 'Edinson Cavani',
+    receiverName: 'Harry Maguire',
+    senderId: '890123',
+    receiverId: '456789',
+    amount: 1700,
+    transferType: 'International'
+  },
+  {
+    id: 10,
+    senderName: 'Raheem Sterling',
+    receiverName: 'Marco Reus',
+    senderId: '012345',
+    receiverId: '678901',
+    amount: 2100,
+    transferType: 'Domestic'
+  }
+];
+
+console.log(transactions);
+
+
+
+export const marvelCharacters = [
+  {
+    name: 'Iron Man',
+    notification: 'New armor design revealed!',
+    id: '1234567890',
+    position: 'Admin'
+  },
+  {
+    name: 'Spider-Man',
+    notification: 'Web-slinging adventure continues!',
+    id: '2345678901',
+    position: 'Banker'
+  },
+  {
+    name: 'Captain America',
+    notification: 'Protecting the world from threats!',
+    id: '3456789012',
+    position: 'Admin'
+  },
+  {
+    name: 'Black Widow',
+    notification: 'Espionage mission in progress!',
+    id: '4567890123',
+    position: 'Banker'
+  },
+  {
+    name: 'Thor',
+    notification: 'Summoning the power of Mjolnir!',
+    id: '5678901234',
+    position: 'Admin'
+  },
+  {
+    name: 'Hulk',
+    notification: 'Unleashing the strongest Avenger!',
+    id: '6789012345',
+    position: 'Banker'
+  },
+  {
+    name: 'Black Panther',
+    notification: 'Wakanda forever!',
+    id: '7890123456',
+    position: 'Admin'
+  },
+  {
+    name: 'Doctor Strange',
+    notification: 'Guardian of the mystical arts!',
+    id: '8901234567',
+    position: 'Banker'
+  },
+  {
+    name: 'Captain Marvel',
+    notification: 'Cosmic superheroine ready for action!',
+    id: '9012345678',
+    position: 'Admin'
+  },
+  {
+    name: 'Ant-Man',
+    notification: 'Shrinking into action!',
+    id: '0123456789',
+    position: 'Banker'
+  }
+];
+
+
+export const f1Drivers = [
+  {
+    name: "Lewis Hamilton",
+    bankAccount: "12345678",
+    email: "lewishamilton@example.com",
+    phoneNumber: "555-1234",
+    complaint: "The bank charged excessive fees for international transfers."
+  },
+  {
+    name: "Sebastian Vettel",
+    bankAccount: "87654321",
+    email: "sebastianvettel@example.com",
+    phoneNumber: "555-5678",
+    complaint: "The bank's customer service was unresponsive and unhelpful."
+  },
+  {
+    name: "Max Verstappen",
+    bankAccount: "56781234",
+    email: "maxverstappen@example.com",
+    phoneNumber: "555-9876",
+    complaint: "The bank mistakenly blocked my card without any reason."
+  },
+  {
+    name: "Charles Leclerc",
+    bankAccount: "43218765",
+    email: "charlesleclerc@example.com",
+    phoneNumber: "555-4321",
+    complaint: "The bank's online banking platform is frequently down."
+  },
+  {
+    name: "Valtteri Bottas",
+    bankAccount: "56784321",
+    email: "valtteribottas@example.com",
+    phoneNumber: "555-8765",
+    complaint: "The bank incorrectly recorded a transaction on my account."
+  },
+  {
+    name: "Daniel Ricciardo",
+    bankAccount: "87651234",
+    email: "danielricciardo@example.com",
+    phoneNumber: "555-2468",
+    complaint: "The bank took an excessively long time to process a loan application."
+  },
+  {
+    name: "Carlos Sainz Jr.",
+    bankAccount: "12348765",
+    email: "carlossainz@example.com",
+    phoneNumber: "555-1357",
+    complaint: "The bank's ATM consistently has issues dispensing cash."
+  },
+  {
+    name: "Lando Norris",
+    bankAccount: "56783421",
+    email: "landonorris@example.com",
+    phoneNumber: "555-7890",
+    complaint: "The bank's interest rates on savings accounts are uncompetitive."
+  },
+  {
+    name: "Esteban Ocon",
+    bankAccount: "43218765",
+    email: "estebanocon@example.com",
+    phoneNumber: "555-3691",
+    complaint: "The bank charged me for a service I never requested or used."
+  },
+  {
+    name: "Fernando Alonso",
+    bankAccount: "87654321",
+    email: "fernandoalonso@example.com",
+    phoneNumber: "555-1746",
+    complaint: "The bank's mobile app is unreliable and crashes frequently."
+  }
+];
+
+console.log(f1Drivers); // Output: Array of 10 F1 driver objects
+
+export const seriesCharacters = [
+  {
+    name: "Walter White",
+    totalBankBalance: 50000,
+    bankAccount: "12345678",
+    email: "walterwhite@example.com",
+    cardRequestedType: "Credit Card",
+    phoneNumber: "555-1234"
+  },
+  {
+    name: "Jon Snow",
+    totalBankBalance: 10000,
+    bankAccount: "87654321",
+    email: "jonsnow@example.com",
+    cardRequestedType: "Debit Card",
+    phoneNumber: "555-5678"
+  },
+  {
+    name: "Daenerys Targaryen",
+    totalBankBalance: 200000,
+    bankAccount: "56781234",
+    email: "daenerys@example.com",
+    cardRequestedType: "Credit Card",
+    phoneNumber: "555-9876"
+  },
+  {
+    name: "Sherlock Holmes",
+    totalBankBalance: 5000,
+    bankAccount: "43218765",
+    email: "sherlockholmes@example.com",
+    cardRequestedType: "Prepaid Card",
+    phoneNumber: "555-4321"
+  },
+  {
+    name: "Tyrion Lannister",
+    totalBankBalance: 100000,
+    bankAccount: "56784321",
+    email: "tyrion@example.com",
+    cardRequestedType: "Credit Card",
+    phoneNumber: "555-8765"
+  },
+  {
+    name: "Hermione Granger",
+    totalBankBalance: 15000,
+    bankAccount: "87651234",
+    email: "hermione@example.com",
+    cardRequestedType: "Debit Card",
+    phoneNumber: "555-2468"
+  },
+  {
+    name: "Pablo Escobar",
+    totalBankBalance: 5000000,
+    bankAccount: "12348765",
+    email: "pabloescobar@example.com",
+    cardRequestedType: "Credit Card",
+    phoneNumber: "555-1357"
+  },
+  {
+    name: "Tony Stark",
+    totalBankBalance: 100000000,
+    bankAccount: "56783421",
+    email: "tonystark@example.com",
+    cardRequestedType: "Debit Card",
+    phoneNumber: "555-7890"
+  },
+  {
+    name: "Loki",
+    totalBankBalance: 5000,
+    bankAccount: "43218765",
+    email: "loki@example.com",
+    cardRequestedType: "Prepaid Card",
+    phoneNumber: "555-3691"
+  },
+  {
+    name: "Michael Scofield",
+    totalBankBalance: 100000,
+    bankAccount: "87654321",
+    email: "michaelscofield@example.com",
+    cardRequestedType: "Credit Card",
+    phoneNumber: "555-1746"
+  }
+];
+
+export const fictionalCharacters = [
+  {
+    name: "Harry Potter",
+    totalBankBalance: 10000,
+    bankAccount: "12345678",
+    email: "harrypotter@example.com",
+    loanRequestedAmount: 5000,
+    phoneNumber: "555-1234"
+  },
+  {
+    name: "Katniss Everdeen",
+    totalBankBalance: 5000,
+    bankAccount: "87654321",
+    email: "katnisseverdeen@example.com",
+    loanRequestedAmount: 3000,
+    phoneNumber: "555-5678"
+  },
+  {
+    name: "Sherlock Holmes",
+    totalBankBalance: 20000,
+    bankAccount: "56781234",
+    email: "sherlockholmes@example.com",
+    loanRequestedAmount: 10000,
+    phoneNumber: "555-9876"
+  },
+  {
+    name: "Hermione Granger",
+    totalBankBalance: 15000,
+    bankAccount: "43218765",
+    email: "hermionegranger@example.com",
+    loanRequestedAmount: 7000,
+    phoneNumber: "555-4321"
+  },
+  {
+    name: "Tony Stark",
+    totalBankBalance: 1000000,
+    bankAccount: "56784321",
+    email: "tonystark@example.com",
+    loanRequestedAmount: 200000,
+    phoneNumber: "555-8765"
+  },
+  {
+    name: "Luke Skywalker",
+    totalBankBalance: 5000,
+    bankAccount: "87651234",
+    email: "lukeskywalker@example.com",
+    loanRequestedAmount: 1000,
+    phoneNumber: "555-2468"
+  },
+  {
+    name: "Katara",
+    totalBankBalance: 8000,
+    bankAccount: "12348765",
+    email: "katara@example.com",
+    loanRequestedAmount: 3000,
+    phoneNumber: "555-1357"
+  },
+  {
+    name: "Jon Snow",
+    totalBankBalance: 15000,
+    bankAccount: "56783421",
+    email: "jonsnow@example.com",
+    loanRequestedAmount: 5000,
+    phoneNumber: "555-7890"
+  },
+  {
+    name: "Alice",
+    totalBankBalance: 1000,
+    bankAccount: "43218765",
+    email: "alice@example.com",
+    loanRequestedAmount: 500,
+    phoneNumber: "555-3691"
+  },
+  {
+    name: "Darth Vader",
+    totalBankBalance: 50000,
+    bankAccount: "87654321",
+    email: "darthvader@example.com",
+    loanRequestedAmount: 10000,
+    phoneNumber: "555-1746"
+  }
+];
+
+
+export const actors = [
+  {
+    name: "Tom Hanks",
+    totalBankBalance: 1000000,
+    numberOfAccounts: 2,
+    email: "tomhanks@example.com",
+    phoneNumber: "555-1234"
+  },
+  {
+    name: "Leonardo DiCaprio",
+    totalBankBalance: 2500000,
+    numberOfAccounts: 3,
+    email: "leonardodicaprio@example.com",
+    phoneNumber: "555-5678"
+  },
+  {
+    name: "Meryl Streep",
+    totalBankBalance: 500000,
+    numberOfAccounts: 1,
+    email: "merylstreep@example.com",
+    phoneNumber: "555-9876"
+  },
+  {
+    name: "Brad Pitt",
+    totalBankBalance: 3500000,
+    numberOfAccounts: 4,
+    email: "bradpitt@example.com",
+    phoneNumber: "555-4321"
+  },
+  {
+    name: "Angelina Jolie",
+    totalBankBalance: 4000000,
+    numberOfAccounts: 2,
+    email: "angelinajolie@example.com",
+    phoneNumber: "555-8765"
+  },
+  {
+    name: "Johnny Depp",
+    totalBankBalance: 2000000,
+    numberOfAccounts: 1,
+    email: "johnnydepp@example.com",
+    phoneNumber: "555-2468"
+  },
+  {
+    name: "Jennifer Lawrence",
+    totalBankBalance: 1500000,
+    numberOfAccounts: 3,
+    email: "jenniferlawrence@example.com",
+    phoneNumber: "555-1357"
+  },
+  {
+    name: "Robert Downey Jr.",
+    totalBankBalance: 5000000,
+    numberOfAccounts: 2,
+    email: "robertdowneyjr@example.com",
+    phoneNumber: "555-7890"
+  },
+  {
+    name: "Scarlett Johansson",
+    totalBankBalance: 3000000,
+    numberOfAccounts: 1,
+    email: "scarlettjohansson@example.com",
+    phoneNumber: "555-3691"
+  },
+  {
+    name: "Dwayne Johnson",
+    totalBankBalance: 6000000,
+    numberOfAccounts: 5,
+    email: "dwaynejohnson@example.com",
+    phoneNumber: "555-1746"
+  }
+];
+
+
 export const soccerPlayers = [
   {
     name: 'Lionel Messi',

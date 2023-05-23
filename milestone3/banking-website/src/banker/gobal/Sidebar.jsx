@@ -73,9 +73,6 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
                   alignItems="center"
                   ml="15px"
                 >
-                  <Typography variant="h3" color={colors.grey[100]}>
-                    SideBar
-                  </Typography>
                   <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                     <MenuOutlinedIcon />
                   </IconButton>
@@ -112,13 +109,27 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
                 selected={selected}
                 setSelected={setSelected}
               />
+              <Typography
+                variant="h6"
+                color={colors.grey[300]}
+                sx={{ m: "15px 0 5px 20px" }}
+              >
+                {!isCollapsed ? 'Transactions' : 'Tran.'}
+              </Typography>
+              <Item
+                title="View Transactions"
+                to="/viewTransactions"
+                icon={<VisibilityOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
   
               <Typography
                 variant="h6"
                 color={colors.grey[300]}
                 sx={{ m: "15px 0 5px 20px" }}
               >
-                Accounts
+                {!isCollapsed ? 'Accounts' : 'Acc.'}
               </Typography>
               <Item
                 title="View Bank Accounts"
@@ -191,7 +202,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
                 color={colors.grey[300]}
                 sx={{ m: "15px 0 5px 20px" }}
               >
-                Reports
+                Contact users
               </Typography>
               <Item
                 title="View Reports"
@@ -201,8 +212,8 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
                 setSelected={setSelected}
               />
               <Item
-                title="Handle Report"
-                to="/handleReport"
+                title="Notify"
+                to="/notify"
                 icon={<CallOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
