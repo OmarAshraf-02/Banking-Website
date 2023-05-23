@@ -7,6 +7,10 @@ import Dashboard from './banker/scenes/dashboard';
 import Sidebar from './banker/gobal/Sidebar';
 import BankAccounts from './banker/scenes/viewbankaccounts';
 import CreateAccountForm from './banker/scenes/createaccountform';
+import ViewAccountRequests from './banker/scenes/viewaccountrequests';
+import ViewLoanRequests from './banker/scenes/viewloanrequests';
+import ViewCardRequests from './banker/scenes/viewcardrequests';
+import ViewReports from './banker/scenes/viewreports';
 
 
 function App() {
@@ -24,6 +28,10 @@ function App() {
                 <Route path ="/" element={<Dashboard />} />
                 <Route path = "/viewBankAccounts" element={<BankAccounts/>} />
                 <Route path = "/createAccount" element={<CreateAccountForm/>} />
+                <Route path = "/viewAccountRequests" element={<ViewAccountRequests/>} />
+                <Route path = "/loanRequests" element={<ViewLoanRequests/>} />
+                <Route path = "/cardRequests" element={<ViewCardRequests/>} />
+                <Route path = "/viewReport" element={<ViewReports/>} />
               </Routes>
             </main>
           </div>
