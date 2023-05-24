@@ -1,26 +1,28 @@
 import React from 'react';
-import SignUpForm from './client/pages/SignUp';
-import HomePage from './client/pages/HomePage/HomePage';
-import styles from './styles';
-import OpenAccount from './client/pages/OpenAccount';
+import SignUpForm from './pages/SignUp';
+import HomePage from './pages/HomePage/HomePage';
+import OpenAccount from './pages/OpenAccount';
 import { Routes, Route, Link } from 'react-router-dom';
-import Bill from './client/pages/Bill';
-import LoginForm from './client/pages/LoginForm';
-import Loan from './client/pages/Loan/Loan';
-import CarLoanForm from './client/pages/Loan/CarLoanForm'
-import { ColorModeContext, useMode } from './themes';
+import Bill from './pages/Bill';
+import LoginForm from '../components/LoginForm';
+import Loan from './pages/Loan/Loan';
+import CarLoanForm from './pages/Loan/CarLoanForm'
+import { ColorModeContext, useMode } from '../themes';
 import { CssBaseline, ThemeProvider } from '@mui/material'
-import PersonalLoanForm from './client/pages/Loan/PersonalLoanForm'
-import WithSplashScreen from './client/components/WithSplashScreen';
-import TransactionHistory from './client/pages/TransactionHistory';
-
+import PersonalLoanForm from './pages/Loan/PersonalLoanForm'
+import WithSplashScreen from './components/SplashScreen';
+import TransactionHistory from './pages/TransactionHistory';
+import ClientSidebar from './components/SideBar';
+import TopBar from './components/Topbar'
+import ReportTechnicalIssue from './pages/ReportTechnicalIssues';
 function App() {
   const [theme, colorMode] = useMode();
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline>
-          <div>
+          <div className='app'>
+            <ClientSidebar/>
             {/* <div>
               <nav class="zone blue sticky">
                 <ul class="main-nav">
@@ -34,17 +36,18 @@ function App() {
             {/* <div class="container"><img class="cover" src="./img/undraw.png" /></div> */}
             {/* <div class="zone blue grid-wrapper"></div> */}
             <main className="content">
+              <TopBar/>
               <Routes>
-                <Route path='/' element={<SignUpForm />} />
                 {/* <Route path='Stepper' element={<Steppers />} /> */}
                 <Route path='home' element={<HomePage />} />
                 <Route path='login' index element={<LoginForm />} />
                 <Route path='openAccount' index element={<OpenAccount />} />
-                <Route path='home/bill' element={<Bill />} />
-                <Route path='home/loan' element={<Loan />} />
-                <Route path='home/loan/carLoanForm' element={<CarLoanForm />} />
-                <Route path='home/loan/PersonalLoanForm' element={<PersonalLoanForm />} />
-                <Route path='home/transactionHistory' element={<TransactionHistory />} />
+                <Route path='bill' element={<Bill />} />
+                <Route path='loan' element={<Loan />} />
+                <Route path='loan/carLoanForm' element={<CarLoanForm />} />
+                <Route path='loan/PersonalLoanForm' element={<PersonalLoanForm />} />
+                <Route path='transactionHistory' element={<TransactionHistory />} />
+                <Route path='reportTechnicalIssues' element={<ReportTechnicalIssue />} />
               </Routes>
             </main>
           </div>

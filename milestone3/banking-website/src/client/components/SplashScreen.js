@@ -12,7 +12,7 @@ function LoadingMessage() {
   );
 }
 
-function withSplashScreen(WrappedComponent) {
+function WithSplashScreen(WrappedComponent) {
   return class extends Component {
     constructor(props) {
       super(props);
@@ -47,4 +47,4 @@ function withSplashScreen(WrappedComponent) {
   };
 }
 
-export default withSplashScreen;
+export default WithSplashScreen;

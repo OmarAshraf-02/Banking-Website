@@ -11,11 +11,12 @@ function TransactionHistory() {
   const transactions = useSelector((state) => {
     return state.clients[0].transactions
   })
+  console.log(transactions);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
     {
-      field: "transactionID",
+      field: "id",
       headerName: "Transaction ID",
       flex: 0.5
     },
@@ -40,18 +41,23 @@ function TransactionHistory() {
       field: "amount",
       headerName: "Amount",
       flex: 1,
+      renderCell: (params) => {
+        const amount = params.row.amount;
+        return amount < 0 ? <span style={{ color: 'red' }}>{amount}</span> : <span style={{ color: 'green' }}>+{amount}</span>;
+      },
     },
     {
       field: "balance",
       headerName: "Balance",
       flex: 1,
+      
     }
 
   ];
 
   return (
     <Box m="20px">
-      <Header title='Bills' subtitle='' />
+      <Header title='Transaction History' subtitle='' />
       <Box
         m="40px 0 0 0"
         height="75vh"

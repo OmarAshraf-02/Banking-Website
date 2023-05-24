@@ -5,14 +5,15 @@ import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from '../../themes';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
+
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
 import { CiMoneyBill } from "react-icons/ci";
+import { GiReceiveMoney } from "react-icons/gi";
+import { TbTransferOut } from "react-icons/tb";
+import { AiFillBug,AiOutlineTransaction } from "react-icons/ai";
+import { GrTransaction } from "react-icons/gr";
+
 import cardimg from '../../assets/cardimg.svg'
 import loanimg from '../../assets/loanimg.svg'
 import billimg from '../../assets/billimg.svg'
@@ -92,7 +93,7 @@ const ClientSidebar = () => {
                     </MenuItem>
 
                     {!isCollapsed && (
-                        <Box mb="25px">
+                        <Box mb="15px">
                             <Box textAlign="center">
                                 <Typography
                                     variant="h2"
@@ -100,69 +101,92 @@ const ClientSidebar = () => {
                                     fontWeight="bold"
                                     sx={{ m: "10px 0 0 0" }}
                                 >
-                                    Karim G.
+                                    404 Bank
                                 </Typography>
-                                <Typography variant="h5" color={colors.greenAccent[500]}>
+                                {/* <Typography variant="h5" color={colors.greenAccent[500]}>
                                     CTO
-                                </Typography>
-                                <Typography variant="h5" color={colors.greenAccent[500]}>
+                                </Typography> */}
+                                {/* <Typography variant="h5" color={colors.greenAccent[500]}>
                                     52-3899
-                                </Typography>
+                                </Typography> */}
                             </Box>
                         </Box>
                     )}
 
                     <Box paddingLeft={isCollapsed ? undefined : "10%"}>
                         <Item
-                            title="Dashboard"
-                            to="/"
-                            icon={<HomeOutlinedIcon />}
+                            title="Home"
+                            to="home"
+                            icon={<HomeOutlinedIcon size={selected==='Home'? 50:20}/>}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
                             title="Transactions History"
-                            to="home/transactionHistory"
-                            icon={transactionimg}
+                            to="transactionHistory"
+                            icon={<AiOutlineTransaction size={selected==='Transactions History'? 50:20}/>}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
                             title="Accounts"
-                            to="home/accounts"
-                            icon={<AccountBalanceOutlinedIcon />}
+                            to="accounts"
+                            icon={<AccountBalanceOutlinedIcon size={selected==='Accounts'? 50:20}/>}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
                             title="Bills"
-                            to="home/bill"
-                            icon={<CiMoneyBill />}
+                            to="bill"
+                            icon={<CiMoneyBill size={selected==='Bills'? 50:20} />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
                             title="Loans"
-                            to="home/loan"
-                            icon={loanimg}
+                            to="loan"
+                            icon={<GiReceiveMoney size={selected==='Loans'? 50:20}/>}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
                             title="Transfer"
-                            to="home/transfer"
-                            icon={transferimg}
+                            to="transfer"
+                            icon={<TbTransferOut size={selected==='Transfer'? 50:20}/>}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
                             title="Report technical issues"
-                            to="home/reportTechnicalIssues"
-                            icon={<VisibilityOutlinedIcon />}
+                            to="reportTechnicalIssues"
+                            icon={<AiFillBug size={selected==='Report technical issues'? 50:20}/>}
                             selected={selected}
                             setSelected={setSelected}
                         />
                     </Box>
+                    
+                    {!isCollapsed && (
+                        <Box mb="15px">
+                            <Box textAlign="center" >
+                                <Typography
+                                    variant="h6"
+                                    color={colors.grey[500]}
+                                    // fontWeight="bold"
+                                    sx={{ m: "10px 0 0 0" }}
+                                >
+                                    404 Bank - Banking Client System 
+                                </Typography>
+                                <Typography
+                                    variant="h8"
+                                    color={colors.grey[40]}
+                                    // fontWeight="bold"
+                                    sx={{ m: "10px 0 0 0" }}
+                                >
+                                    made by 404
+                                </Typography>  
+                            </Box>
+                        </Box>
+                    )}
                 </Menu>
             </ProSidebar>
         </Box>

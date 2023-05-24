@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './LoanCards.css';
 import "tachyons"
 
-const Cards = ({ name, summary }) => {
+const LoanCards = ({ loan }) => {
+    const [moreInfo, setMoreInfo] = useState(false);
+    const handleMoreInfoOnChange = ()=>{
+        setMoreInfo(!moreInfo);
+    }
     return (
         // <div className="card">
         //   <h2 className="card-title">{name}</h2>
@@ -12,12 +16,23 @@ const Cards = ({ name, summary }) => {
         <div class="loan-card">
             <div class="loan-card-header">Loan Information</div>
             <div class="loan-card-body">
-                <p>Loan amount: $10,000</p>
-                <p>Interest rate: 5%</p>
-                <p>Loan duration: 24 months</p>
+                <p>Loan amount: ${loan.amount}</p>
+                <p>Interest rate: {loan.rate}%</p>
+                <p>Loan duration: {loan.duration}</p>
+                {moreInfo?
+                    <div>
+                        <p>Loan status: {loan.status}</p>
+                        <p>Due Date: {loan.paymentDue}</p>
+                        <p>Date applied: {loan.date}</p>
+                    </div> :
+                    <div></div>  
+                }
             </div>
             <div class="loan-card-footer ">
-                <button>view additional information</button>
+                {moreInfo?
+                    <button onClick={handleMoreInfoOnChange}> hide additional information</button>
+                    :
+                    <button onClick={handleMoreInfoOnChange}> view additional information</button>}
             </div>
         </div>
 
@@ -25,4 +40,4 @@ const Cards = ({ name, summary }) => {
     );
 };
 
-export default Cards;
+export default LoanCards;

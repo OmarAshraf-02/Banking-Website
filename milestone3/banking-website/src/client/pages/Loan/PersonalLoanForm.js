@@ -5,6 +5,7 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { Form, Field, Formik } from "formik";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import * as yup from "yup";
+import Header from '../../components/Header.jsx';
 
 const PersonalLoanForm = () => {
     const [loading, setLoading] = useState(false);
@@ -35,7 +36,7 @@ const PersonalLoanForm = () => {
 
     return (
         <Box m="20px">
-
+            <Header title='Apply for Personal Loan' subtitle='' />
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
