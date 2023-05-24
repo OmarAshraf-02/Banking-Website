@@ -11,7 +11,42 @@ const clientSlice = createSlice({
         national_id: '01566214852624',
         birth_date: '24/6/1900',
         client_id: '1',
-        accounts: [],
+        accounts: [
+            {
+                id: 1,
+                accountNumber: 'ACCT-123456',
+                accountType:'Savings',
+                cards: [
+                  { id: 1, cardNumber: 'CARD-111', type: 'Credit Card', limit: 5000 , validThru: '12/25', cvc: 123},
+                  { id: 2, cardNumber: 'CARD-222', type: 'Debit Card', balance: 1500, validThru: '11/25', cvc: 223 },
+                  { id: 3, cardNumber: 'CARD-333', type: 'Prepaid Card', balance: 500, validThru: '10/25', cvc: 333 },
+                ],
+                creditScore: 650,
+              },
+              {
+                id: 2,
+                accountNumber: 'ACCT-789012',
+                accountType:'Savings',
+                cards: [
+                  { id: 1, cardNumber: 'CARD-444', type: 'Debit Card', balance: 2000, validThru: '02/25', cvc: 235 },
+                  { id: 2, cardNumber: 'CARD-555', type: 'Prepaid Card', balance: 100, validThru: '04/25', cvc: 444 },
+                ],
+                creditScore: 720,
+              },
+              {
+                id: 3,
+                accountNumber: 'ACCT-345678',
+                accountType:'Savings',
+                cards: [
+                  { id: 1, cardNumber: 'CARD-666', type: 'Credit Card', limit: 10000, validThru: '12/29', cvc: 222 },
+                  { id: 2, cardNumber: 'CARD-777', type: 'Credit Card', limit: 5000, validThru: '12/23', cvc: 111 },
+                  { id: 3, cardNumber: 'CARD-888', type: 'Debit Card', balance: 500, validThru: '12/24', cvc: 123 },
+                  { id: 4, cardNumber: 'CARD-999', type: 'Prepaid Card', balance: 200, validThru: '12/27', cvc: 123 },
+                ],
+                creditScore: 550,
+              },
+            ],
+          
         transactions: [{
             id: 1,
             dateTime: "2023-05-20 09:30:15",

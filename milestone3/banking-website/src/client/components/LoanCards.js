@@ -28,7 +28,7 @@ const LoanCards = ({ loan }) => {
                     <div></div>  
                 }
             </div>
-            <div class="loan-card-footer ">
+            <div class="loan-card-footer">
                 {moreInfo?
                     <button onClick={handleMoreInfoOnChange}> hide additional information</button>
                     :

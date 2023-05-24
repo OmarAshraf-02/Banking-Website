@@ -15,6 +15,7 @@ import TransactionHistory from './pages/TransactionHistory';
 import ClientSidebar from './components/SideBar';
 import TopBar from './components/Topbar'
 import ReportTechnicalIssue from './pages/ReportTechnicalIssues';
+import Accounts from './pages/Accounts/Accounts';
 function App() {
   const [theme, colorMode] = useMode();
   return (
@@ -48,6 +49,7 @@ function App() {
                 <Route path='loan/PersonalLoanForm' element={<PersonalLoanForm />} />
                 <Route path='transactionHistory' element={<TransactionHistory />} />
                 <Route path='reportTechnicalIssues' element={<ReportTechnicalIssue />} />
+                <Route path='accounts' element={<Accounts />} />
               </Routes>
             </main>
           </div>
