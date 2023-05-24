@@ -1,23 +1,23 @@
 import React from 'react'
-import { ColorModeContext , useMode } from './themes';
+import { ColorModeContext , useMode } from '../themes';
 import { Routes , Route } from 'react-router-dom';
 import { CssBaseline , ThemeProvider } from '@mui/material'
-import Topbar from './banker/gobal/Topbar';
-import Dashboard from './banker/scenes/dashboard';
-import Sidebar from './banker/gobal/Sidebar';
-import BankAccounts from './banker/scenes/viewbankaccounts';
-import CreateAccountForm from './banker/scenes/createaccountform';
-import ViewAccountRequests from './banker/scenes/viewaccountrequests';
-import ViewLoanRequests from './banker/scenes/viewloanrequests';
-import ViewCardRequests from './banker/scenes/viewcardrequests';
-import ViewReports from './banker/scenes/viewreports';
-import CreateLoanForm from './banker/scenes/createloanform';
-import CreateCardForm from './banker/scenes/createcardform';
-import NotifyUser from './banker/scenes/notify';
-import ViewTransactions from './banker/scenes/viewtransactions';
+import Topbar from './gobal/Topbar';
+import Dashboard from './scenes/dashboard';
+import Sidebar from './gobal/Sidebar';
+import BankAccounts from './scenes/viewbankaccounts';
+import CreateAccountForm from './scenes/createaccountform';
+import ViewAccountRequests from './scenes/viewaccountrequests';
+import ViewLoanRequests from './scenes/viewloanrequests';
+import ViewCardRequests from './scenes/viewcardrequests';
+import ViewReports from './scenes/viewreports';
+import CreateLoanForm from './scenes/createloanform';
+import CreateCardForm from './scenes/createcardform';
+import NotifyUser from './scenes/notify';
+import ViewTransactions from './scenes/viewtransactions';
 
 
-function App() {
+function BankerApp() {
   const [theme, colorMode] = useMode();
 
   return (
@@ -49,6 +49,6 @@ function App() {
   )
 }
 
-export default App
+export default BankerApp;
 
 
