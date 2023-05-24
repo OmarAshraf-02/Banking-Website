@@ -14,7 +14,7 @@ import { TbTransferOut } from "react-icons/tb";
 import { AiFillBug,AiOutlineTransaction } from "react-icons/ai";
 import { GrTransaction } from "react-icons/gr";
 
-import cardimg from '../../assets/cardimg.svg'
+import logo from '../../assets/logo.png'
 import loanimg from '../../assets/loanimg.svg'
 import billimg from '../../assets/billimg.svg'
 import transferimg from '../../assets/transferimg.svg'
@@ -93,7 +93,8 @@ const ClientSidebar = () => {
                     </MenuItem>
 
                     {!isCollapsed && (
-                        <Box mb="15px">
+                        <Box mb="15px" display="flex" alignItems="center" justifyContent="center">
+                            <img style={{ width: '50px', height: '50px',marginRight: '10px' }} src={logo} alt='404 bank'/>
                             <Box textAlign="center">
                                 <Typography
                                     variant="h2"
@@ -103,12 +104,6 @@ const ClientSidebar = () => {
                                 >
                                     404 Bank
                                 </Typography>
-                                {/* <Typography variant="h5" color={colors.greenAccent[500]}>
-                                    CTO
-                                </Typography> */}
-                                {/* <Typography variant="h5" color={colors.greenAccent[500]}>
-                                    52-3899
-                                </Typography> */}
                             </Box>
                         </Box>
                     )}
