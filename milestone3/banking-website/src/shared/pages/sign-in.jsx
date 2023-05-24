@@ -1,32 +1,34 @@
+import { Link } from "react-router-dom";
+import logo from '../../assets/logo.png';
 import { useState } from "react";
-import logo from '../assets/logo.png';
 import {AiOutlineEyeInvisible , AiOutlineEye} from 'react-icons/ai';
-function LoginForm(){
-    const [userName , setUserName] = useState('');
-    const [password , setPassword] = useState('');
-    const [visible , setVisibility] = useState(false);
-    const handleSubmit = (event) => {
-        event.preventDefault();
-    };
-    const handleUserNameChange = (event) => {
-        setUserName(event.target.value);
-        console.log(userName);
-    };
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-        console.log(password);
-    };
-    const handleVisibility = () => {
-        setVisibility(!visible);
-    }
-    return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 bg-gray-400 h-full w-full">
+
+export function SignIn() {
+  const [userName , setUserName] = useState('');
+  const [password , setPassword] = useState('');
+  const [visible , setVisibility] = useState(false);
+  const handleSubmit = (event) => {
+      event.preventDefault();
+  };
+  const handleUserNameChange = (event) => {
+      setUserName(event.target.value);
+      console.log(userName);
+  };
+  const handlePasswordChange = (event) => {
+      setPassword(event.target.value);
+      console.log(password);
+  };
+  const handleVisibility = () => {
+      setVisibility(!visible);
+  }
+  return (
+<div className="grid grid-cols-1 sm:grid-cols-2 bg-gray-800 h-full w-full">
             <div className='hidden sm:block rounded-full'>
                 <img className="object-cover p-24 rounded-full" src={logo} alt='logo'/>
             </div>
             <div className="flex flex-col justify-center">
-                <form onSubmit={handleSubmit} className="max-w-[500px] w-full mx-auto bg-gray-900 p-8 px-8 rounded-lg">
-                    <h1 className="text-4xl dark:text-white font-bold text-center">Welcome to 404 Bank!</h1>
+                <form onSubmit={handleSubmit} className="max-w-[500px] w-full mx-auto bg-black p-8 px-8 rounded-lg">
+                    <h1 className="text-4xl text-white font-bold text-center">Welcome to 404 Bank!</h1>
                         <div className="flex flex-col text-gray-400 py-2 ">
                             <label>Bank ID</label>
                             <input className="rounded-lg bg-gray-700 mt-2 p-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none" type="text" placeHolder = "Please Enter your BankID" name="name" value={userName} onChange={handleUserNameChange}/>
@@ -46,10 +48,11 @@ function LoginForm(){
                             <p className="flex items-center"><input className="r-2 cursor-pointer" type = 'checkbox' />Remember Me</p>
                             <p className="cursor-pointer">Forgot Password?</p>
                         </div>
-                        <button className="w-full my-5 py-2 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg ">Sign In</button>
+                        <button className="w-full my-5 py-2 bg-green-500 shadow-lg shadow-green-500/50 hover:shadow-green-500/40 text-white font-semibold rounded-lg ">Sign In</button>
                 </form>
             </div>
         </div>
-    );
+  );
 }
-export default LoginForm;
+
+export default SignIn;

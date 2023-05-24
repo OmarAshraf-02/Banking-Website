@@ -3,16 +3,18 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css'
 import { BrowserRouter } from 'react-router-dom';
-import ClientApp from './client/ClientApp'
 import { Provider } from 'react-redux';
+import { ThemeProvider } from '@material-tailwind/react';
 import { store } from './store';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Provider store={store}>
-      <ClientApp />
-    </Provider>
+    {/* <Provider store={store}> */}
+    <ThemeProvider>
+        <App />
+    </ThemeProvider>
+    {/* </Provider> */}
     </BrowserRouter>
   </React.StrictMode>
 );
