@@ -1,4 +1,5 @@
-import { Home, SignIn } from './pages';
+import { Home } from './pages';
+import SignIn from './pages/sign-in'
 import {
   HomeIcon,
   ArrowRightOnRectangleIcon,
