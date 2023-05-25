@@ -166,8 +166,17 @@ const clientSlice = createSlice({
         },
         payBill(state, action) {
             state[0].bills = state[0].bills.filter((bill) => {
-                return bill.id !== action.payload
+                return bill.id !== action.payload.bill.id
             })
+            const transaction = {
+                id: state[0].transactions.length + 1,
+                dateTime: new Date().toISOString().slice(0, 19).replace('T', ' '),
+                accountNumber: action.payload.accountNumber,
+                transactionType: "Bill",
+                amount: -1*action.payload.bill.amount,
+                balance: 3000.00,
+            }
+            state[0].transactions.push(transaction);
         }
     }
 });
