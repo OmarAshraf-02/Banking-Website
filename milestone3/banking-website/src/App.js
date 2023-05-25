@@ -4,6 +4,7 @@ import {Navbar} from './shared/widgets/layout';
 import routes from "./shared/routes";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Home, SignIn } from './shared/pages';
+import NewSignUp from './client/pages/NewSignUp'
 function App() {
 
   return (

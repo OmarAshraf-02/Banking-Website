@@ -7,14 +7,17 @@ import {
 } from "@material-tailwind/react";
 import { UsersIcon } from "@heroicons/react/24/solid";
 import { PageTitle, Footer } from "../widgets/layout";
-import { FeatureCard, TeamCard } from "../widgets/cards";
-import { featuresData, teamData, contactData } from "../data";
+import { FeatureCard } from "../widgets/cards";
+import { featuresData, contactData } from "../data";
+import bank from '../../assets/bank.jpeg';
+import bankMainScreen from '../../assets/bankMainScreen.jpg';
+
 
 export function Home() {
   return (
     <>
       <div className="relative flex h-screen content-center items-center justify-center pt-16 pb-32">
-        <div className="absolute top-0 h-full w-full bg-[url('https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')] bg-cover bg-center" />
+        <div className="absolute top-0 h-full w-full bg-cover bg-center" style={{ backgroundImage: `url(${bankMainScreen})`}} />
         <div className="absolute top-0 h-full w-full bg-black/75 bg-cover bg-center" />
         <div className="max-w-8xl container relative mx-auto">
           <div className="flex flex-wrap items-center">
@@ -72,7 +75,7 @@ export function Home() {
                 <CardHeader className="relative h-56">
                   <img
                     alt="Card Image"
-                    src="/src/assets/bank.jpeg"
+                    src= {bank}
                     className="h-full w-full"
                   />
                 </CardHeader>

@@ -7,7 +7,7 @@ import {
 
 export const contactData = [
   {
-    title: "Excelent Services",
+    title: "Excellent Services",
     icon: StarIcon,
     description:
       "Experience excellence with our exceptional range of services, meticulously designed to meet your every banking need.",
