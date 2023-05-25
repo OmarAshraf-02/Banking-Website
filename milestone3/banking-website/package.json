@@ -23,6 +23,7 @@
     "chart.js": "^4.3.0",
     "dayjs": "^1.11.7",
     "formik": "^2.2.9",
+    "formik-mui": "^5.0.0-alpha.0",
     "i": "^0.3.7",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",

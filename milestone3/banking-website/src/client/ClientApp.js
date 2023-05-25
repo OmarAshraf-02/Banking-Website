@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage/HomePage';
 import OpenAccount from './pages/OpenAccount';
 import { Routes, Route, Link } from 'react-router-dom';
 import Bill from './pages/Bill';
-import LoginForm from '../components/LoginForm';
+import SignIn from '../shared/pages/sign-in';
 import Loan from './pages/Loan/Loan';
 import CarLoanForm from './pages/Loan/CarLoanForm'
 import { ColorModeContext, useMode } from '../themes';
@@ -16,6 +16,7 @@ import ClientSidebar from './components/SideBar';
 import TopBar from './components/Topbar'
 import ReportTechnicalIssue from './pages/ReportTechnicalIssues';
 import Accounts from './pages/Accounts/Accounts';
+import CreditCard from './pages/CreditCard';
 function App() {
   const [theme, colorMode] = useMode();
   return (
@@ -41,7 +42,7 @@ function App() {
               <Routes>
                 {/* <Route path='Stepper' element={<Steppers />} /> */}
                 <Route path='home' element={<HomePage />} />
-                <Route path='login' index element={<LoginForm />} />
+                <Route path='login' index element={<SignIn />} />
                 <Route path='openAccount' index element={<OpenAccount />} />
                 <Route path='bill' element={<Bill />} />
                 <Route path='loan' element={<Loan />} />
@@ -50,6 +51,7 @@ function App() {
                 <Route path='transactionHistory' element={<TransactionHistory />} />
                 <Route path='reportTechnicalIssues' element={<ReportTechnicalIssue />} />
                 <Route path='accounts' element={<Accounts />} />
+                <Route path='creditCards' element={<CreditCard />} />
               </Routes>
             </main>
           </div>

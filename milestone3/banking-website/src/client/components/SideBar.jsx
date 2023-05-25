@@ -8,7 +8,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
-import { CiMoneyBill } from "react-icons/ci";
+import { CiMoneyBill, CiCreditCard2 } from "react-icons/ci";
 import { GiReceiveMoney } from "react-icons/gi";
 import { TbTransferOut } from "react-icons/tb";
 import { AiFillBug,AiOutlineTransaction } from "react-icons/ai";
@@ -158,8 +158,14 @@ const ClientSidebar = () => {
                             selected={selected}
                             setSelected={setSelected}
                         />
+                        <Item
+                            title="Credit Cards"
+                            to="creditCards"
+                            icon={<CiCreditCard2 size={selected==='Credit Cards'? 50:20}/>}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
                     </Box>
-                    
                     {!isCollapsed && (
                         <Box mb="15px">
                             <Box textAlign="center" >
