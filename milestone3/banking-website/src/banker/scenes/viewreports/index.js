@@ -1,4 +1,6 @@
-import { Box, useTheme, Button , IconButton } from "@mui/material";
+import { Box, useTheme, Button , IconButton , TextField } from "@mui/material";
+import { Formik , Field  } from "formik";
+import * as yup from "yup";
 import Header from "../../components/Header";
 import InputBase from "@mui/material/InputBase";
 import Accordion from "@mui/material/Accordion";
@@ -10,10 +12,24 @@ import SearchIcon from "@mui/icons-material/Search";
 import { tokens } from "../../../themes";
 import { f1Drivers } from "../../../data/mockdata";
 import { useState } from "react";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import CircularProgress from "@mui/material/CircularProgress";
+
+
 
 const ViewReports = () => {
+  const [loading , setLoading] = useState(false);  
   const [searchTerm , setSearchTerms] = useState('');
   const theme = useTheme();
+  const isNonMobile = useMediaQuery("(min-width:600px)");
+  const handleFormSubmit = async (values , {resetForm}) => {
+    console.log("ahooo");
+    setLoading(true);
+    await setTimeout(() => {
+      resetForm({values: ''});
+      setLoading(false)
+    } , 2000);
+  };
   const colors = tokens(theme.palette.mode);
   const onChange = (event) => {
     setSearchTerms(event.target.value);
@@ -21,9 +37,9 @@ const ViewReports = () => {
   const filteredArray = f1Drivers.filter((driver) => {
     return driver.bankAccount.toLowerCase().includes(searchTerm.toLowerCase());
   });
-  const mappedArray = filteredArray.map((character)=>{
+  const mappedArray = filteredArray.map((character , i)=>{
     return (
-        <Accordion >
+        <Accordion key = {i} >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography color={colors.greenAccent[500]} variant="h3">
             {character.name}
@@ -42,29 +58,73 @@ const ViewReports = () => {
           <Typography variant="h5" color={colors.grey[100]}>
             {`Complaint: ${character.complaint}`}
           </Typography>
-        </AccordionDetails>
-        <Box display="flex" justifyContent="end" mt="20px" m = "10px">
+          <Formik
+        onSubmit={handleFormSubmit}
+        initialValues={initialValues}
+        validationSchema={checkoutSchema}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          handleBlur,
+          handleChange,
+          handleSubmit,
+        }) => {
+          // setName(values.accountName);
+          return (
+          <form onSubmit={handleSubmit}>
+            <Box
+              display="grid"
+              m = "10px"
+              gap="30px"
+              gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+              sx={{
+                "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+              }}
+            >
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Message"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.message}
+                name="message"
+                error={!!touched.message && !!errors.message}
+                helperText={touched.message && errors.message}
+                sx={{ gridColumn: "span 4"}}
+              />
+            </Box>
+            <Box display="flex" justifyContent="end" mt="20px" m = "10px">
             <Box m = "5px">
-            <Button type="submit" color="secondary" variant="contained">
-                Contact to Resolve
-              </Button>
+            {loading ? <CircularProgress color="secondary" /> : <Button type="submit" color="secondary" variant="contained">
+                Send
+              </Button>}
             </Box>
             <Box m = "5px">
-            <Button type="submit" color="secondary" variant="contained">
+            <Button color="secondary" variant="contained">
                 Delegate to Superior
               </Button>
             </Box>
             <Box m = "5px">
-            <Button type="submit" color="secondary" variant="contained">
+            <Button color="secondary" variant="contained">
                 Delegate to Admin
               </Button>
             </Box>
             <Box m = "5px">
-            <Button type="submit" color="error" variant="contained">
+            <Button  color="error" variant="contained">
                 Reject
               </Button>
             </Box>
         </Box>
+          </form>
+          
+        )}
+        }
+      </Formik>
+        </AccordionDetails>
       </Accordion>
     );
   });
@@ -76,7 +136,7 @@ const ViewReports = () => {
          borderRadius="3px"
          m = "4px 0px 20px 0px"
          >
-            <InputBase value={searchTerm} onChange={onChange} sx ={{ml:2 , flex:1}} placeHolder = "Search" />
+            <InputBase value={searchTerm} onChange={onChange} sx ={{ml:2 , flex:1}}/>
             <IconButton type = "button" sx={{p:1}}>
                 <SearchIcon />
             </IconButton>
@@ -88,5 +148,14 @@ const ViewReports = () => {
     </Box>
   );
 };
+const checkoutSchema = yup.object().shape({
+  message: yup.string().required("required"),
+
+});
+const initialValues = {
+  message:"",
+
+};
+
 
 export default ViewReports;
