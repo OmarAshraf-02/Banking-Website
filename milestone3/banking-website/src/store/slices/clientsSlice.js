@@ -14,7 +14,7 @@ const clientSlice = createSlice({
         accounts: [
             {
                 id: 1,
-                accountNumber: 'ACCT-123456',
+                accountNumber: 555555555,
                 accountType:'Savings',
                 cards: [
                   { id: 1, cardNumber: 'CARD-111', type: 'Credit Card', limit: 5000 , validThru: '12/25', cvc: 123},
@@ -25,17 +25,16 @@ const clientSlice = createSlice({
               },
               {
                 id: 2,
-                accountNumber: 'ACCT-789012',
+                accountNumber: 123456789,
                 accountType:'Savings',
                 cards: [
-                  { id: 1, cardNumber: 'CARD-444', type: 'Debit Card', balance: 2000, validThru: '02/25', cvc: 235 },
-                  { id: 2, cardNumber: 'CARD-555', type: 'Prepaid Card', balance: 100, validThru: '04/25', cvc: 444 },
+                  
                 ],
                 creditScore: 720,
               },
               {
                 id: 3,
-                accountNumber: 'ACCT-345678',
+                accountNumber: 987654321,
                 accountType:'Savings',
                 cards: [
                   { id: 1, cardNumber: 'CARD-666', type: 'Credit Card', limit: 10000, validThru: '12/29', cvc: 222 },

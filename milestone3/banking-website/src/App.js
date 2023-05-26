@@ -6,11 +6,14 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Home from './shared/pages/home';
 import SignIn from './shared/pages/sign-in'
 import NewSignUp from './client/pages/NewSignUp'
+import ClientApp from './client/ClientApp';
+import BankerApp from './banker/BankerApp'
 function App() {
 
   return (
     <div>
-      <div className="container absolute left-2/4 z-10 mx-auto -translate-x-2/4 p-4">
+      <ClientApp/>
+      {/* <div className="container absolute left-2/4 z-10 mx-auto -translate-x-2/4 p-4">
         <Navbar routes={routes} />
       </div>
       <Routes>
@@ -19,7 +22,7 @@ function App() {
             element && <Route key={key} exact path={path} element={element} />
         )}
         <Route path="" element={<Navigate to="/home" replace />} />
-      </Routes>
+      </Routes> */}
       {/* <SignIn /> */}
     </div>
   )
