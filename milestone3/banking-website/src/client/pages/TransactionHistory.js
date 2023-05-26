@@ -6,18 +6,18 @@ import { payBill } from '../../store/index'
 import { useDispatch, useSelector } from 'react-redux'
 import Header from "../components/Header";
 
-function TransactionHistory({accountNumbers}) {
-  
+function TransactionHistory({ accountNumbers }) {
+
   const dispatch = useDispatch();
   var transactions = useSelector((state) => {
     return state.clients[0].transactions;
   })
-  if(accountNumbers!==undefined) {
+  if (accountNumbers !== undefined) {
     transactions = transactions.filter((transaction) => {
       return accountNumbers.includes(transaction.accountNumber)
     })
   }
-  
+
   // console.log(transactions);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -57,7 +57,7 @@ function TransactionHistory({accountNumbers}) {
       field: "balance",
       headerName: "Balance",
       flex: 1,
-      
+
     }
 
   ];

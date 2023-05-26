@@ -28,7 +28,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline>
           <div className='app'>
-            <ClientSidebar/>
+            <ClientSidebar />
             {/* <div>
               <nav class="zone blue sticky">
                 <ul class="main-nav">
@@ -42,7 +42,7 @@ function App() {
             {/* <div class="container"><img class="cover" src="./img/undraw.png" /></div> */}
             {/* <div class="zone blue grid-wrapper"></div> */}
             <main className="content">
-              <TopBar/>
+              <TopBar />
               <Routes>
                 {/* <Route path='Stepper' element={<Steppers />} /> */}
                 <Route path='home' element={<HomePage />} />
@@ -56,10 +56,10 @@ function App() {
                 <Route path='reportTechnicalIssues' element={<ReportTechnicalIssue />} />
                 <Route path='accounts' element={<Accounts />} />
                 <Route path='creditCards' element={<CreditCard />} />
-                <Route path="accounts/:id" element={<AccountPage/>} />
-                <Route path="accounts/:id/debitCardForm" element={<DebitCardForm/>} />
-                <Route path="accounts/:id/prepaidCardForm" element={<PrepaidCardForm/>} />
-                <Route path="creditCardForm" element={<CreditCardForm/>} />
+                <Route path="accounts/:id" element={<AccountPage />} />
+                <Route path="accounts/:id/debitCardForm" element={<DebitCardForm />} />
+                <Route path="accounts/:id/prepaidCardForm" element={<PrepaidCardForm />} />
+                <Route path="creditCards/creditCardForm" element={<CreditCardForm />} />
               </Routes>
             </main>
           </div>
