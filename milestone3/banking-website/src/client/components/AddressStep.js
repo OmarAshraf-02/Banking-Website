@@ -17,6 +17,7 @@ const AddressStep = ({ onNext, onBack, formData }) => {
                 onChange={(e) => setCity(e.target.value)}
                 fullWidth
                 margin="normal"
+                multiline
             />
             <TextField
                 label="Address"
@@ -24,6 +25,7 @@ const AddressStep = ({ onNext, onBack, formData }) => {
                 onChange={(e) => setAddress(e.target.value)}
                 fullWidth
                 margin="normal"
+                multiline
             />
             <button onClick={onBack}></button>
             <button onClick={handleNext}></button>

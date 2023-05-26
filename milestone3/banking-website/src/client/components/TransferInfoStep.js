@@ -5,7 +5,7 @@ import { styled, createTheme, ThemeProvider, withStyles } from '@mui/material/st
 const TransferInfoStep = ({ onNext, formData }) => {
     const [FullName, setFullName] = useState(formData.FullName || '');
     const [BankAccountNumber, setBankAccountNumber] = useState(formData.BankAccountNumber || '');
-    const [BankName, setBankName] = useState(formData.BankName|| '');
+    const [BankName, setBankName] = useState(formData.BankName || '');
     // const [gender, setGender] = useState(formData.gender || '');
 
     const handleNext = () => {
@@ -25,7 +25,7 @@ const TransferInfoStep = ({ onNext, formData }) => {
                 onChange={(e) => setFullName(e.target.value)}
                 fullWidth
                 margin="normal"
-
+                multiline
             />
             <TextField
                 label="Bank Account Number"
@@ -33,15 +33,15 @@ const TransferInfoStep = ({ onNext, formData }) => {
                 onChange={(e) => setBankAccountNumber(e.target.value)}
                 fullWidth
                 margin="normal"
-
+                multiline
             />
-             <TextField
+            <TextField
                 label="Bank Name"
                 value={BankName}
                 onChange={(e) => setBankName(e.target.value)}
                 fullWidth
                 margin="normal"
-
+                multiline
             />
 
             {/* <RadioGroup row value={gender} onChange={(e) => setGender(e.target.value)}>

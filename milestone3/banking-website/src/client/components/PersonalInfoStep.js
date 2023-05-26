@@ -24,7 +24,7 @@ const PersonalInfoStep = ({ onNext, formData }) => {
                 onChange={(e) => setFirstName(e.target.value)}
                 fullWidth
                 margin="normal"
-
+                multiline
             />
             <TextField
                 label="Last Name"
@@ -32,7 +32,7 @@ const PersonalInfoStep = ({ onNext, formData }) => {
                 onChange={(e) => setLastName(e.target.value)}
                 fullWidth
                 margin="normal"
-
+                multiline
             />
             <RadioGroup row value={gender} onChange={(e) => setGender(e.target.value)}>
                 <CustomFormControlLabel value="male" control={<Radio />} label="Male" />

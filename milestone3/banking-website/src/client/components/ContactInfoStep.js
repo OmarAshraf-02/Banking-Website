@@ -18,6 +18,7 @@ const ContactInfoStep = ({ onNext, onBack, formData }) => {
                 onChange={(e) => setPhoneNumber(e.target.value)}
                 fullWidth
                 margin="normal"
+                multiline
             />
             <TextField
                 label="Email"
@@ -25,6 +26,7 @@ const ContactInfoStep = ({ onNext, onBack, formData }) => {
                 onChange={(e) => setEmail(e.target.value)}
                 fullWidth
                 margin="normal"
+                multiline
             />
             <TextField
                 label="Password"
@@ -33,6 +35,7 @@ const ContactInfoStep = ({ onNext, onBack, formData }) => {
                 fullWidth
                 margin="normal"
                 type="password"
+                multiline
             />
             <button onClick={onBack}></button>
             <button onClick={handleNext}></button>

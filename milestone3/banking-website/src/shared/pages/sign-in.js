@@ -75,6 +75,7 @@ const SignIn = () => {
                             margin="normal"
                             fullWidth
                             required
+                            multiline
                             InputProps={{
                                 style: { backgroundColor: '#333', color: 'white' },
                             }}
@@ -88,6 +89,7 @@ const SignIn = () => {
                             variant="outlined"
                             margin="normal"
                             fullWidth
+                            multiline
                             required
                             InputProps={{
                                 style: { backgroundColor: '#333', color: 'white' },
