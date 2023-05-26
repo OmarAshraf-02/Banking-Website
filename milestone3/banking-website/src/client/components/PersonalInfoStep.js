@@ -14,6 +14,8 @@ const PersonalInfoStep = ({ onNext, formData }) => {
         color: 'white', // Replace 'red' with your desired color
     });
 
+
+
     return (
         <div>
             <TextField

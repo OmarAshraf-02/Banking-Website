@@ -7,6 +7,7 @@ import Header from '../../components/Header'
 import "tachyons";
 import LoanCards from '../../components/LoanCards'
 import { useDispatch, useSelector } from 'react-redux'
+import LoanTypeCard from './LoanTypeCard'
 
 function Loan() {
     const dispatch = useDispatch();
@@ -28,7 +29,12 @@ function Loan() {
             {loans.map((loan)=>{
                 return <LoanCards loan={loan}/>
             })}
-            <div class="cf ph2-ns">
+            <div className='flex items-center'>
+                <LoanTypeCard alt='car loan' img={carloan} to='CarLoanForm' summary='Apply for personal loans and enjoy your miserable life because you will eventually go to prison' title='Car Loans'/>
+                <LoanTypeCard alt='personal loan' img={personalloan} to='PersonalLoanForm' summary='Apply for personal loans and enjoy your miserable life because you will eventually go to prison' title='Personal Loans'/>
+            </div>
+            
+            {/* <div class="cf ph2-ns">
                 <h3 class="mw5  pa3 ph5-ns">Apply for Loans</h3>
                 <div class="fl w-100 w-50-ns pa2">
                     <Link to='CarLoanForm'><div class="box zone pv7  "><img src={carloan} />Car Loan</div></Link>
@@ -36,7 +42,7 @@ function Loan() {
                 <div class="fl w-100 w-50-ns pa2">
                     <Link to='PersonalLoanForm'><div class="box zone pa7"><img src={personalloan} />Personal loan</div></Link>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

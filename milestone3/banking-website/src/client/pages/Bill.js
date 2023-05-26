@@ -1,13 +1,51 @@
 import { Box, Typography, useTheme, Button } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../themes";
-import React from 'react';
+import React, { useState } from 'react';
 import { payBill } from '../../store/index'
 import { useDispatch, useSelector } from 'react-redux'
 import Header from "../components/Header";
+import SimpleDialog from "../components/SimpleDialog";
 
 function Bill() {
-  const dispatch = useDispatch();
+  const accounts = useSelector((state) => {
+    return state.clients[0].accounts
+  })
+  const [open, setOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(accounts[0].accountNumber);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (value) => {
+    setOpen(false);
+    setSelectedValue(value);
+    console.log(value);
+  };
+
+  
+  const Dialog = ({params})=> (
+    <div>
+      <Button
+        variant="contained"
+        size="small"
+        style={{ marginLeft: 16 }}
+        tabIndex={params.hasFocus ? 0 : -1}
+        //() => dispatch(payBill(params.row.id))
+        onClick={handleClickOpen}
+      >
+        Pay
+      </Button>
+      <SimpleDialog
+        selectedValue={selectedValue}
+        open={open}
+        onClose={handleClose}
+        accounts={accounts}
+        params={params}
+      />
+    </div>
+  );
   const bills = useSelector((state) => {
     return state.clients[0].bills
   })
@@ -42,15 +80,7 @@ function Bill() {
       renderCell: (params) => {
         // console.log(params)
         return (
-          <Button
-            variant="contained"
-            size="small"
-            style={{ marginLeft: 16 }}
-            tabIndex={params.hasFocus ? 0 : -1}
-            onClick={() => dispatch(payBill(params.row.id))}
-          >
-            Pay
-          </Button>
+          <Dialog params={params}/>
         )
 
       }

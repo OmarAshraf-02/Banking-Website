@@ -17,6 +17,10 @@ import TopBar from './components/Topbar'
 import ReportTechnicalIssue from './pages/ReportTechnicalIssues';
 import Accounts from './pages/Accounts/Accounts';
 import CreditCard from './pages/CreditCard';
+import AccountPage from './pages/Accounts/AccountPage';
+import DebitCardForm from './pages/DebitCardForm';
+import PrepaidCardForm from './pages/PrepaidCardForm';
+import CreditCardForm from './pages/CreditCardForm';
 function App() {
   const [theme, colorMode] = useMode();
   return (
@@ -52,6 +56,10 @@ function App() {
                 <Route path='reportTechnicalIssues' element={<ReportTechnicalIssue />} />
                 <Route path='accounts' element={<Accounts />} />
                 <Route path='creditCards' element={<CreditCard />} />
+                <Route path="accounts/:id" element={<AccountPage/>} />
+                <Route path="accounts/:id/debitCardForm" element={<DebitCardForm/>} />
+                <Route path="accounts/:id/prepaidCardForm" element={<PrepaidCardForm/>} />
+                <Route path="creditCardForm" element={<CreditCardForm/>} />
               </Routes>
             </main>
           </div>

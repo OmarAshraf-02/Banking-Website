@@ -20,7 +20,7 @@ function CardItem({card}) {
         type
     } = card
   return (
-    <div className='grow mb-4 flex justify-between  grid gap-10 hover:gap-20'>
+    <div className='grow m-7 flex flex-row justify-between grid gap-10 hover:gap-12'>
         <Cards number={cardNumber}  expiry={validThru} cvc={cvc} name ={name} focused="" />
         <div className='flex flex-col'>
             <Typography color={colors.grey[500]} variant="h3">
@@ -30,7 +30,7 @@ function CardItem({card}) {
                 <Typography color={colors.grey[500]} variant="h3">
                     Limit: {card.limit}
                 </Typography> 
-            :
+                :
                 <Typography color={colors.grey[500]} variant="h3">
                     Balance: {card.balance}
                 </Typography>    

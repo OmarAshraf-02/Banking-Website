@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Stepper, Step, StepLabel, Button, Typography } from '@mui/material';
+import { Stepper, Step, StepLabel, Button, Typography, CircularProgress } from '@mui/material';
 import { styled, createTheme, ThemeProvider, withStyles } from '@mui/material/styles';
 import PersonalInfoStep from '../components/PersonalInfoStep';
 import ContactInfoStep from '../components/ContactInfoStep';
@@ -89,10 +89,22 @@ const steps = ['Personal Information', 'Contact Information', 'Address', 'Identi
 const NewSignUp = () => {
     const [activeStep, setActiveStep] = useState(0);
     const [formData, setFormData] = useState({});
+    const [loading, setLoading] = useState(false);
 
     const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        if (activeStep === steps.length - 1) {
+            // Handle final step or form submission
+            setLoading(true);
+            setTimeout(() => {
+                // Simulating asynchronous operation
+                console.log(formData);
+                setLoading(false);
+            }, 2000);
+        } else {
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        }
     };
+
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
