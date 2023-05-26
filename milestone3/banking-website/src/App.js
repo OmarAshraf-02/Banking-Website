@@ -8,11 +8,15 @@ import SignIn from './shared/pages/sign-in'
 import NewSignUp from './client/pages/NewSignUp'
 import ClientApp from './client/ClientApp';
 import BankerApp from './banker/BankerApp'
+import Loan from './client/pages/Loan/Loan';
+import Transfer from './client/pages/Transfers/Transfer';
+import DomesticStepper from './client/pages/Transfers/DomesticStepper';
 function App() {
 
   return (
     <div>
-      <NewSignUp />
+      {/* <NewSignUp /> */}
+      <DomesticStepper></DomesticStepper>
       {/* <ClientApp/> */}
       {/* <div className="container absolute left-2/4 z-10 mx-auto -translate-x-2/4 p-4">
           <Navbar routes={routes} />
