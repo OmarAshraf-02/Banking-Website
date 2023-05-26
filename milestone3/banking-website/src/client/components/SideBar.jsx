@@ -6,12 +6,13 @@ import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from '../../themes';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
 import { CiMoneyBill, CiCreditCard2 } from "react-icons/ci";
 import { GiReceiveMoney } from "react-icons/gi";
 import { TbTransferOut } from "react-icons/tb";
-import { AiFillBug,AiOutlineTransaction } from "react-icons/ai";
+import { AiFillBug, AiOutlineTransaction } from "react-icons/ai";
 import { GrTransaction } from "react-icons/gr";
 
 import logo from '../../assets/logo.png'
@@ -54,7 +55,7 @@ const ClientSidebar = () => {
                     backgroundColor: "transparent !important",
                 },
                 "& .pro-inner-item": {
-                    padding: "5px 35px 5px 20px !important",
+                    padding: "5px 0.2px 5px 20px !important",
                 },
                 "& .pro-inner-item:hover": {
                     color: "#868dfb !important",
@@ -94,7 +95,7 @@ const ClientSidebar = () => {
 
                     {!isCollapsed && (
                         <Box mb="15px" display="flex" alignItems="center" justifyContent="center">
-                            <img style={{ width: '50px', height: '50px',marginRight: '10px' }} src={logo} alt='404 bank'/>
+                            <img style={{ width: '50px', height: '50px', marginRight: '10px' }} src={logo} alt='404 bank' />
                             <Box textAlign="center">
                                 <Typography
                                     variant="h2"
@@ -112,59 +113,67 @@ const ClientSidebar = () => {
                         <Item
                             title="Home"
                             to="home"
-                            icon={<HomeOutlinedIcon size={selected==='Home'? 50:20}/>}
+                            icon={<HomeOutlinedIcon size={selected === 'Home' ? 50 : 20} />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Transactions History"
+                            title="Transaction History"
                             to="transactionHistory"
-                            icon={<AiOutlineTransaction size={selected==='Transactions History'? 50:20}/>}
+                            icon={<AiOutlineTransaction size={selected === 'Transactions History' ? 50 : 20} />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
                             title="Accounts"
                             to="accounts"
-                            icon={<AccountBalanceOutlinedIcon size={selected==='Accounts'? 50:20}/>}
+                            icon={<AccountBalanceOutlinedIcon size={selected === 'Accounts' ? 50 : 20} />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
                             title="Bills"
                             to="bill"
-                            icon={<CiMoneyBill size={selected==='Bills'? 50:20} />}
+                            icon={<CiMoneyBill size={selected === 'Bills' ? 50 : 20} />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
                             title="Loans"
                             to="loan"
-                            icon={<GiReceiveMoney size={selected==='Loans'? 50:20}/>}
+                            icon={<GiReceiveMoney size={selected === 'Loans' ? 50 : 20} />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
                             title="Transfer"
                             to="transfer"
-                            icon={<TbTransferOut size={selected==='Transfer'? 50:20}/>}
+                            icon={<TbTransferOut size={selected === 'Transfer' ? 50 : 20} />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Report technical issues"
-                            to="reportTechnicalIssues"
-                            icon={<AiFillBug size={selected==='Report technical issues'? 50:20}/>}
+                            title="Applications"
+                            to="applications"
+                            icon={<ListAltOutlinedIcon size={selected === 'Transfer' ? 50 : 20} />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
                             title="Credit Cards"
                             to="creditCards"
-                            icon={<CiCreditCard2 size={selected==='Credit Cards'? 50:20}/>}
+                            icon={<CiCreditCard2 size={selected === 'Credit Cards' ? 50 : 20} />}
                             selected={selected}
                             setSelected={setSelected}
                         />
+                        <Item
+                            title="Report Technical Issues"
+                            to="reportTechnicalIssues"
+                            icon={<AiFillBug size={selected === 'Report technical issues' ? 50 : 20} />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+
                     </Box>
                     {!isCollapsed && (
                         <Box mb="15px">
@@ -175,7 +184,7 @@ const ClientSidebar = () => {
                                     // fontWeight="bold"
                                     sx={{ m: "10px 0 0 0" }}
                                 >
-                                    404 Bank - Banking Client System 
+                                    404 Bank - Banking Client System
                                 </Typography>
                                 <Typography
                                     variant="h8"
@@ -184,7 +193,7 @@ const ClientSidebar = () => {
                                     sx={{ m: "10px 0 0 0" }}
                                 >
                                     made by 404
-                                </Typography>  
+                                </Typography>
                             </Box>
                         </Box>
                     )}
