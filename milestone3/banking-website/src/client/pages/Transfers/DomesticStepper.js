@@ -6,6 +6,8 @@ import ContactInfoStep from '../../components/ContactInfoStep';
 import AddressStep from '../../components/AddressStep';
 import IdentificationStep from '../../components/IdentificationStep';
 import logo from '../../../assets/logo.png'
+import TransferInfoStep from '../../components/TransferInfoStep';
+import TransferAmountStep from './TransferAmountStep';
 
 const theme = createTheme({
     palette: {
@@ -84,7 +86,7 @@ const SubmitButton = styled(Button)({
     color: '#fff',
 });
 
-const steps = ['Sender Personal Information', ' Recipient Personal Information', 'Transfer Details', 'Review and Confirm'];
+const steps = ['Sender Personal Information', ' Recipient Personal Information', 'Transfer Details'];
 
 const DomesticStepper = () => {
     const [activeStep, setActiveStep] = useState(0);
@@ -117,18 +119,17 @@ const DomesticStepper = () => {
         }));
     };
 
-    const steps = ['Sender Personal Information', ' Recipient Personal Information', 'Transfer Details', 'Review and Confirm'];
+    const steps = ['Sender Personal Information', ' Recipient Personal Information', 'Transfer Details'];
 
     const getStepContent = (step) => {
         switch (step) {
             case 0:
-                return <PersonalInfoStep formData={formData} handleChange={handleChange} />;
+                return <TransferInfoStep formData={formData} handleChange={handleChange} />;
             case 1:
-                return <ContactInfoStep formData={formData} handleChange={handleChange} />;
+                return <TransferInfoStep formData={formData} handleChange={handleChange} />;
             case 2:
-                return <AddressStep formData={formData} handleChange={handleChange} />;
-            case 3:
-                return <IdentificationStep formData={formData} handleChange={handleChange} />;
+                return <TransferAmountStep formData={formData} handleChange={handleChange} />;
+        
             default:
                 return null;
         }
