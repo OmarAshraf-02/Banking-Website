@@ -30,9 +30,9 @@ function Transfer() {
                 return <LoanCards loan={loan}/>
             })}
             <div className='flex items-center'>
-                <LoanTypeCard alt='Domestic' img={carloan} to='CarLoanForm' summary='' title='Domestic Transfer'/>
-                <LoanTypeCard alt='Internal' img={personalloan} to='PersonalLoanForm' summary='' title='Internal Transfer'/>
-                <LoanTypeCard alt='International' img={personalloan} to='PersonalLoanForm' summary='' title='International Transfer'/>
+                <LoanTypeCard alt='Domestic' img={personalloan} to='DomesticTranfer' summary='' title='Domestic Transfer'/>
+                <LoanTypeCard alt='Internal' img={personalloan} to='InternalTransfer' summary='' title='Internal Transfer'/>
+                <LoanTypeCard alt='International' img={personalloan} to='InternationalTransfer' summary='' title='International Transfer'/>
             </div>
             
             {/* <div class="cf ph2-ns">

@@ -11,6 +11,9 @@ import BankerApp from './banker/BankerApp'
 import Loan from './client/pages/Loan/Loan';
 import Transfer from './client/pages/Transfers/Transfer';
 import DomesticStepper from './client/pages/Transfers/DomesticStepper';
+import PersonalLoanForm from './client/pages/Loan/PersonalLoanForm';
+import DomesticTransfer from './client/pages/Transfers/DomesticTransfer';
+import InternationalTransfer from './client/pages/Transfers/InternationalTransfer'
 function App() {
 
   return (
@@ -18,7 +21,10 @@ function App() {
       {/* <NewSignUp /> */}
       {/* <SignIn /> */}
       {/* <DomesticStepper></DomesticStepper> */}
-      <ClientApp />
+    
+    <InternationalTransfer/>
+      {/* <Transfer/> */}
+      {/* <ClientApp /> */}
       {/* <div className="container absolute left-2/4 z-10 mx-auto -translate-x-2/4 p-4">
           <Navbar routes={routes} />
       </div>

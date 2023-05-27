@@ -7,7 +7,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import * as yup from "yup";
 import Header from '../../components/Header.jsx';
 
-const DomesticTransfer = () => {
+const InternationalTransfer = () => {
     const [loading, setLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
 
@@ -36,7 +36,7 @@ const DomesticTransfer = () => {
 
     return (
         <Box m="20px">
-            <Header title='Domestic Transfer' subtitle='' />
+            <Header title='International Transfer' subtitle='' />
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
@@ -79,6 +79,15 @@ const DomesticTransfer = () => {
                                 
                             </FormControl> 
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
+                                <InputLabel htmlFor="outlined-adornment-amount">Sender Country</InputLabel>
+                                <OutlinedInput
+                                   
+                                    label="Sender Country"
+                                    value={values.loanAmount}
+                                />
+                                
+                            </FormControl> 
+                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <InputLabel htmlFor="outlined-adornment-amount">Recipient Full Name</InputLabel>
                                 <OutlinedInput
                                    
@@ -104,7 +113,19 @@ const DomesticTransfer = () => {
                                     value={values.loanAmount}
                                 />
                                 
-                            </FormControl>
+                            </FormControl>       
+                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
+                                <InputLabel htmlFor="outlined-adornment-amount">Recipient Country</InputLabel>
+                                <OutlinedInput
+                                   
+                                    label="Recipient Country"
+                                    value={values.loanAmount}
+                                />
+                                
+                            </FormControl>                     
+                           
+
+                                
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <InputLabel htmlFor="outlined-adornment-amount">Transfer Amount</InputLabel>
                                 <OutlinedInput
@@ -127,7 +148,7 @@ const DomesticTransfer = () => {
                                 variant="outlined"
                                 label="Purpose"
                                 InputProps={styles}
-                                placeholder="Write your purpose for transfer here in as many lines as you need"
+                                placeholder="Write your purpose for the transfer here in as many lines as you need"
                                 multiline
                             />
                         </Box>
@@ -155,4 +176,4 @@ const checkoutSchema = yup.object().shape({
     employmentStatus: yup.string().required("required"),
 });
 
-export default DomesticTransfer
+export default InternationalTransfer
