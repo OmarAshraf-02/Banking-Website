@@ -34,6 +34,7 @@ const LoanCards = ({ loan }) => {
                     :
                     <button onClick={handleMoreInfoOnChange}> view additional information</button>}
             </div>
+            
         </div>
 
 

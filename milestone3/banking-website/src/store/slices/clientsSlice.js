@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const clientSlice = createSlice({
     name: 'clients',
     initialState: [{
+        points: 200,
         name: 'leo',
         password: 'barcelona',
         email: 'leoMessi@gmail.com',
@@ -151,7 +152,26 @@ const clientSlice = createSlice({
                 payee: 'water',
                 additionalInfo: 'Water bill for the month of June',
             },
-        ]
+        ],
+        creditCards: [],
+        notifications: {
+            bankAnnouncements: [],
+            issueResolution: [],
+            loanApplication: [],
+            creditCardApplication: [],
+            debitCardApplication: [],
+            prepaidCardApplication: [],
+            updates: []
+        },
+        applications: {
+            loanApplication: {
+                personalLoanApplication:[],
+                carLoanApplication: []
+            },
+            creditCardApplication: [],
+            debitCardApplication: [],
+            prepaidCardApplication: []
+        }
     }],
     reducers: {
         addClient(state, action) {

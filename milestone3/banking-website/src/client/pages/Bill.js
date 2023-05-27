@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { payBill } from '../../store/index'
 import { useDispatch, useSelector } from 'react-redux'
 import Header from "../components/Header";
-import SimpleDialog from "../components/SimpleDialog";
+import PayBillDialog from "../components/PayBillDialog";
 
 function Bill() {
   const accounts = useSelector((state) => {
@@ -37,7 +37,7 @@ function Bill() {
       >
         Pay
       </Button>
-      <SimpleDialog
+      <PayBillDialog
         selectedValue={selectedValue}
         open={open}
         onClose={handleClose}

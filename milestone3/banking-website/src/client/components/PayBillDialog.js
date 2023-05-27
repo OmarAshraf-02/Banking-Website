@@ -15,7 +15,7 @@ import { useDispatch } from 'react-redux';
 import { payBill } from '../../store';
 
 
-function SimpleDialog(props) {
+function PayBillDialog(props) {
     const dispatch = useDispatch();
 
     const { onClose, selectedValue, open, accounts, params } = props;
@@ -34,7 +34,7 @@ function SimpleDialog(props) {
 
     return (
         <Dialog onClose={handleClose} open={open}>
-        <DialogTitle>Set backup account</DialogTitle>
+        <DialogTitle>Choose an account</DialogTitle>
         <List sx={{ pt: 0 }}>
             {accounts.map((account) => (
             <ListItem disableGutters>
@@ -48,24 +48,10 @@ function SimpleDialog(props) {
                 </ListItemButton>
             </ListItem>
             ))}
-
-            <ListItem disableGutters>
-            <ListItemButton
-                autoFocus
-                onClick={() => handleListItemClick('addAccount')}
-            >
-                <ListItemAvatar>
-                <Avatar>
-                    <AddIcon />
-                </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary="Add account" />
-            </ListItemButton>
-            </ListItem>
         </List>
         </Dialog>
     );
 }
 
 
-export default SimpleDialog;
+export default PayBillDialog;

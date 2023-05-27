@@ -12,6 +12,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import '../../components/LoanCards.css'
 
 function AccountItem({ account }) {
     const theme = useTheme();
@@ -23,26 +24,45 @@ function AccountItem({ account }) {
         creditScore
     } = account
     return (
-      <Box sx={{ minWidth: 275, margin: 3 }}>
-        <Card variant="outlined">
-          <CardContent>
+      <div class="loan-card">
+          <div class="loan-card-header">Account Information</div>
+          <div class="loan-card-body">
             <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
               {accountType}
             </Typography>
             <Typography variant="h5" component="div">
-              {accountNumber}
+              Account Number: {accountNumber}
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
               Credit Score: {creditScore}
             </Typography>
-          </CardContent>
-          <CardActions sx={{display: 'flex', justifyContent: 'flex-end'}}>
+          </div>
+          <div class="loan-card-footer">
             <Link to={""+id}>
               <Button sx={{ fontSize: 12, color: colors.grey[100]}} size="medium">Learn More</Button>
-            </Link>
-          </CardActions>
-        </Card>
-      </Box>
+            </Link>      
+          </div>  
+      </div>
+      // <Box sx={{ minWidth: 275, margin: 3 }}>
+      //   <Card variant="outlined">
+      //     <CardContent>
+            // <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
+            //   {accountType}
+            // </Typography>
+            // <Typography variant="h5" component="div">
+            //   Account Number: {accountNumber}
+            // </Typography>
+            // <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            //   Credit Score: {creditScore}
+            // </Typography>
+      //     </CardContent>
+      //     <CardActions sx={{display: 'flex', justifyContent: 'flex-end'}}>
+      //       <Link to={""+id}>
+      //         <Button sx={{ fontSize: 12, color: colors.grey[100]}} size="medium">Learn More</Button>
+      //       </Link>
+      //     </CardActions>
+      //   </Card>
+      // </Box>
       //  <div className='m-4'>
       //      <Accordion>
       //       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
