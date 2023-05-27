@@ -1,38 +1,64 @@
-import React from 'react'
+import React from 'react';
 import { useState } from "react";
-import { Box, Button, TextField, Select, InputLabel, MenuItem, FormControl, OutlinedInput, InputAdornment } from "@mui/material";
+import { Box, Button, TextField, Select, InputLabel, MenuItem, FormControl, OutlinedInput, InputAdornment, CircularProgress } from "@mui/material";
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { Form, Field, Formik } from "formik";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import * as yup from "yup";
 import Header from '../../components/Header.jsx';
 import BackButton from '../../../shared/components/BackButton.js';
+import CheckIcon from '@mui/icons-material/Check';
 
 const InternalTransfer = () => {
-    const [loading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
+    const [isConfirmed, setIsConfirmed] = useState(false);
+
 
     const handleFormSubmit = async (values, { resetForm }) => {
-        setLoading(true);
+        setIsLoading(true);
+
+
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        setIsLoading(false);
+        setIsConfirmed(true);
+
+
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        setIsConfirmed(false);
         resetForm({ values: '' });
-        await setTimeout(() => { setLoading(false) }, 5000)
     };
 
     const initialValues = {
         transferAmount: '',
         senderAccountNumber: '',
+        senderFullName: '',
         receiverAccountNumber: '',
+        receiverFullName: '',
         purpose: '',
     };
     const styles = {
         textField: {
             height: '300px',
-            // Adjust the height as per your requirement
         },
     };
     const textAreaStyle = {
         backgroundColor: '#141b2d',
     }
+
+    const checkoutSchema = yup.object().shape({
+        senderFullName: yup.string().required("required"),
+        senderAccountNumber: yup.string().required("required"),
+        receiverFullName: yup.string().required("required"),
+        receiverAccountNumber: yup.string().required("required"),
+        transferAmount: yup
+            .number()
+            .typeError("Transfer amount must be a valid number")
+            .required("Transfer amount is required"),
+        purpose: yup.string().required("required"),
+    });
 
     return (
         <Box m="20px">
@@ -60,75 +86,113 @@ const InternalTransfer = () => {
                                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                             }}
                         >
-
-                            {/* <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-
+                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
                                     multiline
                                     label="Sender Full Name"
+                                    name="senderFullName"
+                                    required
                                     value={values.senderFullName}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    error={touched.senderFullName && !!errors.senderFullName}
+                                    helperText={touched.senderFullName && errors.senderFullName}
                                 />
-                            </FormControl> */}
+                            </FormControl>
 
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-
                                 <TextField
                                     multiline
                                     label="Sender Account Number"
+                                    required
+                                    name="senderAccountNumber"
                                     value={values.senderAccountNumber}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    error={touched.senderAccountNumber && !!errors.senderAccountNumber}
+                                    helperText={touched.senderAccountNumber && errors.senderAccountNumber}
                                 />
-
                             </FormControl>
-                            {/* <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
 
+                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
                                     multiline
+                                    required
                                     label="Recipient Full Name"
+                                    name="receiverFullName"
                                     value={values.receiverFullName}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    error={touched.receiverFullName && !!errors.receiverFullName}
+                                    helperText={touched.receiverFullName && errors.receiverFullName}
                                 />
+                            </FormControl>
 
-                            </FormControl> */}
+                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
+                                <TextField
+                                    multiline
+                                    required
+                                    label="Recipient Account Number"
+                                    name="receiverAccountNumber"
+                                    value={values.receiverAccountNumber}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    error={touched.receiverAccountNumber && !!errors.receiverAccountNumber}
+                                    helperText={touched.receiverAccountNumber && errors.receiverAccountNumber}
+                                />
+                            </FormControl>
+
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
 
                                 <TextField
                                     multiline
-                                    label="Recipient Account Number"
-                                    value={values.receiverAccountNumber}
+                                    required
+                                    label="Transfer Amount (EGP)"
+                                    name="transferAmount"
+                                    type="text"
+                                    value={values.transferAmount}
+                                    onChange={(event) => {
+                                        const numericValue = event.target.value.replace(/[^0-9]/g, "");
+                                        handleChange({
+                                            target: {
+                                                name: "transferAmount",
+                                                value: numericValue,
+                                            },
+                                        });
+                                    }}
+                                    onBlur={handleBlur}
+                                    error={touched.transferAmount && !!errors.transferAmount}
+                                    helperText={touched.transferAmount && errors.transferAmount}
                                 />
-
                             </FormControl>
-
-                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <InputLabel htmlFor="outlined-adornment-amount">Transfer Amount</InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-amount"
-                                    sx={{ height: '52.7167px' }}
-                                    startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
-                                    label="Transfer Amount"
-                                    values={values.transferAmount}
-                                    multiline
-                                />
-                            </FormControl>
-
-
-
-
-
-
 
                             <TextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="Purpose"
                                 InputProps={styles}
+                                name="purpose"
+                                value={values.purpose}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                error={touched.purpose && !!errors.purpose}
+                                helperText={touched.purpose && errors.purpose}
                                 placeholder="Write your purpose for the transfer here in as many lines as you need"
                                 multiline
+                                required
                             />
                         </Box>
                         <Box display="flex" justifyContent="end" mt="20px">
-                            {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained">
-                                Confirm
-                            </Button>}
+                            {isLoading ? (
+                                <CircularProgress color="secondary" size={24} />
+                            ) : (
+                                <>
+                                    {isConfirmed && <CheckIcon style={{ marginRight: '10px', color: 'green' }} />}
+                                    <Button type="submit" color="secondary" variant="contained">
+                                        Confirm
+                                    </Button>
+                                </>
+                            )}
                         </Box>
                     </form>
                 )}
@@ -137,16 +201,4 @@ const InternalTransfer = () => {
     );
 };
 
-
-
-const checkoutSchema = yup.object().shape({
-    make: yup.string().required("required"),
-    model: yup.string().required("required"),
-    loanAmount: yup.number().required('required'),
-    year: yup.number().required('required'),
-    annualIncome: yup.number().required('required'),
-    loanTerm: yup.string().required("required"),
-    employmentStatus: yup.string().required("required"),
-});
-
-export default InternalTransfer
+export default InternalTransfer;
