@@ -12,6 +12,7 @@ function CreditCard() {
     <div>
       <Cards number={cardNumber} expiry={validThru} cvc={cvc} name={cardName} focused="" />
       <Link to="creditCardForm"><Button variant='contained'>Apply for Credit Card</Button></Link>
+      <Link to="theftLossDamageForm"><Button variant='contained'>Report Theft/Loss/Damage</Button></Link>
     </div>
   )
 }

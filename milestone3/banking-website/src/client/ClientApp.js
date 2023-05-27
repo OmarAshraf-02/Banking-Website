@@ -21,6 +21,11 @@ import AccountPage from './pages/Accounts/AccountPage';
 import DebitCardForm from './pages/DebitCardForm';
 import PrepaidCardForm from './pages/PrepaidCardForm';
 import CreditCardForm from './pages/CreditCardForm';
+import Transfer from './pages/Transfers/Transfer';
+import DomesticTransfer from './pages/Transfers/DomesticTransfer';
+import InternationalTransfer from './pages/Transfers/InternationalTransfer';
+import InternalTransfer from './pages/Transfers/InternalTransfer';
+import TheftLossDamageForm from './pages/TheftLossDamageForm';
 function App() {
   const [theme, colorMode] = useMode();
   return (
@@ -60,6 +65,13 @@ function App() {
                 <Route path="accounts/:id/debitCardForm" element={<DebitCardForm />} />
                 <Route path="accounts/:id/prepaidCardForm" element={<PrepaidCardForm />} />
                 <Route path="creditCards/creditCardForm" element={<CreditCardForm />} />
+                <Route path='transfer' element={<Transfer />} />
+                <Route path='transfer/domestic' element={<DomesticTransfer />} />
+                <Route path='transfer/internal' element={<InternalTransfer />} />
+                <Route path='transfer/international' element={<InternationalTransfer />} />
+                <Route path='creditCards/theftLossDamageForm' element={<TheftLossDamageForm />} />
+
+
               </Routes>
             </main>
           </div>

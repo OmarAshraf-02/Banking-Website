@@ -6,6 +6,7 @@ import { Form, Field, Formik } from "formik";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import * as yup from "yup";
 import Header from '../../components/Header.jsx';
+import BackButton from '../../../shared/components/BackButton.js';
 
 const DomesticTransfer = () => {
     const [loading, setLoading] = useState(false);
@@ -18,10 +19,10 @@ const DomesticTransfer = () => {
     };
 
     const initialValues = {
-        loanAmount: '',
-        loanTerm: '',
-        annualIncome: '',
-        employmentStatus: '',
+        senderAccountNumber: '',
+        receiverAccountNumber: '',
+        receiverBankName: '',
+        transferAmount: '',
         purpose: ''
     };
     const styles = {
@@ -36,6 +37,7 @@ const DomesticTransfer = () => {
 
     return (
         <Box m="20px">
+            <BackButton to="/transfer" />
             <Header title='Domestic Transfer' subtitle='' />
             <Formik
                 onSubmit={handleFormSubmit}
@@ -59,52 +61,32 @@ const DomesticTransfer = () => {
                                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                             }}
                         >
-                            
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <InputLabel htmlFor="outlined-adornment-amount">Sender Full Name</InputLabel>
-                                <OutlinedInput
-                                   
-                                    label="Sender Full Name"
-                                    value={values.loanAmount}
-                                />
-                            </FormControl>
-                           
-                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <InputLabel htmlFor="outlined-adornment-amount">Sender Account Number</InputLabel>
-                                <OutlinedInput
-                                   
+                                <TextField
                                     label="Sender Account Number"
-                                    value={values.loanAmount}
+                                    value={values.senderAccountNumber}
+                                    multiline
                                 />
-                                
-                            </FormControl> 
-                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <InputLabel htmlFor="outlined-adornment-amount">Recipient Full Name</InputLabel>
-                                <OutlinedInput
-                                   
-                                    label="Recipient Full Name"
-                                    value={values.loanAmount}
-                                />
-                                
                             </FormControl>
+
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <InputLabel htmlFor="outlined-adornment-amount">Recipient Account Number</InputLabel>
-                                <OutlinedInput
-                                   
+                                <TextField
+                                    multiline
                                     label="Recipient Account Number"
-                                    value={values.loanAmount}
+                                    value={values.receiverAccountNumber}
                                 />
-                                
                             </FormControl>
+
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <InputLabel htmlFor="outlined-adornment-amount">Recipient Bank Name</InputLabel>
-                                <OutlinedInput
-                                   
+
+                                <TextField
+                                    multiline
                                     label="Recipient Bank Name"
-                                    value={values.loanAmount}
+                                    value={values.receiverBankName}
                                 />
-                                
+
                             </FormControl>
+
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <InputLabel htmlFor="outlined-adornment-amount">Transfer Amount</InputLabel>
                                 <OutlinedInput
@@ -112,24 +94,20 @@ const DomesticTransfer = () => {
                                     sx={{ height: '52.7167px' }}
                                     startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
                                     label="Transfer Amount"
-                                    value={values.loanAmount}
+                                    value={values.transferAmount}
                                 />
                             </FormControl>
-                          
+                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
+                                <TextField
+                                    sx={{ gridColumn: "span 4" }}
+                                    variant="outlined"
+                                    label="Purpose"
+                                    InputProps={styles}
+                                    placeholder="Write your purpose for transfer here in as many lines as you need"
+                                    multiline
 
-
-
-                        
-
-
-                            <TextField
-                                sx={{ gridColumn: "span 4" }}
-                                variant="outlined"
-                                label="Purpose"
-                                InputProps={styles}
-                                placeholder="Write your purpose for transfer here in as many lines as you need"
-                                multiline
-                            />
+                                />
+                            </FormControl>
                         </Box>
                         <Box display="flex" justifyContent="end" mt="20px">
                             {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained">

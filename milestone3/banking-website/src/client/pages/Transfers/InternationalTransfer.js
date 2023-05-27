@@ -6,6 +6,7 @@ import { Form, Field, Formik } from "formik";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import * as yup from "yup";
 import Header from '../../components/Header.jsx';
+import BackButton from '../../../shared/components/BackButton.js';
 
 const InternationalTransfer = () => {
     const [loading, setLoading] = useState(false);
@@ -36,6 +37,7 @@ const InternationalTransfer = () => {
 
     return (
         <Box m="20px">
+            <BackButton to="/transfer" />
             <Header title='International Transfer' subtitle='' />
             <Formik
                 onSubmit={handleFormSubmit}
@@ -59,73 +61,73 @@ const InternationalTransfer = () => {
                                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                             }}
                         >
-                            
+
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <InputLabel htmlFor="outlined-adornment-amount">Sender Full Name</InputLabel>
                                 <OutlinedInput
-                                   
+                                    multiline
                                     label="Sender Full Name"
                                     value={values.loanAmount}
                                 />
                             </FormControl>
-                           
+
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <InputLabel htmlFor="outlined-adornment-amount">Sender Account Number</InputLabel>
                                 <OutlinedInput
-                                   
+                                    multiline
                                     label="Sender Account Number"
                                     value={values.loanAmount}
                                 />
-                                
-                            </FormControl> 
+
+                            </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <InputLabel htmlFor="outlined-adornment-amount">Sender Country</InputLabel>
                                 <OutlinedInput
-                                   
+                                    multiline
                                     label="Sender Country"
                                     value={values.loanAmount}
                                 />
-                                
-                            </FormControl> 
+
+                            </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <InputLabel htmlFor="outlined-adornment-amount">Recipient Full Name</InputLabel>
                                 <OutlinedInput
-                                   
+                                    multiline
                                     label="Recipient Full Name"
                                     value={values.loanAmount}
                                 />
-                                
+
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <InputLabel htmlFor="outlined-adornment-amount">Recipient Account Number</InputLabel>
                                 <OutlinedInput
-                                   
+                                    multiline
                                     label="Recipient Account Number"
                                     value={values.loanAmount}
                                 />
-                                
+
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <InputLabel htmlFor="outlined-adornment-amount">Recipient Bank Name</InputLabel>
                                 <OutlinedInput
-                                   
+                                    multiline
                                     label="Recipient Bank Name"
                                     value={values.loanAmount}
                                 />
-                                
-                            </FormControl>       
+
+                            </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <InputLabel htmlFor="outlined-adornment-amount">Recipient Country</InputLabel>
                                 <OutlinedInput
-                                   
+                                    multiline
                                     label="Recipient Country"
                                     value={values.loanAmount}
                                 />
-                                
-                            </FormControl>                     
-                           
 
-                                
+                            </FormControl>
+
+
+
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <InputLabel htmlFor="outlined-adornment-amount">Transfer Amount</InputLabel>
                                 <OutlinedInput
@@ -134,13 +136,14 @@ const InternationalTransfer = () => {
                                     startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
                                     label="Transfer Amount"
                                     value={values.loanAmount}
+                                    multiline
                                 />
                             </FormControl>
-                          
 
 
 
-                        
+
+
 
 
                             <TextField

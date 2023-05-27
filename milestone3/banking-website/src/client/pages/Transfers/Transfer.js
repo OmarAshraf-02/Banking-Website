@@ -12,7 +12,7 @@ import LoanTypeCard from '../Loan/LoanTypeCard'
 function Transfer() {
     const dispatch = useDispatch();
     const loans = useSelector((state) => {
-      return state.clients[0].loans.personalLoan
+        return state.clients[0].loans.personalLoan
     })
     return (
         // <div>
@@ -26,15 +26,15 @@ function Transfer() {
         <div >
             <h1 class="mw5 center pa3 ph5-ns">Transfers</h1>
             <h2 class="mw5  pa3 ph5-ns">Recent Transfers</h2>
-            {loans.map((loan)=>{
-                return <LoanCards loan={loan}/>
-            })}
+            {/* {loans.map((loan) => {
+                return <LoanCards loan={loan} />
+            })} */}
             <div className='flex items-center'>
-                <LoanTypeCard alt='Domestic' img={personalloan} to='DomesticTranfer' summary='' title='Domestic Transfer'/>
-                <LoanTypeCard alt='Internal' img={personalloan} to='InternalTransfer' summary='' title='Internal Transfer'/>
-                <LoanTypeCard alt='International' img={personalloan} to='InternationalTransfer' summary='' title='International Transfer'/>
+                <LoanTypeCard alt='Domestic' img={personalloan} to='domestic' summary='' title='Domestic Transfer' />
+                <LoanTypeCard alt='Internal' img={personalloan} to='internal' summary='' title='Internal Transfer' />
+                <LoanTypeCard alt='International' img={personalloan} to='international' summary='' title='International Transfer' />
             </div>
-            
+
             {/* <div class="cf ph2-ns">
                 <h3 class="mw5  pa3 ph5-ns">Apply for Loans</h3>
                 <div class="fl w-100 w-50-ns pa2">
