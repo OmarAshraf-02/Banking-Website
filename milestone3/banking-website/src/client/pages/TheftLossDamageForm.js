@@ -10,6 +10,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import ApplyForReplacementDialog from '../components/ApplyForReplacementDialog.js';
 
 
 const TheftLossDamageForm = () => {
@@ -91,9 +92,9 @@ const TheftLossDamageForm = () => {
                             </LocalizationProvider>
                         </Box>
                         <Box display="flex" justifyContent="end" mt="20px">
-                            {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained">
-                                Report
-                            </Button>}
+                            {
+                            loading ? <div></div> : <ApplyForReplacementDialog />
+                            }
                         </Box>
                     </form>
                 )}
