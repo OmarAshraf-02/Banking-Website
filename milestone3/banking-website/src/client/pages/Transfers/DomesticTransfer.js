@@ -137,6 +137,8 @@ const DomesticTransfer = () => {
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
 
                                 <TextField
+                                    sx={{ gridColumn: "span 4" }}
+                                    fullWidth
                                     multiline
                                     required
                                     label="Transfer Amount (EGP)"
