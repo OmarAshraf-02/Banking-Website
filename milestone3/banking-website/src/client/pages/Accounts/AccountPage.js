@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import CardItem from './CardItem';
 import { Link, useParams } from 'react-router-dom';
 import TransactionHistory from '../TransactionHistory';
+import BackButton from '../../../shared/components/BackButton';
 
 
 function AccountPage() {
@@ -31,6 +32,7 @@ function AccountPage() {
     return (
         <div>
             <Box sx={{ margin: 3 }}>
+                <BackButton to="/accounts" />
                 <div className='flex flex-row items-center, justify-between'>
                     <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
                         {accountType}

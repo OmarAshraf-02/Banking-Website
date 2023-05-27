@@ -6,6 +6,7 @@ import { Form, Field, Formik } from "formik";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import * as yup from "yup";
 import Header from '../../components/Header.jsx';
+import BackButton from '../../../shared/components/BackButton.js';
 
 const PersonalLoanForm = () => {
     const [loading, setLoading] = useState(false);
@@ -36,6 +37,7 @@ const PersonalLoanForm = () => {
 
     return (
         <Box m="20px">
+            <BackButton to="/loan" />
             <Header title='Apply for Personal Loan' subtitle='' />
             <Formik
                 onSubmit={handleFormSubmit}
@@ -59,6 +61,7 @@ const PersonalLoanForm = () => {
                                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                             }}
                         >
+
                             <FormControl fullWidth
                                 sx={{ gridColumn: "span 4" }}>
                                 <InputLabel id="termSelect">Loan Term</InputLabel>
@@ -79,7 +82,7 @@ const PersonalLoanForm = () => {
                                     sx={{ height: '52.7167px' }}
                                     startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
                                     label="Loan Amount"
-                                    value={values.loanAmount}
+
                                 />
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
@@ -88,8 +91,8 @@ const PersonalLoanForm = () => {
                                     id="outlined-adornment-amount"
                                     sx={{ height: '52.7167px' }}
                                     startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
-                                    label="Loan Amount"
-                                    value={values.annualIncome}
+                                    label="Annual Income"
+
                                 />
                             </FormControl>
 

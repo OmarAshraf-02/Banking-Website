@@ -8,6 +8,7 @@ import { Form, Field, Formik } from "formik";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from '../../components/Header.jsx';
 import * as yup from "yup";
+import BackButton from '../../../shared/components/BackButton.js';
 
 const CarLoanForm = () => {
     const [loading, setLoading] = useState(false);
@@ -37,6 +38,7 @@ const CarLoanForm = () => {
 
     return (
         <Box m="20px">
+            <BackButton to="/loan" />
             <Header title='Apply for Car Loan' subtitle='' />
             <Formik
                 onSubmit={handleFormSubmit}
@@ -158,7 +160,7 @@ const CarLoanForm = () => {
                                     sx={{ height: '52.7167px' }}
                                     startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
                                     label="Loan Amount"
-                                    value={values.loanAmount}
+
                                 />
                             </FormControl>
 
@@ -184,7 +186,7 @@ const CarLoanForm = () => {
                                     sx={{ height: '52.7167px' }}
                                     startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
                                     label="Loan Amount"
-                                    value={values.annualIncome}
+
                                 />
                             </FormControl>
 

@@ -7,10 +7,13 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import * as yup from "yup";
 import Header from '../components/Header.jsx';
 import SignaturePad from '../components/SignaturePad.js';
+import { useParams } from 'react-router';
+import BackButton from '../../shared/components/BackButton.js';
 
 const PrepaidCardForm = () => {
   const [loading, setLoading] = useState(false);
   const isNonMobile = useMediaQuery("(min-width:600px)");
+  const { id } = useParams();
 
   const handleFormSubmit = async (values, { resetForm }) => {
     setLoading(true);
@@ -44,6 +47,7 @@ const PrepaidCardForm = () => {
 
   return (
     <Box m="20px">
+      <BackButton to={`/accounts/${id}`} />
       <Header title='Apply for a Prepaid Card' subtitle='' />
       <Formik
         onSubmit={handleFormSubmit}
