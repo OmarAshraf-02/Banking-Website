@@ -13,7 +13,7 @@ import TransferCards from '../../components/TransferCards'
 
 function Transfer() {
     const dispatch = useDispatch();
-    const {domestic, internal, international} = useSelector((state) => {
+    const { domestic, internal, international } = useSelector((state) => {
         return state.clients[0].transfers
     })
     return (
@@ -26,7 +26,7 @@ function Transfer() {
         // </div>
 
         <div >
-            <Header title='Transfers' subtitle='Recent Transfers'/>
+            <Header title='Transfers' subtitle='Recent Transfers' />
             {domestic.map((transfer) => {
                 return <TransferCards key={transfer.id} transfer={transfer} type='Domestic' />
             })}
@@ -36,7 +36,7 @@ function Transfer() {
             {international.map((transfer) => {
                 return <TransferCards key={transfer.id} transfer={transfer} type='International' />
             })}
-            <div className='flex items-center'>
+            <div className='flex items-center' style={{ justifyContent: 'center', alignItems: 'center' }}>
                 <LoanTypeCard alt='Domestic' img={personalloan} to='domestic' summary='' title='Domestic Transfer' />
                 <LoanTypeCard alt='Internal' img={personalloan} to='internal' summary='' title='Internal Transfer' />
                 <LoanTypeCard alt='International' img={personalloan} to='international' summary='' title='International Transfer' />

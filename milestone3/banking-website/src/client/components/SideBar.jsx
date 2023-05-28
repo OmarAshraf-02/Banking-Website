@@ -146,7 +146,7 @@ const ClientSidebar = () => {
                             setSelected={setSelected}
                         />
                         <Item
-                            title={isCollapsed ? "" : "Transfer"}
+                            title={isCollapsed ? "" : "Transfers"}
                             to="transfer"
                             icon={<TbTransferOut size={selected === 'Transfer' ? 50 : 20} />}
                             selected={selected}
@@ -175,28 +175,7 @@ const ClientSidebar = () => {
                         />
 
                     </Box>
-                    {!isCollapsed && (
-                        <Box mb="15px">
-                            <Box textAlign="center" >
-                                <Typography
-                                    variant="h6"
-                                    color={colors.grey[500]}
-                                    // fontWeight="bold"
-                                    sx={{ m: "10px 0 0 0" }}
-                                >
-                                    404 Bank - Banking Client System
-                                </Typography>
-                                <Typography
-                                    variant="h8"
-                                    color={colors.grey[40]}
-                                    // fontWeight="bold"
-                                    sx={{ m: "10px 0 0 0" }}
-                                >
-                                    made by 404
-                                </Typography>
-                            </Box>
-                        </Box>
-                    )}
+                    
                 </Menu>
             </ProSidebar>
         </Box>

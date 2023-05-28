@@ -193,6 +193,7 @@ const clientSlice = createSlice({
               limit: 5000,
               validThru: '12/25',
               cvc: 123,
+              points: 200
               // Add other valid attributes here
             },
             {
@@ -201,6 +202,7 @@ const clientSlice = createSlice({
               limit: 3000,
               validThru: '11/24',
               cvc: 456,
+              points: 300
               // Add other valid attributes here
             },
             // Add more credit card objects as needed
@@ -336,6 +338,7 @@ const clientSlice = createSlice({
                       loanAmount: 10000.00,
                       annualIncome: 50000.00,
                       purposeOfLoan: 'Home renovation',
+                      status: 'Pending'
                       // Add other valid attributes here
                     },
                     {
@@ -345,6 +348,7 @@ const clientSlice = createSlice({
                       loanAmount: 20000.00,
                       annualIncome: 80000.00,
                       purposeOfLoan: 'Debt consolidation',
+                      status: 'Accepted'
                       // Add other valid attributes here
                     },
                     // Add more personal loan application objects as needed
@@ -358,6 +362,7 @@ const clientSlice = createSlice({
                   loanTerm: 12,
                   loanAmount: 15000,
                   annualIncome: 40000,
+                  status: 'Rejected'
                   // Add other valid attributes here
                 },
                 {
@@ -368,6 +373,7 @@ const clientSlice = createSlice({
                   loanTerm: 48,
                   loanAmount: 25000,
                   annualIncome: 70000,
+                  status: 'Pending'
                   // Add other valid attributes here
                 },
                 // Add more car loan application objects as needed
@@ -386,6 +392,7 @@ const clientSlice = createSlice({
                   employer: 'XYZ Company',
                   homeownerStatus: 'Renter',
                   maritalStatus: 'Single',
+                  status: 'Accepted'
                   // Add other valid attributes here
                 },
                 {
@@ -400,6 +407,7 @@ const clientSlice = createSlice({
                   employer: 'ABC Corporation',
                   homeownerStatus: 'Homeowner',
                   maritalStatus: 'Married',
+                  status: 'Pending'
                   // Add other valid attributes here
                 },
                 // Add more credit card application objects as needed
@@ -411,6 +419,7 @@ const clientSlice = createSlice({
                 cardholderName: 'John Doe',
                 city: 'New York',
                 address: '123 Main St',
+                status: 'Rejected'
                 // Add other valid attributes here
               },
               // Add more debit card application objects as needed
@@ -424,6 +433,7 @@ const clientSlice = createSlice({
                 address: '456 Elm St',
                 balanceLimit: 500,
                 startingBalance: 100,
+                status: 'Accepted'
                 // Add other valid attributes here
               },
               // Add more prepaid card application objects as needed
