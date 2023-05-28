@@ -1,15 +1,16 @@
 import { Box , Typography , useTheme } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../../themes";
-import {soccerPlayers} from "../../../data/mockdata";
+import {fictionalCharacters} from "../../../data/mockdata";
 import Header from "../../components/Header";
 
-function BankAccounts(){
+function LoansTaken(){
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
   
     const columns = [
       { field: "id", headerName: "Bank Id", flex: 0.5 },
+        { field: "bankAccount", headerName: "Bank Account", flex: 0.5 },
       {
         field: "name",
         headerName: "Name",
@@ -17,15 +18,12 @@ function BankAccounts(){
         cellClassName: "name-column--cell",
       },
       {
-        field: "phoneNumber",
-        headerName: "Phone Number",
+        field: "loanRequestedAmount",
+        headerName: "Loan Amount",
         flex: 1,
       },
-      {
-        field: "email",
-        headerName: "Email",
-        flex: 1,
-      },
+    { field: "totalBankBalance", headerName: "Total Balance", flex: 0.5 },
+
 
     ];
   
@@ -68,7 +66,7 @@ function BankAccounts(){
           }}
         >
           <DataGrid
-            rows={soccerPlayers}
+            rows={fictionalCharacters}
             columns={columns}
             components={{ Toolbar: GridToolbar }}
           />
@@ -77,4 +75,4 @@ function BankAccounts(){
     );
   };
   
-export default BankAccounts;
+export default LoansTaken;

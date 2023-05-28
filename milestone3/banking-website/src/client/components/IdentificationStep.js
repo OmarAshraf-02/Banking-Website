@@ -15,12 +15,14 @@ const IdentificationStep = ({ onNext, onBack }) => {
 
     return (
         <div>
-            <Typography variant="h6" color='white'>Upload Personal Identification</Typography>
-            <input type="file" accept=".jpg, .jpeg, .png" onChange={handleFileChange} />
-            <Button onClick={onBack}></Button>
-            <Button disabled={!selectedFile} onClick={handleNext}>
+            <form>
+                <Typography variant="h6" color='white'>Upload Personal Identification</Typography>
+                <input type="file" accept=".jpg, .jpeg, .png" onChange={handleFileChange} />
+                <Button onClick={onBack}></Button>
+                <Button disabled={!selectedFile} onClick={handleNext} type='submit'>
 
-            </Button>
+                </Button>
+            </form>
         </div>
     );
 };

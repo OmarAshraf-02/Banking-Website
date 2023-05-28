@@ -12,33 +12,38 @@ const ContactInfoStep = ({ onNext, onBack, formData }) => {
 
     return (
         <div>
-            <TextField
-                label="Phone Number"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                fullWidth
-                margin="normal"
-                multiline
-            />
-            <TextField
-                label="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                fullWidth
-                margin="normal"
-                multiline
-            />
-            <TextField
-                label="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                fullWidth
-                margin="normal"
-                type="password"
-                multiline
-            />
-            <button onClick={onBack}></button>
-            <button onClick={handleNext}></button>
+            <form>
+                <TextField
+                    label="Phone Number"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    fullWidth
+                    margin="normal"
+                    multiline
+                    required
+                />
+                <TextField
+                    label="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    fullWidth
+                    margin="normal"
+                    multiline
+                    required
+                />
+                <TextField
+                    label="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    fullWidth
+                    margin="normal"
+                    type="password"
+                    multiline
+                    required
+                />
+                <button onClick={onBack}></button>
+                <button onClick={handleNext} type='submit'></button>
+            </form>
         </div>
     );
 };
