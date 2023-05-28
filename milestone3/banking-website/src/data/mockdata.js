@@ -259,7 +259,8 @@ export const seriesCharacters = [
     email: "walterwhite@example.com",
     cardRequestedType: "Credit Card",
     phoneNumber: "555-1234",
-    accepted: "pending"
+    accepted: "pending",
+    id: "1234567"
   },
   {
     name: "Jon Snow",
@@ -268,7 +269,9 @@ export const seriesCharacters = [
     email: "jonsnow@example.com",
     cardRequestedType: "Debit Card",
     phoneNumber: "555-5678",
-    accepted: "pending"
+    accepted: "pending",
+    id: "8452016"
+
 
   },
   {
@@ -278,7 +281,9 @@ export const seriesCharacters = [
     email: "daenerys@example.com",
     cardRequestedType: "Credit Card",
     phoneNumber: "555-9876",
-    accepted: "pending"
+    accepted: "pending",
+    id: "5123478"
+
 
   },
   {
@@ -288,7 +293,9 @@ export const seriesCharacters = [
     email: "sherlockholmes@example.com",
     cardRequestedType: "Prepaid Card",
     phoneNumber: "555-4321",
-    accepted: "pending"
+    accepted: "pending",
+    id: "9145387"
+
 
   },
   {
@@ -298,8 +305,8 @@ export const seriesCharacters = [
     email: "tyrion@example.com",
     cardRequestedType: "Credit Card",
     phoneNumber: "555-8765",
-    accepted: "pending"
-
+    accepted: "pending",
+    id: "1739842"
   },
   {
     name: "Hermione Granger",
@@ -308,7 +315,8 @@ export const seriesCharacters = [
     email: "hermione@example.com",
     cardRequestedType: "Debit Card",
     phoneNumber: "555-2468",
-    accepted: "pending"
+    accepted: "pending",
+    id: "9715263"
 
   },
   {
@@ -318,8 +326,8 @@ export const seriesCharacters = [
     email: "pabloescobar@example.com",
     cardRequestedType: "Credit Card",
     phoneNumber: "555-1357",
-    accepted: "pending"
-
+    accepted: "pending",
+    id: "5120367"
   },
   {
     name: "Tony Stark",
@@ -328,8 +336,8 @@ export const seriesCharacters = [
     email: "tonystark@example.com",
     cardRequestedType: "Debit Card",
     phoneNumber: "555-7890",
-    accepted: "pending"
-
+    accepted: "pending",
+    id: "9710235"
   },
   {
     name: "Loki",
@@ -338,8 +346,8 @@ export const seriesCharacters = [
     email: "loki@example.com",
     cardRequestedType: "Prepaid Card",
     phoneNumber: "555-3691",
-    accepted: "pending"
-
+    accepted: "pending",
+    id: "6014862"
   },
   {
     name: "Michael Scofield",
@@ -348,8 +356,8 @@ export const seriesCharacters = [
     email: "michaelscofield@example.com",
     cardRequestedType: "Credit Card",
     phoneNumber: "555-1746",
-    accepted: "pending"
-
+    accepted: "pending",
+    id: "5147320"
   }
 ];
 
@@ -361,7 +369,8 @@ export const fictionalCharacters = [
     email: "harrypotter@example.com",
     loanRequestedAmount: 5000,
     phoneNumber: "555-1234",
-    accepted: "pending"
+    accepted: "pending",
+    id:"1234567"
   },
   {
     name: "Katniss Everdeen",
@@ -370,7 +379,8 @@ export const fictionalCharacters = [
     email: "katnisseverdeen@example.com",
     loanRequestedAmount: 3000,
     phoneNumber: "555-5678",
-    accepted: "pending"
+    accepted: "pending",
+    id:"5789341"
 
   },
   {
@@ -380,7 +390,9 @@ export const fictionalCharacters = [
     email: "sherlockholmes@example.com",
     loanRequestedAmount: 10000,
     phoneNumber: "555-9876",
-    accepted: "pending"
+    accepted: "pending",
+    id:"2548369"
+
 
   },
   {
@@ -390,7 +402,8 @@ export const fictionalCharacters = [
     email: "hermionegranger@example.com",
     loanRequestedAmount: 7000,
     phoneNumber: "555-4321",
-    accepted: "pending"
+    accepted: "pending",
+    id:"4758931"
 
   },
   {
@@ -400,7 +413,8 @@ export const fictionalCharacters = [
     email: "tonystark@example.com",
     loanRequestedAmount: 200000,
     phoneNumber: "555-8765",
-    accepted: "pending"
+    accepted: "pending",
+    id:"1024862"
 
   },
   {
@@ -410,7 +424,8 @@ export const fictionalCharacters = [
     email: "lukeskywalker@example.com",
     loanRequestedAmount: 1000,
     phoneNumber: "555-2468",
-    accepted: "pending"
+    accepted: "pending",
+    id:"21762456"
 
   },
   {
@@ -420,7 +435,8 @@ export const fictionalCharacters = [
     email: "katara@example.com",
     loanRequestedAmount: 3000,
     phoneNumber: "555-1357",
-    accepted: "pending"
+    accepted: "pending",
+    id:"1294567"
 
   },
   {
@@ -430,7 +446,8 @@ export const fictionalCharacters = [
     email: "jonsnow@example.com",
     loanRequestedAmount: 5000,
     phoneNumber: "555-7890",
-    accepted: "pending"
+    accepted: "pending",
+    id:"65782556"
 
   },
   {
@@ -440,7 +457,8 @@ export const fictionalCharacters = [
     email: "alice@example.com",
     loanRequestedAmount: 500,
     phoneNumber: "555-3691",
-    accepted: "pending"
+    accepted: "pending",
+    id:"5214789"
 
   },
   {
@@ -450,7 +468,9 @@ export const fictionalCharacters = [
     email: "darthvader@example.com",
     loanRequestedAmount: 10000,
     phoneNumber: "555-1746",
-    accepted: "pending"
+    accepted: "pending",
+    id:"5652325"
+
 
   }
 ];
@@ -547,6 +567,110 @@ export const actors = [
 
   }
 ];
+
+export const soccerPlayers2 = [
+  {
+    name: 'Lionel Messi',
+    address1: '123 Main Street',
+    address2: 'Apt 4B',
+    nationalId: 'ARG123456789',
+    phoneNumber: '06-1234-5678',
+    email: 'lionel@example.com',
+    id: '12345678',
+    accepted : 'pending'
+  },
+  {
+    name: 'Cristiano Ronaldo',
+    address1: '456 Elm Street',
+    address2: 'Unit 7C',
+    nationalId: 'POR987654321',
+    phoneNumber: '06-2345-6789',
+    email: 'cristiano@example.com',
+    id: '23456789',
+    accepted : 'pending'
+  },
+  {
+    name: 'Neymar Jr.',
+    address1: '789 Oak Avenue',
+    address2: 'Floor 12',
+    nationalId: 'BRA654321987',
+    phoneNumber: '06-3456-7890',
+    email: 'neymar@example.com',
+    id: '34567890',
+    accepted : 'pending'
+  },
+  {
+    name: 'Kylian Mbappé',
+    address1: '321 Pine Street',
+    address2: 'Suite 2D',
+    nationalId: 'FRA789654123',
+    phoneNumber: '06-4567-8901',
+    email: 'kylian@example.com',
+    id: '45678901',
+    accepted : 'pending'
+  },
+  {
+    name: 'Mohamed Salah',
+    address1: '654 Cedar Avenue',
+    address2: 'Apartment 9E',
+    nationalId: 'EGY456789123',
+    phoneNumber: '06-5678-9012',
+    email: 'mohamed@example.com',
+    id: '56789012',
+    accepted : 'pending'
+  },
+  {
+    name: 'Robert Lewandowski',
+    address1: '987 Walnut Boulevard',
+    address2: 'Flat 5F',
+    nationalId: 'POL123456789',
+    phoneNumber: '06-6789-0123',
+    email: 'robert@example.com',
+    id: '67890123',
+    accepted : 'pending'
+  },
+  {
+    name: 'Sergio Ramos',
+    address1: '258 Maple Lane',
+    address2: 'Unit 3A',
+    nationalId: 'ESP987654321',
+    phoneNumber: '06-7890-1234',
+    email: 'sergio@example.com',
+    id: '78901234',
+    accepted : 'pending'
+  },
+  {
+    name: 'Kevin De Bruyne',
+    address1: '741 Oakwood Road',
+    address2: 'Apartment 12C',
+    nationalId: 'BEL456789123',
+    phoneNumber: '06-8901-2345',
+    email: 'kevin@example.com',
+    id: '89012345',
+    accepted : 'pending'
+  },
+  {
+    name: 'Harry Kane',
+    address1: '369 Elmwood Drive',
+    address2: 'Floor 7B',
+    nationalId: 'ENG789654123',
+    phoneNumber: '06-9012-3456',
+    email: 'harry@example.com',
+    id: '90123456',
+    accepted : 'pending'
+  },
+  {
+    name: 'Manuel Neuer',
+    address1: '1234 Cedar Lane',
+    address2: 'Suite 8D',
+    nationalId: 'GER456789123',
+    phoneNumber: '06-1122-3344',
+    email: 'manuel@example.com',
+    id: '90123789',
+    accepted : 'pending'
+  }
+]
+
 
 
 export const soccerPlayers = [
