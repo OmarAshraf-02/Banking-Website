@@ -43,9 +43,6 @@ function AccountPage() {
                         {accountNumber}
                     </Typography>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                        Credit Score: {creditScore}
-                    </Typography>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
                         Balance: {balance}
                     </Typography>
                 </div>

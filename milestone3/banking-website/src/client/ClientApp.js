@@ -53,7 +53,6 @@ function ClientApp() {
                 {/* <Route path='/sign-in' index element={<SignIn />} /> */}
                 {/* <Route path='Stepper' element={<Steppers />} /> */}
                 <Route path='/' element={<HomePage />} />
-                <Route path='openAccount' index element={<OpenAccount />} />
                 <Route path='bill' element={<Bill />} />
                 <Route path='loan' element={<Loan />} />
                 <Route path='loan/carLoanForm' element={<CarLoanForm />} />
@@ -61,7 +60,7 @@ function ClientApp() {
                 <Route path='transactionHistory' element={<TransactionHistory />} />
                 <Route path='reportTechnicalIssues' element={<ReportTechnicalIssue />} />
                 <Route path='accounts' element={<Accounts />} />
-                <Route path='creditCards' element={<CreditCard />} />
+                <Route path='accounts/openAccount' index element={<OpenAccount />} />
                 <Route path="accounts/:id" element={<AccountPage />} />
                 <Route path="accounts/:id/debitCardForm" element={<DebitCardForm />} />
                 <Route path="accounts/:id/prepaidCardForm" element={<PrepaidCardForm />} />
@@ -70,6 +69,7 @@ function ClientApp() {
                 <Route path='transfer/domestic' element={<DomesticTransfer />} />
                 <Route path='transfer/internal' element={<InternalTransfer />} />
                 <Route path='transfer/international' element={<InternationalTransfer />} />
+                <Route path='creditCards' element={<CreditCard />} />
                 <Route path='creditCards/theftLossDamageForm' element={<TheftLossDamageForm />} />
                 <Route path='notifications' element={<Notifications />} />
                 <Route path='applications' element={<Applications />} />

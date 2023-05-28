@@ -20,7 +20,6 @@ const clientSlice = createSlice({
                 accountType:'Savings',
                 card: { id: 2, cardNumber: 'CARD-222', type: 'Debit Card', validThru: '11/25', cvc: 223 },
                 balance: 0,
-                creditScore: 650,
               },
               {
                 id: 2,
@@ -28,7 +27,6 @@ const clientSlice = createSlice({
                 accountNumber: 123456789,
                 accountType:'Savings',
                 card:{},
-                creditScore: 720,
                 balance: 200
               },
               {
@@ -38,7 +36,6 @@ const clientSlice = createSlice({
                 accountType:'Savings',
                 balance: 200,
                 card: { id: 1, cardNumber: 'CARD-999', type: 'Prepaid Card', validThru: '12/27', cvc: 123 },
-                creditScore: 550,
               },
             ],
           
@@ -193,7 +190,8 @@ const clientSlice = createSlice({
               limit: 5000,
               validThru: '12/25',
               cvc: 123,
-              points: 200
+              points: 200,
+              creditScore: 550,
               // Add other valid attributes here
             },
             {
@@ -202,7 +200,8 @@ const clientSlice = createSlice({
               limit: 3000,
               validThru: '11/24',
               cvc: 456,
-              points: 300
+              points: 300,
+              creditScore: 990,
               // Add other valid attributes here
             },
             // Add more credit card objects as needed
