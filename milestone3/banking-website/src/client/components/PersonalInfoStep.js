@@ -18,27 +18,31 @@ const PersonalInfoStep = ({ onNext, formData }) => {
 
     return (
         <div>
-            <TextField
-                label="First Name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                fullWidth
-                margin="normal"
-                multiline
-            />
-            <TextField
-                label="Last Name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                fullWidth
-                margin="normal"
-                multiline
-            />
-            <RadioGroup row value={gender} onChange={(e) => setGender(e.target.value)}>
-                <CustomFormControlLabel value="male" control={<Radio />} label="Male" />
-                <CustomFormControlLabel value="female" control={<Radio />} label="Female" />
-            </RadioGroup>
-            <button onClick={handleNext}></button>
+            <form>
+                <TextField
+                    label="First Name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    fullWidth
+                    margin="normal"
+                    multiline
+                    required
+                />
+                <TextField
+                    label="Last Name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    fullWidth
+                    margin="normal"
+                    multiline
+                    required
+                />
+                <RadioGroup row value={gender} onChange={(e) => setGender(e.target.value)}>
+                    <CustomFormControlLabel value="male" control={<Radio />} label="Male" />
+                    <CustomFormControlLabel value="female" control={<Radio />} label="Female" />
+                </RadioGroup>
+                <button onClick={handleNext} type='submit'></button>
+            </form>
         </div>
     );
 };

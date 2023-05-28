@@ -1,31 +1,42 @@
+body {
+  background-color: #141b2d;
+  margin: 0;
+  padding: 0;
+}
+
 .splash-screen {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #141b2d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  /* Add this line to set the text color to white */
+}
+
+.splash-screen .loading-dot {
+  font-size: 100px;
+  margin-top: -80px;
+  position: relative;
+  animation: ease-in-out infinite alternate;
+  animation-name: run;
+  animation-duration: 1.2s;
+}
+
+@keyframes run {
+  0% {
+    left: -90px;
+    color: #eee;
   }
-  
-  .splash-screen .loading-dot {
-    font-size: 100px;
-    margin-top: -80px;
-    position: relative;
-    animation: ease-in-out infinite alternate;
-    animation-name: run;
-    animation-duration: 1.2s;
+
+  50% {
+    color: #666;
   }
-  
-  @keyframes run {
-    0% {
-      left: -90px;
-      color: #eee;
-    }
-    50% {
-      color: #666;
-    }
-    100% {
-      left: 90px;
-      color: #eee;
-    }
+
+  100% {
+    left: 90px;
+    color: #eee;
   }
+}

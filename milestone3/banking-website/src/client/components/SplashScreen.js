@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 // import auth0Client from '../Auth';
 import './SplashScreen.css';
 import "tachyons"
 
 function LoadingMessage() {
   return (
-    <div className="splash-screen center pa7">
+    <div className="splash-screen center text-white pa7">
       Wait a moment while we load your page.
       <div className="loading-dot">.</div>
     </div>
@@ -23,7 +23,7 @@ function WithSplashScreen(WrappedComponent) {
 
     async componentDidMount() {
       try {
-    
+
         setTimeout(() => {
           this.setState({
             loading: false,
