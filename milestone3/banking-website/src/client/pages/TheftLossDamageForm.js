@@ -14,6 +14,7 @@ import ApplyForReplacementDialog from '../components/ApplyForReplacementDialog.j
 import BackButton from '../../shared/components/BackButton.js';
 
 
+
 const TheftLossDamageForm = () => {
     const [loading, setLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
@@ -41,11 +42,11 @@ const TheftLossDamageForm = () => {
 
     return (
         <Box m="20px">
-            <Box display='flex'  alignItems="center">
+            <Box display='flex' alignItems="center">
                 <BackButton to="/creditCards" />
-                <Header title='Report Card Theft/Loss/Damage' subtitle='' />  
+                <Header title='Report Card Theft/Loss/Damage' subtitle='' />
             </Box>
-            
+
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
@@ -98,7 +99,7 @@ const TheftLossDamageForm = () => {
                         </Box>
                         <Box display="flex" justifyContent="end" mt="20px">
                             {
-                            loading ? <div></div> : <ApplyForReplacementDialog />
+                                loading ? <div></div> : <ApplyForReplacementDialog />
                             }
                         </Box>
                     </form>
