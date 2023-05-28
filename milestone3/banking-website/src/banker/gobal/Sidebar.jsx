@@ -89,13 +89,10 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
                     fontWeight="bold"
                     sx={{ m: "10px 0 0 0" }}
                   >
-                    Karim G.
+                    Banker
                   </Typography>
                   <Typography variant="h5" color={colors.greenAccent[500]}>
                     CTO
-                  </Typography>
-                  <Typography variant="h5" color={colors.greenAccent[500]}>
-                    52-3899
                   </Typography>
                 </Box>
               </Box>
@@ -123,6 +120,34 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
                 selected={selected}
                 setSelected={setSelected}
               />
+                            <Typography
+                variant="h6"
+                color={colors.grey[300]}
+                sx={{ m: "15px 0 5px 20px" }}
+              >
+                {!isCollapsed ? 'Transactions' : 'Tran.'}
+              </Typography>
+              <Item
+                title="View Clients"
+                to="viewClients"
+                icon={<VisibilityOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              <Item
+                title="View Client Req."
+                to="viewClientRequests"
+                icon={<ContactsOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              <Item
+                title="Create Clients"
+                to="createClient"
+                icon={<AddCircleOutlineOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
   
               <Typography
                 variant="h6"
@@ -139,7 +164,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
                 setSelected={setSelected}
               />
               <Item
-                title="View Requests"
+                title="View Account Req."
                 to="viewAccountRequests"
                 icon={<ContactsOutlinedIcon />}
                 selected={selected}
@@ -162,9 +187,16 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
                 Loans
               </Typography>
               <Item
-                title="View Requests"
-                to="loanRequests"
+                title="View all Loans"
+                to="viewLoans"
                 icon={<VisibilityOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              <Item
+                title="View Loan Req."
+                to="loanRequests"
+                icon={<ContactsOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
               />
@@ -184,9 +216,16 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
                 Cards
               </Typography>
               <Item
-                title="View Cards"
-                to="cardRequests"
+                title="View all Cards"
+                to="viewCards"
                 icon={<VisibilityOutlinedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              <Item
+                title="View Cards Req."
+                to="cardRequests"
+                icon={<ContactsOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
               />

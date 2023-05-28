@@ -146,7 +146,7 @@ const ClientSidebar = () => {
                             setSelected={setSelected}
                         />
                         <Item
-                            title={isCollapsed ? "" : "Transaction History"}
+                            title={isCollapsed ? "" : "Transfer"}
                             to="transfer"
                             icon={<TbTransferOut size={selected === 'Transfer' ? 50 : 20} />}
                             selected={selected}

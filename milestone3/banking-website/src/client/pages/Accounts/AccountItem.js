@@ -25,21 +25,21 @@ function AccountItem({ account }) {
     } = account
     return (
       <div class="loan-card">
-          <div class="loan-card-header">Account Information</div>
-          <div class="loan-card-body">
-            <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
+          <Typography sx={{ fontSize: 23 }} color="text.secondary" gutterBottom>Account Information</Typography>
+          <div>
+            <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
               {accountType}
             </Typography>
-            <Typography variant="h5" component="div">
+            <Typography variant="h7" component="div">
               Account Number: {accountNumber}
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
               Credit Score: {creditScore}
             </Typography>
           </div>
-          <div class="loan-card-footer" style={{display: "flex", justifyContent: "flex-end"}}>
+          <div class="" style={{display: "flex", justifyContent: "flex-end"}}>
             <Link to={""+id}>
-              <Button sx={{ fontSize: 12, color: colors.grey[100]}} size="medium">Learn More</Button>
+              <Button variant='contained' color="secondary" sx={{ fontSize: 12, color: colors.grey[250]}} size="medium">Learn More</Button>
             </Link>      
           </div>  
       </div>
