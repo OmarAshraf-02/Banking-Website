@@ -1,37 +1,29 @@
 import { Box , Typography , useTheme } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../../themes";
-import {transactions} from "../../../data/mockdata";
+import {soccerPlayers} from "../../../data/mockdata";
 import Header from "../../components/Header";
 
-function ViewTransactions(){
+function ViewBankers(){
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
   
     const columns = [
-        {field: "id" , headerName: "ID" , flex:0.5},
-      { field: "senderId", headerName: "Sender ID", flex: 0.5 },
+      { field: "id", headerName: "ID", flex: 0.5 },
       {
-        field: "senderName",
-        headerName: "Sender Name",
-        flex: 1,
-        cellClassName: "name-column--cell",
-      },
-      { field: "receiverId", headerName: "Receiver ID", flex: 0.5 },
-      {
-        field: "receiverName",
-        headerName: "Receiver Name",
+        field: "name",
+        headerName: "Name",
         flex: 1,
         cellClassName: "name-column--cell",
       },
       {
-        field: "amount",
-        headerName: "Amount",
+        field: "phoneNumber",
+        headerName: "Phone Number",
         flex: 1,
       },
       {
-        field: "transferType",
-        headerName: "Transfer Type",
+        field: "email",
+        headerName: "Email",
         flex: 1,
       },
 
@@ -40,8 +32,8 @@ function ViewTransactions(){
     return (
       <Box m="20px">
         <Header
-          title="Bank Accounts"
-          subtitle="List of all Bank Accounts"
+          title="Bankers"
+          subtitle="List of all Bankers working in the Bank"
         />
         <Box
           m="40px 0 0 0"
@@ -76,7 +68,7 @@ function ViewTransactions(){
           }}
         >
           <DataGrid
-            rows={transactions}
+            rows={soccerPlayers}
             columns={columns}
             components={{ Toolbar: GridToolbar }}
           />
@@ -85,4 +77,4 @@ function ViewTransactions(){
     );
   };
   
-export default ViewTransactions;
+export default ViewBankers;

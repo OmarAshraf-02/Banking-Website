@@ -7,8 +7,8 @@ import { useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 
 
-const CreateAccountForm = () => {
-  const [loading , setLoading] = useState(false);  
+const CreateBanker = () => {
+  const [loading , setLoading] = useState(false);
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
   const handleFormSubmit = async (values , {resetForm}) => {
@@ -19,7 +19,7 @@ const CreateAccountForm = () => {
 
   return (
     <Box m="20px">
-      <Header title="Create a Bank Account" subtitle="Create a new Bank Account" />
+      <Header title="Create a Banker" subtitle="Create a Banker for the Bank System" />
 
       <Formik
         onSubmit={handleFormSubmit}
@@ -44,6 +44,7 @@ const CreateAccountForm = () => {
               }}
             >
               <TextField
+              multiline
                 fullWidth
                 variant="filled"
                 type="text"
@@ -57,6 +58,7 @@ const CreateAccountForm = () => {
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
+              multiline
                 fullWidth
                 variant="filled"
                 type="text"
@@ -70,6 +72,7 @@ const CreateAccountForm = () => {
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
+              multiline
                 fullWidth
                 variant="filled"
                 type="text"
@@ -83,10 +86,11 @@ const CreateAccountForm = () => {
                 sx={{ gridColumn: "span 4" }}
               />
               <TextField
+              multiline
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Contact Number"
+                label="Phone Number"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.contact}
@@ -96,6 +100,7 @@ const CreateAccountForm = () => {
                 sx={{ gridColumn: "span 4" }}
               />
               <TextField
+              multiline
                 fullWidth
                 variant="filled"
                 type="text"
@@ -106,9 +111,10 @@ const CreateAccountForm = () => {
                 name="address1"
                 error={!!touched.address1 && !!errors.address1}
                 helperText={touched.address1 && errors.address1}
-                sx={{ gridColumn: "span 4" }}
+                sx={{ gridColumn: "span 2" }}
               />
               <TextField
+              multiline
                 fullWidth
                 variant="filled"
                 type="text"
@@ -119,7 +125,35 @@ const CreateAccountForm = () => {
                 name="address2"
                 error={!!touched.address2 && !!errors.address2}
                 helperText={touched.address2 && errors.address2}
-                sx={{ gridColumn: "span 4" }}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+              multiline
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Password"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.password}
+                name="password"
+                error={!!touched.password && !!errors.password}
+                helperText={touched.password && errors.password}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+               multiline
+                fullWidth
+                variant="filled"
+                type="text"
+                label="NationalID"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.nationalId}
+                name="nationalId"
+                error={!!touched.nationalId && !!errors.nationalId}
+                helperText={touched.nationalId && errors.nationalId}
+                sx={{ gridColumn: "span 2" }}
               />
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
@@ -147,6 +181,8 @@ const checkoutSchema = yup.object().shape({
     .required("required"),
   address1: yup.string().required("required"),
   address2: yup.string().required("required"),
+  password: yup.string().required("required"),
+  nationalId: yup.string().required("required"),
 });
 const initialValues = {
   firstName: "",
@@ -155,6 +191,8 @@ const initialValues = {
   contact: "",
   address1: "",
   address2: "",
+  password:"",
+  nationalId: "",
 };
 
-export default CreateAccountForm;
+export default CreateBanker;

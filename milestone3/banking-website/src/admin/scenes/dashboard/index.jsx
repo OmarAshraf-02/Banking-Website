@@ -9,6 +9,8 @@ import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerrorredOutlined';
+import BugReportOutlinedIcon from '@mui/icons-material/BugReportOutlined';import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -37,31 +39,6 @@ const Dashboard = () => {
             </Box>
     );
   });
-  const accountRequests = actors.map((actor , i) => {
-    return (
-        <Box
-              key={`${actor.id}`}
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              borderBottom={`4px solid ${colors.primary[500]}`}
-              p="15px"
-            >
-              <Box>
-                <Typography
-                  color={colors.greenAccent[500]}
-                  variant="h4"
-                  fontWeight="600"
-                >
-                  {actor.name}
-                </Typography>
-                <Typography color={colors.grey[100]}>
-                  email: {actor.email}
-                </Typography>
-              </Box>
-            </Box>
-    );
-  });
   const reportMappedArray = f1Drivers.map((driver , i) => {
     return (
         <Box
@@ -82,31 +59,6 @@ const Dashboard = () => {
                 </Typography>
                 <Typography color={colors.grey[100]}>
                   {driver.complaint}
-                </Typography>
-              </Box>
-            </Box>
-    );
-  });
-  const cardRequests = seriesCharacters.map((actor , i) => {
-    return (
-        <Box
-              key={`${actor.id}`}
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              borderBottom={`4px solid ${colors.primary[500]}`}
-              p="15px"
-            >
-              <Box>
-                <Typography
-                  color={colors.greenAccent[500]}
-                  variant="h4"
-                  fontWeight="600"
-                >
-                  {actor.name}
-                </Typography>
-                <Typography color={colors.grey[100]}>
-                  email: {actor.email}
                 </Typography>
               </Box>
             </Box>
@@ -143,7 +95,7 @@ const Dashboard = () => {
       >
         {/* ROW 1 */}
         <Box
-          gridColumn="span 3"
+          gridColumn="span 6"
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
@@ -151,68 +103,30 @@ const Dashboard = () => {
         >
           <StatBox
             title="44"
-            subtitle="Accounts Created this Month"
+            subtitle="Reports Handled this month"
             progress="0.75"
             increase="+14%"
             icon={
-              <AccountCircleOutlinedIcon
+              <BugReportOutlinedIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
           />
         </Box>
         <Box
-          gridColumn="span 3"
+          gridColumn="span 6"
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
           justifyContent="center"
         >
           <StatBox
-            title="97"
-            subtitle="Credit Cards issued this Month"
-            progress="0.50"
-            increase="+21%"
-            icon={
-              <CreditCardOutlinedIcon
-                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
-              />
-            }
-          />
-        </Box>
-        <Box
-          gridColumn="span 3"
-          backgroundColor={colors.primary[400]}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <StatBox
-            title="32"
-            subtitle="Loans issued this Month"
-            progress="0.30"
-            increase="+5%"
-            icon={
-              <CreateOutlinedIcon
-                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
-              />
-            }
-          />
-        </Box>
-        <Box
-          gridColumn="span 3"
-          backgroundColor={colors.primary[400]}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <StatBox
-            title="132"
-            subtitle="Report handled this month"
+            title="24565"
+            subtitle="Currently Active Users"
             progress="0.80"
             increase="+43%"
             icon={
-              <ReportGmailerrorredOutlinedIcon
+              <AccountCircleOutlinedIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -221,7 +135,7 @@ const Dashboard = () => {
 
         {/* ROW 2 */}
         <Box
-          gridColumn="span 8"
+          gridColumn="span 6"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           overflow="auto"
@@ -240,30 +154,9 @@ const Dashboard = () => {
           </Box>
             {notificationMappedArray}
           </Box>
-        <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          overflow="auto"
-        >
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            borderBottom={`4px solid ${colors.primary[500]}`}
-            colors={colors.grey[100]}
-            p="15px"
-          >
-            <Typography color={colors.blueAccent[500]} variant="h5" fontWeight="600">
-              Recent Account Requests
-            </Typography>
-          </Box>
-          {accountRequests}
-           
-        </Box>
          {/* ROW 3 */}
          <Box
-          gridColumn="span 8"
+          gridColumn="span 6"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           overflow="auto"
@@ -282,32 +175,10 @@ const Dashboard = () => {
           </Box>
             {reportMappedArray}
           </Box>
-        <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          overflow="auto"
-        >
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            borderBottom={`4px solid ${colors.primary[500]}`}
-            colors={colors.grey[100]}
-            p="15px"
-          >
-            <Typography color={colors.blueAccent[500]} variant="h5" fontWeight="600">
-              Recent Card Requests
-            </Typography>
-          </Box>
-          {cardRequests}
-           
-        </Box>
 
         </Box>
         {/* ROW 3 */}
-        
-        
+            
       </Box>
   );
 };

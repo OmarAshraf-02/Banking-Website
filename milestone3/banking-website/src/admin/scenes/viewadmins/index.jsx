@@ -4,7 +4,7 @@ import { tokens } from "../../../themes";
 import {soccerPlayers} from "../../../data/mockdata";
 import Header from "../../components/Header";
 
-function BankAccounts(){
+function ViewAdmins(){
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
   
@@ -32,8 +32,8 @@ function BankAccounts(){
     return (
       <Box m="20px">
         <Header
-          title="Bank Accounts"
-          subtitle="List of all Bank Accounts"
+          title="Admins"
+          subtitle="List of all Admins"
         />
         <Box
           m="40px 0 0 0"
@@ -77,4 +77,4 @@ function BankAccounts(){
     );
   };
   
-export default BankAccounts;
+export default ViewAdmins;
