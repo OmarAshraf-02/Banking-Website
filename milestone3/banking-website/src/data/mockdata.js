@@ -162,78 +162,94 @@ export const marvelCharacters = [
 
 export const f1Drivers = [
   {
-    name: "Lewis Hamilton",
-    bankAccount: "12345678",
-    email: "lewishamilton@example.com",
-    phoneNumber: "555-1234",
-    complaint: "The bank charged excessive fees for international transfers."
+    name: 'Lewis Hamilton',
+    bankAccount: '123456789',
+    phoneNumber: '06-1234-5678',
+    email: 'lewis@example.com',
+    complaint: 'Unauthorized transaction on my account',
+    accepted: 'pending'
   },
   {
-    name: "Sebastian Vettel",
-    bankAccount: "87654321",
-    email: "sebastianvettel@example.com",
-    phoneNumber: "555-5678",
-    complaint: "The bank's customer service was unresponsive and unhelpful."
+    name: 'Max Verstappen',
+    bankAccount: '234567890',
+    phoneNumber: '06-2345-6789',
+    email: 'max@example.com',
+    complaint: 'Poor customer service',
+    accepted: 'pending'
+
   },
   {
-    name: "Max Verstappen",
-    bankAccount: "56781234",
-    email: "maxverstappen@example.com",
-    phoneNumber: "555-9876",
-    complaint: "The bank mistakenly blocked my card without any reason."
+    name: 'Valtteri Bottas',
+    bankAccount: '345678901',
+    phoneNumber: '06-3456-7890',
+    email: 'valtteri@example.com',
+    complaint: 'Overcharged fees on my account',
+    accepted: 'pending'
+
   },
   {
-    name: "Charles Leclerc",
-    bankAccount: "43218765",
-    email: "charlesleclerc@example.com",
-    phoneNumber: "555-4321",
-    complaint: "The bank's online banking platform is frequently down."
+    name: 'Charles Leclerc',
+    bankAccount: '456789012',
+    phoneNumber: '06-4567-8901',
+    email: 'charles@example.com',
+    complaint: 'Account closure without prior notice',
+    accepted: 'pending'
   },
   {
-    name: "Valtteri Bottas",
-    bankAccount: "56784321",
-    email: "valtteribottas@example.com",
-    phoneNumber: "555-8765",
-    complaint: "The bank incorrectly recorded a transaction on my account."
+    name: 'Sebastian Vettel',
+    bankAccount: '567890123',
+    phoneNumber: '06-5678-9012',
+    email: 'sebastian@example.com',
+    complaint: 'Inaccurate balance displayed on online banking',
+    accepted: 'pending'
+
   },
   {
-    name: "Daniel Ricciardo",
-    bankAccount: "87651234",
-    email: "danielricciardo@example.com",
-    phoneNumber: "555-2468",
-    complaint: "The bank took an excessively long time to process a loan application."
+    name: 'Lando Norris',
+    bankAccount: '678901234',
+    phoneNumber: '06-6789-0123',
+    email: 'lando@example.com',
+    complaint: 'Delayed fund transfers',
+    accepted: 'pending'
+
   },
   {
-    name: "Carlos Sainz Jr.",
-    bankAccount: "12348765",
-    email: "carlossainz@example.com",
-    phoneNumber: "555-1357",
-    complaint: "The bank's ATM consistently has issues dispensing cash."
+    name: 'Daniel Ricciardo',
+    bankAccount: '789012345',
+    phoneNumber: '06-7890-1234',
+    email: 'daniel@example.com',
+    complaint: 'Lost check deposit',
+    accepted: 'pending'
+
   },
   {
-    name: "Lando Norris",
-    bankAccount: "56783421",
-    email: "landonorris@example.com",
-    phoneNumber: "555-7890",
-    complaint: "The bank's interest rates on savings accounts are uncompetitive."
+    name: 'Carlos Sainz Jr.',
+    bankAccount: '890123456',
+    phoneNumber: '06-8901-2345',
+    email: 'carlos@example.com',
+    complaint: 'Incorrect interest credited to my savings account',
+    accepted: 'pending'
+
   },
   {
-    name: "Esteban Ocon",
-    bankAccount: "43218765",
-    email: "estebanocon@example.com",
-    phoneNumber: "555-3691",
-    complaint: "The bank charged me for a service I never requested or used."
+    name: 'Fernando Alonso',
+    bankAccount: '901234567',
+    phoneNumber: '06-9012-3456',
+    email: 'fernando@example.com',
+    complaint: 'Failed ATM withdrawal with deducted amount',
+    accepted: 'pending'
+
   },
   {
-    name: "Fernando Alonso",
-    bankAccount: "87654321",
-    email: "fernandoalonso@example.com",
-    phoneNumber: "555-1746",
-    complaint: "The bank's mobile app is unreliable and crashes frequently."
+    name: 'Esteban Ocon',
+    bankAccount: '112233445',
+    phoneNumber: '06-1122-3344',
+    email: 'esteban@example.com',
+    complaint: 'Identity theft and fraudulent transactions',
+    accepted: 'pending'
   }
 ];
 
-console.log(f1Drivers); // Output: Array of 10 F1 driver objects
 
 export const seriesCharacters = [
   {
@@ -242,7 +258,8 @@ export const seriesCharacters = [
     bankAccount: "12345678",
     email: "walterwhite@example.com",
     cardRequestedType: "Credit Card",
-    phoneNumber: "555-1234"
+    phoneNumber: "555-1234",
+    accepted: "pending"
   },
   {
     name: "Jon Snow",
@@ -250,7 +267,9 @@ export const seriesCharacters = [
     bankAccount: "87654321",
     email: "jonsnow@example.com",
     cardRequestedType: "Debit Card",
-    phoneNumber: "555-5678"
+    phoneNumber: "555-5678",
+    accepted: "pending"
+
   },
   {
     name: "Daenerys Targaryen",
@@ -258,7 +277,9 @@ export const seriesCharacters = [
     bankAccount: "56781234",
     email: "daenerys@example.com",
     cardRequestedType: "Credit Card",
-    phoneNumber: "555-9876"
+    phoneNumber: "555-9876",
+    accepted: "pending"
+
   },
   {
     name: "Sherlock Holmes",
@@ -266,7 +287,9 @@ export const seriesCharacters = [
     bankAccount: "43218765",
     email: "sherlockholmes@example.com",
     cardRequestedType: "Prepaid Card",
-    phoneNumber: "555-4321"
+    phoneNumber: "555-4321",
+    accepted: "pending"
+
   },
   {
     name: "Tyrion Lannister",
@@ -274,7 +297,9 @@ export const seriesCharacters = [
     bankAccount: "56784321",
     email: "tyrion@example.com",
     cardRequestedType: "Credit Card",
-    phoneNumber: "555-8765"
+    phoneNumber: "555-8765",
+    accepted: "pending"
+
   },
   {
     name: "Hermione Granger",
@@ -282,7 +307,9 @@ export const seriesCharacters = [
     bankAccount: "87651234",
     email: "hermione@example.com",
     cardRequestedType: "Debit Card",
-    phoneNumber: "555-2468"
+    phoneNumber: "555-2468",
+    accepted: "pending"
+
   },
   {
     name: "Pablo Escobar",
@@ -290,7 +317,9 @@ export const seriesCharacters = [
     bankAccount: "12348765",
     email: "pabloescobar@example.com",
     cardRequestedType: "Credit Card",
-    phoneNumber: "555-1357"
+    phoneNumber: "555-1357",
+    accepted: "pending"
+
   },
   {
     name: "Tony Stark",
@@ -298,7 +327,9 @@ export const seriesCharacters = [
     bankAccount: "56783421",
     email: "tonystark@example.com",
     cardRequestedType: "Debit Card",
-    phoneNumber: "555-7890"
+    phoneNumber: "555-7890",
+    accepted: "pending"
+
   },
   {
     name: "Loki",
@@ -306,7 +337,9 @@ export const seriesCharacters = [
     bankAccount: "43218765",
     email: "loki@example.com",
     cardRequestedType: "Prepaid Card",
-    phoneNumber: "555-3691"
+    phoneNumber: "555-3691",
+    accepted: "pending"
+
   },
   {
     name: "Michael Scofield",
@@ -314,7 +347,9 @@ export const seriesCharacters = [
     bankAccount: "87654321",
     email: "michaelscofield@example.com",
     cardRequestedType: "Credit Card",
-    phoneNumber: "555-1746"
+    phoneNumber: "555-1746",
+    accepted: "pending"
+
   }
 ];
 
@@ -325,7 +360,8 @@ export const fictionalCharacters = [
     bankAccount: "12345678",
     email: "harrypotter@example.com",
     loanRequestedAmount: 5000,
-    phoneNumber: "555-1234"
+    phoneNumber: "555-1234",
+    accepted: "pending"
   },
   {
     name: "Katniss Everdeen",
@@ -333,7 +369,9 @@ export const fictionalCharacters = [
     bankAccount: "87654321",
     email: "katnisseverdeen@example.com",
     loanRequestedAmount: 3000,
-    phoneNumber: "555-5678"
+    phoneNumber: "555-5678",
+    accepted: "pending"
+
   },
   {
     name: "Sherlock Holmes",
@@ -341,7 +379,9 @@ export const fictionalCharacters = [
     bankAccount: "56781234",
     email: "sherlockholmes@example.com",
     loanRequestedAmount: 10000,
-    phoneNumber: "555-9876"
+    phoneNumber: "555-9876",
+    accepted: "pending"
+
   },
   {
     name: "Hermione Granger",
@@ -349,7 +389,9 @@ export const fictionalCharacters = [
     bankAccount: "43218765",
     email: "hermionegranger@example.com",
     loanRequestedAmount: 7000,
-    phoneNumber: "555-4321"
+    phoneNumber: "555-4321",
+    accepted: "pending"
+
   },
   {
     name: "Tony Stark",
@@ -357,7 +399,9 @@ export const fictionalCharacters = [
     bankAccount: "56784321",
     email: "tonystark@example.com",
     loanRequestedAmount: 200000,
-    phoneNumber: "555-8765"
+    phoneNumber: "555-8765",
+    accepted: "pending"
+
   },
   {
     name: "Luke Skywalker",
@@ -365,7 +409,9 @@ export const fictionalCharacters = [
     bankAccount: "87651234",
     email: "lukeskywalker@example.com",
     loanRequestedAmount: 1000,
-    phoneNumber: "555-2468"
+    phoneNumber: "555-2468",
+    accepted: "pending"
+
   },
   {
     name: "Katara",
@@ -373,7 +419,9 @@ export const fictionalCharacters = [
     bankAccount: "12348765",
     email: "katara@example.com",
     loanRequestedAmount: 3000,
-    phoneNumber: "555-1357"
+    phoneNumber: "555-1357",
+    accepted: "pending"
+
   },
   {
     name: "Jon Snow",
@@ -381,7 +429,9 @@ export const fictionalCharacters = [
     bankAccount: "56783421",
     email: "jonsnow@example.com",
     loanRequestedAmount: 5000,
-    phoneNumber: "555-7890"
+    phoneNumber: "555-7890",
+    accepted: "pending"
+
   },
   {
     name: "Alice",
@@ -389,7 +439,9 @@ export const fictionalCharacters = [
     bankAccount: "43218765",
     email: "alice@example.com",
     loanRequestedAmount: 500,
-    phoneNumber: "555-3691"
+    phoneNumber: "555-3691",
+    accepted: "pending"
+
   },
   {
     name: "Darth Vader",
@@ -397,7 +449,9 @@ export const fictionalCharacters = [
     bankAccount: "87654321",
     email: "darthvader@example.com",
     loanRequestedAmount: 10000,
-    phoneNumber: "555-1746"
+    phoneNumber: "555-1746",
+    accepted: "pending"
+
   }
 ];
 
@@ -408,70 +462,89 @@ export const actors = [
     totalBankBalance: 1000000,
     numberOfAccounts: 2,
     email: "tomhanks@example.com",
-    phoneNumber: "555-1234"
+    phoneNumber: "555-1234",
+    accepted: "pending"
   },
   {
     name: "Leonardo DiCaprio",
     totalBankBalance: 2500000,
     numberOfAccounts: 3,
     email: "leonardodicaprio@example.com",
-    phoneNumber: "555-5678"
+    phoneNumber: "555-5678",
+    accepted: "pending"
+
   },
   {
     name: "Meryl Streep",
     totalBankBalance: 500000,
     numberOfAccounts: 1,
     email: "merylstreep@example.com",
-    phoneNumber: "555-9876"
+    phoneNumber: "555-9876",
+    accepted: "pending"
+
   },
   {
     name: "Brad Pitt",
     totalBankBalance: 3500000,
     numberOfAccounts: 4,
     email: "bradpitt@example.com",
-    phoneNumber: "555-4321"
+    phoneNumber: "555-4321",
+    accepted: "pending"
+
   },
   {
     name: "Angelina Jolie",
     totalBankBalance: 4000000,
     numberOfAccounts: 2,
     email: "angelinajolie@example.com",
-    phoneNumber: "555-8765"
+    phoneNumber: "555-8765",
+    accepted: "pending"
+
   },
   {
     name: "Johnny Depp",
     totalBankBalance: 2000000,
     numberOfAccounts: 1,
     email: "johnnydepp@example.com",
-    phoneNumber: "555-2468"
+    phoneNumber: "555-2468",
+    accepted: "pending"
+
   },
   {
     name: "Jennifer Lawrence",
     totalBankBalance: 1500000,
     numberOfAccounts: 3,
     email: "jenniferlawrence@example.com",
-    phoneNumber: "555-1357"
+    phoneNumber: "555-1357",
+    accepted: "pending"
+
   },
   {
     name: "Robert Downey Jr.",
     totalBankBalance: 5000000,
     numberOfAccounts: 2,
     email: "robertdowneyjr@example.com",
-    phoneNumber: "555-7890"
+    phoneNumber: "555-7890",
+    accepted: "pending"
+
   },
   {
     name: "Scarlett Johansson",
     totalBankBalance: 3000000,
     numberOfAccounts: 1,
     email: "scarlettjohansson@example.com",
-    phoneNumber: "555-3691"
+    phoneNumber: "555-3691",
+    accepted: "pending"
+
   },
   {
     name: "Dwayne Johnson",
     totalBankBalance: 6000000,
     numberOfAccounts: 5,
     email: "dwaynejohnson@example.com",
-    phoneNumber: "555-1746"
+    phoneNumber: "555-1746",
+    accepted: "pending"
+
   }
 ];
 

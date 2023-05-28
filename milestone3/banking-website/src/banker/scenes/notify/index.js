@@ -60,6 +60,7 @@ const NotifyUser = () => {
               </FormControl>
                 {notificationType === 'Banker' ? 
                 <TextField
+                multiline
                 fullWidth
                 variant="filled"
                 type="text"
@@ -74,6 +75,7 @@ const NotifyUser = () => {
               /> : <></>}
                 {notificationType === 'Client' ? 
                 <TextField
+                multiline
                 fullWidth
                 variant="filled"
                 type="text"
@@ -88,6 +90,7 @@ const NotifyUser = () => {
               /> : <></>}
               {notificationType === 'Admin' ? 
                 <TextField
+                multiline
                 fullWidth
                 variant="filled"
                 type="text"
@@ -101,6 +104,7 @@ const NotifyUser = () => {
                 sx={{ gridColumn: "span 2" }}
               /> : <></>}
                 <TextField
+                multiline
                 fullWidth
                 variant="filled"
                 type="text"

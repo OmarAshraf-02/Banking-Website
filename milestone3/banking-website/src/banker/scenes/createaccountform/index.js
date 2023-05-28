@@ -44,6 +44,7 @@ const CreateAccountForm = () => {
               }}
             >
               <TextField
+              multiline
                 fullWidth
                 variant="filled"
                 type="text"
@@ -57,6 +58,7 @@ const CreateAccountForm = () => {
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
+              multiline
                 fullWidth
                 variant="filled"
                 type="text"
@@ -70,6 +72,7 @@ const CreateAccountForm = () => {
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
+              multiline
                 fullWidth
                 variant="filled"
                 type="text"
@@ -83,6 +86,7 @@ const CreateAccountForm = () => {
                 sx={{ gridColumn: "span 4" }}
               />
               <TextField
+              multiline
                 fullWidth
                 variant="filled"
                 type="text"
@@ -96,6 +100,7 @@ const CreateAccountForm = () => {
                 sx={{ gridColumn: "span 4" }}
               />
               <TextField
+              multiline
                 fullWidth
                 variant="filled"
                 type="text"
@@ -109,6 +114,7 @@ const CreateAccountForm = () => {
                 sx={{ gridColumn: "span 4" }}
               />
               <TextField
+              multiline
                 fullWidth
                 variant="filled"
                 type="text"

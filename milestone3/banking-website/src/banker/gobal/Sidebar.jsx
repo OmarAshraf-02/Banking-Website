@@ -129,10 +129,10 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
                 color={colors.grey[300]}
                 sx={{ m: "15px 0 5px 20px" }}
               >
-                {!isCollapsed ? 'Accounts' : 'Acc.'}
+                {!isCollapsed ? 'Bank Accounts' : 'Acc.'}
               </Typography>
               <Item
-                title="View Bank Accounts"
+                title="View Accounts"
                 to="viewBankAccounts"
                 icon={<VisibilityOutlinedIcon />}
                 selected={selected}
@@ -162,7 +162,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
                 Loans
               </Typography>
               <Item
-                title="View Loan Requests"
+                title="View Requests"
                 to="loanRequests"
                 icon={<VisibilityOutlinedIcon />}
                 selected={selected}
@@ -184,7 +184,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
                 Cards
               </Typography>
               <Item
-                title="View Card Requests"
+                title="View Cards"
                 to="cardRequests"
                 icon={<VisibilityOutlinedIcon />}
                 selected={selected}

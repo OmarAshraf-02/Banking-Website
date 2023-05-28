@@ -53,6 +53,7 @@ const CreateCardForm = () => {
               }}
             >
               <TextField
+              multiline
                 fullWidth
                 variant="filled"
                 type="text"
@@ -66,6 +67,7 @@ const CreateCardForm = () => {
                 sx={{ gridColumn: "span 4" }}
               />
               <TextField
+              multiline
                 fullWidth
                 variant="filled"
                 type="text"

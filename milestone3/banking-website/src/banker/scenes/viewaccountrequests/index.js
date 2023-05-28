@@ -13,19 +13,34 @@ import { useState } from "react";
 
 const ViewAccountRequests = () => {
   const [searchTerm , setSearchTerms] = useState('');
+  const [actorsArray , setActorsArray] = useState(actors);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const onChange = (event) => {
     setSearchTerms(event.target.value);
   };
-  const filteredArray = actors.filter((actor) => {
+  const filteredArray = actorsArray.filter((actor) => {
     return actor.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
+  const handleAccept = (actorToAccept) => {
+    const newactors = actorsArray.filter((actor)=>{
+        return actor.name !== actorToAccept.name;
+    });
+    const newactors2 = [...newactors , {...actorToAccept , accepted: "accepted"}];
+    setActorsArray(newactors2);
+  };
+  const handleReject = (actorToReject) => {
+    const newactors = actorsArray.filter((actor)=>{
+        return actor.name !== actorToReject.name;
+    });
+    const newactors2 = [...newactors , {...actorToReject , accepted: "rejected"}];
+    setActorsArray(newactors2);
+  };
   const mappedArray = filteredArray.map((actor)=>{
     return (
         <Accordion >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography color={colors.greenAccent[500]} variant="h3">
+          <Typography color={actor.accepted === "accepted" ? colors.greenAccent[500] : (actor.accepted === "pending" ? colors.blueAccent[500] : colors.redAccent[500]) } variant="h3">
             {actor.name}
           </Typography>
         </AccordionSummary>
@@ -44,18 +59,18 @@ const ViewAccountRequests = () => {
           </Typography>
 
         </AccordionDetails>
-        <Box display="flex" justifyContent="end" mt="20px" m = "10px">
+        {actor.accepted === "pending"  ? <Box display="flex" justifyContent="end" mt="20px" m = "10px">
             <Box m = "5px">
-            <Button type="submit" color="secondary" variant="contained">
+            <Button onClick={() => {handleAccept(actor)}} type="submit" color="secondary" variant="contained">
                 Accept
               </Button>
             </Box>
             <Box m = "5px">
-            <Button type="submit" color="error" variant="contained">
+            <Button onClick={() => {handleReject(actor)}} type="submit" color="error" variant="contained">
                 Reject
               </Button>
             </Box>
-        </Box>
+        </Box>: <></>}
       </Accordion>
     );
   });
@@ -63,10 +78,13 @@ const ViewAccountRequests = () => {
   return (
     <Box m="20px">
       <Header title="Bank Account Requests" subtitle="View Bank Account Requests and Deal with them" />
+      <Typography variant="h5" color={colors.grey[100]}>
+        Search by Client Name:
+      </Typography>
       <Box display="flex" 
         backgroundColor = {colors.primary[400]}
          borderRadius="3px"
-         m = "4px 0px 20px 0px"
+         m = "2px 0px 20px 0px"
          >
             <InputBase value={searchTerm} onChange={onChange} sx ={{ml:2 , flex:1}} placeHolder = "Search" />
             <IconButton type = "button" sx={{p:1}}>

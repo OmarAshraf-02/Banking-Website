@@ -21,7 +21,7 @@ const CreateLoanForm = () => {
   };
   return (
     <Box m="20px">
-      <Header title="Creat a Loan" subtitle="Help a customer to apply for a loan" />
+      <Header title="Create a Loan" subtitle="Help a customer to apply for a loan" />
 
       <Formik
         onSubmit={handleFormSubmit}
@@ -48,6 +48,7 @@ const CreateLoanForm = () => {
               }}
             >
               <TextField
+              multiline
                 fullWidth
                 variant="filled"
                 type="text"
@@ -95,6 +96,7 @@ const CreateLoanForm = () => {
                 </Field>
               </FormControl>
               <TextField
+              multiline
                 fullWidth
                 variant="filled"
                 type="number"
@@ -108,6 +110,7 @@ const CreateLoanForm = () => {
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
+              multiline
                 fullWidth
                 variant="filled"
                 type="number"
@@ -123,6 +126,7 @@ const CreateLoanForm = () => {
                             {loanType.includes("Car")? 
               <>
               <TextField
+              multiline
               fullWidth
               variant="filled"
               type="text"
@@ -136,6 +140,7 @@ const CreateLoanForm = () => {
               sx={{ gridColumn: "span 2" }}
             />
             <TextField
+            multiline
                 fullWidth
                 variant="filled"
                 type="number"
@@ -149,6 +154,7 @@ const CreateLoanForm = () => {
                 sx={{ gridColumn: "span 2" }}
               />
             <TextField
+            multiline
                 fullWidth
                 variant="filled"
                 type="text"
@@ -165,6 +171,7 @@ const CreateLoanForm = () => {
             :<></>
               }
                 {loanType.includes('Personal') ? <TextField
+                multiline
                 fullWidth
                 variant="filled"
                 type="text"

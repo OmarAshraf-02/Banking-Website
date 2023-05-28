@@ -13,19 +13,34 @@ import { seriesCharacters } from "../../../data/mockdata";
 
 const ViewCardRequests = () => {
   const [searchTerm , setSearchTerms] = useState('');
+  const [seriesCharactersArray , setSeriesCharactersArray] = useState(seriesCharacters);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const onChange = (event) => {
     setSearchTerms(event.target.value);
   };
-  const filteredArray = seriesCharacters.filter((driver) => {
+  const filteredArray = seriesCharactersArray.filter((driver) => {
     return driver.bankAccount.toLowerCase().includes(searchTerm.toLowerCase());
   });
+  const handleAccept = (actorToAccept) => {
+    const newactors = seriesCharactersArray.filter((actor)=>{
+        return actor.name !== actorToAccept.name;
+    });
+    const newactors2 = [...newactors , {...actorToAccept , accepted: "accepted"}];
+    setSeriesCharactersArray(newactors2);
+  };
+  const handleReject = (actorToReject) => {
+    const newactors = seriesCharactersArray.filter((actor)=>{
+        return actor.name !== actorToReject.name;
+    });
+    const newactors2 = [...newactors , {...actorToReject , accepted: "rejected"}];
+    setSeriesCharactersArray(newactors2);
+  };
   const mappedArray = filteredArray.map((character)=>{
     return (
         <Accordion >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography color={colors.greenAccent[500]} variant="h3">
+          <Typography color={character.accepted === "accepted" ? colors.greenAccent[500] : (character.accepted === "pending" ? colors.blueAccent[500] : colors.redAccent[500]) } variant="h3">
             {character.name}
           </Typography>
         </AccordionSummary>
@@ -47,24 +62,27 @@ const ViewCardRequests = () => {
           </Typography>
 
         </AccordionDetails>
-        <Box display="flex" justifyContent="end" mt="20px" m = "10px">
+        {character.accepted === "pending"  ? <Box display="flex" justifyContent="end" mt="20px" m = "10px">
             <Box m = "5px">
-            <Button type="submit" color="secondary" variant="contained">
+            <Button onClick={() => {handleAccept(character)}} type="submit" color="secondary" variant="contained">
                 Accept
               </Button>
             </Box>
             <Box m = "5px">
-            <Button type="submit" color="error" variant="contained">
+            <Button onClick={() => {handleReject(character)}} type="submit" color="error" variant="contained">
                 Reject
               </Button>
             </Box>
-        </Box>
+        </Box>: <></>}
       </Accordion>
     );
   });
   return (
     <Box m="20px">
       <Header title="Cards Requests" subtitle="View Customers' Card Requests and Deal with them" />
+      <Typography variant="h5" color={colors.grey[100]}>
+        Search by Bank ID:
+      </Typography>
       <Box display="flex" 
         backgroundColor = {colors.primary[400]}
          borderRadius="3px"
