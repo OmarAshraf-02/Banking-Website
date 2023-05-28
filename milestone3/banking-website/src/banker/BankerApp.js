@@ -15,6 +15,11 @@ import CreateLoanForm from './scenes/createloanform';
 import CreateCardForm from './scenes/createcardform';
 import NotifyUser from './scenes/notify';
 import ViewTransactions from './scenes/viewtransactions';
+import CreateClient from './scenes/createClientForm';
+import ViewClients from './scenes/viewClients';
+import ViewClientRequests from './scenes/viewClientRequests';
+import LoansTaken from './scenes/viewallLoans';
+import AllCards from './scenes/viewallCards';
 
 
 function BankerApp() {
@@ -40,6 +45,11 @@ function BankerApp() {
                 <Route path = "createCard" element={<CreateCardForm/>} />
                 <Route path = "notify" element = {<NotifyUser />} />
                 <Route path = "viewTransactions" element={<ViewTransactions />} />
+                <Route path = "viewClients" element={<ViewClients />} />
+                <Route path = "createClient" element={<CreateClient />} />
+                <Route path = "viewClientRequests" element={<ViewClientRequests />} />
+                <Route path = "viewLoans" element={<LoansTaken />} />
+                <Route path = "viewCards" element={<AllCards />} />
               </Routes>
             </main>
           </div>

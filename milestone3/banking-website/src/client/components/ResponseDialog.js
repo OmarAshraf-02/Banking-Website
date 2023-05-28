@@ -40,7 +40,7 @@ function ResponseDialog({ submit, response }) {
                 aria-describedby="alert-dialog-slide-description"
             >               
                 <div className='flex flex-col items-center m-3'>
-                    {response === "success"? <CheckCircleOutlineIcon fontSize='large'/>: <DangerousIcon fontSize='large'/>}
+                    {response === "success"? <CheckCircleOutlineIcon style={{ color: 'green' }} fontSize='large'/>: <DangerousIcon style={{ color: 'red' }} fontSize='large'/>}
                     <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
                         {response === "success"? 'Sent successfully': 'Failed to send'}
