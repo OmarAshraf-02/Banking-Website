@@ -4,7 +4,13 @@ import { tokens } from "../../../themes";
 import React from 'react'
 import Header from "../../components/Header";
 
-function PrepaidCardApplicationItem({prepaidcard}) {
+function CarLoanApplicationItem({loan}) {
+    const {
+        personalLoanApplication,
+        carLoanApplication
+          
+        } = loan;
+        
     const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
@@ -14,45 +20,43 @@ function PrepaidCardApplicationItem({prepaidcard}) {
       flex: 0.5
     },
     {
-      field: "nationalIdNumber",
-      headerName: "National ID Number",
+        field: "make",
+        headerName: "Make",
+        flex: 1,
+      },
+      {
+        field: "model",
+        headerName: "Model",
+        flex: 1,
+      },
+    {
+      field: "employment",
+      headerName: "Employment",
       flex: 1,
     },
     {
-      field: "cardholderName",
-      headerName: "Card Holder Name",
+      field:  "loanTerm",
+      headerName: " loan Term",
       flex: 1,
       // cellClassName: "name-column--cell",
     },
 
     {
-      field: "city",
-      headerName: "City",
+      field: "loanAmount",
+      headerName: "loan Amount",
       flex: 1,
     },
     {
-      field: "address",
-      headerName: "Address",
+      field: "annualIncome",
+      headerName: "Annual Income",
       flex: 1,
     //   renderCell: (params) => {
     //     const amount = params.row.amount;
     //     return amount < 0 ? <span style={{ color: 'red' }}>{amount}</span> : <span style={{ color: 'green' }}>+{amount}</span>;
     //   },
     },
-    {
-        field: "balanceLimit",
-        headerName: "Balance Limit",
-        flex: 1,
-  
-      },{
-        field: "startingBalance",
-        headerName: "Starting Balance",
-        flex: 1,
-  
-      },
-      
     
-      
+    
       
       
 
@@ -64,6 +68,7 @@ function PrepaidCardApplicationItem({prepaidcard}) {
         
         <Box m="20px">
       
+          
         
           
       
@@ -100,7 +105,7 @@ function PrepaidCardApplicationItem({prepaidcard}) {
         }}
       >
         <DataGrid
-          rows={prepaidcard}
+          rows={carLoanApplication}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
         />
@@ -113,4 +118,4 @@ function PrepaidCardApplicationItem({prepaidcard}) {
     )
 }
 
-export default PrepaidCardApplicationItem
+export default CarLoanApplicationItem

@@ -27,7 +27,7 @@ import InternalTransfer from './pages/Transfers/InternalTransfer';
 import TheftLossDamageForm from './pages/TheftLossDamageForm';
 import Notifications from './pages/Notifications/Notifications';
 import Applications from './pages/Applications/Applications';
-function App() {
+function ClientApp() {
   const [theme, colorMode] = useMode();
   return (
     <ColorModeContext.Provider value={colorMode}>
