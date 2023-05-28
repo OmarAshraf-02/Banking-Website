@@ -120,16 +120,6 @@ const ViewReports = () => {
                     </Button>
                   </Box>
                   <Box m = "5px">
-                  <Button color="secondary" variant="contained" onClick={() => handleDelegate(character)}> 
-                      Delegate to Superior
-                    </Button>
-                  </Box>
-                  <Box m = "5px">
-                  <Button color="secondary" variant="contained" onClick={() => handleDelegate(character)}>
-                      Delegate to Admin
-                    </Button>
-                  </Box>
-                  <Box m = "5px">
                   <Button  color="error" variant="contained" onClick={() => handleReject(character)}>
                       Reject
                     </Button>

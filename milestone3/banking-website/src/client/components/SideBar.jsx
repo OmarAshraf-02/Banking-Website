@@ -175,6 +175,7 @@ const ClientSidebar = () => {
                         />
 
                     </Box>
+                    
                 </Menu>
             </ProSidebar>
         </Box>
