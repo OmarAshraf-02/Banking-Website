@@ -248,7 +248,9 @@ export const f1Drivers = [
     complaint: 'Identity theft and fraudulent transactions',
     accepted: 'pending'
   }
+  
 ];
+
 
 
 export const seriesCharacters = [
