@@ -26,8 +26,7 @@ function Transfer() {
         // </div>
 
         <div >
-            <Header title='Transfers'/>
-            <Typography>Recent Transfers</Typography>
+            <Header title='Transfers' subtitle='Recent Transfers'/>
             {domestic.map((transfer) => {
                 return <TransferCards key={transfer.id} transfer={transfer} type='Domestic' />
             })}

@@ -1,5 +1,4 @@
 import React from 'react';
-import SignUpForm from './pages/SignUp';
 import HomePage from './pages/HomePage/HomePage';
 import OpenAccount from './pages/OpenAccount';
 import { Routes, Route, Link } from 'react-router-dom';
@@ -27,7 +26,7 @@ import InternationalTransfer from './pages/Transfers/InternationalTransfer';
 import InternalTransfer from './pages/Transfers/InternalTransfer';
 import TheftLossDamageForm from './pages/TheftLossDamageForm';
 import Notifications from './pages/Notifications/Notifications';
-function App() {
+function ClientApp() {
   const [theme, colorMode] = useMode();
   return (
     <ColorModeContext.Provider value={colorMode}>
@@ -51,7 +50,6 @@ function App() {
               <TopBar />
               <Routes>                
                 {/* <Route path='/sign-in' index element={<SignIn />} /> */}
-
                 {/* <Route path='Stepper' element={<Steppers />} /> */}
                 <Route path='/' element={<HomePage />} />
                 <Route path='openAccount' index element={<OpenAccount />} />
@@ -89,6 +87,6 @@ function App() {
   )
 }
 
-export default WithSplashScreen(App);
+export default WithSplashScreen(ClientApp);
 
 

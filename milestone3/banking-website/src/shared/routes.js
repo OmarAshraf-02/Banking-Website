@@ -1,4 +1,5 @@
 import { Home } from './pages';
+import LandingPage from './pages/LandingPage';
 import SignIn from './pages/sign-in'
 import {
   HomeIcon,
@@ -10,7 +11,7 @@ export const routes = [
     icon: HomeIcon,
     name: "home",
     path: "/",
-    element: <Home />,
+    element: <LandingPage />,
   },
   {
     icon: ArrowRightOnRectangleIcon,

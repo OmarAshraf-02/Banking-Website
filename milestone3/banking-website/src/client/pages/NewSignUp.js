@@ -7,6 +7,8 @@ import AddressStep from '../components/AddressStep';
 import IdentificationStep from '../components/IdentificationStep';
 import logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
+import { Navbar } from '../../shared/widgets/layout';
+import routes from '../../shared/routes';
 
 const theme = createTheme({
     palette: {
@@ -137,8 +139,10 @@ const NewSignUp = () => {
 
     return (
         <ThemeProvider theme={theme}>
+            <div className="container absolute left-2/4 z-10 mx-auto -translate-x-2/4 p-4">
+               <Navbar routes={routes} />
+            </div>
             <Root>
-
                 <FormWrapper>
                     <Logo>
                         <LogoImage src={logo} alt="Logo" />

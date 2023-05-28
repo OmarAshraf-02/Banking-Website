@@ -67,7 +67,7 @@ function AccountPage() {
                         </Link>
                     </div>
                 }
-                <TransactionHistory accountNumbers={[accountNumber]} />
+                <TransactionHistory accountNumbers={[accountNumber]} isTitle={false} />
 
             </Box>
         </div>
