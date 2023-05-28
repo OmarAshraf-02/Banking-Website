@@ -27,6 +27,7 @@ import InternationalTransfer from './pages/Transfers/InternationalTransfer';
 import InternalTransfer from './pages/Transfers/InternalTransfer';
 import TheftLossDamageForm from './pages/TheftLossDamageForm';
 import Notifications from './pages/Notifications/Notifications';
+import Applications from './pages/Applications/Applications';
 function App() {
   const [theme, colorMode] = useMode();
   return (
@@ -73,6 +74,8 @@ function App() {
                 <Route path='transfer/international' element={<InternationalTransfer />} />
                 <Route path='creditCards/theftLossDamageForm' element={<TheftLossDamageForm />} />
                 <Route path='notifications' element={<Notifications />} />
+                <Route path='applications' element={<Applications />} />
+                
               </Routes>
             </main>
           </div>

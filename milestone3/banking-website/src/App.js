@@ -17,11 +17,15 @@ import InternationalTransfer from './client/pages/Transfers/InternationalTransfe
 import BackButton from './shared/components/BackButton';
 import AdminApp from './admin/AdminApp';
 import SharedApp from './shared/SharedApp';
+import Applications from './client/pages/Applications/Applications';
+import Notifications from './client/pages/Notifications/Notifications';
 function App() {
 
   return (
     <div>
-      <SharedApp/>
+     {/* <Applications/> */}
+     {/* <Notifications/> */}
+     <SharedApp/>
     </div>
   )
 }
