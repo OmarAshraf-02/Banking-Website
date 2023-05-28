@@ -73,7 +73,6 @@ function ClientApp() {
                 <Route path='creditCards/theftLossDamageForm' element={<TheftLossDamageForm />} />
                 <Route path='notifications' element={<Notifications />} />
                 <Route path='applications' element={<Applications />} />
-                
               </Routes>
             </main>
           </div>

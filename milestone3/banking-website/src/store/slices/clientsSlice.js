@@ -15,34 +15,29 @@ const clientSlice = createSlice({
         accounts: [
             {
                 id: 1,
+                status: 'Active',
                 accountNumber: 555555555,
                 accountType:'Savings',
-                cards: [
-                  { id: 1, cardNumber: 'CARD-111', type: 'Credit Card', limit: 5000 , validThru: '12/25', cvc: 123},
-                  { id: 2, cardNumber: 'CARD-222', type: 'Debit Card', balance: 1500, validThru: '11/25', cvc: 223 },
-                  { id: 3, cardNumber: 'CARD-333', type: 'Prepaid Card', balance: 500, validThru: '10/25', cvc: 333 },
-                ],
+                card: { id: 2, cardNumber: 'CARD-222', type: 'Debit Card', validThru: '11/25', cvc: 223 },
+                balance: 0,
                 creditScore: 650,
               },
               {
                 id: 2,
+                status: 'Active',
                 accountNumber: 123456789,
                 accountType:'Savings',
-                cards: [
-                  
-                ],
+                card:{},
                 creditScore: 720,
+                balance: 200
               },
               {
                 id: 3,
                 accountNumber: 987654321,
+                status: 'Active',
                 accountType:'Savings',
-                cards: [
-                  { id: 1, cardNumber: 'CARD-666', type: 'Credit Card', limit: 10000, validThru: '12/29', cvc: 222 },
-                  { id: 2, cardNumber: 'CARD-777', type: 'Credit Card', limit: 5000, validThru: '12/23', cvc: 111 },
-                  { id: 3, cardNumber: 'CARD-888', type: 'Debit Card', balance: 500, validThru: '12/24', cvc: 123 },
-                  { id: 4, cardNumber: 'CARD-999', type: 'Prepaid Card', balance: 200, validThru: '12/27', cvc: 123 },
-                ],
+                balance: 200,
+                card: { id: 1, cardNumber: 'CARD-999', type: 'Prepaid Card', validThru: '12/27', cvc: 123 },
                 creditScore: 550,
               },
             ],
@@ -52,7 +47,7 @@ const clientSlice = createSlice({
             dateTime: "2023-05-20 09:30:15",
             accountNumber: 123456789,
             transactionType: "Deposit",
-            amount: -500.00,
+            amount: +500.00,
             balance: 2500.00,
         },
         {
@@ -68,7 +63,7 @@ const clientSlice = createSlice({
             dateTime: "2023-05-22 11:20:05",
             accountNumber: 987654321,
             transactionType: "Deposit",
-            amount: -1000.00,
+            amount: +1000.00,
             balance: 3000.00,
         },
         {
@@ -76,7 +71,7 @@ const clientSlice = createSlice({
             dateTime: "2023-05-22 16:55:30",
             accountNumber: 987654321,
             transactionType: "Transfer",
-            amount: 500.00,
+            amount: -500.00,
             balance: 2500.00,
         },
         {
@@ -84,7 +79,7 @@ const clientSlice = createSlice({
             dateTime: "2023-05-23 08:15:50",
             accountNumber: 555555555,
             transactionType: "Withdrawal",
-            amount: 100.00,
+            amount: -100.00,
             balance: 400.00,
         }],
         loans: {
@@ -559,18 +554,44 @@ const clientSlice = createSlice({
             state[0].bills = state[0].bills.filter((bill) => {
                 return bill.id !== action.payload.bill.id
             })
+            const account = state[0].accounts.find((account)=>{
+              return account.accountNumber===action.payload.accountNumber
+            })
+            account.balance = account.balance - action.payload.bill.amount;
+
             const transaction = {
                 id: state[0].transactions.length + 1,
                 dateTime: new Date().toISOString().slice(0, 19).replace('T', ' '),
                 accountNumber: action.payload.accountNumber,
                 transactionType: "Bill",
                 amount: -1*action.payload.bill.amount,
-                balance: 3000.00,
+                balance: account.balance,
             }
             state[0].transactions.push(transaction);
+        },
+        payTransfer(state, action) {
+          const account = state[0].accounts.find((account)=>{
+            return account.accountNumber===action.payload.accountNumber
+          })
+          account.balance = account.balance - action.payload.transfer.amount;
+            const transaction = {
+                id: state[0].transactions.length + 1,
+                dateTime: new Date().toISOString().slice(0, 19).replace('T', ' '),
+                accountNumber: action.payload.accountNumber,
+                transactionType: "Transfer",
+                amount: -1*action.payload.transfer.amount,
+                balance: account.balance,
+            }
+            state[0].transactions.push(transaction);
+        },
+        closeAccount(state,action){
+          const account = state[0].accounts.find((account)=>{
+            return account.accountNumber===action.payload.accountNumber
+          });
+          account.status = 'Inactive';
         }
     }
 });
 
-export const { addClient, removeClient, payBill } = clientSlice.actions;
+export const { addClient, removeClient, payBill, payTransfer, closeAccount } = clientSlice.actions;
 export const clientsReducer = clientSlice.reducer

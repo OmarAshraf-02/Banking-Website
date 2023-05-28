@@ -20,22 +20,11 @@ function CardItem({card}) {
         type
     } = card
   return (
-    <div className='flex flex-row justify-between m-7 grow'>
+    <div className='flex flex-col items-center m-7 grow'>
+        <Typography color={colors.grey[200]} variant="h3">
+            {type}
+        </Typography> 
         <Cards number={cardNumber}  expiry={validThru} cvc={cvc} name ={name} focused="" />
-        <div className='flex flex-col'>
-            <Typography color={colors.grey[500]} variant="h3">
-                Type: {type}
-            </Typography> 
-            {type==='Credit Card'?
-                <Typography color={colors.grey[500]} variant="h3">
-                    Limit: {card.limit}
-                </Typography> 
-                :
-                <Typography color={colors.grey[500]} variant="h3">
-                    Balance: {card.balance}
-                </Typography>    
-            }
-        </div>
     </div>
   )
 }

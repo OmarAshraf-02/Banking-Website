@@ -13,6 +13,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import '../../components/LoanCards.css'
+import { GrStatusGood } from 'react-icons/gr';
 
 function AccountItem({ account }) {
     const theme = useTheme();
@@ -21,20 +22,21 @@ function AccountItem({ account }) {
         accountNumber,
         accountType,
         id,
-        creditScore
+        creditScore,
+        status
     } = account
     return (
       <div class="loan-card">
-          <Typography sx={{ fontSize: 23 }} color="text.secondary" gutterBottom>Account Information</Typography>
+          <Typography sx={{ fontSize: 23 }} color={status==='Active'?colors.greenAccent[500]: colors.redAccent[500]} gutterBottom>{accountNumber} - {status}</Typography>
           <div>
             <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
               {accountType}
             </Typography>
-            <Typography variant="h7" component="div">
-              Account Number: {accountNumber}
-            </Typography>
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            <Typography color="text.secondary">
               Credit Score: {creditScore}
+            </Typography>
+            <Typography color="text.secondary">
+              Status: {status}
             </Typography>
           </div>
           <div class="" style={{display: "flex", justifyContent: "flex-end"}}>

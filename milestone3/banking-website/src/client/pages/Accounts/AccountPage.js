@@ -5,18 +5,18 @@ import Typography from "@mui/material/Typography";
 import { tokens } from "../../../themes";
 import { Box, Button, useTheme } from '@mui/material';
 // import './Homepage.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CardItem from './CardItem';
 import { Link, useParams } from 'react-router-dom';
 import TransactionHistory from '../TransactionHistory';
 import BackButton from '../../../shared/components/BackButton';
+import CloseAccountDialog from '../../components/CloseAccountDialog';
 
 
 function AccountPage() {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const { id } = useParams();
-    console.log(id);
     const account = useSelector((state) => {
         return state.clients[0].accounts.find((account) => {
             return account.id === Number(id)
@@ -26,7 +26,9 @@ function AccountPage() {
         accountNumber,
         accountType,
         creditScore,
-        cards
+        card,
+        balance,
+        status
     } = account;
 
     return (
@@ -43,12 +45,12 @@ function AccountPage() {
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                         Credit Score: {creditScore}
                     </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        Balance: {balance}
+                    </Typography>
                 </div>
-
-                {cards.length > 0 ?
-                    cards.map((card) => {
-                        return <CardItem key={card.id} card={card} />
-                    })
+                {card!==undefined&&Object.keys(card).length > 0 ?
+                    <CardItem key={card.id} card={card} />
                     :
                     <div className='flex flex-row items-center m-4'>
                         <Link to='debitCardForm'>
@@ -68,7 +70,8 @@ function AccountPage() {
                     </div>
                 }
                 <TransactionHistory accountNumbers={[accountNumber]} isTitle={false} />
-
+                {status==='Inactive'?<></>:<CloseAccountDialog account={account}/>}
+                
             </Box>
         </div>
     )

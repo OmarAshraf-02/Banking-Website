@@ -37,6 +37,7 @@ function PayBillDialog(props) {
             <DialogTitle>Choose an account</DialogTitle>
             <List sx={{ pt: 0 }}>
                 {accounts.map((account) => (
+                    account.status!=='Active'?<></>:
                 <ListItem disableGutters>
                     <ListItemButton onClick={() => handleListItemClick(account.accountNumber)} key={account.id}>
                     <ListItemAvatar>

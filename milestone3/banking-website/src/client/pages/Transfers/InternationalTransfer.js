@@ -130,9 +130,10 @@ const InternationalTransfer = () => {
                                     sx={{ height: '52.7167px' }}
                                 >
                                     {accounts.map((account) => (
+                                        account.status==='Active'?
                                         <MenuItem key={account.id} value={account.id}>
                                             {account.accountNumber}
-                                        </MenuItem>
+                                        </MenuItem>:<></>
                                     ))}
                                 </Select>
                             </FormControl>
