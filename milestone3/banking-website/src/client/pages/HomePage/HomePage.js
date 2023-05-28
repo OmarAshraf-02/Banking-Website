@@ -8,7 +8,7 @@ import ClientSidebar from "../../components/SideBar";
 import Cards from 'react-credit-cards-2';
 import 'react-credit-cards-2/dist/es/styles-compiled.css';
 
-import './Homepage.css';
+// import './Homepage.css';
 import React from 'react';
 import { Link } from "react-router-dom";
 import BarGraph from '../../components/BarGraph';
@@ -40,7 +40,7 @@ const HomePage = () =>{
   // </div>
 
 
-  <div className='app'>
+  <div>
     {/* <div class="container"><img class="cover" src="./img/undraw.png" /></div> */}
     {/* <div className="app"> */}
       {/* <ClientSidebar /> */}

@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Button, TextField, Typography } from '@mui/material';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+import { Navbar } from '../widgets/layout';
+import routes from '../routes';
 
 const FormWrapper = styled('div')({
     display: 'flex',
@@ -62,6 +64,9 @@ const SignIn = () => {
     const [password, setPassword] = useState('');
     return (
         <ThemeProvider theme={theme}>
+            <div className="container absolute left-2/4 z-10 mx-auto -translate-x-2/4 p-4">
+                <Navbar routes={routes} />
+            </div>
             <div style={{ background: '#121212', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <FormWrapper>
                     <Logo>

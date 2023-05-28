@@ -26,15 +26,15 @@ function Loan() {
         // </div>
 
         <div >
-            <Header title='Loans'/>
-            <Typography>Active Loans</Typography>
+            <Header title='Loans' subtitle='Loan History'/>
+            <Header subtitle='Active Loans'/>
             {personalLoans.map((loan)=>{
                 return loan.status==='Active'?<LoanCards key={loan.id} loan={loan}/>:<></>
             })}
             {carLoans.map((loan)=>{
                 return loan.status==='Active'?<LoanCards key={loan.id} loan={loan}/>:<></>
             })}
-            <Typography>Paid Loans</Typography>
+            <Header subtitle='Paid Loans'/>
             {personalLoans.map((loan)=>{
                 return loan.status==='Paid'?<LoanCards key={loan.id} loan={loan}/>:<></>
             })}

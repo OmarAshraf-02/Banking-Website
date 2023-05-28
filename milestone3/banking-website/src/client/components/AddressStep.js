@@ -11,24 +11,28 @@ const AddressStep = ({ onNext, onBack, formData }) => {
 
     return (
         <div>
-            <TextField
-                label="City"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                fullWidth
-                margin="normal"
-                multiline
-            />
-            <TextField
-                label="Address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                fullWidth
-                margin="normal"
-                multiline
-            />
-            <button onClick={onBack}></button>
-            <button onClick={handleNext}></button>
+            <form>
+                <TextField
+                    label="City"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    fullWidth
+                    margin="normal"
+                    multiline
+                    required
+                />
+                <TextField
+                    label="Address"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    fullWidth
+                    margin="normal"
+                    multiline
+                    required
+                />
+                <button onClick={onBack}></button>
+                <button onClick={handleNext} type="submit"></button>
+            </form>
         </div>
     );
 };

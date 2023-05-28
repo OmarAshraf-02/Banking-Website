@@ -1,5 +1,4 @@
 import React from 'react';
-import SignUpForm from './pages/SignUp';
 import HomePage from './pages/HomePage/HomePage';
 import OpenAccount from './pages/OpenAccount';
 import { Routes, Route, Link } from 'react-router-dom';
@@ -50,9 +49,8 @@ function App() {
             {/* <div class="zone blue grid-wrapper"></div> */}
             <main className="content">
               <TopBar />
-              <Routes>                
+              <Routes>
                 {/* <Route path='/sign-in' index element={<SignIn />} /> */}
-
                 {/* <Route path='Stepper' element={<Steppers />} /> */}
                 <Route path='/' element={<HomePage />} />
                 <Route path='openAccount' index element={<OpenAccount />} />
@@ -92,6 +90,6 @@ function App() {
   )
 }
 
-export default WithSplashScreen(App);
+export default WithSplashScreen(ClientApp);
 
 

@@ -3,31 +3,28 @@ import { useMode } from './themes';
 import {Navbar} from './shared/widgets/layout';
 import routes from "./shared/routes";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Home from './shared/pages/home';
-import SignIn from './shared/pages/sign-in'
-import NewSignUp from './client/pages/NewSignUp'
+import { Home, SignIn } from './shared/pages';
+import NewSignUp from './client/pages/NewSignUp';
 import ClientApp from './client/ClientApp';
-import BankerApp from './banker/BankerApp'
-import Loan from './client/pages/Loan/Loan';
-import Transfer from './client/pages/Transfers/Transfer';
-import DomesticStepper from './client/pages/Transfers/DomesticStepper';
-import PersonalLoanForm from './client/pages/Loan/PersonalLoanForm';
-import DomesticTransfer from './client/pages/Transfers/DomesticTransfer';
-import InternationalTransfer from './client/pages/Transfers/InternationalTransfer'
-import BackButton from './shared/components/BackButton';
+import BankerApp from './banker/BankerApp';
 import AdminApp from './admin/AdminApp';
-import SharedApp from './shared/SharedApp';
-import Applications from './client/pages/Applications/Applications';
-import Notifications from './client/pages/Notifications/Notifications';
 function App() {
 
   return (
-    <div>
-     {/* <Applications/> */}
-     {/* <Notifications/> */}
-     <SharedApp/>
-    </div>
+  <div>
+      <Routes>
+      <Route path='signUp' element={<NewSignUp/>}/>
+        <Route path='client/*' element={<ClientApp/>}/>
+        <Route path='banker/*' element={<BankerApp/>}/>
+        <Route path='admin/*' element={<AdminApp/>}/>
+        {routes.map(
+          ({ path, element }, key) =>
+            element && <Route key={key} exact path={path} element={element} />
+        )}
+        <Route path="" element={<Navigate to="/" replace />} />
+      </Routes>
+  </div>
   )
 }
 
-export default App
+export default App;

@@ -111,63 +111,63 @@ const ClientSidebar = () => {
 
                     <Box paddingLeft={isCollapsed ? undefined : "10%"}>
                         <Item
-                            title="Home"
+                            title={isCollapsed ? "" : "Home"}
                             to=""
                             icon={<HomeOutlinedIcon size={selected === 'Home' ? 50 : 20} />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Transaction History"
+                            title={isCollapsed ? "" : "Transaction History"}
                             to="transactionHistory"
                             icon={<AiOutlineTransaction size={selected === 'Transactions History' ? 50 : 20} />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Accounts"
+                            title={isCollapsed ? "" : "Accounts"}
                             to="accounts"
                             icon={<AccountBalanceOutlinedIcon size={selected === 'Accounts' ? 50 : 20} />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Bills"
+                            title={isCollapsed ? "" : "Bills"}
                             to="bill"
                             icon={<CiMoneyBill size={selected === 'Bills' ? 50 : 20} />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Loans"
+                            title={isCollapsed ? "" : "Loans"}
                             to="loan"
                             icon={<GiReceiveMoney size={selected === 'Loans' ? 50 : 20} />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Transfer"
+                            title={isCollapsed ? "" : "Transaction History"}
                             to="transfer"
                             icon={<TbTransferOut size={selected === 'Transfer' ? 50 : 20} />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Applications"
+                            title={isCollapsed ? "" : "Applications"}
                             to="applications"
                             icon={<ListAltOutlinedIcon size={selected === 'Transfer' ? 50 : 20} />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Credit Cards"
+                            title={isCollapsed ? "" : "Credit Cards"}
                             to="creditCards"
                             icon={<CiCreditCard2 size={selected === 'Credit Cards' ? 50 : 20} />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Report Technical Issues"
+                            title={isCollapsed ? "" : "Report Technical Issues"}
                             to="reportTechnicalIssues"
                             icon={<AiFillBug size={selected === 'Report technical issues' ? 50 : 20} />}
                             selected={selected}

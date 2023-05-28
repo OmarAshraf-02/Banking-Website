@@ -6,7 +6,7 @@ import { payBill } from '../../store/index'
 import { useDispatch, useSelector } from 'react-redux'
 import Header from "../components/Header";
 
-function TransactionHistory({ accountNumbers }) {
+function TransactionHistory({ accountNumbers, isTitle }) {
 
   const dispatch = useDispatch();
   var transactions = useSelector((state) => {
@@ -16,6 +16,9 @@ function TransactionHistory({ accountNumbers }) {
     transactions = transactions.filter((transaction) => {
       return accountNumbers.includes(transaction.accountNumber)
     })
+  }
+  if(isTitle===undefined){
+    isTitle=true;
   }
 
   // console.log(transactions);
@@ -64,7 +67,12 @@ function TransactionHistory({ accountNumbers }) {
 
   return (
     <Box m="20px">
-      <Header title='Transaction History' subtitle='' />
+      {
+        isTitle?
+          <Header title='Transaction History' />
+        :
+          <Header subtitle='Transaction History' />
+      }
       <Box
         m="40px 0 0 0"
         height="75vh"

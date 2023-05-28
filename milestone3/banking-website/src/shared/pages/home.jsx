@@ -3,6 +3,7 @@ import {
   Card,
   CardBody,
   CardHeader,
+  Navbar,
   Typography,
 } from "@material-tailwind/react";
 import { UsersIcon } from "@heroicons/react/24/solid";
@@ -11,6 +12,7 @@ import { FeatureCard } from "../widgets/cards";
 import { featuresData, contactData } from "../data";
 import bank from '../../assets/bank.jpeg';
 import bankMainScreen from '../../assets/bankMainScreen.jpg';
+import routes from "../routes";
 
 
 export function Home() {
@@ -129,7 +131,6 @@ export function Home() {
         <Footer />
       </div>
       </section>
-
     </>
   );
 }
