@@ -16,7 +16,7 @@ function Notifications() {
     return state.clients[0].notifications;
   })
   return (
-    <div className='m-4'>
+    <div>
       <Header title='Notifications'/>
       {bankAnnouncements.map(bankAnnouncement=>{
         return <NotificationItem notification={bankAnnouncement}/>

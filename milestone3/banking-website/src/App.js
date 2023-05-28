@@ -1,6 +1,6 @@
 import React from 'react'
 import { useMode } from './themes';
-import { Navbar } from './shared/widgets/layout';
+import {Navbar} from './shared/widgets/layout';
 import routes from "./shared/routes";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from './shared/pages/home';
@@ -17,16 +17,13 @@ import InternationalTransfer from './client/pages/Transfers/InternationalTransfe
 import BackButton from './shared/components/BackButton';
 import AdminApp from './admin/AdminApp';
 import SharedApp from './shared/SharedApp';
-import Card from './client/pages/Loan/Card';
 function App() {
 
   return (
     <div>
-      <Card/>
+      <SharedApp/>
     </div>
   )
 }
 
-export default App
-
-
+export default App
