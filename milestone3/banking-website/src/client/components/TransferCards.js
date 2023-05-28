@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './LoanCards.css';
 import "tachyons"
 
-const LoanCards = ({ loan }) => {
+const TransferCards = ({ transfer, type }) => {
     const [moreInfo, setMoreInfo] = useState(false);
     const handleMoreInfoOnChange = ()=>{
         setMoreInfo(!moreInfo);
@@ -14,21 +14,19 @@ const LoanCards = ({ loan }) => {
         //   {/* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"></link> */}
         // </div>
         <div class="loan-card">
-            <div class="loan-card-header">{loan.loanType} Loan Information</div>
+            <div class="loan-card-header">{type} Transfer Information</div>
             <div class="loan-card-body">
-                <p>Loan amount: ${loan.amount}</p>
-                <p>Interest rate: {loan.rate}%</p>
-                <p>Loan duration: {loan.duration} months</p>
+                <p>Sender Account Number: ${transfer.senderAccountNumber}</p>
+                <p>Receiver Account Number: {transfer.recipientAccountNumber}%</p>
+                <p>Transfer Amount: {transfer.amount} {type==='International'? transfer.currency:'EGP'}</p>
+                <p>Date sent: {transfer.dateSent}</p>
                 {moreInfo?
                     <div>
-                        <p>Loan status: {loan.status}</p>
-                        <p>Due Date: {loan.paymentDue}</p>
-                        <p>Date applied: {loan.date}</p>
-                        {loan.loanType==='Car'? 
+                        <p>Recipient Bank Name: {transfer.recipientBankName}</p>
+                        {type==='International'? 
                             <div>
-                                <p>Car make: {loan.make}</p>
-                                <p>Car model: {loan.model}</p>
-                                <p>Car year: {loan.year}</p>
+                                <p>Recipient City: {transfer.recipientCity}</p>
+                                <p>Recipient Swift BIC: {transfer.recipientSwiftBIC}</p>
                             </div>
                         :
                             <></>
@@ -39,10 +37,13 @@ const LoanCards = ({ loan }) => {
                 }
             </div>
             <div class="loan-card-footer" style={{display: "flex", justifyContent: "flex-end"}}>
-                {moreInfo?
-                    <button onClick={handleMoreInfoOnChange}> hide additional information</button>
-                    :
-                    <button onClick={handleMoreInfoOnChange}> view additional information</button>}
+                {type==='Internal'?
+                    <></>
+                :
+                    moreInfo?
+                        <button onClick={handleMoreInfoOnChange}> hide additional information</button>
+                        :
+                        <button onClick={handleMoreInfoOnChange}> view additional information</button>}
             </div>
         </div>
 
@@ -50,4 +51,4 @@ const LoanCards = ({ loan }) => {
     );
 };
 
-export default LoanCards;
+export default TransferCards;

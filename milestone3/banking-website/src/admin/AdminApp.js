@@ -30,12 +30,12 @@ function AdminApp() {
               <Topbar />
               <Routes>
                 <Route path ="/" element={<Dashboard />} />
-                <Route path = "/viewAdmins" element={<BankAccounts/>} />
-                <Route path = "/createAdmin" element={<CreateAccountForm/>} />
-                <Route path = "/viewBankers" element={<ViewAccountRequests/>} />
-                <Route path = "/createBanker" element={<ViewLoanRequests/>} />
-                <Route path = "/viewReport" element={<ViewCardRequests/>} />
-                <Route path = "/notify" element={<ViewReports/>} />
+                <Route path = "viewAdmins" element={<BankAccounts/>} />
+                <Route path = "createAdmin" element={<CreateAccountForm/>} />
+                <Route path = "viewBankers" element={<ViewAccountRequests/>} />
+                <Route path = "createBanker" element={<ViewLoanRequests/>} />
+                <Route path = "viewReport" element={<ViewCardRequests/>} />
+                <Route path = "notify" element={<ViewReports/>} />
               </Routes>
             </main>
           </div>

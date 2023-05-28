@@ -6,6 +6,8 @@ import Header from '../../components/Header.jsx';
 import BackButton from '../../../shared/components/BackButton.js';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CheckIcon from '@mui/icons-material/Check';
+import { useSelector } from 'react-redux';
+import ResponseDialog from '../../components/ResponseDialog.js';
 
 const InternationalTransfer = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +31,7 @@ const InternationalTransfer = () => {
     };
 
     const initialValues = {
-        senderFullName: '',
+        // senderFullName: '',
         senderAccountNumber: '',
         transferAmount: '',
         transferCurrency: '',
@@ -42,7 +44,7 @@ const InternationalTransfer = () => {
     };
 
     const checkoutSchema = yup.object().shape({
-        senderFullName: yup.string().required("Sender Full Name is required"),
+        // senderFullName: yup.string().required("Sender Full Name is required"),
         senderAccountNumber: yup.string().required("Sender Account Number is required"),
         transferAmount: yup.number().required("Transfer Amount is required"),
         transferCurrency: yup.string().required("Transfer Currency is required"),
@@ -60,11 +62,15 @@ const InternationalTransfer = () => {
         { value: 'EUR', label: 'Euro (€)' },
         { value: 'JPY', label: 'Japanese Yen (¥)' }
     ];
-
+    const accounts = useSelector((state) => {
+        return state.clients[0].accounts
+    })
     return (
         <Box m="20px">
-            <BackButton to="/transfer" />
-            <Header title='International Transfer' subtitle='' />
+            <Box display='flex'  alignItems="center">
+                <BackButton to="/transfer" />
+                <Header title='International Transfer' subtitle='' />
+            </Box>
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
@@ -84,7 +90,7 @@ const InternationalTransfer = () => {
                             gap="30px"
                             gridTemplateColumns="repeat(4, minmax(0, 1fr))"
                         >
-                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
+                            {/* <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
                                     label="Sender Full Name"
                                     required
@@ -96,8 +102,8 @@ const InternationalTransfer = () => {
                                     helperText={touched.senderFullName && errors.senderFullName}
                                     multiline
                                 />
-                            </FormControl>
-                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
+                            </FormControl> */}
+                            {/* <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
                                     label="Sender Account Number"
                                     required
@@ -109,6 +115,26 @@ const InternationalTransfer = () => {
                                     helperText={touched.senderAccountNumber && errors.senderAccountNumber}
                                     multiline
                                 />
+                            </FormControl> */}
+                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
+                                <InputLabel id="sender-account-number-label">Sender Account Number</InputLabel>
+                                <Select
+                                    labelId="sender-account-number-label"
+                                    id="sender-account-number"
+                                    required
+                                    name="senderAccountNumber"
+                                    value={values.senderAccountNumber}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    error={touched.senderAccountNumber && !!errors.senderAccountNumber}
+                                    sx={{ height: '52.7167px' }}
+                                >
+                                    {accounts.map((account) => (
+                                        <MenuItem key={account.id} value={account.id}>
+                                            {account.accountNumber}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <InputLabel id="transfer-currency-label">Transfer Currency</InputLabel>
@@ -237,9 +263,10 @@ const InternationalTransfer = () => {
                             ) : (
                                 <>
                                     {isConfirmed && <CheckIcon style={{ marginRight: '10px', color: 'green' }} />}
-                                    <Button type="submit" color="secondary" variant="contained">
+                                    {/* <Button type="submit" color="secondary" variant="contained">
                                         Confirm
-                                    </Button>
+                                    </Button> */}
+                                    <ResponseDialog submit='CONFIRM' response='success'/>
                                 </>
                             )}
                         </Box>

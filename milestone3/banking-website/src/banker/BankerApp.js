@@ -30,16 +30,16 @@ function BankerApp() {
               <Topbar />
               <Routes>
                 <Route path ="/" element={<Dashboard />} />
-                <Route path = "/viewBankAccounts" element={<BankAccounts/>} />
-                <Route path = "/createAccount" element={<CreateAccountForm/>} />
-                <Route path = "/viewAccountRequests" element={<ViewAccountRequests/>} />
-                <Route path = "/loanRequests" element={<ViewLoanRequests/>} />
-                <Route path = "/cardRequests" element={<ViewCardRequests/>} />
-                <Route path = "/viewReport" element={<ViewReports/>} />
-                <Route path = "/createLoan" element={<CreateLoanForm/>} />
-                <Route path = "/createCard" element={<CreateCardForm/>} />
+                <Route path = "viewBankAccounts" element={<BankAccounts/>} />
+                <Route path = "createAccount" element={<CreateAccountForm/>} />
+                <Route path = "viewAccountRequests" element={<ViewAccountRequests/>} />
+                <Route path = "loanRequests" element={<ViewLoanRequests/>} />
+                <Route path = "cardRequests" element={<ViewCardRequests/>} />
+                <Route path = "viewReport" element={<ViewReports/>} />
+                <Route path = "createLoan" element={<CreateLoanForm/>} />
+                <Route path = "createCard" element={<CreateCardForm/>} />
                 <Route path = "notify" element = {<NotifyUser />} />
-                <Route path = "/viewTransactions" element={<ViewTransactions />} />
+                <Route path = "viewTransactions" element={<ViewTransactions />} />
               </Routes>
             </main>
           </div>

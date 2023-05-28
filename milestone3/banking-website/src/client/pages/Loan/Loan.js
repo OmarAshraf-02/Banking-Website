@@ -8,12 +8,14 @@ import "tachyons";
 import LoanCards from '../../components/LoanCards'
 import { useDispatch, useSelector } from 'react-redux'
 import LoanTypeCard from './LoanTypeCard'
+import { Typography } from '@mui/material'
 
 function Loan() {
     const dispatch = useDispatch();
-    const loans = useSelector((state) => {
-      return state.clients[0].loans.personalLoan
+    const {personalLoans, carLoans} = useSelector((state) => {
+      return state.clients[0].loans;
     })
+    console.log(carLoans)
     return (
         // <div>
         //   <Header className='tc' title='Loans' subtitle=''/>
@@ -24,10 +26,20 @@ function Loan() {
         // </div>
 
         <div >
-            <h1 class="mw5 center pa3 ph5-ns">Loans</h1>
-            <h2 class="mw5  pa3 ph5-ns">Current Loans</h2>
-            {loans.map((loan)=>{
-                return <LoanCards loan={loan}/>
+            <Header title='Loans'/>
+            <Typography>Active Loans</Typography>
+            {personalLoans.map((loan)=>{
+                return loan.status==='Active'?<LoanCards key={loan.id} loan={loan}/>:<></>
+            })}
+            {carLoans.map((loan)=>{
+                return loan.status==='Active'?<LoanCards key={loan.id} loan={loan}/>:<></>
+            })}
+            <Typography>Paid Loans</Typography>
+            {personalLoans.map((loan)=>{
+                return loan.status==='Paid'?<LoanCards key={loan.id} loan={loan}/>:<></>
+            })}
+            {carLoans.map((loan)=>{
+                return loan.status==='Paid'?<LoanCards key={loan.id} loan={loan}/>:<></>
             })}
             <div className='flex items-center'>
                 <LoanTypeCard alt='car loan' img={carloan} to='CarLoanForm' summary='Apply for personal loans and enjoy your miserable life because you will eventually go to prison' title='Car Loans'/>

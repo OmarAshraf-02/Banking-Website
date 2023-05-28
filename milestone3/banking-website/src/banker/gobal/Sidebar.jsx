@@ -104,7 +104,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
             <Box paddingLeft={isCollapsed ? undefined : "10%"}>
               <Item
                 title="Dashboard"
-                to="/"
+                to=""
                 icon={<HomeOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
@@ -118,7 +118,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
               </Typography>
               <Item
                 title="View Transactions"
-                to="/viewTransactions"
+                to="viewTransactions"
                 icon={<VisibilityOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
@@ -133,21 +133,21 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
               </Typography>
               <Item
                 title="View Bank Accounts"
-                to="/viewBankAccounts"
+                to="viewBankAccounts"
                 icon={<VisibilityOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
               />
               <Item
                 title="View Requests"
-                to="/viewAccountRequests"
+                to="viewAccountRequests"
                 icon={<ContactsOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
               />
               <Item
                 title="Create an Account"
-                to="/createAccount"
+                to="createAccount"
                 icon={<AddCircleOutlineOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
@@ -163,14 +163,14 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
               </Typography>
               <Item
                 title="View Loan Requests"
-                to="/loanRequests"
+                to="loanRequests"
                 icon={<VisibilityOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
               />
               <Item
                 title="Create Loan"
-                to="/createLoan"
+                to="createLoan"
                 icon={<AddCircleOutlineOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
@@ -185,14 +185,14 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
               </Typography>
               <Item
                 title="View Card Requests"
-                to="/cardRequests"
+                to="cardRequests"
                 icon={<VisibilityOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
               />
               <Item
                 title="Create Card"
-                to="/createCard"
+                to="createCard"
                 icon={<AddCircleOutlineOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
@@ -206,14 +206,14 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
               </Typography>
               <Item
                 title="View Reports"
-                to="/viewReport"
+                to="viewReport"
                 icon={<VisibilityOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
               />
               <Item
                 title="Notify"
-                to="/notify"
+                to="notify"
                 icon={<CallOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}

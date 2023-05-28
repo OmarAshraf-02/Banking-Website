@@ -7,6 +7,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import * as yup from "yup";
 import Header from '../../components/Header.jsx';
 import BackButton from '../../../shared/components/BackButton.js';
+import ResponseDialog from '../../components/ResponseDialog.js';
 
 const PersonalLoanForm = () => {
     const [loading, setLoading] = useState(false);
@@ -37,8 +38,10 @@ const PersonalLoanForm = () => {
 
     return (
         <Box m="20px">
-            <BackButton to="/loan" />
-            <Header title='Apply for Personal Loan' subtitle='' />
+            <Box display='flex'  alignItems="center">
+                <BackButton to="/loan" />
+                <Header title='Apply for Personal Loan' subtitle='' />
+            </Box>
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
@@ -122,9 +125,11 @@ const PersonalLoanForm = () => {
                             />
                         </Box>
                         <Box display="flex" justifyContent="end" mt="20px">
-                            {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained">
+                            {/* {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained">
                                 Apply
-                            </Button>}
+                            </Button>} */}
+                            <ResponseDialog response='failed' submit='APPLY'/>
+
                         </Box>
                     </form>
                 )}

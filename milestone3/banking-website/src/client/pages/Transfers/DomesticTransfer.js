@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Box, Button, TextField, FormControl, InputLabel, OutlinedInput, InputAdornment, CircularProgress } from "@mui/material";
+import { Box, Button, TextField, FormControl, InputLabel, OutlinedInput, InputAdornment, CircularProgress, Select, MenuItem } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import Header from '../../components/Header.jsx';
 import BackButton from '../../../shared/components/BackButton.js';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CheckIcon from '@mui/icons-material/Check';
+import { useSelector } from 'react-redux';
+import ResponseDialog from '../../components/ResponseDialog.js';
 
 const DomesticTransfer = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -27,11 +29,14 @@ const DomesticTransfer = () => {
         setIsConfirmed(false);
         resetForm({ values: '' });
     };
+    const accounts = useSelector((state) => {
+        return state.clients[0].accounts
+    })
 
     const initialValues = {
-        senderFullName: '',
+        // senderFullName: '',
         senderAccountNumber: '',
-        receiverFullName: '',
+        // receiverFullName: '',
         receiverAccountNumber: '',
         receiverBankName: '',
         transferAmount: '',
@@ -39,9 +44,9 @@ const DomesticTransfer = () => {
     };
 
     const checkoutSchema = yup.object().shape({
-        senderFullName: yup.string().required("required"),
+        // senderFullName: yup.string().required("required"),
         senderAccountNumber: yup.string().required("required"),
-        receiverFullName: yup.string().required("required"),
+        // receiverFullName: yup.string().required("required"),
         receiverAccountNumber: yup.string().required("required"),
         receiverBankName: yup.string().required("required"),
         transferAmount: yup
@@ -53,8 +58,10 @@ const DomesticTransfer = () => {
 
     return (
         <Box m="20px">
-            <BackButton to="/transfer" />
-            <Header title='Domestic Transfer' subtitle='' />
+            <Box display='flex'  alignItems="center">
+                <BackButton to="/transfer" />
+                <Header title='Domestic Transfer' subtitle='' />
+            </Box>
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
@@ -74,7 +81,7 @@ const DomesticTransfer = () => {
                             gap="30px"
                             gridTemplateColumns="repeat(4, minmax(0, 1fr))"
                         >
-                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
+                            {/* <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
                                     label="Sender Full Name"
                                     name="senderFullName"
@@ -85,8 +92,28 @@ const DomesticTransfer = () => {
                                     helperText={touched.senderFullName && errors.senderFullName}
                                     multiline
                                 />
-                            </FormControl>
+                            </FormControl> */}
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
+                                <InputLabel id="sender-account-number-label">Sender Account Number</InputLabel>
+                                <Select
+                                    labelId="sender-account-number-label"
+                                    id="sender-account-number"
+                                    required
+                                    name="senderAccountNumber"
+                                    value={values.senderAccountNumber}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    error={touched.senderAccountNumber && !!errors.senderAccountNumber}
+                                    sx={{ height: '52.7167px' }}
+                                >
+                                    {accounts.map((account) => (
+                                        <MenuItem key={account.id} value={account.id}>
+                                            {account.accountNumber}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                            {/* <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
                                     label="Sender Account Number"
                                     name="senderAccountNumber"
@@ -97,8 +124,8 @@ const DomesticTransfer = () => {
                                     helperText={touched.senderAccountNumber && errors.senderAccountNumber}
                                     multiline
                                 />
-                            </FormControl>
-                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
+                            </FormControl> */}
+                            {/* <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
                                     label="Recipient Full Name"
                                     name="receiverFullName"
@@ -109,7 +136,7 @@ const DomesticTransfer = () => {
                                     helperText={touched.receiverFullName && errors.receiverFullName}
                                     multiline
                                 />
-                            </FormControl>
+                            </FormControl> */}
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
                                     label="Recipient Account Number"
@@ -178,9 +205,11 @@ const DomesticTransfer = () => {
                             ) : (
                                 <>
                                     {isConfirmed && <CheckIcon style={{ marginRight: '10px', color: 'green' }} />}
-                                    <Button type="submit" color="secondary" variant="contained">
+                                    {/* <Button type="submit" color="secondary" variant="contained">
                                         Confirm
-                                    </Button>
+                                    </Button> */}
+                                    <ResponseDialog submit='CONFIRM' response='success'/>
+
                                 </>
                             )}
                         </Box>

@@ -3,6 +3,7 @@ import logo from '../../assets/logo.png';
 import { useState } from "react";
 import { Button, TextField, Typography } from '@mui/material';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 
 const FormWrapper = styled('div')({
     display: 'flex',
@@ -57,7 +58,8 @@ const SignIn = () => {
         e.preventDefault();
         // Handle form submission logic
     };
-
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     return (
         <ThemeProvider theme={theme}>
             <div style={{ background: '#121212', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -82,6 +84,7 @@ const SignIn = () => {
                             InputLabelProps={{
                                 style: { color: '#999999' },
                             }}
+                            onChange={(event)=>setEmail(event.target.value)}
                         />
                         <TextField
                             type="password"
@@ -97,14 +100,40 @@ const SignIn = () => {
                             InputLabelProps={{
                                 style: { color: '#999999' },
                             }}
+                            onChange={(event)=>setPassword(event.target.value)}
                         />
-                        <Button variant="contained" color="primary" type="submit" fullWidth style={{ color: 'white' }}>
+                        {
+                            email==='admin' && password ==='admin'? 
+                                <Link to='/admin'>
+                                    <Button variant="contained" color="primary" type="submit" fullWidth style={{ color: 'white' }}>Login</Button>
+                                </Link>
+                                :
+                                (
+                                    email==='banker' && password ==='banker'?
+                                        <Link to='/banker'>
+                                            <Button variant="contained" color="primary" type="submit" fullWidth style={{ color: 'white' }}>Login</Button>
+                                        </Link>
+                                        :
+                                        (
+                                            email==='client' && password ==='client'?
+                                                <Link to='/client'>
+                                                    <Button variant="contained" color="primary" type="submit" fullWidth style={{ color: 'white' }}>Login</Button>
+                                                </Link>
+                                                :
+                                                <Button variant="contained" color="primary" type="submit" fullWidth style={{ color: 'white' }}>Login</Button>
+                                        )
+                                )
+                                
+                        }
+                        {/* <Button variant="contained" color="primary" type="submit" fullWidth style={{ color: 'white' }}>
                             Login
-                        </Button>
+                        </Button> */}
                     </form>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem' }}>
                         <Button color="primary">Forgot Password?</Button>
-                        <Button color="primary">Don't have an account?</Button>
+                        <Link to='/signUp'>
+                            <Button color="primary">Don't have an account?</Button>
+                        </Link>
                     </div>
                 </FormWrapper>
             </div>

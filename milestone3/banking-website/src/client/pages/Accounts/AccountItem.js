@@ -37,7 +37,7 @@ function AccountItem({ account }) {
               Credit Score: {creditScore}
             </Typography>
           </div>
-          <div class="loan-card-footer">
+          <div class="loan-card-footer" style={{display: "flex", justifyContent: "flex-end"}}>
             <Link to={""+id}>
               <Button sx={{ fontSize: 12, color: colors.grey[100]}} size="medium">Learn More</Button>
             </Link>      

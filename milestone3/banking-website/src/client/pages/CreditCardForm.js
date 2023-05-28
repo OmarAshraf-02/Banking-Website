@@ -51,8 +51,10 @@ const CreditCardForm = () => {
 
     return (
         <Box m="20px">
-            <BackButton to="/creditCards" />
-            <Header title='Apply for a Credit Card' subtitle='' />
+            <Box display='flex'  alignItems="center">
+                <BackButton to="/creditCards" />
+                <Header title='Apply for a Credit Card' subtitle='' />
+            </Box>
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}

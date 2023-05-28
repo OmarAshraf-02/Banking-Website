@@ -8,11 +8,13 @@ import "tachyons";
 import LoanCards from '../../components/LoanCards'
 import { useDispatch, useSelector } from 'react-redux'
 import LoanTypeCard from '../Loan/LoanTypeCard'
+import { Typography } from '@mui/material'
+import TransferCards from '../../components/TransferCards'
 
 function Transfer() {
     const dispatch = useDispatch();
-    const loans = useSelector((state) => {
-        return state.clients[0].loans.personalLoan
+    const {domestic, internal, international} = useSelector((state) => {
+        return state.clients[0].transfers
     })
     return (
         // <div>
@@ -24,11 +26,17 @@ function Transfer() {
         // </div>
 
         <div >
-            <h1 class="mw5 center pa3 ph5-ns">Transfers</h1>
-            <h2 class="mw5  pa3 ph5-ns">Recent Transfers</h2>
-            {/* {loans.map((loan) => {
-                return <LoanCards loan={loan} />
-            })} */}
+            <Header title='Transfers'/>
+            <Typography>Recent Transfers</Typography>
+            {domestic.map((transfer) => {
+                return <TransferCards key={transfer.id} transfer={transfer} type='Domestic' />
+            })}
+            {internal.map((transfer) => {
+                return <TransferCards key={transfer.id} transfer={transfer} type='Internal' />
+            })}
+            {international.map((transfer) => {
+                return <TransferCards key={transfer.id} transfer={transfer} type='International' />
+            })}
             <div className='flex items-center'>
                 <LoanTypeCard alt='Domestic' img={personalloan} to='domestic' summary='' title='Domestic Transfer' />
                 <LoanTypeCard alt='Internal' img={personalloan} to='internal' summary='' title='Internal Transfer' />

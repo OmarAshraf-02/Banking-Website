@@ -11,6 +11,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ApplyForReplacementDialog from '../components/ApplyForReplacementDialog.js';
+import BackButton from '../../shared/components/BackButton.js';
 
 
 const TheftLossDamageForm = () => {
@@ -40,7 +41,11 @@ const TheftLossDamageForm = () => {
 
     return (
         <Box m="20px">
-            <Header title='Report Card Theft/Loss/Damage' subtitle='' />
+            <Box display='flex'  alignItems="center">
+                <BackButton to="/creditCards" />
+                <Header title='Report Card Theft/Loss/Damage' subtitle='' />  
+            </Box>
+            
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}

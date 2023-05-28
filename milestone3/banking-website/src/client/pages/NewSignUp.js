@@ -6,6 +6,7 @@ import ContactInfoStep from '../components/ContactInfoStep';
 import AddressStep from '../components/AddressStep';
 import IdentificationStep from '../components/IdentificationStep';
 import logo from '../../assets/logo.png';
+import { Link } from 'react-router-dom';
 
 const theme = createTheme({
     palette: {
@@ -162,7 +163,9 @@ const NewSignUp = () => {
                                     Next
                                 </NextButton>
                             ) : (
-                                <SubmitButton variant="contained">Submit</SubmitButton>
+                                <Link to='/sign-in'>
+                                    <SubmitButton variant="contained">Submit</SubmitButton>
+                                </Link>
                             )}
                         </FormActions>
                     </FormContent>

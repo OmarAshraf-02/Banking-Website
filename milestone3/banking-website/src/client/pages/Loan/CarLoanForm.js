@@ -10,6 +10,7 @@ import Header from '../../components/Header.jsx';
 import * as yup from "yup";
 import BackButton from '../../../shared/components/BackButton.js';
 import CheckIcon from '@mui/icons-material/Check';
+import ResponseDialog from '../../components/ResponseDialog.js';
 
 const CarLoanForm = () => {
     const [loading, setLoading] = useState(false);
@@ -67,8 +68,10 @@ const CarLoanForm = () => {
 
     return (
         <Box m="20px">
-            <BackButton to="/loan" />
-            <Header title='Apply for Car Loan' subtitle='' />
+            <Box display='flex'  alignItems="center">
+                <BackButton to="/loan" />
+                <Header title='Apply for Car Loan' subtitle='' />
+            </Box>
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
@@ -217,9 +220,10 @@ const CarLoanForm = () => {
                             ) : (
                                 <>
                                     {isConfirmed && <CheckIcon style={{ marginRight: '10px', color: 'green' }} />}
-                                    <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
+                                    {/* <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
                                         Confirm
-                                    </Button>
+                                    </Button> */}
+                                    <ResponseDialog response='success' submit='CONFIRM'/>
                                 </>
                             )}
                         </Box>

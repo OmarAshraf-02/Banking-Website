@@ -1,11 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { userReducer, loginAccount , logOutAccount } from "./slices/userSlice";
 import { clientsReducer , addClient , removeClient, payBill } from "./slices/clientsSlice";
+import { bankerReducer } from "./slices/bankerSlice";
+import { adminReducer } from "./slices/adminSlice";
 
 const store = configureStore({
     reducer : {
         user: userReducer,
-        clients : clientsReducer
+        clients : clientsReducer,
+        banker: bankerReducer,
+        admin: adminReducer
     }
 });
 

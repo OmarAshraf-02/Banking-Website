@@ -34,21 +34,21 @@ function PayBillDialog(props) {
 
     return (
         <Dialog onClose={handleClose} open={open}>
-        <DialogTitle>Choose an account</DialogTitle>
-        <List sx={{ pt: 0 }}>
-            {accounts.map((account) => (
-            <ListItem disableGutters>
-                <ListItemButton onClick={() => handleListItemClick(account.accountNumber)} key={account.id}>
-                <ListItemAvatar>
-                    <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
-                    <PersonIcon />
-                    </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary={account.accountNumber} />
-                </ListItemButton>
-            </ListItem>
-            ))}
-        </List>
+            <DialogTitle>Choose an account</DialogTitle>
+            <List sx={{ pt: 0 }}>
+                {accounts.map((account) => (
+                <ListItem disableGutters>
+                    <ListItemButton onClick={() => handleListItemClick(account.accountNumber)} key={account.id}>
+                    <ListItemAvatar>
+                        <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
+                            <PersonIcon />
+                        </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText primary={account.accountNumber} />
+                    </ListItemButton>
+                </ListItem>
+                ))}
+            </List>
         </Dialog>
     );
 }

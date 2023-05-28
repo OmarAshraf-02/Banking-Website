@@ -82,7 +82,6 @@ function Bill() {
         return (
           <Dialog params={params}/>
         )
-
       }
     },
 

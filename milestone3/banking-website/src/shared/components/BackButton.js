@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function BackButton({ to }) {
     return (
-        <Link to={to}>
+        <Link to={`/client${to}`}>
             <IconButton>
                 <ArrowBackIosIcon />
             </IconButton>

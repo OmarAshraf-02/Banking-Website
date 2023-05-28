@@ -103,7 +103,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
             <Box paddingLeft={isCollapsed ? undefined : "10%"}>
               <Item
                 title="Dashboard"
-                to="/"
+                to=""
                 icon={<HomeOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
@@ -117,14 +117,14 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
               </Typography>
               <Item
                 title="View Admins"
-                to="/viewAdmins"
+                to="viewAdmins"
                 icon={<VisibilityOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
               />
               <Item
                 title="Create an Admin"
-                to="/createAdmin"
+                to="createAdmin"
                 icon={<AddCircleOutlineOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
@@ -139,14 +139,14 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
               </Typography>
               <Item
                 title="View Bankers"
-                to="/viewBankers"
+                to="viewBankers"
                 icon={<VisibilityOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
               />
               <Item
                 title="Create a Banker"
-                to="/createBanker"
+                to="createBanker"
                 icon={<AddCircleOutlineOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
@@ -160,14 +160,14 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
               </Typography>
               <Item
                 title="View Reports"
-                to="/viewReport"
+                to="viewReport"
                 icon={<BugReportOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
               />
               <Item
                 title="Notify"
-                to="/notify"
+                to="notify"
                 icon={<CallOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}

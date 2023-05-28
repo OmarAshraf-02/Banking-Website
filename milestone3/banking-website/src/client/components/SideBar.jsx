@@ -79,13 +79,13 @@ const ClientSidebar = () => {
                         {!isCollapsed && (
                             <Box
                                 display="flex"
-                                justifyContent="space-between"
+                                justifyContent="flex-end"
                                 alignItems="center"
                                 ml="15px"
                             >
-                                <Typography variant="h3" color={colors.grey[100]}>
+                                {/* <Typography variant="h3" color={colors.grey[100]}>
                                     SideBar
-                                </Typography>
+                                </Typography> */}
                                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                                     <MenuOutlinedIcon />
                                 </IconButton>
@@ -112,7 +112,7 @@ const ClientSidebar = () => {
                     <Box paddingLeft={isCollapsed ? undefined : "10%"}>
                         <Item
                             title="Home"
-                            to="home"
+                            to=""
                             icon={<HomeOutlinedIcon size={selected === 'Home' ? 50 : 20} />}
                             selected={selected}
                             setSelected={setSelected}

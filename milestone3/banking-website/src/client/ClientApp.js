@@ -26,6 +26,7 @@ import DomesticTransfer from './pages/Transfers/DomesticTransfer';
 import InternationalTransfer from './pages/Transfers/InternationalTransfer';
 import InternalTransfer from './pages/Transfers/InternalTransfer';
 import TheftLossDamageForm from './pages/TheftLossDamageForm';
+import Notifications from './pages/Notifications/Notifications';
 function App() {
   const [theme, colorMode] = useMode();
   return (
@@ -48,10 +49,11 @@ function App() {
             {/* <div class="zone blue grid-wrapper"></div> */}
             <main className="content">
               <TopBar />
-              <Routes>
+              <Routes>                
+                {/* <Route path='/sign-in' index element={<SignIn />} /> */}
+
                 {/* <Route path='Stepper' element={<Steppers />} /> */}
-                <Route path='home' element={<HomePage />} />
-                <Route path='login' index element={<SignIn />} />
+                <Route path='/' element={<HomePage />} />
                 <Route path='openAccount' index element={<OpenAccount />} />
                 <Route path='bill' element={<Bill />} />
                 <Route path='loan' element={<Loan />} />
@@ -70,8 +72,7 @@ function App() {
                 <Route path='transfer/internal' element={<InternalTransfer />} />
                 <Route path='transfer/international' element={<InternationalTransfer />} />
                 <Route path='creditCards/theftLossDamageForm' element={<TheftLossDamageForm />} />
-
-
+                <Route path='notifications' element={<Notifications />} />
               </Routes>
             </main>
           </div>

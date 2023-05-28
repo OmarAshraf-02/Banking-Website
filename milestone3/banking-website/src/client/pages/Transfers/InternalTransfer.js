@@ -8,13 +8,17 @@ import * as yup from "yup";
 import Header from '../../components/Header.jsx';
 import BackButton from '../../../shared/components/BackButton.js';
 import CheckIcon from '@mui/icons-material/Check';
+import { useSelector } from 'react-redux';
+import ResponseDialog from '../../components/ResponseDialog.js';
 
 const InternalTransfer = () => {
     const [isLoading, setIsLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const [isConfirmed, setIsConfirmed] = useState(false);
 
-
+    const accounts = useSelector((state) => {
+        return state.clients[0].accounts
+    })
     const handleFormSubmit = async (values, { resetForm }) => {
         setIsLoading(true);
 
@@ -34,9 +38,9 @@ const InternalTransfer = () => {
     const initialValues = {
         transferAmount: '',
         senderAccountNumber: '',
-        senderFullName: '',
+        // senderFullName: '',
         receiverAccountNumber: '',
-        receiverFullName: '',
+        // receiverFullName: '',
         purpose: '',
     };
     const styles = {
@@ -49,9 +53,9 @@ const InternalTransfer = () => {
     }
 
     const checkoutSchema = yup.object().shape({
-        senderFullName: yup.string().required("required"),
+        // senderFullName: yup.string().required("required"),
         senderAccountNumber: yup.string().required("required"),
-        receiverFullName: yup.string().required("required"),
+        // receiverFullName: yup.string().required("required"),
         receiverAccountNumber: yup.string().required("required"),
         transferAmount: yup
             .number()
@@ -62,8 +66,10 @@ const InternalTransfer = () => {
 
     return (
         <Box m="20px">
-            <BackButton to="/transfer" />
-            <Header title='Internal Transfer' subtitle='' />
+            <Box display='flex'  alignItems="center">
+                <BackButton to="/transfer" />
+                <Header title='Internal Transfer' subtitle='' />
+            </Box>
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
@@ -86,7 +92,7 @@ const InternalTransfer = () => {
                                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                             }}
                         >
-                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
+                            {/* <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
                                     multiline
                                     label="Sender Full Name"
@@ -98,10 +104,29 @@ const InternalTransfer = () => {
                                     error={touched.senderFullName && !!errors.senderFullName}
                                     helperText={touched.senderFullName && errors.senderFullName}
                                 />
-                            </FormControl>
+                            </FormControl> */}
 
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <TextField
+                                <InputLabel id="sender-account-number-label">Sender Account Number</InputLabel>
+                                <Select
+                                    labelId="sender-account-number-label"
+                                    id="sender-account-number"
+                                    required
+                                    name="senderAccountNumber"
+                                    value={values.senderAccountNumber}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    error={touched.senderAccountNumber && !!errors.senderAccountNumber}
+                                    sx={{ height: '52.7167px' }}
+                                >
+                                    {accounts.map((account) => (
+                                        <MenuItem key={account.id} value={account.id}>
+                                            {account.accountNumber}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                                {/* <TextField
                                     multiline
                                     label="Sender Account Number"
                                     required
@@ -111,10 +136,9 @@ const InternalTransfer = () => {
                                     onBlur={handleBlur}
                                     error={touched.senderAccountNumber && !!errors.senderAccountNumber}
                                     helperText={touched.senderAccountNumber && errors.senderAccountNumber}
-                                />
-                            </FormControl>
+                                /> */}
 
-                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
+                            {/* <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
                                     multiline
                                     required
@@ -126,7 +150,7 @@ const InternalTransfer = () => {
                                     error={touched.receiverFullName && !!errors.receiverFullName}
                                     helperText={touched.receiverFullName && errors.receiverFullName}
                                 />
-                            </FormControl>
+                            </FormControl> */}
 
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
@@ -188,9 +212,10 @@ const InternalTransfer = () => {
                             ) : (
                                 <>
                                     {isConfirmed && <CheckIcon style={{ marginRight: '10px', color: 'green' }} />}
-                                    <Button type="submit" color="secondary" variant="contained">
+                                    {/* <Button type="submit" color="secondary" variant="contained">
                                         Confirm
-                                    </Button>
+                                    </Button> */}
+                                    <ResponseDialog submit='CONFIRM' response='success'/>
                                 </>
                             )}
                         </Box>
