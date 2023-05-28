@@ -17,11 +17,12 @@ import InternationalTransfer from './client/pages/Transfers/InternationalTransfe
 import BackButton from './shared/components/BackButton';
 import AdminApp from './admin/AdminApp';
 import SharedApp from './shared/SharedApp';
+import Card from './client/pages/Loan/Card';
 function App() {
 
   return (
     <div>
-      <SharedApp/>
+      <Card/>
     </div>
   )
 }
