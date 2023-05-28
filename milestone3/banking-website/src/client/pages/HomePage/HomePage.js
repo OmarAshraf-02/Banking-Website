@@ -13,7 +13,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import BarGraph from '../../components/BarGraph';
 import PieChart from '../../components/PieChart';
-const HomePage = () =>{ 
+const HomePage = () => {
   const cardNumber = '1234123412341234';
   const cardName = 'Karim Mohamed Gamaleldin';
   const validThru = '12/25';
@@ -24,27 +24,27 @@ const HomePage = () =>{
     { accountNumber: 'ACCT-3', creditScore: 550 },
     { accountNumber: 'ACCT-4', creditScore: 680 },
   ];
-  
+
   return (
-  // <div className="bg-primary w-full overflow-hidden">
-  //   <div className={`${styles.paddingX} ${styles.flexCenter}`}>
-  //     <div className={`${styles.boxWidth}`}>
-  //       <Navbar />
-  //     </div>
-  //   </div>
+    // <div className="bg-primary w-full overflow-hidden">
+    //   <div className={`${styles.paddingX} ${styles.flexCenter}`}>
+    //     <div className={`${styles.boxWidth}`}>
+    //       <Navbar />
+    //     </div>
+    //   </div>
 
-  //   <Cards name="Bills" summary="Manage and pay your bills online."/>
-  //   <Cards name="Loans" summary="Apply for loans online."/>
-  //   <Cards name="View your account" summary=""/>
+    //   <Cards name="Bills" summary="Manage and pay your bills online."/>
+    //   <Cards name="Loans" summary="Apply for loans online."/>
+    //   <Cards name="View your account" summary=""/>
 
-  // </div>
+    // </div>
 
 
-  <div>
+  <div className='app'>
     {/* <div class="container"><img class="cover" src="./img/undraw.png" /></div> */}
     {/* <div className="app"> */}
       {/* <ClientSidebar /> */}
-      <Cards number={cardNumber}  expiry = {validThru} cvc={cvc} name = {cardName} focused="" />
+      <Cards number={cardNumber} expiry={validThru} cvc={cvc} name={cardName} focused="" />
       {/* <BarGraph data={data}/> */}
       {/* <PieChart/> */}
       {/* <div class="zone blue grid-wrapper">
@@ -54,9 +54,10 @@ const HomePage = () =>{
         <Link to='/bill'><div class="box zone"><img src={billimg} alt='bill'/>Bills</div></Link>
         <Link to='/transfer'><div class="box zone"><img src={transferimg} alt='transfer' />Transfers</div></Link> */}
       {/* </div> */}
-    {/* </div> */}
-    {/* <footer class="zone yellow">made by 404</footer> */}
-  </div>
+      {/* </div> */}
+      {/* <footer class="zone yellow">made by 404</footer> */}
+    </div>
 
-)}
+  )
+}
 export default HomePage;
