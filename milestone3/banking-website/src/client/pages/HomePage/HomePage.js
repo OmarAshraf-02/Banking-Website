@@ -19,29 +19,37 @@ const HomePage = () => {
   const creditCards = useSelector((state) => {
     return state.clients[0].creditCards;
   })
-  const notificationMappedArray = marvelCharacters.map((hero, i) => {
+  const creditCardArray = creditCards.map((hero, i) => {
     return (
-      <Box
-        key={`${hero.id}`}
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        borderBottom={`4px solid ${colors.primary[500]}`}
-        p="15px"
-      >
-        <Box>
-          <Typography
-            color={colors.greenAccent[500]}
-            variant="h4"
-            fontWeight="600"
-          >
-            {hero.name} ({hero.position})
-          </Typography>
-          <Typography color={colors.grey[100]}>
-            {hero.notification}
-          </Typography>
-        </Box>
-      </Box>
+<Box
+  key={`${hero.id}`}
+  display="flex"
+  justifyContent="space-between"
+  alignItems="center"
+  borderBottom={`4px solid ${colors.primary[500]}`}
+  p="15px"
+>
+  <Box>
+    <Typography
+      color={colors.greenAccent[500]}
+      variant="h4"
+      fontWeight="600"
+    >
+      {hero.cardNumber}
+    </Typography>
+    <Typography
+      color={colors.grey[100]}
+      variant="h4"
+      fontWeight="600"
+    >
+      Points: {hero.points}
+    </Typography>
+  </Box>
+  <Button color="secondary" variant="contained" style={{ marginLeft: '10px' , color: colors.grey[100] }}>
+    Redeem
+  </Button>
+</Box>
+
     );
   });
   return (
@@ -267,22 +275,8 @@ const HomePage = () => {
               Redeem Points
             </Typography>
           </Box>
-          <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            margin="auto"
-          >
-            <Typography color={colors.grey[100]} variant="h3" fontWeight="600">
-              6700 Points
-            </Typography>
-            <Box m="10px">
-              <Button color="secondary" variant="contained">
-                Redeem
-              </Button>
-            </Box>
-          </Box>
+          
+          {creditCardArray}
         </Box>
 
       </Box>

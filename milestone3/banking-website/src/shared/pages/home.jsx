@@ -99,7 +99,7 @@ export function Home() {
         </div>
       </section>
       
-      <section className="relative bg-blue-gray-50/50 py-24 px-4">
+      <section className="relative bg-white py-24 px-4">
         <div className="container mx-auto">
           <PageTitle heading="Build for the Future">
           Backed by the expertise of our dedicated team, we understand the importance of staying ahead in today's rapidly changing financial landscape. That's why we leverage cutting-edge technology and innovative solutions to ensure your banking experience is seamless, efficient, and tailored to your unique needs.
