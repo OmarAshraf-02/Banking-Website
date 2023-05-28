@@ -16,8 +16,8 @@ const TransferCards = ({ transfer, type }) => {
         <div class="loan-card">
             <div class="loan-card-header">{type} Transfer Information</div>
             <div class="loan-card-body">
-                <p>Sender Account Number: ${transfer.senderAccountNumber}</p>
-                <p>Receiver Account Number: {transfer.recipientAccountNumber}%</p>
+                <p>Sender Account Number: {transfer.senderAccountNumber}</p>
+                <p>Receiver Account Number: {transfer.recipientAccountNumber}</p>
                 <p>Transfer Amount: {transfer.amount} {type==='International'? transfer.currency:'EGP'}</p>
                 <p>Date sent: {transfer.dateSent}</p>
                 {moreInfo?

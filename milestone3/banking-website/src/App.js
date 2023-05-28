@@ -16,32 +16,12 @@ import DomesticTransfer from './client/pages/Transfers/DomesticTransfer';
 import InternationalTransfer from './client/pages/Transfers/InternationalTransfer'
 import BackButton from './shared/components/BackButton';
 import AdminApp from './admin/AdminApp';
+import SharedApp from './shared/SharedApp';
 function App() {
 
   return (
     <div>
-      {/* <NewSignUp /> */}
-      {/* <SignIn /> */}
-      {/* <DomesticStepper></DomesticStepper> */}
-
-      {/* <InternationalTransfer /> */}
-      {/* <Transfer /> */}
-      {/* <ClientApp /> */}
-      {/* <BackButton /> */}
-      {/* <div className="container absolute left-2/4 z-10 mx-auto -translate-x-2/4 p-4">
-          <Navbar routes={routes} />
-      </div> */}
-      <Routes>
-        {routes.map(
-          ({ path, element }, key) =>
-            element && <Route key={key} exact path={path} element={element} />
-        )}
-        <Route path="*" element={<Navigate to="/" replace />} />
-        <Route path='signUp' element={<NewSignUp/>}/>
-        <Route path='client/*' element={<ClientApp/>}/>
-        <Route path='banker/*' element={<BankerApp/>}/>
-        <Route path='admin/*' element={<AdminApp/>}/>
-      </Routes> 
+      <SharedApp/>
     </div>
   )
 }

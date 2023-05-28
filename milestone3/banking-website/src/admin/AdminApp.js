@@ -26,12 +26,12 @@ function AdminApp() {
               <Topbar />
               <Routes>
                 <Route path ="/" element={<Dashboard />} />
-                <Route path = "/viewAdmins" element={<ViewAdmins/>} />
-                <Route path = "/createAdmin" element={<CreateAdmin/>} />
-                <Route path = "/viewBankers" element={<ViewBankers/>} />
-                <Route path = "/createBanker" element={<CreateBanker/>} />
-                <Route path = "/viewReport" element={<ViewReports/>} />
-                <Route path = "/notify" element={<NotifyUser/>} />
+                <Route path = "viewAdmins" element={<ViewAdmins/>} />
+                <Route path = "createAdmin" element={<CreateAdmin/>} />
+                <Route path = "viewBankers" element={<ViewBankers/>} />
+                <Route path = "createBanker" element={<CreateBanker/>} />
+                <Route path = "viewReport" element={<ViewReports/>} />
+                <Route path = "notify" element={<NotifyUser/>} />
               </Routes>
             </main>
           </div>
