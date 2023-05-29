@@ -16,7 +16,7 @@ import { Button, DialogActions, DialogContent, DialogContentText, Slide } from '
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DangerousIcon from '@mui/icons-material/Dangerous';
 
-function ResponseDialog({ submit, response }) {
+function ResponseDialog({ submit, response, message }) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -29,9 +29,14 @@ function ResponseDialog({ submit, response }) {
 
     return (
         <div>
+            {submit==='Login'? 
+            <Button onClick={handleClickOpen} variant="contained" color="primary" type="submit" fullWidth style={{ color: 'white' }}>Login</Button>
+            :
             <Button type="submit" color="secondary" variant="contained" onClick={handleClickOpen}>
                 {submit}
             </Button>
+            }
+            
             <Dialog
                 open={open}
                 // TransitionComponent={Transition}
@@ -43,7 +48,7 @@ function ResponseDialog({ submit, response }) {
                     {response === "success"? <CheckCircleOutlineIcon style={{ color: 'green' }} fontSize='large'/>: <DangerousIcon style={{ color: 'red' }} fontSize='large'/>}
                     <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        {response === "success"? 'Sent successfully': 'Failed to send'}
+                        {message!==undefined? message :response === "success"? 'Sent report successfully': 'Failed to send report'}
                     </DialogContentText>
                     </DialogContent>
                     <DialogActions>

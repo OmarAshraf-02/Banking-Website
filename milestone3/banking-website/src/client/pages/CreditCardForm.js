@@ -8,9 +8,13 @@ import * as yup from "yup";
 import Header from '../components/Header.jsx';
 import SignaturePad from '../components/SignaturePad.js';
 import BackButton from '../../shared/components/BackButton.js';
+import { useTheme } from '@emotion/react';
+import { tokens } from '../../themes.js';
 
 
 const CreditCardForm = () => {
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
     const [loading, setLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
 
@@ -19,6 +23,7 @@ const CreditCardForm = () => {
         resetForm({ values: '' });
         await setTimeout(() => { setLoading(false) }, 5000)
     };
+
 
     const initialValues = {
         limit: '',
@@ -40,9 +45,7 @@ const CreditCardForm = () => {
             // Adjust the height as per your requirement
         },
     };
-    const textAreaStyle = {
-        backgroundColor: '#141b2d',
-    }
+    
     const [creditLimit, setCreditLimit] = useState('');
 
     const handleCreditLimitChange = (event) => {
@@ -58,7 +61,7 @@ const CreditCardForm = () => {
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
-                validationSchema={checkoutSchema}
+                validationSchema={creditCardFormSchema}
             >
                 {({
                     values,
@@ -77,7 +80,7 @@ const CreditCardForm = () => {
                                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                             }}
                         >
-                            <FormControl fullWidth sx={{ gridColumn: 'span 4' }}>
+                            {/* <FormControl fullWidth sx={{ gridColumn: 'span 4' }}>
                                 <InputLabel htmlFor="outlined-adornment-amount" shrink>
                                     Credit Limit
                                 </InputLabel>
@@ -93,7 +96,7 @@ const CreditCardForm = () => {
                                     }}
                                     required
                                 />
-                            </FormControl>
+                            </FormControl> */}
                             <FormControl fullWidth sx={{ gridColumn: 'span 4' }}>
                                 <InputLabel htmlFor="outlined-adornment-amount" shrink>
                                     Annual Income
@@ -159,9 +162,8 @@ const CreditCardForm = () => {
                                     <FormControlLabel value="married" control={<Radio />} label="Married" />
                                     <FormControlLabel value="divorced" control={<Radio />} label="Divorced" />
                                     <FormControlLabel value="widow" control={<Radio />} label="Widow(er)" />
-
                                 </RadioGroup>
-                            </FormControl>
+                            </FormControl> 
                             <TextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
@@ -227,15 +229,18 @@ const CreditCardForm = () => {
 };
 
 
-
-const checkoutSchema = yup.object().shape({
-    make: yup.string().required("required"),
-    model: yup.string().required("required"),
-    loanAmount: yup.number().required('required'),
-    year: yup.number().required('required'),
+const creditCardFormSchema = yup.object().shape({
+    limit: yup.number().required("required"),
+    nationalId: yup.string().required("required"),
     annualIncome: yup.number().required('required'),
-    loanTerm: yup.string().required("required"),
-    employmentStatus: yup.string().required("required"),
+    employer: yup.string().required('required'),
+    livingStatus: yup.string().required('required'),
+    address: yup.string().required("required"),
+    city: yup.string().required("required"),
+    occupation: yup.string().required("required"),
+    maritalStatus: yup.string().required("required"),
+    haveCreditCards: yup.string(),
+    currentCreditCards: yup.string(),
 });
 
 export default CreditCardForm
