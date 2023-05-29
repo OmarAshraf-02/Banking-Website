@@ -26,11 +26,12 @@ function Loan() {
         // </div>
 
         <div >
-            <Header title='Loans' subtitle='Loan History' />
+            <Header title='Loans' />
             <div className='flex items-center' style={{ justifyContent: 'center', alignItems: 'center' }}>
                 <LoanTypeCard alt='car loan' img={carloan} to='CarLoanForm' summary='Apply for a car loan to finance a new car purchase' title='Car Loans' />
                 <LoanTypeCard alt='personal loan' img={personalloan} to='PersonalLoanForm' summary='Apply for a personal loan to finance a personal venture' title='Personal Loans' />
             </div>
+            <Header subtitle='Loan History' />
             <Header title='' subtitle='Active Loans' />
 
             {personalLoans.map((loan) => {
