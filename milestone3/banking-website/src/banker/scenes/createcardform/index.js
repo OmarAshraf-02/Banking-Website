@@ -7,23 +7,33 @@ import { useState } from "react";
 import Cards from 'react-credit-cards-2';
 import CircularProgress from "@mui/material/CircularProgress";
 import 'react-credit-cards-2/dist/es/styles-compiled.css';
+import CheckIcon from '@mui/icons-material/Check';
 
 
 const CreateCardForm = () => {
   // const [name , setName] = useState('');  
-  const [loading , setLoading] = useState(false);  
+  const [loading, setLoading] = useState(false);
+  const [isConfirmed, setIsConfirmed] = useState(false);
   const [showCard , setShowCard] = useState(false);  
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const cardNumber = '1234123412341234';
   const cardName = 'Karim Mohamed Gamaleldin';
   const validThru = '12/25';
   const cvc = '123';
-  const handleFormSubmit = async (values , {resetForm}) => {
+  const handleFormSubmit = async (values, { resetForm, setSubmitting }) => {
     setLoading(true);
-    resetForm({values: ''});
-    await setTimeout(() => {setLoading(false)} , 5000);
-    setShowCard(true);
-  };
+
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    resetForm();
+    setLoading(false);
+
+    setIsConfirmed(true);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setIsConfirmed(false);
+
+    setSubmitting(false);
+};
   return (
     <Box m="20px">
       <Header title="Create a Bank Card" subtitle="Create a new Bank Card for a Bank Account" />
@@ -40,6 +50,7 @@ const CreateCardForm = () => {
           handleBlur,
           handleChange,
           handleSubmit,
+          isSubmitting
         }) => {
           // setName(values.accountName);
           return (
@@ -93,10 +104,18 @@ const CreateCardForm = () => {
               </FormControl>
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
-              {loading ? <CircularProgress color="secondary" /> : <Button type="submit" color="secondary" variant="contained">
-                Create New Card
-              </Button>}
-            </Box>
+                            {isSubmitting ? (
+                                <CircularProgress color="secondary" size={24} />
+                            ) : (
+                                <>
+                                    {isConfirmed && <CheckIcon style={{ marginRight: '10px', color: 'green' }} />}
+                                    <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
+                                        Confirm
+                                    </Button>
+                                    
+                                </>
+                            )}
+             </Box>
           </form>
         )}
         }

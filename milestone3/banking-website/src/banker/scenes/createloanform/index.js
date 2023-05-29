@@ -5,17 +5,28 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import { useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
+import CheckIcon from '@mui/icons-material/Check';
 
 const CreateLoanForm = () => {
  const [loanType , setLoanType] = useState('');
-  const [loading , setLoading] = useState(false);  
+ const [loading, setLoading] = useState(false);
+ const [isConfirmed, setIsConfirmed] = useState(false); 
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
-  const handleFormSubmit = async (values , {resetForm}) => {
+  const handleFormSubmit = async (values, { resetForm, setSubmitting }) => {
     setLoading(true);
-    resetForm({values: ''});
-    await setTimeout(() => {setLoading(false)} , 5000)
-  };
+
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    resetForm();
+    setLoading(false);
+
+    setIsConfirmed(true);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setIsConfirmed(false);
+
+    setSubmitting(false);
+};
   const handleTypeSelect = (value) => {
     setLoanType(value);
   };
@@ -35,6 +46,7 @@ const CreateLoanForm = () => {
           handleBlur,
           handleChange,
           handleSubmit,
+          isSubmitting
         }) => {
           setLoanType(values.loanType);
           return (
@@ -186,10 +198,18 @@ const CreateLoanForm = () => {
               /> : <></>}
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
-              {loading ? <CircularProgress color="secondary" /> : <Button type="submit" color="secondary" variant="contained">
-                Create New Loan
-              </Button>}
-            </Box>
+                            {isSubmitting ? (
+                                <CircularProgress color="secondary" size={24} />
+                            ) : (
+                                <>
+                                    {isConfirmed && <CheckIcon style={{ marginRight: '10px', color: 'green' }} />}
+                                    <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
+                                        Confirm
+                                    </Button>
+                                    
+                                </>
+                            )}
+             </Box>
           </form>
         )}
         }
