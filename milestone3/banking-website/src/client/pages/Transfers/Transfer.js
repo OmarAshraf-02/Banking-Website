@@ -37,9 +37,9 @@ function Transfer() {
                 return <TransferCards key={transfer.id} transfer={transfer} type='International' />
             })}
             <div className='flex items-center' style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <LoanTypeCard alt='Domestic' img={personalloan} to='domestic' summary='' title='Domestic Transfer' />
-                <LoanTypeCard alt='Internal' img={personalloan} to='internal' summary='' title='Internal Transfer' />
-                <LoanTypeCard alt='International' img={personalloan} to='international' summary='' title='International Transfer' />
+                <LoanTypeCard alt='Domestic' img='' to='domestic' summary='' title='Domestic Transfer' />
+                <LoanTypeCard alt='Internal' img='' to='internal' summary='' title='Internal Transfer' />
+                <LoanTypeCard alt='International' img='' to='international' summary='' title='International Transfer' />
             </div>
 
             {/* <div class="cf ph2-ns">

@@ -143,6 +143,7 @@ const CarLoanForm = () => {
                                 sx={{ gridColumn: "span 4" }}>
                                 <InputLabel id="employmentSelect">Employment</InputLabel>
                                 <Field
+                                    value={values.employmentStatus}
                                     as={Select}
                                     name="employmentStatus"
                                 >
@@ -158,6 +159,7 @@ const CarLoanForm = () => {
 
                                 <InputLabel id="termSelect">Loan Term</InputLabel>
                                 <Field
+                                    value={values.loanTerm}
                                     as={Select}
                                     name="loanTerm"
                                 >
@@ -211,8 +213,6 @@ const CarLoanForm = () => {
                                 required
 
                             />
-
-
                         </Box>
                         <Box display="flex" justifyContent="end" mt="20px">
                             {isSubmitting ? (
@@ -220,10 +220,18 @@ const CarLoanForm = () => {
                             ) : (
                                 <>
                                     {isConfirmed && <CheckIcon style={{ marginRight: '10px', color: 'green' }} />}
-                                    {/* <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
+                                    <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
                                         Confirm
-                                    </Button> */}
-                                    <ResponseDialog response='success' submit='CONFIRM'/>
+                                    </Button> 
+                                    {/* {
+                                        (values.make==='' || values.model==='' || values.year===null||values.loanAmount===''||values.loanTerm===''||values.annualIncome===''||values.employmentStatus==='')?
+                                            <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
+                                                Confirm
+                                            </Button> 
+                                            :
+                                            <ResponseDialog response='success' submit='CONFIRM'/>
+                                        
+                                    } */}
                                 </>
                             )}
                         </Box>

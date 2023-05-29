@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from "react";
-import { Box, Button, TextField, Select, InputLabel, MenuItem, FormControl, OutlinedInput, InputAdornment } from "@mui/material";
+import { Box, Button, TextField, Select, InputLabel, MenuItem, FormControl, OutlinedInput, InputAdornment, CircularProgress } from "@mui/material";
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { Form, Field, Formik } from "formik";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -8,17 +8,34 @@ import * as yup from "yup";
 import Header from '../../components/Header.jsx';
 import BackButton from '../../../shared/components/BackButton.js';
 import ResponseDialog from '../../components/ResponseDialog.js';
+import { CheckIcon } from '@heroicons/react/24/outline';
 
 const PersonalLoanForm = () => {
     const [loading, setLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
 
-    const handleFormSubmit = async (values, { resetForm }) => {
-        setLoading(true);
-        resetForm({ values: '' });
-        await setTimeout(() => { setLoading(false) }, 5000)
-    };
+    // const handleFormSubmit = async (values, { resetForm }) => {
+    //     setLoading(true);
+    //     resetForm({ values: '' });
+    //     await setTimeout(() => { setLoading(false) }, 5000)
+    // };
 
+    const [isConfirmed, setIsConfirmed] = useState(false);
+
+    const handleFormSubmit = async (values, { resetForm, setSubmitting }) => {
+        setLoading(true);
+
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        resetForm();
+        setLoading(false);
+
+        setIsConfirmed(true);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setIsConfirmed(false);
+
+        setSubmitting(false);
+    };
     const initialValues = {
         loanAmount: '',
         loanTerm: '',
@@ -32,9 +49,7 @@ const PersonalLoanForm = () => {
             // Adjust the height as per your requirement
         },
     };
-    const textAreaStyle = {
-        backgroundColor: '#141b2d',
-    }
+
 
     return (
         <Box m="20px">
@@ -45,7 +60,7 @@ const PersonalLoanForm = () => {
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
-                validationSchema={checkoutSchema}
+                validationSchema={personalLoanSchema}
             >
                 {({
                     values,
@@ -54,6 +69,7 @@ const PersonalLoanForm = () => {
                     handleBlur,
                     handleChange,
                     handleSubmit,
+                    isSubmitting
                 }) => (
                     <form onSubmit={handleSubmit}>
                         <Box
@@ -65,12 +81,13 @@ const PersonalLoanForm = () => {
                             }}
                         >
 
-                            <FormControl fullWidth
-                                sx={{ gridColumn: "span 4" }}>
+                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <InputLabel id="termSelect">Loan Term</InputLabel>
                                 <Field
+                                    value={values.loanTerm}
                                     as={Select}
-                                    name="Loan Term"
+                                    name="loanTerm"
+                                    onChange={handleChange}
                                 >
                                     <MenuItem value={12}>12 Months</MenuItem>
                                     <MenuItem value={24}>24 Months</MenuItem>
@@ -79,34 +96,61 @@ const PersonalLoanForm = () => {
                                 </Field>
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <InputLabel htmlFor="outlined-adornment-amount">Loan Amount</InputLabel>
-                                <OutlinedInput
+                                <TextField
+                                    fullWidth
+                                    name='loanAmount'
+                                    value={values.loanAmount}
+                                    multiline
+                                    variant='outlined'
+                                    error={!!touched.loanAmount && !!errors.loanAmount}
+                                    helperText={touched.loanAmount && errors.loanAmount}
                                     id="outlined-adornment-amount"
                                     sx={{ height: '52.7167px' }}
-                                    startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
-                                    label="Loan Amount"
-
+                                    // startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
+                                    label="Loan Amount (EGP)"
+                                    onChange={(event) => {
+                                        const numericValue = event.target.value.replace(/[^0-9]/g, "");
+                                        handleChange({
+                                            target: {
+                                                name: "loanAmount",
+                                                value: numericValue,
+                                            },
+                                        });
+                                    }}
                                 />
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <InputLabel htmlFor="outlined-adornment-amount">Annual Income</InputLabel>
-                                <OutlinedInput
+                                <TextField
+                                    fullWidth
+                                    value={values.annualIncome}
+                                    multiline
+                                    variant='outlined'
+                                    name='annualIncome'
+                                    error={!!touched.annualIncome && !!errors.annualIncome}
+                                    helperText={touched.annualIncome && errors.annualIncome}
                                     id="outlined-adornment-amount"
                                     sx={{ height: '52.7167px' }}
-                                    startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
-                                    label="Annual Income"
-
+                                    // startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
+                                    label="Annual Income (EGP)"
+                                    onChange={(event) => {
+                                        const numericValue = event.target.value.replace(/[^0-9]/g, "");
+                                        handleChange({
+                                            target: {
+                                                name: "annualIncome",
+                                                value: numericValue,
+                                            },
+                                        });
+                                    }}
                                 />
                             </FormControl>
-
-
-
                             <FormControl fullWidth
                                 sx={{ gridColumn: "span 4" }}>
                                 <InputLabel id="employmentSelect">Employment Status</InputLabel>
                                 <Field
+                                    value={values.employmentStatus}
                                     as={Select}
-                                    name="Employment"
+                                    name="employmentStatus"
+                                    onChange={handleChange}
                                 >
                                     <MenuItem value={"employed"}>Employed</MenuItem>
                                     <MenuItem value={"selfEmployed"}>Self Employed</MenuItem>
@@ -114,22 +158,51 @@ const PersonalLoanForm = () => {
                                 </Field>
                             </FormControl>
 
-
-                            <TextField
-                                sx={{ gridColumn: "span 4" }}
-                                variant="outlined"
-                                label="Purpose"
-                                InputProps={styles}
-                                placeholder="Write your purpose for loan application here in as many lines as you need"
-                                multiline
-                            />
+                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
+                                <TextField
+                                    sx={{ gridColumn: "span 4" }}
+                                    variant="outlined"
+                                    type='text'
+                                    value={values.purpose}
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    label="Purpose"
+                                    InputProps={styles}
+                                    placeholder="Write your purpose for loan application here in as many lines as you need"
+                                    multiline
+                                    name='purpose'
+                                    error={!!touched.purpose && !!errors.purpose}
+                                    helperText={touched.purpose && errors.purpose}
+                                />
+                            </FormControl>
                         </Box>
-                        <Box display="flex" justifyContent="end" mt="20px">
-                            {/* {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained">
+                        {/* <Box display="flex" justifyContent="end" mt="20px">
+                            {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained">
                                 Apply
-                            </Button>} */}
+                            </Button>}
                             <ResponseDialog response='failed' submit='APPLY'/>
 
+                        </Box> */}
+                        <Box display="flex" justifyContent="end" mt="20px">
+                            {isSubmitting ? (
+                                <CircularProgress color="secondary" size={24} />
+                            ) : (
+                                <>
+                                    {isConfirmed && <CheckIcon style={{ marginRight: '10px', color: 'green' }} />}
+                                    <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
+                                        Confirm
+                                    </Button> 
+                                    {/* {
+                                        (values.make==='' || values.model==='' || values.year===null||values.loanAmount===''||values.loanTerm===''||values.annualIncome===''||values.employmentStatus==='')?
+                                            <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
+                                                Confirm
+                                            </Button> 
+                                            :
+                                            <ResponseDialog response='success' submit='CONFIRM'/>
+                                        
+                                    } */}
+                                </>
+                            )}
                         </Box>
                     </form>
                 )}
@@ -140,14 +213,17 @@ const PersonalLoanForm = () => {
 
 
 
-const checkoutSchema = yup.object().shape({
-    make: yup.string().required("required"),
-    model: yup.string().required("required"),
-    loanAmount: yup.number().required('required'),
-    year: yup.number().required('required'),
-    annualIncome: yup.number().required('required'),
+const personalLoanSchema = yup.object().shape({
     loanTerm: yup.string().required("required"),
+    loanAmount: yup.number().required('required'),
+    purpose: yup.string().required('required'),
+    annualIncome: yup.number().required('required'),
     employmentStatus: yup.string().required("required"),
 });
+// loanAmount: '',
+//         loanTerm: '',
+//         annualIncome: '',
+//         employmentStatus: '',
+//         purpose: ''
 
 export default PersonalLoanForm

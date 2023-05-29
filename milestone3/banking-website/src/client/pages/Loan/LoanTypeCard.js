@@ -10,12 +10,17 @@ function LoanTypeCard({ img, alt, title, summary, to}) {
     <Link to={to}>
         <Card sx={{ maxWidth: 400,backgroundColor: colors.blueAccent[900], margin:5 }}>
             <CardActionArea>
-                {/* <CardMedia
-                    component="img"
-                    height="140"
-                    image={img}
-                    alt={alt}
-                /> */}
+                {
+                    img===''?
+                    <></>:
+                    <CardMedia
+                        component="img"
+                        height="140"
+                        image={img}
+                        alt={alt}
+                    />
+                }
+                
                 <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     {title}

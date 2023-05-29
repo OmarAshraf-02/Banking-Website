@@ -42,8 +42,8 @@ function Loan() {
                 return loan.status==='Paid'?<LoanCards key={loan.id} loan={loan}/>:<></>
             })}
             <div className='flex items-center'>
-                <LoanTypeCard alt='car loan' img={carloan} to='CarLoanForm' summary='Apply for car loans and enjoy your miserable life because you will eventually go to prison' title='Car Loans'/>
-                <LoanTypeCard alt='personal loan' img={personalloan} to='PersonalLoanForm' summary='Apply for personal loans and enjoy your miserable life because you will eventually go to prison' title='Personal Loans'/>
+                <LoanTypeCard alt='car loan' img={carloan} to='CarLoanForm' summary='Apply for a car loan to finance a new car purchase' title='Car Loans'/>
+                <LoanTypeCard alt='personal loan' img={personalloan} to='PersonalLoanForm' summary='Apply for a personal loan that can be used to start a business or buy a property' title='Personal Loans'/>
             </div>
             
             {/* <div class="cf ph2-ns">

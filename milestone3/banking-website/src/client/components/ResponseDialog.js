@@ -18,7 +18,7 @@ import DangerousIcon from '@mui/icons-material/Dangerous';
 
 function ResponseDialog({ submit, response, message }) {
     const [open, setOpen] = React.useState(false);
-
+    
     const handleClickOpen = () => {
         setOpen(true);
     };
