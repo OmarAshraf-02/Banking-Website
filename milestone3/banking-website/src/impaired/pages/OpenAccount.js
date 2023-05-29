@@ -9,8 +9,11 @@ import Header from '../components/Header.jsx';
 import SignaturePad from '../components/SignaturePad.js';
 import BackButton from '../../shared/components/BackButton.js';
 import { useSpeechSynthesis } from 'react-speech-kit';
+import SpeechRecognitionTextField from '../components/SpeechRecognitionTextField.js';
+
 
 const OpenAccountForm = () => {
+
     const [loading, setLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
 
@@ -107,32 +110,28 @@ const OpenAccountForm = () => {
                                     required
                                 />
                             </FormControl> */}
-                            <FormControl fullWidth sx={{ gridColumn: 'span 4' }}>
-                                <InputLabel htmlFor="outlined-adornment-amount" shrink>
-                                    Annual Income
-                                </InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-annualincome"
-                                    sx={{ height: '52.7167px' }}
-                                    startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
+                                <SpeechRecognitionTextField
+                                    sx={{ gridColumn: "span 4" }}
+                                    variant="outlined"
                                     label="Annual Income"
-                                    inputProps={{
-                                        'aria-label': 'annualIncome',
-                                    }}
+                                    startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
+                                    InputProps={styles}
+                                    type='number'
+                                    multiline
                                     required
                                     onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text Field to enter your annual income") }}
                                 />
-                            </FormControl>
-                            <TextField
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="National ID Number"
                                 InputProps={styles}
                                 multiline
                                 required
-                                onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text Field to enter your national ID number") }}
+                                onMouseLeave={() => cancel()} 
+                                onMouseEnter={() => { speakText("Text Field to enter your national ID number") }}
                             />
-                            <TextField
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="Occupation"
@@ -141,7 +140,7 @@ const OpenAccountForm = () => {
                                 required
                                 onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text Field to enter your occupation") }}
                             />
-                            <TextField
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="Employer"
@@ -199,7 +198,7 @@ const OpenAccountForm = () => {
                                         onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press this button if you want to open a checkings account") }} />
                                 </RadioGroup>
                             </FormControl>
-                            <TextField
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="Address"
@@ -209,7 +208,7 @@ const OpenAccountForm = () => {
                                 required
                                 onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text Field to enter your current address, please input a current address for delivery purposes") }}
                             />
-                            <TextField
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="City"
@@ -232,7 +231,7 @@ const OpenAccountForm = () => {
                                         onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press this button if you do not currently have a credit card") }} />
                                 </RadioGroup>
                             </FormControl>
-                            <TextField
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="Current Credit Cards"
