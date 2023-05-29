@@ -141,7 +141,6 @@ const SignIn = () => {
                         </Button> */}
                     </form>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem' }}>
-                        <Button color="primary">Forgot Password?</Button>
                         <Link to='/signUp'>
                             <Button color="primary">Don't have an account?</Button>
                         </Link>
