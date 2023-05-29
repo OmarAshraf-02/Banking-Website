@@ -137,6 +137,9 @@ const ViewReports = () => {
   return (
     <Box m="20px">
       <Header title="Customer Reports" subtitle="View Complains and Reports submitted by customers and Deal with them" />
+      <Typography variant="h5" color={colors.grey[100]}>
+        Search by Bank ID:
+      </Typography>
       <Box display="flex" 
         backgroundColor = {colors.primary[400]}
          borderRadius="3px"

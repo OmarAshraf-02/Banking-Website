@@ -48,7 +48,7 @@ const ViewClientRequests = () => {
         </AccordionSummary>
         <AccordionDetails>
         <Typography variant="h5" color={colors.grey[100]}>
-            {`Nationsl ID: ${character.nationalId}`}
+            {`National ID: ${character.nationalId}`}
           </Typography>
           <Typography variant="h5" color={colors.grey[100]}>
             {`Phone Number: ${character.phoneNumber}`}
