@@ -28,9 +28,6 @@ function ApplyForReplacementDialog({ isSubmitting }) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
-        // if(!isSubmitting){
-        //     return
-        // }
         setOpen(true);
         dispatch(reportTheftLossDamage({
             report: {},
@@ -45,7 +42,7 @@ function ApplyForReplacementDialog({ isSubmitting }) {
     return (
         <div>
             <Button type="submit" color="secondary" variant="contained" onClick={handleClickOpen} disabled={isSubmitting}>
-                Report
+                Apply for Replacement
             </Button>
             <Dialog
                 open={open}

@@ -14,6 +14,8 @@ import ApplyForReplacementDialog from '../components/ApplyForReplacementDialog.j
 import BackButton from '../../shared/components/BackButton.js';
 import { useParams } from 'react-router';
 import CheckIcon from '@mui/icons-material/Check';
+import { useDispatch, useSelector } from 'react-redux';
+import { reportTheftLossDamage } from '../../store/index.js';
 
 
 
@@ -22,6 +24,12 @@ const TheftLossDamageForm = () => {
     const [isConfirmed, setIsConfirmed] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const { id } = useParams();
+    const dispatch = useDispatch();
+    const card = useSelector((state)=>{
+        return state.clients[0].creditCards.find((card)=>{
+            return card.id === Number(id);
+        })
+    }) 
     const handleFormSubmit = async (values, { resetForm, setSubmitting }) => {
         setLoading(true);
     
@@ -127,10 +135,19 @@ const TheftLossDamageForm = () => {
                             ) : (
                                 <>
                                     {isConfirmed && <CheckIcon style={{ marginRight: '10px', color: 'green' }} />}
-                                    <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
-                                        Confirm
+                                    <Button 
+                                        onClick={()=>{
+                                            if(isConfirmed&&!isSubmitting){
+                                            dispatch(reportTheftLossDamage({
+                                                report: {},
+                                                creditCard: card
+                                            }))}
+                                        }
+                                        }
+                                        type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
+                                        Report & Apply For Replacment
                                     </Button>
-                                    
+                                    {/* <ApplyForReplacementDialog isSubmitting={isSubmitting}/> */}
                                 </>
                             )}
              </Box>

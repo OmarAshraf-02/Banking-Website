@@ -16,8 +16,6 @@ import CheckIcon from '@mui/icons-material/Check';
 const OpenAccountForm = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    const theme = useTheme();
-    const colors = tokens(theme.palette.mode);
     const [loading, setLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const [isConfirmed, setIsConfirmed] = useState(false);
@@ -218,7 +216,7 @@ const OpenAccountForm = () => {
                                             '& .Mui-checked': {
                                             color: colors.grey[200], 
                                             },
-                                        }} 
+                                        }}
                                         label="Single" 
                                     />
                                     <FormControlLabel 
@@ -379,12 +377,6 @@ const OpenAccountForm = () => {
                                 </div>
                                 <FormControlLabel
                                     required
-                                    control={<Checkbox color="primary" // Use "primary" or "secondary" color for the tick
-                                    sx={{
-                                      '&.Mui-checked': {
-                                        color: colors.grey[200], // Replace with your desired color
-                                      },
-                                    }}/>}
                                     control={<Checkbox color="primary" // Use "primary" or "secondary" color for the tick
                                     sx={{
                                       '&.Mui-checked': {
