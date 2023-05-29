@@ -6,8 +6,14 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '
 import Header from '../../components/Header';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useSpeechSynthesis } from 'react-speech-kit';
+
 
 function CreditCardTransactionHistory({ transactions }) {
+  const { speak , cancel } = useSpeechSynthesis();
+  const speakText = (text) => {
+    speak({ text });
+  };
   // console.log(transactions);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -41,6 +47,10 @@ function CreditCardTransactionHistory({ transactions }) {
   ];
 
   return (
+    <div
+    onMouseLeave={() => cancel()} 
+    onMouseEnter={() => {speakText('View Credit Card Transaction History')}}
+    >
     <Box m="20px">
       <Accordion >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -93,6 +103,7 @@ function CreditCardTransactionHistory({ transactions }) {
       </Accordion>      
       
     </Box>
+    </div>
   );
 };
 

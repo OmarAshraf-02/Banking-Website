@@ -18,9 +18,15 @@ import { Box, Button, FormControl, InputLabel, Select, TextField } from '@mui/ma
 import { useTheme } from '@emotion/react';
 import { tokens } from '../../themes';
 import { MenuItem } from '@mui/material';
+import { useSpeechSynthesis } from 'react-speech-kit';
+
 
 
 function PayCreditCardBillDialog({ creditCard }) {
+  const { speak , cancel } = useSpeechSynthesis();
+  const speakText = (text) => {
+    speak({ text });
+  };
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const accounts = useSelector((state) => {
@@ -78,14 +84,21 @@ function PayCreditCardBillDialog({ creditCard }) {
         color="secondary"
         sx={{ mr: 2, fontSize: 12, color: colors.grey[250] }}
         size="medium"
+        onMouseLeave={() => cancel()} 
+        onMouseEnter={() => {speakText('Pay Bill Button , Press to view your options to pay your bills' )}}
       >
         Pay Bill
       </Button>
-      <Dialog onClose={handleClose} open={open} maxWidth="md" fullWidth>
+      <Dialog 
+      onMouseLeave={() => cancel()} 
+      onMouseEnter={() => {speakText('Pay Bill Pop up' )}}
+      onClose={handleClose} open={open} maxWidth="md" fullWidth>
         <DialogTitle>Pay Credit Card Bill</DialogTitle>
-        <FormControl fullWidth>
+        <FormControl  fullWidth>
           <InputLabel sx={{ margin: 2 }} id="payment-method-label">Payment Method</InputLabel>
           <Select
+          onMouseLeave={() => cancel()} 
+          onMouseEnter={() => {speakText('Payment Method , Press enter to select your payment method' )}}
           sx={{ margin: 2 }}
             labelId="payment-method-label"
             id="payment-method-select"
@@ -93,13 +106,21 @@ function PayCreditCardBillDialog({ creditCard }) {
             label="Payment Method"
             onChange={handlePaymentMethodChange}
           >
-            <MenuItem value="Pay Partially">Pay Partially</MenuItem>
-            <MenuItem value="Pay Fully">Pay Fully</MenuItem>
+            <MenuItem 
+                onMouseLeave={() => cancel()} 
+                onMouseEnter={() => {speakText('Press to choose pay partially' )}}
+             value="Pay Partially">Pay Partially</MenuItem>
+            <MenuItem 
+          onMouseLeave={() => cancel()} 
+          onMouseEnter={() => {speakText('Press to choose pay fully' )}}
+            value="Pay Fully">Pay Fully</MenuItem>
           </Select>
         </FormControl>
         <FormControl fullWidth >
           <InputLabel sx={{ margin: 2 }} id="account-number-label">Account Number</InputLabel>
           <Select
+          onMouseLeave={() => cancel()} 
+          onMouseEnter={() => {speakText('Press to Choose the acount number' )}}
           sx={{ margin: 2 }}
             labelId="account-number-label"
             id="account-number-select"
@@ -109,7 +130,10 @@ function PayCreditCardBillDialog({ creditCard }) {
           >
             {accounts.map((account) => (
               account.status==='Active'?
-              <MenuItem key={account.accountNumber} value={account.accountNumber}>
+              <MenuItem
+              onMouseLeave={() => cancel()} 
+              onMouseEnter={() => {speakText('Press to choose the account having the number of ' + account.accountNumber )}}
+               key={account.accountNumber} value={account.accountNumber}>
                 {account.accountNumber}
               </MenuItem>
               :
@@ -130,6 +154,8 @@ function PayCreditCardBillDialog({ creditCard }) {
           />
         ) : (
           <TextField
+          onMouseLeave={() => cancel()} 
+          onMouseEnter={() => {speakText('Text Field of the amount to pay please enter the number you want to pay in case you want to pay partially' )}}
             label="Amount to pay"
             value={partialAmount}
             onChange={handlePartialAmountChange}
@@ -140,6 +166,8 @@ function PayCreditCardBillDialog({ creditCard }) {
         )}
         <Button
           onClick={handlePayBill}
+          onMouseLeave={() => cancel()} 
+          onMouseEnter={() => {speakText('Pay button , Please press to pay your bills' )}}
           color="secondary"
           variant="contained"
           style={{ margin: '10px', color: colors.grey[100] }}

@@ -11,8 +11,14 @@ import Header from '../../components/Header';
 import PayCreditCardBillDialog from '../../components/PayCreditCardBillDialog';
 import CreditCardTransactionHistory from './CreditCardTransactionHistory';
 import SetReminderDialog from '../../components/SetReminderDialog';
+import { useSpeechSynthesis } from 'react-speech-kit';
+
 
 function CreditCardPage() {
+  const { speak , cancel } = useSpeechSynthesis();
+    const speakText = (text) => {
+      speak({ text });
+    };
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const { id } = useParams();
@@ -48,6 +54,8 @@ function CreditCardPage() {
       <TextField
         label="Name on card"
         value={cardName}
+        onMouseLeave={() => cancel()} 
+        onMouseEnter={() => {speakText('The name on card is ' + cardName)}}
         InputProps={{
           readOnly: true,
         }}
@@ -58,6 +66,8 @@ function CreditCardPage() {
       <TextField
         label="Credit Score"
         value={creditScore}
+        onMouseLeave={() => cancel()} 
+        onMouseEnter={() => {speakText('The Credit Score of this card is ' + creditScore)}}
         InputProps={{
           readOnly: true,
         }}
@@ -70,6 +80,8 @@ function CreditCardPage() {
       <TextField
         label="Limit"
         value={limit}
+        onMouseLeave={() => cancel()} 
+        onMouseEnter={() => {speakText('This Credit Card limit is  ' + limit)}}
         InputProps={{
           readOnly: true,
         }}
@@ -80,6 +92,8 @@ function CreditCardPage() {
       <TextField
         label="Points"
         value={points}
+        onMouseLeave={() => cancel()} 
+        onMouseEnter={() => {speakText('This Credit Card points is ' + points)}}
         InputProps={{
           readOnly: true,
         }}
@@ -92,6 +106,8 @@ function CreditCardPage() {
     <TextField
       label="Valid till"
       value={validThru}
+      onMouseLeave={() => cancel()} 
+      onMouseEnter={() => {speakText('The card is valid until  ' + validThru)}}
       InputProps={{
         readOnly: true,
       }}
@@ -100,8 +116,10 @@ function CreditCardPage() {
       sx={{ mr: 2, mb: 2 }}
     />
     <TextField
-        label="Current Balance"
-        value={balance}
+        label="cvc"
+        value={123}
+        onMouseLeave={() => cancel()} 
+        onMouseEnter={() => {speakText('The cvc of this card is 123')}}
         InputProps={{
           readOnly: true,
         }}
@@ -116,7 +134,11 @@ function CreditCardPage() {
            {status === 'Active' ? (
             <Box display='flex'>
                 <Link to="theftLossDamageForm">
-                    <Button variant='contained' color="secondary" sx={{ mr:2 ,fontSize: 12, color: colors.grey[250]}} size="medium">Report Theft/Loss/Damage</Button>
+                    <Button
+                    onMouseLeave={() => cancel()} 
+                    onMouseEnter={() => {speakText('Report theft , loss or damage please press enter to report')}}
+                     variant='contained' 
+                     color="secondary" sx={{ mr:2 ,fontSize: 12, color: colors.grey[250]}} size="medium">Report Theft/Loss/Damage</Button>
                 </Link>
                 <PayCreditCardBillDialog creditCard={card}/>
                 <SetReminderDialog type='credit card bill'/>
@@ -125,7 +147,7 @@ function CreditCardPage() {
               <></>
               )}
           </Box>
-          <CreditCardTransactionHistory transactions={transactions}/>
+          <CreditCardTransactionHistory  transactions={transactions}/>
     </div>
   )
 }

@@ -6,8 +6,14 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useDispatch } from "react-redux";
 import { setReminder } from "../../store";
+import { useSpeechSynthesis } from 'react-speech-kit';
+
 
 const SetReminderDialog = ({ id, type }) => {
+  const { speak , cancel } = useSpeechSynthesis();
+  const speakText = (text) => {
+    speak({ text });
+  };
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState(null);
   const handleDateChange = (value) => {
@@ -48,19 +54,29 @@ const SetReminderDialog = ({ id, type }) => {
         size="small"
         style={{ margin: 2 }}
         onClick={handleClick}
+        onMouseLeave={() => cancel()} 
+        onMouseEnter={() => {speakText('Set Reminder Button , Press enter to set a reminder' )}}
       >
         Set Reminder
       </Button>
-      <Dialog onClose={handleClose} open={open} maxWidth="md">
+      <Dialog 
+      onMouseLeave={() => cancel()} 
+      onMouseEnter={() => {speakText('Set Reminder Pop Up')}}
+      onClose={handleClose} open={open} maxWidth="md">
         <DialogTitle>Set Reminder</DialogTitle>
         <Box sx={{ margin: 2 }}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              value={date}
-              onChange={handleDateChange}
-              label="Date of the Reminder"
-              renderInput={(params) => <TextField {...params} />}
-            />
+            <div
+                onMouseLeave={() => cancel()} 
+                onMouseEnter={() => {speakText('Date Picker, Press to choose the date' )}}
+            >
+              <DatePicker
+                value={date}
+                onChange={handleDateChange}
+                label="Date of the Reminder"
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </div>
           </LocalizationProvider>
         </Box>
         <Button
@@ -70,6 +86,8 @@ const SetReminderDialog = ({ id, type }) => {
           size="small"
           style={{ margin: "10px" }}
           onClick={handleClose}
+          onMouseLeave={() => cancel()} 
+          onMouseEnter={() => {speakText('Set Button , Please Press to set the reminder' )}}
         >
           Set
         </Button>

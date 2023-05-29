@@ -8,9 +8,15 @@ import * as yup from "yup";
 import Header from '../components/Header.jsx';
 import SignaturePad from '../components/SignaturePad.js';
 import BackButton from '../../shared/components/BackButton.js';
+import { useSpeechSynthesis } from 'react-speech-kit';
+
 
 
 const CreditCardForm = () => {
+    const { speak , cancel } = useSpeechSynthesis();
+    const speakText = (text) => {
+      speak({ text });
+    };
     const [loading, setLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
 
@@ -92,6 +98,8 @@ const CreditCardForm = () => {
                                         'aria-label': 'credit-limit',
                                     }}
                                     required
+                                    onMouseLeave={() => cancel()} 
+                                    onMouseEnter={() => {speakText('Text Field to enter the credit card limit' )}}
                                 />
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: 'span 4' }}>
@@ -103,7 +111,8 @@ const CreditCardForm = () => {
                                     sx={{ height: '52.7167px' }}
                                     startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
                                     label="Annual Income"
-
+                                    onMouseLeave={() => cancel()} 
+                                    onMouseEnter={() => {speakText('Text Field to enter your Annual Income' )}}
 
                                     inputProps={{
                                         'aria-label': 'annualIncome',
@@ -118,6 +127,8 @@ const CreditCardForm = () => {
                                 InputProps={styles}
                                 multiline
                                 required
+                                onMouseLeave={() => cancel()} 
+                                onMouseEnter={() => {speakText('Text Field to enter your National ID number' )}}
                             />
                             <TextField
                                 sx={{ gridColumn: "span 4" }}
@@ -126,6 +137,8 @@ const CreditCardForm = () => {
                                 InputProps={styles}
                                 multiline
                                 required
+                                onMouseLeave={() => cancel()} 
+                                onMouseEnter={() => {speakText('Text Field to enter your occupation' )}}
                             />
                             <TextField
                                 sx={{ gridColumn: "span 4" }}
@@ -135,6 +148,8 @@ const CreditCardForm = () => {
                                 placeholder="If not applicable, clarify here if currently Self-Employed or Unemployed"
                                 multiline
                                 required
+                                onMouseLeave={() => cancel()} 
+                                onMouseEnter={() => {speakText('Text Field to enter your employer' )}}
                             />
                             <FormControl>
                                 <FormLabel id="livingStatus">Are you a</FormLabel>
@@ -143,9 +158,18 @@ const CreditCardForm = () => {
                                     aria-labelledby="demo-row-radio-buttons-group-label"
                                     name="row-radio-buttons-group"
                                 >
-                                    <FormControlLabel value="homeOwner" control={<Radio />} label="Homeowner" />
-                                    <FormControlLabel value="renter" control={<Radio />} label="Renter" />
-                                    <FormControlLabel value="other" control={<Radio />} label="Other" />
+                                    <FormControlLabel 
+                                    onMouseLeave={() => cancel()} 
+                                    onMouseEnter={() => {speakText('Press if you are a homeowner' )}}
+                                     value="homeOwner" control={<Radio />} label="Homeowner" />
+                                    <FormControlLabel
+                                    onMouseLeave={() => cancel()} 
+                                    onMouseEnter={() => {speakText('Press if you are a renter' )}}
+                                     value="renter" control={<Radio />} label="Renter" />
+                                    <FormControlLabel
+                                    onMouseLeave={() => cancel()} 
+                                    onMouseEnter={() => {speakText('press if your living status isnot specified')}}
+                                    value="other" control={<Radio />} label="Other" />
                                 </RadioGroup>
                             </FormControl>
                             <FormControl>
@@ -155,16 +179,30 @@ const CreditCardForm = () => {
                                     aria-labelledby="demo-row-radio-buttons-group-label"
                                     name="row-radio-buttons-group"
                                 >
-                                    <FormControlLabel value="single" control={<Radio />} label="Single" />
-                                    <FormControlLabel value="married" control={<Radio />} label="Married" />
-                                    <FormControlLabel value="divorced" control={<Radio />} label="Divorced" />
-                                    <FormControlLabel value="widow" control={<Radio />} label="Widow(er)" />
+                                    <FormControlLabel
+                                    onMouseLeave={() => cancel()} 
+                                    onMouseEnter={() => {speakText('Press if your are single')}}
+                                    value="single" control={<Radio />} label="Single" />
+                                    <FormControlLabel
+                                    onMouseLeave={() => cancel()} 
+                                    onMouseEnter={() => {speakText('Press if you are married' )}}
+                                    value="married" control={<Radio />} label="Married" />
+                                    <FormControlLabel
+                                    onMouseLeave={() => cancel()} 
+                                    onMouseEnter={() => {speakText('Press if you are divorced' )}}
+                                     value="divorced" control={<Radio />} label="Divorced" />
+                                    <FormControlLabel
+                                    onMouseLeave={() => cancel()} 
+                                    onMouseEnter={() => {speakText('Press if you are a widow or a widower' )}}
+                                    value="widow" control={<Radio />} label="Widow(er)" />
 
                                 </RadioGroup>
                             </FormControl>
                             <TextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
+                                onMouseLeave={() => cancel()} 
+                                onMouseEnter={() => {speakText('Text Field to enter your address' )}}
                                 label="Address"
                                 placeholder="Please give a current address for card delivery purposes"
                                 InputProps={styles}
@@ -174,26 +212,36 @@ const CreditCardForm = () => {
                             <TextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
+                                onMouseLeave={() => cancel()} 
+                                onMouseEnter={() => {speakText('Text Field to enter the city you live in' )}}
                                 label="City"
                                 InputProps={styles}
                                 multiline
                                 required
                             />
                             <FormControl>
-                                <FormLabel id="previousCards">Do you have a credit card? (If yes fill in the following field)</FormLabel>
+                                <FormLabel id="previousCards">Do you have any other credit cards? (If yes fill in the following field)</FormLabel>
                                 <RadioGroup
                                     row
                                     aria-labelledby="demo-row-radio-buttons-group-label"
                                     name="row-radio-buttons-group"
                                 >
-                                    <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-                                    <FormControlLabel value="no" control={<Radio />} label="No" />
+                                    <FormControlLabel 
+                                    onMouseLeave={() => cancel()} 
+                                    onMouseEnter={() => {speakText('Press if you have other credit cards' )}}
+                                    value="yes" control={<Radio />} label="Yes" />
+                                    <FormControlLabel 
+                                    onMouseLeave={() => cancel()} 
+                                    onMouseEnter={() => {speakText('Press if you donot have any other credit cards' )}}
+                                    value="no" control={<Radio />} label="No" />
                                 </RadioGroup>
                             </FormControl>
                             <TextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
-                                label="Current Credit Cards"
+                                onMouseLeave={() => cancel()} 
+                                onMouseEnter={() => {speakText('Text field to enter your other credit  cards' )}}
+                                label="Other Credit Cards"
                                 placeholder='Please list all your current credit cards and their issuing bank in as many lines as you need'
                                 InputProps={styles}
                                 multiline
@@ -206,6 +254,8 @@ const CreditCardForm = () => {
                                     <SignaturePad />
                                 </div>
                                 <FormControlLabel
+                                    onMouseLeave={() => cancel()} 
+                                    onMouseEnter={() => {speakText('Please check to Accept terms and conditions' )}}
                                     required
                                     control={<Checkbox />}
                                     label="Accept Terms and Conditions"
@@ -215,7 +265,10 @@ const CreditCardForm = () => {
 
                         </Box>
                         <Box display="flex" justifyContent="end" mt="20px">
-                            {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained">
+                            {loading ? <div></div> : <Button 
+                            onMouseLeave={() => cancel()} 
+                            onMouseEnter={() => {speakText('Apply button please press to apply for your credit card' )}}
+                            type="submit" color="secondary" variant="contained">
                                 Apply
                             </Button>}
                         </Box>

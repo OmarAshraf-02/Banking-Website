@@ -2,8 +2,13 @@ import React, { useRef } from 'react';
 // import SignatureCanvas from 'react-signature-canvas';
 import { Button } from '@mui/material';
 import SignatureCanvas from 'react-signature-canvas';
+import { useSpeechSynthesis } from 'react-speech-kit';
 
 const SignaturePad = () => {
+    const { speak , cancel } = useSpeechSynthesis();
+    const speakText = (text) => {
+      speak({ text });
+    };
     const signatureRef = useRef();
 
     const handleClear = () => {
@@ -17,7 +22,10 @@ const SignaturePad = () => {
     };
 
     return (
-        <div>
+        <div
+        onMouseLeave={() => cancel()} 
+        onMouseEnter={() => {speakText('Please sign here with your bank signature')}}
+        >
             <SignatureCanvas
                 ref={signatureRef}
                 canvasProps={{
@@ -27,7 +35,10 @@ const SignaturePad = () => {
                 }}
             />
             <div>
-                <Button variant="contained" onClick={handleClear} style={{ marginRight: 8 }}>
+                <Button
+                onMouseLeave={() => cancel()} 
+                onMouseEnter={() => {speakText('Clear button , Please press if you want to repeat your signature')}} 
+                variant="contained" onClick={handleClear} style={{ marginRight: 8 }}>
                     Clear
                 </Button>
                 {/* <Button variant="contained" onClick={handleSave} color="primary">
