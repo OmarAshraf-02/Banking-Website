@@ -14,9 +14,14 @@ import { payBill, reportTheftLossDamage } from '../../store';
 import Avatar from '@mui/material/Avatar';
 import { Button, DialogActions, DialogContent, DialogContentText, Slide } from '@mui/material';
 import { useParams } from 'react-router';
+import { useSpeechSynthesis } from 'react-speech-kit';
 
 
 function ApplyForReplacementDialog() {
+    const { speak , cancel } = useSpeechSynthesis();
+    const speakText = (text) => {
+      speak({ text });
+    };
     const dispatch = useDispatch();
     const { id } = useParams();
     const card = useSelector((state)=>{
@@ -41,10 +46,15 @@ function ApplyForReplacementDialog() {
 
     return (
         <div>
-            <Button type="submit" color="secondary" variant="contained" onClick={handleClickOpen}>
+            <Button
+            onMouseLeave={() => cancel()} 
+            onMouseEnter={() => {speakText("Report button to send your report")}}
+            type="submit" color="secondary" variant="contained" onClick={handleClickOpen}>
                 Report
             </Button>
             <Dialog
+                onMouseLeave={() => cancel()} 
+                onMouseEnter={() => {speakText("Report has been sent successfully popup")}}
                 open={open}
                 // TransitionComponent={Transition}
                 keepMounted
@@ -58,7 +68,10 @@ function ApplyForReplacementDialog() {
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button type="submit" color="secondary" variant="contained" onClick={handleClose}>Apply</Button>
+                    <Button
+                    onMouseLeave={() => cancel()} 
+                    onMouseEnter={() => {speakText("Close button to close the pop up")}}
+                    type="submit" color="secondary" variant="contained" onClick={handleClose}>Close</Button>
                 </DialogActions>
             </Dialog>
         </div>

@@ -17,11 +17,17 @@ import { useState } from 'react';
 import { Button } from '@mui/material';
 import { useTheme } from '@emotion/react';
 import { tokens } from '../../themes';
+import { useSpeechSynthesis } from 'react-speech-kit';
+
 
 
 function RedeemPointsDialog({creditCard}) {
-    const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+const { speak, cancel } = useSpeechSynthesis();
+const speakText = (text) => {
+    speak({ text });
+  };
+const theme = useTheme();
+const colors = tokens(theme.palette.mode);
   const accounts = useSelector((state) => {
     return state.clients[0].accounts;
   })
@@ -48,15 +54,25 @@ function RedeemPointsDialog({creditCard}) {
 
     return (
         <div>
-            <Button onClick={handleClickOpen} color="secondary" variant="contained" style={{ marginLeft: '10px' , color: colors.grey[100] }}>
+            <Button 
+            onMouseLeave={() => cancel()} 
+            onMouseEnter={() => {speakText('Redeem Points Button , Press here to redeem the points of a credit card')}}
+            onClick={handleClickOpen} color="secondary" variant="contained" style={{ marginLeft: '10px' , color: colors.grey[100] }}>
                Redeem
             </Button>
-        <Dialog onClose={handleClose} open={open}>
+        <Dialog 
+        onMouseLeave={() => cancel()} 
+        onMouseEnter={() => {speakText("Choose an account to redeem the points into pop up")}}
+        onClose={handleClose} open={open}>
             <DialogTitle>Choose an account</DialogTitle>
             <List sx={{ pt: 0 }}>
                 {accounts.map((account) => (
                     account.status!=='Active'?<></>:
-                <ListItem disableGutters>
+                <ListItem 
+                label="Annual Income"
+                onMouseLeave={() => cancel()} 
+                onMouseEnter={() => {speakText("Account Number: " + account.accountNumber)}}
+                disableGutters>
                     <ListItemButton onClick={() => handleListItemClick(account.accountNumber)} key={account.id}>
                     <ListItemAvatar>
                         <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>

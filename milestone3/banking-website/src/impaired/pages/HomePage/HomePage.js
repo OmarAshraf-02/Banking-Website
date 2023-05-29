@@ -38,22 +38,27 @@ const HomePage = () => {
           borderBottom={`4px solid ${colors.primary[500]}`}
           p="15px"
         >
-          <Box>
-            <Typography
-              color={colors.greenAccent[500]}
-              variant="h4"
-              fontWeight="600"
-            >
-              {hero.cardNumber}
-            </Typography>
-            <Typography
-              color={colors.grey[100]}
-              variant="h4"
-              fontWeight="600"
-            >
-              Points: {hero.points}
-            </Typography>
-          </Box>
+          <div
+            onMouseLeave={() => cancel()} 
+            onMouseEnter={() => {speakText(hero.cardNumber + " has " + hero.points + " points")}}
+          >
+            <Box>
+              <Typography
+                color={colors.greenAccent[500]}
+                variant="h4"
+                fontWeight="600"
+              >
+                {hero.cardNumber}
+              </Typography>
+              <Typography
+                color={colors.grey[100]}
+                variant="h4"
+                fontWeight="600"
+              >
+                Points: {hero.points}
+              </Typography>
+            </Box>
+          </div>
           <RedeemPointsDialog creditCard={hero} />
           {/* <Button color="secondary" variant="contained" style={{ marginLeft: '10px' , color: colors.grey[100] }}>
     Redeem
@@ -181,11 +186,20 @@ const HomePage = () => {
             colors={colors.grey[100]}
             p="15px"
           >
-            <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-              Recent Transactions
-            </Typography>
+            <div
+            onMouseLeave={() => cancel()} 
+            onMouseEnter={() => {speakText("Recent Transactions")}}
+            >
+              <Typography  color={colors.grey[100]} variant="h5" fontWeight="600">
+                Recent Transactions
+              </Typography>
+            </div>
           </Box>
           {mockTransactions.map((transaction, i) => (
+            <div
+            onMouseLeave={() => cancel()} 
+            onMouseEnter={() => {speakText("Transaction to " + transaction.user + " amount: " + transaction.cost )}}
+            >
             <Box
               key={`${transaction.txId}-${i}`}
               display="flex"
@@ -215,6 +229,7 @@ const HomePage = () => {
                 ${transaction.cost}
               </Box>
             </Box>
+            </div>
           ))}
         </Box>
 

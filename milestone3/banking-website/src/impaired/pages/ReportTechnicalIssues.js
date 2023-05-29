@@ -7,6 +7,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import * as yup from "yup";
 import Header from '../components/Header.jsx';
 import { useSpeechSynthesis } from 'react-speech-kit';
+import SpeechRecognitionTextField from '../components/SpeechRecognitionTextField.js';
 
 
 const ReportTechnicalIssue = () => {
@@ -61,7 +62,7 @@ const ReportTechnicalIssue = () => {
                                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                             }}
                         >
-                            <TextField
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="Report"

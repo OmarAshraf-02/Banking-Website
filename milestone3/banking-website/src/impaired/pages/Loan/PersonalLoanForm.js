@@ -9,6 +9,7 @@ import Header from '../../components/Header.jsx';
 import BackButton from '../../../shared/components/BackButton.js';
 import ResponseDialog from '../../components/ResponseDialog.js';
 import { useSpeechSynthesis } from 'react-speech-kit';
+import SpeechRecognitionTextField from '../../components/SpeechRecognitionTextField.js';
 
 const PersonalLoanForm = () => {
     const [loading, setLoading] = useState(false);
@@ -89,29 +90,25 @@ const PersonalLoanForm = () => {
                                         onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Click here to select a 48 month loan term") }}>48 Months</MenuItem>
                                 </Field>
                             </FormControl>
-                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <InputLabel htmlFor="outlined-adornment-amount">Loan Amount</InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-amount"
-                                    sx={{ height: '52.7167px' }}
-                                    startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
-                                    label="Loan Amount"
-                                    onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text field to your desired loan amount") }}
-                                />
-                            </FormControl>
-                            <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <InputLabel htmlFor="outlined-adornment-amount">Annual Income</InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-amount"
-                                    sx={{ height: '52.7167px' }}
-                                    startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
-                                    label="Annual Income"
-                                    onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text field to enter your annual income") }}
-                                />
-                            </FormControl>
-
-
-
+                            <SpeechRecognitionTextField
+                                id="outlined-adornment-amount"
+                                sx={{ gridColumn: "span 4"  , height: '52.7167px' }}
+                                fullWidth 
+                                multiline
+                                startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
+                                label="Loan Amount"
+                                onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text field to your desired loan amount") }}
+                            />
+                            <SpeechRecognitionTextField
+                                fullWidth 
+                                multiline
+                                type="number"
+                                sx={{ gridColumn: "span 4"  , height: '52.7167px' }}
+                                id="outlined-adornment-amount"
+                                startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
+                                label="Annual Income"
+                                onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text field to enter your annual income") }}
+                            />
                             <FormControl fullWidth
                                 sx={{ gridColumn: "span 4" }}>
                                 <InputLabel id="employmentSelect">Employment Status</InputLabel>
@@ -130,7 +127,7 @@ const PersonalLoanForm = () => {
                             </FormControl>
 
 
-                            <TextField
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="Purpose"

@@ -13,10 +13,16 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ApplyForReplacementDialog from '../components/ApplyForReplacementDialog.js';
 import BackButton from '../../shared/components/BackButton.js';
 import { useParams } from 'react-router';
+import { useSpeechSynthesis } from 'react-speech-kit';
+import SpeechRecognitionTextField from '../components/SpeechRecognitionTextField.js';
 
 
 
 const TheftLossDamageForm = () => {
+    const { speak , cancel } = useSpeechSynthesis();
+    const speakText = (text) => {
+      speak({ text });
+    };
     const [loading, setLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const { id } = useParams();
@@ -70,20 +76,36 @@ const TheftLossDamageForm = () => {
                                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                             }}
                         >
-
+                            <div
+                            style={{ gridColumn: "span 4" }}
+                            onMouseLeave={() => cancel()} 
+                            onMouseEnter={() => {speakText("Drop down menu to specify the incident type")}}
+                            >
                             <FormControl fullWidth
                                 sx={{ gridColumn: "span 4" }}>
-                                <InputLabel id="employmentSelect">Incident Type</InputLabel>
+                                <InputLabel  id="employmentSelect">Incident Type</InputLabel>
                                 <Field
                                     as={Select}
                                     name="Incident"
                                 >
-                                    <MenuItem value={"theft"}>Theft</MenuItem>
-                                    <MenuItem value={"loss"}>Loss</MenuItem>
-                                    <MenuItem value={"damage"}>Damage</MenuItem>
+                                    <MenuItem
+                                    onMouseLeave={() => cancel()} 
+                                    onMouseEnter={() => {speakText("Press here to choose theft")}}
+                                    value={"theft"}>Theft</MenuItem>
+                                    <MenuItem
+                                    onMouseLeave={() => cancel()} 
+                                    onMouseEnter={() => {speakText("Press here to choose loss")}}
+                                    value={"loss"}>Loss</MenuItem>
+                                    <MenuItem 
+                                    onMouseLeave={() => cancel()} 
+                                    onMouseEnter={() => {speakText("Press here to choose damage")}}
+                                    value={"damage"}>Damage</MenuItem>
                                 </Field>
                             </FormControl>
-                            <TextField
+                            </div>
+                            <SpeechRecognitionTextField
+                                onMouseLeave={() => cancel()} 
+                                onMouseEnter={() => {speakText("Text field to describe or add additional information about the report")}}
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="Report"
@@ -91,12 +113,17 @@ const TheftLossDamageForm = () => {
                                 placeholder="Write your explanation of the incident in detail, use as many lines as you need"
                                 multiline
                             />
+                            <div
+                            onMouseLeave={() => cancel()} 
+                            onMouseEnter={() => {speakText("Date picker to pick the date of your incident")}}
+                            >
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker
                                     label="Date of the Incident"
                                     slotProps={{ height: "200px" }}
                                 />
                             </LocalizationProvider>
+                            </div>
                         </Box>
                         <Box display="flex" justifyContent="end" mt="20px">
                             {

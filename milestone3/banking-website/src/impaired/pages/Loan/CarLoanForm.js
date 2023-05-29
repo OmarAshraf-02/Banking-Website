@@ -12,6 +12,7 @@ import BackButton from '../../../shared/components/BackButton.js';
 import CheckIcon from '@mui/icons-material/Check';
 import ResponseDialog from '../../components/ResponseDialog.js';
 import { useSpeechSynthesis } from 'react-speech-kit';
+import SpeechRecognitionTextField from '../../components/SpeechRecognitionTextField.js';
 
 const CarLoanForm = () => {
     const [loading, setLoading] = useState(false);
@@ -101,7 +102,7 @@ const CarLoanForm = () => {
                                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                             }}
                         >
-                            <TextField
+                            <SpeechRecognitionTextField
                                 fullWidth
                                 variant="outlined"
                                 type="text"
@@ -117,7 +118,7 @@ const CarLoanForm = () => {
                                 required
                                 onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text field to enter the make of your desired car") }}
                             />
-                            <TextField
+                            <SpeechRecognitionTextField
                                 fullWidth
                                 variant="outlined"
                                 type="text"
@@ -134,10 +135,10 @@ const CarLoanForm = () => {
                                 onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text field to enter the model of your desired car") }}
                             />
 
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <LocalizationProvider  dateAdapter={AdapterDayjs}>
                                 <div style={{ display: "contents" }} onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Select your desired car's year of manufacturing, only nineteen fifty to twenty twenty three accepted") }}>
                                     <DatePicker
-                                        label="Year of Manufacturing (ONLY 1950-2023 ACCEPTED)"
+                                        label="Year of Manufacturing"
                                         value={values.year}
                                         views={['year']}
                                         onBlur={handleBlur}
@@ -189,7 +190,7 @@ const CarLoanForm = () => {
                                 </Field>
                             </FormControl>
 
-                            <TextField
+                            <SpeechRecognitionTextField
                                 id="outlined-adornment-amount"
                                 InputProps={{ style: styles.textField }}
                                 sx={{ gridColumn: "span 4" }}
@@ -213,7 +214,7 @@ const CarLoanForm = () => {
                                 onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text Field to enter your desired loan amount") }}
                             />
 
-                            <TextField
+                            <SpeechRecognitionTextField
                                 id="outlined-adornment-amount"
                                 InputProps={{ style: styles.textField }}
                                 sx={{ gridColumn: "span 4" }}

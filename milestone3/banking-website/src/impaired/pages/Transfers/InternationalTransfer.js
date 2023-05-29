@@ -9,6 +9,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import { useSelector } from 'react-redux';
 import ResponseDialog from '../../components/ResponseDialog.js';
 import { useSpeechSynthesis } from 'react-speech-kit';
+import SpeechRecognitionTextField from '../../components/SpeechRecognitionTextField.js';
 
 
 const InternationalTransfer = () => {
@@ -173,7 +174,7 @@ const InternationalTransfer = () => {
                                 </Select>
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <TextField
+                                <SpeechRecognitionTextField
                                     label="Transfer Amount"
                                     name="transferAmount"
                                     onMouseLeave={() => cancel()}
@@ -197,7 +198,7 @@ const InternationalTransfer = () => {
                             </FormControl>
 
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <TextField
+                                <SpeechRecognitionTextField
                                 onMouseLeave={() => cancel()}
                                 onMouseEnter={() => {speakText('Text field to enter the Recipient\'s country')}} 
                                     label="Recipient Country"
@@ -212,7 +213,7 @@ const InternationalTransfer = () => {
                                 />
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <TextField
+                                <SpeechRecognitionTextField
                                 onMouseLeave={() => cancel()}
                                 onMouseEnter={() => {speakText('Text field to enter the Recipient\'s city')}} 
                                     label="Recipient City"
@@ -227,7 +228,7 @@ const InternationalTransfer = () => {
                                 />
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <TextField
+                                <SpeechRecognitionTextField
                                     onMouseLeave={() => cancel()}
                                     onMouseEnter={() => {speakText('Text field to enter the Recipient\'s Swift/BIC')}} 
                                     label="Recipient Swift/BIC"
@@ -242,7 +243,7 @@ const InternationalTransfer = () => {
                                 />
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <TextField
+                                <SpeechRecognitionTextField
                                 onMouseLeave={() => cancel()}
                                 onMouseEnter={() => {speakText('Text field to enter the Recipient\'s IBAN or Account Number')}} 
                                     label="Recipient IBAN or Account Number"
@@ -257,7 +258,7 @@ const InternationalTransfer = () => {
                                 />
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <TextField
+                                <SpeechRecognitionTextField
                                     onMouseLeave={() => cancel()}
                                     onMouseEnter={() => {speakText('Text field to enter the Recipient\'s bank name')}} 
                                     label="Recipient Bank Name"
@@ -272,7 +273,7 @@ const InternationalTransfer = () => {
                                 />
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <TextField
+                                <SpeechRecognitionTextField
                                     label="Purpose"
                                     name="purpose"
                                     onMouseLeave={() => cancel()}

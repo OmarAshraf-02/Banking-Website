@@ -11,6 +11,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import { useSelector } from 'react-redux';
 import ResponseDialog from '../../components/ResponseDialog.js';
 import { useSpeechSynthesis } from 'react-speech-kit';
+import SpeechRecognitionTextField from '../../components/SpeechRecognitionTextField.js';
 
 
 const InternalTransfer = () => {
@@ -165,7 +166,7 @@ const InternalTransfer = () => {
                             </FormControl> */}
 
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <TextField
+                                <SpeechRecognitionTextField
                                     onMouseLeave={() => cancel()}
                                     onMouseEnter={() => {speakText('Text field to enter Recipient account number')}} 
                                     multiline
@@ -182,7 +183,7 @@ const InternalTransfer = () => {
 
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
 
-                                <TextField
+                                <SpeechRecognitionTextField
                                     onMouseLeave={() => cancel()}
                                     onMouseEnter={() => {speakText('Text field to enter transfer amount')}} 
                                     multiline
@@ -206,7 +207,7 @@ const InternalTransfer = () => {
                                 />
                             </FormControl>
 
-                            <TextField
+                            <SpeechRecognitionTextField
                                 onMouseLeave={() => cancel()}
                                 onMouseEnter={() => {speakText('Text field to enter the purpose of the Internal transfer' )}} 
                                 sx={{ gridColumn: "span 4" }}

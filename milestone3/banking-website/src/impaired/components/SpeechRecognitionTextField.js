@@ -11,6 +11,8 @@ function SpeechRecognitionTextField(probs){
       } = useSpeechRecognition();
 
     return (<TextField 
+        {...probs}
+        value={field}
         onClick={() => {
           SpeechRecognition.startListening();
         }}
@@ -19,8 +21,7 @@ function SpeechRecognitionTextField(probs){
             resetTranscript();
             SpeechRecognition.stopListening();
         }}
-        value={field}
-        {...probs}
+
     />);
 }
 

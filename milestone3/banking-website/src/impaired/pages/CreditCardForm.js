@@ -9,6 +9,7 @@ import Header from '../components/Header.jsx';
 import SignaturePad from '../components/SignaturePad.js';
 import BackButton from '../../shared/components/BackButton.js';
 import { useSpeechSynthesis } from 'react-speech-kit';
+import SpeechRecognitionTextField from '../components/SpeechRecognitionTextField.js';
 
 
 
@@ -83,44 +84,22 @@ const CreditCardForm = () => {
                                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                             }}
                         >
-                            <FormControl fullWidth sx={{ gridColumn: 'span 4' }}>
-                                <InputLabel htmlFor="outlined-adornment-amount" shrink>
-                                    Credit Limit
-                                </InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-amount"
-                                    sx={{ height: '52.7167px' }}
-                                    startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
-                                    label="Credit Limit"
-                                    value={creditLimit}
-                                    onChange={handleCreditLimitChange}
-                                    inputProps={{
-                                        'aria-label': 'credit-limit',
-                                    }}
-                                    required
-                                    onMouseLeave={() => cancel()} 
-                                    onMouseEnter={() => {speakText('Text Field to enter the credit card limit' )}}
-                                />
-                            </FormControl>
-                            <FormControl fullWidth sx={{ gridColumn: 'span 4' }}>
-                                <InputLabel htmlFor="outlined-adornment-amount" shrink>
-                                    Annual Income
-                                </InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-annualincome"
-                                    sx={{ height: '52.7167px' }}
-                                    startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
-                                    label="Annual Income"
-                                    onMouseLeave={() => cancel()} 
-                                    onMouseEnter={() => {speakText('Text Field to enter your Annual Income' )}}
-
-                                    inputProps={{
-                                        'aria-label': 'annualIncome',
-                                    }}
-                                    required
-                                />
-                            </FormControl>
-                            <TextField
+                            <SpeechRecognitionTextField
+                            multiline
+                                id="outlined-adornment-amount"
+                                sx={{ height: '52.7167px', gridColumn: 'span 4' }}
+                                startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
+                                label="Annual Income"
+                                value={creditLimit}
+                                onChange={handleCreditLimitChange}
+                                inputProps={{
+                                    'aria-label': 'credit-limit',
+                                }}
+                                required
+                                onMouseLeave={() => cancel()} 
+                                onMouseEnter={() => {speakText('Text Field to enter your Annual Income' )}}
+                            />
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="National ID Number"
@@ -130,7 +109,7 @@ const CreditCardForm = () => {
                                 onMouseLeave={() => cancel()} 
                                 onMouseEnter={() => {speakText('Text Field to enter your National ID number' )}}
                             />
-                            <TextField
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="Occupation"
@@ -140,7 +119,7 @@ const CreditCardForm = () => {
                                 onMouseLeave={() => cancel()} 
                                 onMouseEnter={() => {speakText('Text Field to enter your occupation' )}}
                             />
-                            <TextField
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="Employer"
@@ -198,7 +177,7 @@ const CreditCardForm = () => {
 
                                 </RadioGroup>
                             </FormControl>
-                            <TextField
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 onMouseLeave={() => cancel()} 
@@ -209,7 +188,7 @@ const CreditCardForm = () => {
                                 multiline
                                 required
                             />
-                            <TextField
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 onMouseLeave={() => cancel()} 
@@ -236,7 +215,7 @@ const CreditCardForm = () => {
                                     value="no" control={<Radio />} label="No" />
                                 </RadioGroup>
                             </FormControl>
-                            <TextField
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 onMouseLeave={() => cancel()} 

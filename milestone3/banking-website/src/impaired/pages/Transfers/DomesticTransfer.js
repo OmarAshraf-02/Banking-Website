@@ -9,6 +9,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import { useSelector } from 'react-redux';
 import ResponseDialog from '../../components/ResponseDialog.js';
 import { useSpeechSynthesis } from 'react-speech-kit';
+import SpeechRecognitionTextField from '../../components/SpeechRecognitionTextField.js';
 
 
 const DomesticTransfer = () => {
@@ -150,7 +151,7 @@ const DomesticTransfer = () => {
                                 />
                             </FormControl> */}
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <TextField
+                                <SpeechRecognitionTextField
                                     onMouseLeave={() => cancel()}
                                     onMouseEnter={() => {speakText('Text Field to enter the recipient account number' )}} 
                                     label="Recipient Account Number"
@@ -164,7 +165,7 @@ const DomesticTransfer = () => {
                                 />
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <TextField
+                                <SpeechRecognitionTextField
                                     onMouseLeave={() => cancel()}
                                     onMouseEnter={() => {speakText('Text field to enter the recipent bank name' )}} 
                                     label="Recipient Bank Name"
@@ -178,7 +179,7 @@ const DomesticTransfer = () => {
                                 />
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <TextField
+                                <SpeechRecognitionTextField
                                     onMouseLeave={() => cancel()}
                                     onMouseEnter={() => {speakText('Text field to enter the transfer amount')}} 
                                     sx={{ gridColumn: "span 4" }}
@@ -204,7 +205,7 @@ const DomesticTransfer = () => {
                                 />
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-                                <TextField
+                                <SpeechRecognitionTextField
                                     onMouseLeave={() => cancel()}
                                     onMouseEnter={() => {speakText('Text field to enter the purpose of the domestic transfer' )}} 
                                     label="Purpose"

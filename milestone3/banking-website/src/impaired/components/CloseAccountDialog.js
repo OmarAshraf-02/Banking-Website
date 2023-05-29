@@ -23,9 +23,15 @@ import { useSpeechSynthesis } from 'react-speech-kit';
 
 
 const BalanceAvailableDialog = ({ open, handleClose }) => {
+  const { speak, cancel } = useSpeechSynthesis();
 
+    const speakText = (text) => {
+        speak({ text });
+    };
   return (
     <Dialog
+    onMouseLeave={() => cancel()} 
+    onMouseEnter={() => {speakText("Pop up of closing the account")}}
       open={open}
       // TransitionComponent={Transition}
       keepMounted
@@ -34,14 +40,20 @@ const BalanceAvailableDialog = ({ open, handleClose }) => {
     >
       <div className='flex flex-col items-center m-3'>
         <DangerousIcon style={{ color: 'red' }} fontSize='large' />
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
+        <DialogContent
+        onMouseEnter={() => {speakText("You need to transfer your money first to another account to be able to close the account. Go to the Transfer tab in the sidebar to the left of the screen.")}}
+        onMouseLeave={() => cancel()} 
+        >
+          <DialogContentText  id="alert-dialog-slide-description">
             You need to transfer your money first to another account to be able to close the account.
             Go to the Transfer tab in the sidebar to the left of the screen.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button type="submit" color="secondary" variant="contained" onClick={handleClose}>Ok</Button>
+          <Button 
+          onMouseLeave={() => cancel()} 
+          onMouseEnter={() => {speakText("Button to clost the popup")}}
+          type="submit" color="secondary" variant="contained" onClick={handleClose}>Ok</Button>
         </DialogActions>
       </div>
     </Dialog>
@@ -49,8 +61,15 @@ const BalanceAvailableDialog = ({ open, handleClose }) => {
 };
 
 const BalanceZeroDialog = ({ open, handleClose, handleCloseIfYes }) => {
+  const { speak, cancel } = useSpeechSynthesis();
+
+    const speakText = (text) => {
+        speak({ text });
+    };
   return (
     <Dialog
+    onMouseLeave={() => cancel()} 
+    onMouseEnter={() => {speakText("Pop up of closing the account")}}
       open={open}
       // TransitionComponent={Transition}
       keepMounted
@@ -59,14 +78,23 @@ const BalanceZeroDialog = ({ open, handleClose, handleCloseIfYes }) => {
     >
       <div className='flex flex-col items-center m-3'>
         <WarningAmberIcon style={{ color: 'yellow' }} fontSize='large' />
-        <DialogContent>
+        <DialogContent
+        onMouseEnter={() => {speakText("Are you sure you want to close the account?")}}
+        onMouseLeave={() => cancel()} 
+        >
           <DialogContentText id="alert-dialog-slide-description">
             Are you sure you want to close the account?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button type="submit" sx={{ outline: '2px solid red', color: 'red' }} onClick={handleClose}>No</Button>
-          <Button type="submit" sx={{ outline: '2px solid green', color: 'green' }} onClick={handleCloseIfYes}>Yes</Button>
+          <Button
+          onMouseLeave={() => cancel()} 
+          onMouseEnter={() => {speakText("Press this button to cancel the deletion")}}
+          type="submit" sx={{ outline: '2px solid red', color: 'red' }} onClick={handleClose}>No</Button>
+          <Button
+          onMouseLeave={() => cancel()} 
+          onMouseEnter={() => {speakText("Press this button to delete your account")}}
+          type="submit" sx={{ outline: '2px solid green', color: 'green' }} onClick={handleCloseIfYes}>Yes</Button>
         </DialogActions>
       </div>
     </Dialog>
