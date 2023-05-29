@@ -11,6 +11,7 @@ import { Link, useParams } from 'react-router-dom';
 import TransactionHistory from '../TransactionHistory';
 import BackButton from '../../../shared/components/BackButton';
 import CloseAccountDialog from '../../components/CloseAccountDialog';
+import { useSpeechSynthesis } from 'react-speech-kit';
 
 
 function AccountPage() {
@@ -22,6 +23,11 @@ function AccountPage() {
             return account.id === Number(id)
         })
     })
+    const { speak, cancel } = useSpeechSynthesis();
+
+    const speakText = (text) => {
+        speak({ text });
+    };
     const {
         accountNumber,
         accountType,
@@ -36,41 +42,44 @@ function AccountPage() {
             <Box sx={{ margin: 3 }}>
                 <BackButton to="/accounts" />
                 <div className='flex flex-row items-center justify-between'>
-                <TextField
-  label="Account Type"
-  value={accountType}
-  InputProps={{
-    readOnly: true,
-  }}
-  multiline
-  variant="filled"
-  fullWidth
-  sx={{ mb: 2 , mr:2 }}
-/>
+                    <TextField
+                        label="Account Type"
+                        value={accountType}
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                        multiline
+                        variant="filled"
+                        fullWidth
+                        sx={{ mb: 2, mr: 2 }}
+                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Account Type is" + " " + accountType) }}
+                    />
 
-<TextField
-  label="Account Number"
-  value={accountNumber}
-  InputProps={{
-    readOnly: true,
-  }}
-  multiline
-  fullWidth
-  variant="filled"
-  sx={{ mb: 2, mr:2 }}
-/>
+                    <TextField
+                        label="Account Number"
+                        value={accountNumber}
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                        multiline
+                        fullWidth
+                        variant="filled"
+                        sx={{ mb: 2, mr: 2 }}
+                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Account Number is" + " " + accountNumber) }}
+                    />
 
-<TextField
-  label="Balance"
-  fullWidth
-  value={balance}
-  InputProps={{
-    readOnly: true,
-  }}
-  multiline
-  variant="filled"
-  sx={{ mb: 2 , ml:2 }}
-/>
+                    <TextField
+                        label="Balance"
+                        fullWidth
+                        value={balance}
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                        multiline
+                        variant="filled"
+                        sx={{ mb: 2, ml: 2 }}
+                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Account Balance is" + " " + balance) }}
+                    />
                     {/* <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
                         {accountType}
                     </Typography>
@@ -81,20 +90,20 @@ function AccountPage() {
                         Balance: {balance}
                     </Typography> */}
                 </div>
-                {card!==undefined&&Object.keys(card).length > 0 ?
+                {card !== undefined && Object.keys(card).length > 0 ?
                     <CardItem key={card.id} card={card} />
                     :
                     <div className='flex flex-row justify-center items-center m-4' >
                         <Link to='debitCardForm'>
                             <Box display="flex" justifyContent="end" mt="20px" margin={3} padding={3}>
-                                <Button type="submit" color="secondary" variant="contained">
+                                <Button type="submit" color="secondary" variant="contained" onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press here to apply for a new Debit Card") }}>
                                     Apply for debit card
                                 </Button>
                             </Box>
                         </Link>
                         <Link to='prepaidCardForm'>
                             <Box display="flex" justifyContent="end" mt="20px" margin={3} padding={3}>
-                                <Button type="submit" color="secondary" variant="contained">
+                                <Button type="submit" color="secondary" variant="contained" onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press here to apply for a new Prepaid Card") }}>
                                     Apply for prepaid card
                                 </Button>
                             </Box>
@@ -102,8 +111,8 @@ function AccountPage() {
                     </div>
                 }
                 <TransactionHistory accountNumbers={[accountNumber]} isTitle={false} />
-                {status==='Inactive'?<></>:<CloseAccountDialog account={account}/>}
-                
+                {status === 'Inactive' ? <></> : <CloseAccountDialog account={account} />}
+
             </Box>
         </div>
     )

@@ -17,11 +17,11 @@ import RedeemPointsDialog from "../../components/RedeemPointsDialog";
 import { useEffect } from "react";
 import { useSpeechSynthesis } from 'react-speech-kit';
 const HomePage = () => {
-  const { speak } = useSpeechSynthesis();
+  const { speak, cancel } = useSpeechSynthesis();
 
   const speakText = (text) => {
-    speak({ text });
-  };
+    speak({ text });
+  };
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const creditCards = useSelector((state) => {
@@ -29,47 +29,47 @@ const HomePage = () => {
   })
   const creditCardArray = creditCards.map((hero, i) => {
     return (
-      hero.points===0?<></>:
-<Box
-  key={`${hero.id}`}
-  display="flex"
-  justifyContent="space-between"
-  alignItems="center"
-  borderBottom={`4px solid ${colors.primary[500]}`}
-  p="15px"
->
-  <Box>
-    <Typography
-      color={colors.greenAccent[500]}
-      variant="h4"
-      fontWeight="600"
-    >
-      {hero.cardNumber}
-    </Typography>
-    <Typography
-      color={colors.grey[100]}
-      variant="h4"
-      fontWeight="600"
-    >
-      Points: {hero.points}
-    </Typography>
-  </Box>
-  <RedeemPointsDialog creditCard={hero}/>
-  {/* <Button color="secondary" variant="contained" style={{ marginLeft: '10px' , color: colors.grey[100] }}>
+      hero.points === 0 ? <></> :
+        <Box
+          key={`${hero.id}`}
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          borderBottom={`4px solid ${colors.primary[500]}`}
+          p="15px"
+        >
+          <Box>
+            <Typography
+              color={colors.greenAccent[500]}
+              variant="h4"
+              fontWeight="600"
+            >
+              {hero.cardNumber}
+            </Typography>
+            <Typography
+              color={colors.grey[100]}
+              variant="h4"
+              fontWeight="600"
+            >
+              Points: {hero.points}
+            </Typography>
+          </Box>
+          <RedeemPointsDialog creditCard={hero} />
+          {/* <Button color="secondary" variant="contained" style={{ marginLeft: '10px' , color: colors.grey[100] }}>
     Redeem
   </Button> */}
-</Box>
+        </Box>
 
     );
   });
-//   useEffect(() => {
-//     // Get all the text content from the page
-//     const pageText = document.body.innerText;
-//     console.log(pageText);
+  //   useEffect(() => {
+  //     // Get all the text content from the page
+  //     const pageText = document.body.innerText;
+  //     console.log(pageText);
 
-//     // Speak the entire page content
-//     speak({ text: pageText });
-//   }, []);
+  //     // Speak the entire page content
+  //     speak({ text: pageText });
+  //   }, []);
   return (
     <Box m="20px">
       {/* HEADER */}
@@ -165,52 +165,14 @@ const HomePage = () => {
         </Box>
 
         {/* ROW 2 */}
+
         <Box
-          gridColumn="span 8"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-        >
-          <Box
-            mt="25px"
-            p="0 30px"
-            display="flex "
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Box>
-              <Typography
-                variant="h5"
-                fontWeight="600"
-                color={colors.grey[100]}
-              >
-                Accounts' Balances
-              </Typography>
-              <Typography
-                variant="h3"
-                fontWeight="bold"
-                color={colors.greenAccent[500]}
-              >
-                $10,470.5
-              </Typography>
-            </Box>
-            <Box>
-              <IconButton>
-                <DownloadOutlinedIcon
-                  sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-                />
-              </IconButton>
-            </Box>
-          </Box>
-          <Box height="250px" m="-20px 0 0 0">
-            <LineChart isDashboard={true} />
-          </Box>
-        </Box>
-        <Box
-          gridColumn="span 4"
+          gridColumn="span 6"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           overflow="auto"
         >
+
           <Box
             display="flex"
             justifyContent="space-between"
@@ -256,52 +218,39 @@ const HomePage = () => {
           ))}
         </Box>
 
-        {/* ROW 3 */}
 
 
-        <Box
-          gridColumn="span 8"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-        >
-          <Typography
-            variant="h5"
-            fontWeight="600"
-            sx={{ padding: "30px 30px 0 30px" }}
-          >
-            Expense Chart
-          </Typography>
-          <Box height="250px" mt="-20px">
-            <BarChart isDashboard={true} />
-          </Box>
-        </Box>
-        <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          overflow="auto"
-        >
+
+
+        <div style={{ display: "contents" }} onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Redeem Points") }}>
           <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            borderBottom={`4px solid ${colors.primary[500]}`}
-            colors={colors.grey[100]}
-            p="15px"
+            gridColumn="span 6"
+            gridRow="span 2"
+            backgroundColor={colors.primary[400]}
+            overflow="auto"
           >
-            <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-              Redeem Points
-            </Typography>
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              borderBottom={`4px solid ${colors.primary[500]}`}
+              colors={colors.grey[100]}
+              p="15px"
+            >
+              <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
+                Redeem Points
+              </Typography>
+            </Box>
+            {
+              creditCardArray.every(fragment => fragment.toString() === '<></>') ?
+                <Typography color={colors.grey[100]} variant="h5" fontWeight="600" sx={{ padding: '15px' }}>
+                  No Credit Cards with Points
+                </Typography>
+                :
+                creditCardArray
+            }
           </Box>
-          {
-          creditCardArray.every(fragment => fragment.toString() === '<></>')?
-          <Typography color={colors.grey[100]} variant="h5" fontWeight="600" sx={{padding: '15px'}}>
-            No Credit Cards with Points
-          </Typography>
-          :
-          creditCardArray
-          }
-        </Box>
+        </div>
       </Box>
     </Box>
   );

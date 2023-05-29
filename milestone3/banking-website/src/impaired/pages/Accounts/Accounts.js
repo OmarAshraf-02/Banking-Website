@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { useTheme } from '@emotion/react';
 import { tokens } from '../../../themes';
-
+import { useSpeechSynthesis } from 'react-speech-kit';
 
 function Accounts() {
   const dispatch = useDispatch();
@@ -15,17 +15,22 @@ function Accounts() {
   })
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const { speak, cancel } = useSpeechSynthesis();
+
+  const speakText = (text) => {
+    speak({ text });
+  };
   return (
     <div>
-      <Header title='Accounts' subtitle=''/>
-      {accounts.map((account)=>{
-        return <AccountItem id={account.id} account={account}/>
+      <Header title='Accounts' subtitle='' />
+      {accounts.map((account) => {
+        return <AccountItem id={account.id} account={account} />
       })}
       <div className='flex flex-col items-center m-3'>
-      <Link to='openAccount'>
-          <Button variant='contained' color="secondary" sx={{ fontSize: 12, color: colors.grey[250]}} size="medium">Open an Account</Button>
-      </Link>
-      </div> 
+        <Link to='openAccount'>
+          <Button variant='contained' color="secondary" sx={{ fontSize: 12, color: colors.grey[250] }} size="medium" onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press here to apply for a new bank account") }}>Open an Account</Button>
+        </Link>
+      </div>
     </div>
   )
 }

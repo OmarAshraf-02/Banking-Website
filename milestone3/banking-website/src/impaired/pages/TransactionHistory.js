@@ -5,6 +5,7 @@ import React from 'react';
 import { payBill } from '../../store/index'
 import { useDispatch, useSelector } from 'react-redux'
 import Header from "../components/Header";
+import { useSpeechSynthesis } from 'react-speech-kit';
 
 function TransactionHistory({ accountNumbers, isTitle }) {
 
@@ -17,11 +18,16 @@ function TransactionHistory({ accountNumbers, isTitle }) {
       return accountNumbers.includes(transaction.accountNumber)
     })
   }
-  if(isTitle===undefined){
-    isTitle=true;
+  if (isTitle === undefined) {
+    isTitle = true;
   }
 
   // console.log(transactions);
+  const { speak, cancel } = useSpeechSynthesis();
+
+  const speakText = (text) => {
+    speak({ text });
+  };
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
@@ -68,10 +74,10 @@ function TransactionHistory({ accountNumbers, isTitle }) {
   return (
     <Box m="20px">
       {
-        isTitle?
+        isTitle ?
           <Header title='Transaction History' />
-        :
-          <Header subtitle='Transaction History' />
+          :
+          <Header subtitle=' ' />
       }
       <Box
         m="40px 0 0 0"

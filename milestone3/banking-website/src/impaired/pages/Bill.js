@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Header from "../components/Header";
 import PayBillDialog from "../components/PayBillDialog";
 import SetReminderDialog from "../components/SetReminderDialog";
+import { useSpeechSynthesis } from 'react-speech-kit';
 
 function Bill() {
   const accounts = useSelector((state) => {
@@ -23,20 +24,26 @@ function Bill() {
     setOpen(false);
     setSelectedValue(value);
   };
-  
-  
+  const { speak, cancel } = useSpeechSynthesis();
 
-  const Dialog = ({params})=> (
+  const speakText = (text) => {
+    speak({ text });
+  };
+
+
+
+  const Dialog = ({ params }) => (
     <div>
       <Button
-       type="submit" 
-       color="secondary" 
+        type="submit"
+        color="secondary"
         variant="contained"
         size="small"
         style={{ marginLeft: 16 }}
         tabIndex={params.hasFocus ? 0 : -1}
         //() => dispatch(payBill(params.row.id))
         onClick={handleClickOpen}
+
       >
         Pay
       </Button>
@@ -83,7 +90,7 @@ function Bill() {
       renderCell: (params) => {
         // console.log(params)
         return (
-          <Dialog params={params}/>
+          <Dialog params={params} />
         )
       }
     },
@@ -94,7 +101,7 @@ function Bill() {
       renderCell: (params) => {
         // console.log(params)
         return (
-          <SetReminderDialog type={`${params.row.payee} bill`}/>
+          <SetReminderDialog type={`${params.row.payee} bill`} />
         )
       }
     },
