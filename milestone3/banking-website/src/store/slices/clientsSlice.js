@@ -16,7 +16,7 @@ const clientSlice = createSlice({
             {
                 id: 1,
                 status: 'Active',
-                accountNumber: 555555555,
+                accountNumber: 324324324234,
                 accountType:'Savings',
                 card: { id: 2, cardNumber: 'CARD-222', type: 'Debit Card', validThru: '11/25', cvc: 223 },
                 balance: 0,
@@ -74,7 +74,7 @@ const clientSlice = createSlice({
         {
             id: 5,
             dateTime: "2023-05-23 08:15:50",
-            accountNumber: 555555555,
+            accountNumber: 324324324234,
             transactionType: "Withdrawal",
             amount: -100.00,
             balance: 400.00,
@@ -105,7 +105,7 @@ const clientSlice = createSlice({
             {
                 id: 3,
                 date: "2023-05-20",
-                accountNumber: 555555555,
+                accountNumber: 324324324234,
                 loanType: "Personal",
                 amount: 25000.00,
                 status: "Active",
@@ -144,7 +144,7 @@ const clientSlice = createSlice({
                   loanType: "Car",
                   status:'Paid',
                   date: "2023-05-15",
-                  accountNumber: 555555555,
+                  accountNumber: 324324324234,
                   paymentDue: "2023-06-01",
                   rate: 12,
                   // Add other valid attributes here
@@ -548,7 +548,7 @@ const clientSlice = createSlice({
             domestic: [
               {
                 id: 1,
-                senderAccountNumber: 555555555,
+                senderAccountNumber: 324324324234,
                 recipientAccountNumber: 123456789,
                 recipientBankName: 'ABC Bank',
                 amount: 1000.00,
@@ -559,7 +559,7 @@ const clientSlice = createSlice({
               {
                 id: 2,
                 senderAccountNumber: 987654321,
-                recipientAccountNumber: 555555555,
+                recipientAccountNumber: 324324324234,
                 recipientBankName: 'XYZ Bank',
                 amount: 500.00,
                 purpose: 'Reimbursement',
@@ -571,7 +571,7 @@ const clientSlice = createSlice({
             internal: [
               {
                 id: 1,
-                senderAccountNumber: 555555555,
+                senderAccountNumber: 324324324234,
                 recipientAccountNumber: 987654321,
                 amount: 2000.00,
                 purpose: 'Transfer to another account',
@@ -581,7 +581,7 @@ const clientSlice = createSlice({
               {
                 id: 2,
                 senderAccountNumber: 123456789,
-                recipientAccountNumber: 555555555,
+                recipientAccountNumber: 324324324234,
                 amount: 1500.00,
                 purpose: 'Shared expenses',
                 dateSent: '2023-05-25',
@@ -592,7 +592,7 @@ const clientSlice = createSlice({
             international: [
               {
                 id: 1,
-                senderAccountNumber: 555555555,
+                senderAccountNumber: 324324324234,
                 recipientAccountNumber: 'GB12BARC12345678901234',
                 recipientBankName: 'Barclays Bank',
                 amount: 5000.00,
