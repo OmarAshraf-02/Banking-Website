@@ -12,8 +12,8 @@ import { Typography } from '@mui/material'
 
 function Loan() {
     const dispatch = useDispatch();
-    const {personalLoans, carLoans} = useSelector((state) => {
-      return state.clients[0].loans;
+    const { personalLoans, carLoans } = useSelector((state) => {
+        return state.clients[0].loans;
     })
     console.log(carLoans)
     return (
@@ -26,26 +26,26 @@ function Loan() {
         // </div>
 
         <div >
-            <Header title='Loans' subtitle='Loan History'/>
-            <Header subtitle='Active Loans'/>
-            {personalLoans.map((loan)=>{
-                return loan.status==='Active'?<LoanCards key={loan.id} loan={loan}/>:<></>
+            <Header title='Loans' subtitle='Loan History' />
+            <Header subtitle='Active Loans' />
+            {personalLoans.map((loan) => {
+                return loan.status === 'Active' ? <LoanCards key={loan.id} loan={loan} /> : <></>
             })}
-            {carLoans.map((loan)=>{
-                return loan.status==='Active'?<LoanCards key={loan.id} loan={loan}/>:<></>
+            {carLoans.map((loan) => {
+                return loan.status === 'Active' ? <LoanCards key={loan.id} loan={loan} /> : <></>
             })}
-            <Header subtitle='Paid Loans'/>
-            {personalLoans.map((loan)=>{
-                return loan.status==='Paid'?<LoanCards key={loan.id} loan={loan}/>:<></>
+            <Header subtitle='Paid Loans' />
+            {personalLoans.map((loan) => {
+                return loan.status === 'Paid' ? <LoanCards key={loan.id} loan={loan} /> : <></>
             })}
-            {carLoans.map((loan)=>{
-                return loan.status==='Paid'?<LoanCards key={loan.id} loan={loan}/>:<></>
+            {carLoans.map((loan) => {
+                return loan.status === 'Paid' ? <LoanCards key={loan.id} loan={loan} /> : <></>
             })}
-            <div className='flex items-center'>
-                <LoanTypeCard alt='car loan' img={carloan} to='CarLoanForm' summary='Apply for car loans and enjoy your miserable life because you will eventually go to prison' title='Car Loans'/>
-                <LoanTypeCard alt='personal loan' img={personalloan} to='PersonalLoanForm' summary='Apply for personal loans and enjoy your miserable life because you will eventually go to prison' title='Personal Loans'/>
+            <div className='flex items-center' style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <LoanTypeCard alt='car loan' img={carloan} to='CarLoanForm' summary='Apply for car loans and enjoy your miserable life because you will eventually go to prison' title='Car Loans' />
+                <LoanTypeCard alt='personal loan' img={personalloan} to='PersonalLoanForm' summary='Apply for personal loans and enjoy your miserable life because you will eventually go to prison' title='Personal Loans' />
             </div>
-            
+
             {/* <div class="cf ph2-ns">
                 <h3 class="mw5  pa3 ph5-ns">Apply for Loans</h3>
                 <div class="fl w-100 w-50-ns pa2">
