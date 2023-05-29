@@ -6,6 +6,7 @@ import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import { Navbar } from '../widgets/layout';
 import routes from '../routes';
+import ResponseDialog from '../../client/components/ResponseDialog';
 
 const FormWrapper = styled('div')({
     display: 'flex',
@@ -130,7 +131,8 @@ const SignIn = () => {
                                                     <Button variant="contained" color="primary" type="submit" fullWidth style={{ color: 'white' }}>Login</Button>
                                                 </Link>
                                                 :
-                                                <Button variant="contained" color="primary" type="submit" fullWidth style={{ color: 'white' }}>Login</Button>
+                                                <ResponseDialog submit='Login' response='failed' message='Wrong username or password'/>
+                                                // <Button variant="contained" color="primary" type="submit" fullWidth style={{ color: 'white' }}>Login</Button>
                                         )
                                 )   
                         }

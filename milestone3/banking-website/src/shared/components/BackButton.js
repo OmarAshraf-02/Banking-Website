@@ -12,7 +12,7 @@ function BackButton({ to }) {
       speak({ text });
     };
     const currentPath = location.pathname.split("/");
-    console.log(currentPath)
+    // console.log(currentPath)
     return (
         <Link
         onMouseLeave={() => cancel()} 
