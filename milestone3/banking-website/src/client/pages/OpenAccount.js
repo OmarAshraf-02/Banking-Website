@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from "react";
-import { Box, Button, TextField, Select, InputLabel, MenuItem, FormControl, OutlinedInput, InputAdornment, Radio, RadioGroup, FormControlLabel, FormLabel, Checkbox, Typography } from "@mui/material";
+import { Box, Button, TextField, Select, InputLabel, MenuItem, FormControl, OutlinedInput, InputAdornment, Radio, RadioGroup, FormControlLabel, FormLabel, Checkbox, Typography, CircularProgress } from "@mui/material";
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { Form, Field, Formik } from "formik";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -8,17 +8,33 @@ import * as yup from "yup";
 import Header from '../components/Header.jsx';
 import SignaturePad from '../components/SignaturePad.js';
 import BackButton from '../../shared/components/BackButton.js';
+import { useTheme } from '@emotion/react';
+import { tokens } from '../../themes.js';
+import CheckIcon from '@mui/icons-material/Check';
 
 
 const OpenAccountForm = () => {
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
     const [loading, setLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
+    const [isConfirmed, setIsConfirmed] = useState(false);
 
-    const handleFormSubmit = async (values, { resetForm }) => {
+    const handleFormSubmit = async (values, { resetForm, setSubmitting }) => {
         setLoading(true);
-        resetForm({ values: '' });
-        await setTimeout(() => { setLoading(false) }, 5000)
+
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        resetForm();
+        setLoading(false);
+
+        setIsConfirmed(true);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setIsConfirmed(false);
+
+        setSubmitting(false);
     };
+
 
     const initialValues = {
         nationalId: '',
@@ -31,7 +47,7 @@ const OpenAccountForm = () => {
         maritalStatus: '',
         haveCreditCards: '',
         currentCreditCards: '',
-        accountType:''
+        accountType:'',
     };
     const styles = {
         textField: {
@@ -70,6 +86,7 @@ const OpenAccountForm = () => {
                     handleBlur,
                     handleChange,
                     handleSubmit,
+                    isSubmitting
                 }) => (
                     <form onSubmit={handleSubmit}>
                         <Box
@@ -107,13 +124,19 @@ const OpenAccountForm = () => {
                                 error={!!touched.nationalId && !!errors.nationalId}
                                 helperText={touched.nationalId && errors.nationalId}
                             />
-                            <TextField
+                           <TextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="Occupation"
                                 InputProps={styles}
                                 multiline
                                 required
+                                name='occupation'
+                                value={values.occupation}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                error={!!touched.occupation && !!errors.occupation}
+                                helperText={touched.occupation && errors.occupation}
                             />
                             <TextField
                                 sx={{ gridColumn: "span 4" }}
@@ -123,17 +146,55 @@ const OpenAccountForm = () => {
                                 placeholder="If not applicable, clarify here if currently Self-Employed or Unemployed"
                                 multiline
                                 required
+                                name='employer'
+                                value={values.employer}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                error={!!touched.employer && !!errors.employer}
+                                helperText={touched.employer && errors.employer}
                             />
                             <FormControl>
                                 <FormLabel id="livingStatus">Are you a</FormLabel>
                                 <RadioGroup
                                     row
                                     aria-labelledby="demo-row-radio-buttons-group-label"
-                                    name="row-radio-buttons-group"
+                                    name="livingStatus"
+                                    value={values.livingStatus}
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    error={!!touched.livingStatus && !!errors.livingStatus}
+                                    helperText={touched.livingStatus && errors.livingStatus}
                                 >
-                                    <FormControlLabel value="homeOwner" control={<Radio />} label="Homeowner" />
-                                    <FormControlLabel value="renter" control={<Radio />} label="Renter" />
-                                    <FormControlLabel value="other" control={<Radio />} label="Other" />
+                                    <FormControlLabel 
+                                        value="homeOwner" 
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }}
+                                        label="Homeowner" 
+                                    />
+                                    <FormControlLabel 
+                                        value="renter" 
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }} 
+                                        label="Renter" 
+                                    />
+                                    <FormControlLabel 
+                                        value="other" 
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }}
+                                        label="Other" 
+                                    />
                                 </RadioGroup>
                             </FormControl>
                             <FormControl>
@@ -141,24 +202,88 @@ const OpenAccountForm = () => {
                                 <RadioGroup
                                     row
                                     aria-labelledby="demo-row-radio-buttons-group-label"
-                                    name="row-radio-buttons-group"
+                                    name="maritalStatus"
+                                    value={values.maritalStatus}
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    error={!!touched.maritalStatus && !!errors.maritalStatus}
+                                    helperText={touched.maritalStatus && errors.maritalStatus}
                                 >
-                                    <FormControlLabel value="single" control={<Radio />} label="Single" />
-                                    <FormControlLabel value="married" control={<Radio />} label="Married" />
-                                    <FormControlLabel value="divorced" control={<Radio />} label="Divorced" />
-                                    <FormControlLabel value="widow" control={<Radio />} label="Widow(er)" />
-
+                                    <FormControlLabel 
+                                        value="single" 
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }} 
+                                        label="Single" 
+                                    />
+                                    <FormControlLabel 
+                                        value="married" 
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }} 
+                                        label="Married" 
+                                    />
+                                    <FormControlLabel 
+                                        value="divorced" 
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }} 
+                                        label="Divorced"
+                                    />
+                                    <FormControlLabel 
+                                        value="widow" 
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }} 
+                                        label="Widow(er)" 
+                                    />
                                 </RadioGroup>
-                            </FormControl>
+                            </FormControl> 
                             <FormControl>
                                 <FormLabel id="maritalStatus">Account Type</FormLabel>
                                 <RadioGroup
                                     row
                                     aria-labelledby="demo-row-radio-buttons-group-label"
-                                    name="row-radio-buttons-group"
+                                    // name="row-radio-buttons-group"
+                                    name="accountType"
+                                    value={values.accountType}
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    error={!!touched.accountType && !!errors.accountType}
+                                    helperText={touched.accountType && errors.accountType}
                                 >
-                                    <FormControlLabel value="Savings" control={<Radio />} label="Savings" />
-                                    <FormControlLabel value="Current" control={<Radio />} label="Current" />
+                                    <FormControlLabel 
+                                        value="Savings" 
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }} 
+                                        label="Savings" 
+                                    />
+                                    <FormControlLabel 
+                                        value="Current" 
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }} 
+                                        label="Current" 
+                                    />
                                 </RadioGroup>
                             </FormControl>
                             <TextField
@@ -169,6 +294,12 @@ const OpenAccountForm = () => {
                                 InputProps={styles}
                                 multiline
                                 required
+                                name="address"
+                                value={values.address}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                error={!!touched.address && !!errors.address}
+                                helperText={touched.address && errors.address}
                             />
                             <TextField
                                 sx={{ gridColumn: "span 4" }}
@@ -177,16 +308,46 @@ const OpenAccountForm = () => {
                                 InputProps={styles}
                                 multiline
                                 required
+                                name="city"
+                                value={values.city}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                error={!!touched.city && !!errors.city}
+                                helperText={touched.city && errors.city}
                             />
                             <FormControl>
                                 <FormLabel id="previousCards">Do you have a credit card? (If yes fill in the following field)</FormLabel>
                                 <RadioGroup
                                     row
                                     aria-labelledby="demo-row-radio-buttons-group-label"
-                                    name="row-radio-buttons-group"
+                                    // name="row-radio-buttons-group"
+                                    name="haveCreditCards"
+                                    value={values.haveCreditCards}
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    error={!!touched.haveCreditCards && !!errors.haveCreditCards}
+                                    helperText={touched.haveCreditCards && errors.haveCreditCards}
                                 >
-                                    <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-                                    <FormControlLabel value="no" control={<Radio />} label="No" />
+                                    <FormControlLabel 
+                                    value="yes" 
+                                    control={<Radio color="primary" />} 
+                                    label="Yes"
+                                    sx={{
+                                        '& .Mui-checked': {
+                                        color: colors.grey[200], 
+                                        },
+                                    }}/>
+                                    <FormControlLabel 
+                                        value="no" 
+                                        label="No"
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }}
+                                    /> 
+                                    
                                 </RadioGroup>
                             </FormControl>
                             <TextField
@@ -196,6 +357,12 @@ const OpenAccountForm = () => {
                                 placeholder='Please list all your current credit cards and their issuing bank in as many lines as you need'
                                 InputProps={styles}
                                 multiline
+                                name="currentCreditCards"
+                                value={values.currentCreditCards}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                error={!!touched.currentCreditCards && !!errors.currentCreditCards}
+                                helperText={touched.currentCreditCards && errors.currentCreditCards}
                             />
                             <div>
                                 <FormControl fullWidth sx={{display:'flex-row', marginBottom:3}}>
@@ -210,17 +377,34 @@ const OpenAccountForm = () => {
                                 </div>
                                 <FormControlLabel
                                     required
-                                    control={<Checkbox />}
+                                    control={<Checkbox color="primary" // Use "primary" or "secondary" color for the tick
+                                    sx={{
+                                      '&.Mui-checked': {
+                                        color: colors.grey[200], // Replace with your desired color
+                                      },
+                                    }}/>}
                                     label="Accept Terms and Conditions"
                                 />
                             </div>
 
 
                         </Box>
-                        <Box display="flex" justifyContent="end" mt="20px">
+                        {/* <Box display="flex" justifyContent="end" mt="20px">
                             {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained">
                                 Apply
                             </Button>}
+                        </Box> */}
+                        <Box display="flex" justifyContent="end" mt="20px">
+                            {isSubmitting ? (
+                                <CircularProgress color="secondary" size={24} />
+                            ) : (
+                                <>
+                                    {isConfirmed && <CheckIcon style={{ marginRight: '10px', color: 'green' }} />}
+                                    <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
+                                        APPLY
+                                    </Button> 
+                                </>
+                            )}
                         </Box>
                     </form>
                 )}
@@ -240,8 +424,8 @@ const openAccountSchema = yup.object().shape({
     city: yup.string().required("required"),
     occupation: yup.string().required("required"),
     maritalStatus: yup.string().required("required"),
-    haveCreditCards: yup.string().required("required"),
-    currentCreditCards: yup.string().required("required"),
+    haveCreditCards: yup.string(),
+    currentCreditCards: yup.string(),
     accountType: yup.string().required("required")
 });
 
