@@ -15,7 +15,6 @@ function Loan() {
     const { personalLoans, carLoans } = useSelector((state) => {
         return state.clients[0].loans;
     })
-    console.log(carLoans)
     return (
         // <div>
         //   <Header className='tc' title='Loans' subtitle=''/>
