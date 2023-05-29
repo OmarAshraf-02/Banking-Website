@@ -26,7 +26,13 @@ function Loan() {
         // </div>
 
         <div >
-            <Header title='Loans' subtitle='Loan History' />
+            <Header title='Loans' />
+
+            <div className='flex items-center' style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <LoanTypeCard alt='car loan' img={carloan} to='CarLoanForm' summary='Apply for car loans and enjoy your miserable life because you will eventually go to prison' title='Car Loans' />
+                <LoanTypeCard alt='personal loan' img={personalloan} to='PersonalLoanForm' summary='Apply for personal loans and enjoy your miserable life because you will eventually go to prison' title='Personal Loans' />
+            </div>
+            <Header subtitle='Loan History' />
             <Header subtitle='Active Loans' />
             {personalLoans.map((loan) => {
                 return loan.status === 'Active' ? <LoanCards key={loan.id} loan={loan} /> : <></>
@@ -41,10 +47,7 @@ function Loan() {
             {carLoans.map((loan) => {
                 return loan.status === 'Paid' ? <LoanCards key={loan.id} loan={loan} /> : <></>
             })}
-            <div className='flex items-center' style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <LoanTypeCard alt='car loan' img={carloan} to='CarLoanForm' summary='Apply for car loans and enjoy your miserable life because you will eventually go to prison' title='Car Loans' />
-                <LoanTypeCard alt='personal loan' img={personalloan} to='PersonalLoanForm' summary='Apply for personal loans and enjoy your miserable life because you will eventually go to prison' title='Personal Loans' />
-            </div>
+
 
             {/* <div class="cf ph2-ns">
                 <h3 class="mw5  pa3 ph5-ns">Apply for Loans</h3>
