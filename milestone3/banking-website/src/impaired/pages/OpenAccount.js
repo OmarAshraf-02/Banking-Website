@@ -10,10 +10,13 @@ import SignaturePad from '../components/SignaturePad.js';
 import BackButton from '../../shared/components/BackButton.js';
 import { useSpeechSynthesis } from 'react-speech-kit';
 import SpeechRecognitionTextField from '../components/SpeechRecognitionTextField.js';
-
+import { useTheme } from '@emotion/react';
+import { tokens } from '../../themes.js';
 
 const OpenAccountForm = () => {
 
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
     const [loading, setLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
 
@@ -253,7 +256,12 @@ const OpenAccountForm = () => {
                                 </div>
                                 <FormControlLabel
                                     required
-                                    control={<Checkbox />}
+                                    control={<Checkbox color="primary" // Use "primary" or "secondary" color for the tick
+                                    sx={{
+                                      '&.Mui-checked': {
+                                        color: colors.grey[200], // Replace with your desired color
+                                      },
+                                    }}/>}
                                     label="Accept Terms and Conditions"
                                     onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Check this box to accept terms and conditions") }}
                                 />

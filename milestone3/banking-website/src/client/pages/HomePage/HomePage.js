@@ -290,7 +290,7 @@ const HomePage = () => {
             p="15px"
           >
             <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-              Redeem Points
+              Redeem Points (1 point = 100 LE)
             </Typography>
           </Box>
           {

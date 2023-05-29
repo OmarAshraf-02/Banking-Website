@@ -11,10 +11,14 @@ import BackButton from '../../shared/components/BackButton.js';
 import { useSpeechSynthesis } from 'react-speech-kit';
 import SpeechRecognitionTextField from '../components/SpeechRecognitionTextField.js';
 import BackButtonImp from './BackButtonImp.js';
+import { useTheme } from '@emotion/react';
+import { tokens } from '../../themes.js';
 
 
 
 const CreditCardForm = () => {
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
     const { speak , cancel } = useSpeechSynthesis();
     const speakText = (text) => {
       speak({ text });
@@ -237,7 +241,12 @@ const CreditCardForm = () => {
                                     onMouseLeave={() => cancel()} 
                                     onMouseEnter={() => {speakText('Please check to Accept terms and conditions' )}}
                                     required
-                                    control={<Checkbox />}
+                                    control={<Checkbox color="primary" // Use "primary" or "secondary" color for the tick
+                                    sx={{
+                                      '&.Mui-checked': {
+                                        color: colors.grey[200], // Replace with your desired color
+                                      },
+                                    }}/>}
                                     label="Accept Terms and Conditions"
                                 />
                             </div>
