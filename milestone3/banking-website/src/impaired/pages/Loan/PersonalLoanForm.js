@@ -10,6 +10,7 @@ import BackButton from '../../../shared/components/BackButton.js';
 import ResponseDialog from '../../components/ResponseDialog.js';
 import { useSpeechSynthesis } from 'react-speech-kit';
 import SpeechRecognitionTextField from '../../components/SpeechRecognitionTextField.js';
+import BackButtonImp from '../BackButtonImp.js';
 
 const PersonalLoanForm = () => {
     const [loading, setLoading] = useState(false);
@@ -46,7 +47,7 @@ const PersonalLoanForm = () => {
     return (
         <Box m="20px">
             <Box display='flex' alignItems="center">
-                <BackButton to="/loan" />
+                <BackButtonImp to="/loan" />
                 <Header title='Apply for Personal Loan' subtitle='' />
             </Box>
             <Formik

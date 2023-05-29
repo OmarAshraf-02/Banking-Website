@@ -12,6 +12,7 @@ import TransactionHistory from '../TransactionHistory';
 import BackButton from '../../../shared/components/BackButton';
 import CloseAccountDialog from '../../components/CloseAccountDialog';
 import { useSpeechSynthesis } from 'react-speech-kit';
+import BackButtonImp from '../BackButtonImp';
 
 
 function AccountPage() {
@@ -40,7 +41,7 @@ function AccountPage() {
     return (
         <div>
             <Box sx={{ margin: 3 }}>
-                <BackButton to="/accounts" />
+                <BackButtonImp to="/accounts" />
                 <div className='flex flex-row items-center justify-between'>
                     <TextField
                         label="Account Type"

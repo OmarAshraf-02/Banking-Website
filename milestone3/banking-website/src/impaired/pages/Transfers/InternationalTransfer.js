@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import ResponseDialog from '../../components/ResponseDialog.js';
 import { useSpeechSynthesis } from 'react-speech-kit';
 import SpeechRecognitionTextField from '../../components/SpeechRecognitionTextField.js';
+import BackButtonImp from '../BackButtonImp.js';
 
 
 const InternationalTransfer = () => {
@@ -75,7 +76,7 @@ const InternationalTransfer = () => {
     return (
         <Box m="20px">
             <Box display='flex'  alignItems="center">
-                <BackButton to="/transfer" />
+                <BackButtonImp to="/transfer" />
                 <Header title='International Transfer' subtitle='' />
             </Box>
             <Formik

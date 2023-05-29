@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useSpeechSynthesis } from 'react-speech-kit';
 
 
-function BackButton({ to }) {
+function BackButtonImp({ to }) {
     const location = useLocation();
     const { speak , cancel } = useSpeechSynthesis();
     const speakText = (text) => {
@@ -15,6 +15,8 @@ function BackButton({ to }) {
     // console.log(currentPath)
     return (
         <Link
+        onMouseLeave={() => cancel()} 
+        onMouseEnter={() => {speakText("Back Button, Return to the previous page")}}
          to={`/${currentPath[1]}${to}`}>
             <IconButton>
                 <ArrowBackIosIcon />
@@ -23,4 +25,4 @@ function BackButton({ to }) {
     )
 }
 
-export default BackButton
+export default BackButtonImp

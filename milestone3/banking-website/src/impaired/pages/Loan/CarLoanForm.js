@@ -13,6 +13,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import ResponseDialog from '../../components/ResponseDialog.js';
 import { useSpeechSynthesis } from 'react-speech-kit';
 import SpeechRecognitionTextField from '../../components/SpeechRecognitionTextField.js';
+import BackButtonImp from '../BackButtonImp.js';
 
 const CarLoanForm = () => {
     const [loading, setLoading] = useState(false);
@@ -76,7 +77,7 @@ const CarLoanForm = () => {
     return (
         <Box m="20px">
             <Box display='flex' alignItems="center">
-                <BackButton to="/loan" />
+                <BackButtonImp to="/loan" />
                 <Header title='Apply for Car Loan' subtitle='' />
             </Box>
             <Formik

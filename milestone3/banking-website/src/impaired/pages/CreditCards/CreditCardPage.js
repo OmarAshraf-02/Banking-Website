@@ -12,6 +12,7 @@ import PayCreditCardBillDialog from '../../components/PayCreditCardBillDialog';
 import CreditCardTransactionHistory from './CreditCardTransactionHistory';
 import SetReminderDialog from '../../components/SetReminderDialog';
 import { useSpeechSynthesis } from 'react-speech-kit';
+import BackButtonImp from '../BackButtonImp';
 
 
 function CreditCardPage() {
@@ -42,7 +43,7 @@ function CreditCardPage() {
   return (
     <div className='m-5'>
         <Box display='flex'  alignItems="center">
-            <BackButton to="/creditCards"/>
+            <BackButtonImp to="/creditCards"/>
             <Header title={cardNumber}/>
         </Box>
         <Box display='flex' justifyContent='center' alignItems='center' >
