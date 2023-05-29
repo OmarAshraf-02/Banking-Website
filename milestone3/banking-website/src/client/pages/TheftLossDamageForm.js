@@ -14,7 +14,6 @@ import ApplyForReplacementDialog from '../components/ApplyForReplacementDialog.j
 import BackButton from '../../shared/components/BackButton.js';
 import { useParams } from 'react-router';
 import CheckIcon from '@mui/icons-material/Check';
-import CircularProgress from "@mui/material/CircularProgress";
 
 
 
@@ -56,7 +55,6 @@ const TheftLossDamageForm = () => {
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
-                validationSchema={reportSchema}
             >
                 {({
                     values,
@@ -65,7 +63,6 @@ const TheftLossDamageForm = () => {
                     handleBlur,
                     handleChange,
                     handleSubmit,
-                    isSubmitting
                     isSubmitting
                 }) => (
                     <form onSubmit={handleSubmit}>

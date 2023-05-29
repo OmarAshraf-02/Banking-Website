@@ -8,9 +8,13 @@ import * as yup from "yup";
 import Header from '../components/Header.jsx';
 import SignaturePad from '../components/SignaturePad.js';
 import BackButton from '../../shared/components/BackButton.js';
+import { useTheme } from '@emotion/react';
+import { tokens } from '../../themes.js';
 
 
 const OpenAccountForm = () => {
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
     const [loading, setLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
 
@@ -210,7 +214,12 @@ const OpenAccountForm = () => {
                                 </div>
                                 <FormControlLabel
                                     required
-                                    control={<Checkbox />}
+                                    control={<Checkbox color="primary" // Use "primary" or "secondary" color for the tick
+                                    sx={{
+                                      '&.Mui-checked': {
+                                        color: colors.grey[200], // Replace with your desired color
+                                      },
+                                    }}/>}
                                     label="Accept Terms and Conditions"
                                 />
                             </div>
