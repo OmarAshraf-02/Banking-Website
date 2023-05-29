@@ -36,13 +36,6 @@ const PersonalLoanForm = () => {
 
         setSubmitting(false);
     };
-    const initialValues = {
-        loanAmount: '',
-        loanTerm: '',
-        annualIncome: '',
-        employmentStatus: '',
-        purpose: ''
-    };
     const styles = {
         textField: {
             height: '300px',
@@ -183,7 +176,7 @@ const PersonalLoanForm = () => {
                             <ResponseDialog response='failed' submit='APPLY'/>
 
                         </Box> */}
-                        <Box display="flex" justifyContent="end" mt="20px">
+                    <Box display="flex" justifyContent="end" mt="20px">
                             {isSubmitting ? (
                                 <CircularProgress color="secondary" size={24} />
                             ) : (
@@ -192,15 +185,6 @@ const PersonalLoanForm = () => {
                                     <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
                                         Confirm
                                     </Button> 
-                                    {/* {
-                                        (values.make==='' || values.model==='' || values.year===null||values.loanAmount===''||values.loanTerm===''||values.annualIncome===''||values.employmentStatus==='')?
-                                            <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
-                                                Confirm
-                                            </Button> 
-                                            :
-                                            <ResponseDialog response='success' submit='CONFIRM'/>
-                                        
-                                    } */}
                                 </>
                             )}
                         </Box>
@@ -220,6 +204,13 @@ const personalLoanSchema = yup.object().shape({
     annualIncome: yup.number().required('required'),
     employmentStatus: yup.string().required("required"),
 });
+const initialValues = {
+    loanAmount: '',
+    loanTerm: '',
+    annualIncome: '',
+    employmentStatus: '',
+    purpose: ''
+};
 // loanAmount: '',
 //         loanTerm: '',
 //         annualIncome: '',

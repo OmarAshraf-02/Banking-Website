@@ -55,7 +55,6 @@ const TheftLossDamageForm = () => {
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
-                validationSchema={reportSchema}
             >
                 {({
                     values,
