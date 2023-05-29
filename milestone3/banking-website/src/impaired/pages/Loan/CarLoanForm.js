@@ -11,6 +11,7 @@ import * as yup from "yup";
 import BackButton from '../../../shared/components/BackButton.js';
 import CheckIcon from '@mui/icons-material/Check';
 import ResponseDialog from '../../components/ResponseDialog.js';
+import { useSpeechSynthesis } from 'react-speech-kit';
 
 const CarLoanForm = () => {
     const [loading, setLoading] = useState(false);
@@ -65,10 +66,15 @@ const CarLoanForm = () => {
             height: '52.7167px', // Adjust the height as per your requirement
         },
     };
+    const { speak, cancel } = useSpeechSynthesis();
+
+    const speakText = (text) => {
+        speak({ text });
+    };
 
     return (
         <Box m="20px">
-            <Box display='flex'  alignItems="center">
+            <Box display='flex' alignItems="center">
                 <BackButton to="/loan" />
                 <Header title='Apply for Car Loan' subtitle='' />
             </Box>
@@ -109,6 +115,7 @@ const CarLoanForm = () => {
                                 helperText={touched.make && errors.make}
                                 sx={{ gridColumn: "span 2" }}
                                 required
+                                onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text field to enter the make of your desired car") }}
                             />
                             <TextField
                                 fullWidth
@@ -124,31 +131,40 @@ const CarLoanForm = () => {
                                 helperText={touched.model && errors.model}
                                 sx={{ gridColumn: "span 1" }}
                                 required
+                                onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text field to enter the model of your desired car") }}
                             />
 
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DatePicker
-                                    label="Year of Manufacturing (ONLY 1950-2023 ACCEPTED)"
-                                    value={values.year}
-                                    views={['year']}
-                                    onBlur={handleBlur}
-                                    error={touched.year && !!errors.year}
-                                    helperText={touched.year && errors.year}
-                                    onChange={date => handleChange({ target: { name: 'year', value: date } })}
-                                    required
-                                />
+                                <div style={{ display: "contents" }} onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Select your desired car's year of manufacturing, only nineteen fifty to twenty twenty three accepted") }}>
+                                    <DatePicker
+                                        label="Year of Manufacturing (ONLY 1950-2023 ACCEPTED)"
+                                        value={values.year}
+                                        views={['year']}
+                                        onBlur={handleBlur}
+                                        error={touched.year && !!errors.year}
+                                        helperText={touched.year && errors.year}
+                                        onChange={date => handleChange({ target: { name: 'year', value: date } })}
+                                        required
+                                    />
+                                </div>
                             </LocalizationProvider>
 
                             <FormControl fullWidth
                                 sx={{ gridColumn: "span 4" }}>
-                                <InputLabel id="employmentSelect">Employment</InputLabel>
+                                <InputLabel id="employmentSelect"
+                                >
+                                    Employment</InputLabel>
                                 <Field
                                     as={Select}
                                     name="employmentStatus"
+                                    onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Click here to open a Drop down menu to select your employment status") }}
                                 >
-                                    <MenuItem value={"employed"}>Employed</MenuItem>
-                                    <MenuItem value={"selfEmployed"}>Self Employed</MenuItem>
-                                    <MenuItem value={"unemployed"}>Unemployed</MenuItem>
+                                    <MenuItem value={"employed"}
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Click here to set your employment status as employed") }}>Employed</MenuItem>
+                                    <MenuItem value={"selfEmployed"}
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Click here to set your employment status as Self Employed") }}>Self Employed</MenuItem>
+                                    <MenuItem value={"unemployed"}
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Click here to set your employment status as unemployed") }}>Unemployed</MenuItem>
                                 </Field>
                             </FormControl>
 
@@ -160,11 +176,16 @@ const CarLoanForm = () => {
                                 <Field
                                     as={Select}
                                     name="loanTerm"
+                                    onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Click here to open a Drop down menu to select the term of your loan") }}
                                 >
-                                    <MenuItem value={12}>12 Months</MenuItem>
-                                    <MenuItem value={24}>24 Months</MenuItem>
-                                    <MenuItem value={36}>36 Months</MenuItem>
-                                    <MenuItem value={48}>48 Months</MenuItem>
+                                    <MenuItem value={12}
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Click here to select a 12 month loan term") }}>12 Months</MenuItem>
+                                    <MenuItem value={24}
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Click here to select a 24 month loan term") }}>24 Months</MenuItem>
+                                    <MenuItem value={36}
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Click here to select a 36 month loan term") }}>36 Months</MenuItem>
+                                    <MenuItem value={48}
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Click here to select a 48 month loan term") }}>48 Months</MenuItem>
                                 </Field>
                             </FormControl>
 
@@ -189,6 +210,7 @@ const CarLoanForm = () => {
                                 minDate={new Date('1950-01-01')}
                                 maxDate={new Date('2023-12-31')}
                                 required
+                                onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text Field to enter your desired loan amount") }}
                             />
 
                             <TextField
@@ -209,7 +231,7 @@ const CarLoanForm = () => {
                                 error={touched.annualIncome && !!errors.annualIncome}
                                 helperText={touched.annualIncome && errors.annualIncome}
                                 required
-
+                                onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text Field to enter your annual income") }}
                             />
 
 
@@ -223,7 +245,7 @@ const CarLoanForm = () => {
                                     {/* <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
                                         Confirm
                                     </Button> */}
-                                    <ResponseDialog response='success' submit='CONFIRM'/>
+                                    <ResponseDialog response='success' submit='CONFIRM' />
                                 </>
                             )}
                         </Box>

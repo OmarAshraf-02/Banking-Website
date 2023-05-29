@@ -8,7 +8,7 @@ import * as yup from "yup";
 import Header from '../components/Header.jsx';
 import SignaturePad from '../components/SignaturePad.js';
 import BackButton from '../../shared/components/BackButton.js';
-
+import { useSpeechSynthesis } from 'react-speech-kit';
 
 const OpenAccountForm = () => {
     const [loading, setLoading] = useState(false);
@@ -32,7 +32,7 @@ const OpenAccountForm = () => {
         maritalStatus: '',
         haveCreditCards: '',
         currentCreditCards: '',
-        accountType:''
+        accountType: ''
     };
     const styles = {
         textField: {
@@ -51,14 +51,21 @@ const OpenAccountForm = () => {
     const [selectedFile, setSelectedFile] = useState(null);
 
     const handleFileChange = (e) => {
-      const file = e.target.files[0];
-      setSelectedFile(file);
-  };
+        const file = e.target.files[0];
+        setSelectedFile(file);
+    };
+    const { speak, cancel } = useSpeechSynthesis();
+
+    const speakText = (text) => {
+        speak({ text });
+    };
 
     return (
         <Box m="20px">
-            <Box display='flex'  alignItems="center">
-                <BackButton to="/accounts" />
+            <Box display='flex' alignItems="center">
+                <div onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press here to go to the previous page") }}>
+                    <BackButton to="/accounts" />
+                </div>
                 <Header title='Open a new Bank Account' subtitle='' />
             </Box>
             <Formik
@@ -113,6 +120,7 @@ const OpenAccountForm = () => {
                                         'aria-label': 'annualIncome',
                                     }}
                                     required
+                                    onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text Field to enter your annual income") }}
                                 />
                             </FormControl>
                             <TextField
@@ -122,6 +130,7 @@ const OpenAccountForm = () => {
                                 InputProps={styles}
                                 multiline
                                 required
+                                onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text Field to enter your national ID number") }}
                             />
                             <TextField
                                 sx={{ gridColumn: "span 4" }}
@@ -130,6 +139,7 @@ const OpenAccountForm = () => {
                                 InputProps={styles}
                                 multiline
                                 required
+                                onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text Field to enter your occupation") }}
                             />
                             <TextField
                                 sx={{ gridColumn: "span 4" }}
@@ -139,42 +149,54 @@ const OpenAccountForm = () => {
                                 placeholder="If not applicable, clarify here if currently Self-Employed or Unemployed"
                                 multiline
                                 required
+                                onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text Field to enter your employer, if not applicable, clarify if you are Self Employed or Unemployed") }}
                             />
                             <FormControl>
-                                <FormLabel id="livingStatus">Are you a</FormLabel>
+                                <FormLabel id="livingStatus"
+                                    onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("3 options to specify your living status") }}>Are you a</FormLabel>
                                 <RadioGroup
                                     row
                                     aria-labelledby="demo-row-radio-buttons-group-label"
                                     name="row-radio-buttons-group"
+
                                 >
-                                    <FormControlLabel value="homeOwner" control={<Radio />} label="Homeowner" />
-                                    <FormControlLabel value="renter" control={<Radio />} label="Renter" />
-                                    <FormControlLabel value="other" control={<Radio />} label="Other" />
+                                    <FormControlLabel value="homeOwner" control={<Radio />} label="Homeowner"
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press this button if you are a home owner") }} />
+                                    <FormControlLabel value="renter" control={<Radio />} label="Renter"
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press this button if you are a renter") }} />
+                                    <FormControlLabel value="other" control={<Radio />} label="Other"
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press this button if you are neither a home owner nor a renter") }} />
                                 </RadioGroup>
                             </FormControl>
                             <FormControl>
-                                <FormLabel id="maritalStatus">Marital Status</FormLabel>
+                                <FormLabel id="maritalStatus" onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("4 options to specify your marital status") }}>Marital Status</FormLabel>
                                 <RadioGroup
                                     row
                                     aria-labelledby="demo-row-radio-buttons-group-label"
                                     name="row-radio-buttons-group"
                                 >
-                                    <FormControlLabel value="single" control={<Radio />} label="Single" />
-                                    <FormControlLabel value="married" control={<Radio />} label="Married" />
-                                    <FormControlLabel value="divorced" control={<Radio />} label="Divorced" />
-                                    <FormControlLabel value="widow" control={<Radio />} label="Widow(er)" />
+                                    <FormControlLabel value="single" control={<Radio />} label="Single"
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press this button if you are single") }} />
+                                    <FormControlLabel value="married" control={<Radio />} label="Married"
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press this button if you are married") }} />
+                                    <FormControlLabel value="divorced" control={<Radio />} label="Divorced"
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press this button if you are divorced") }} />
+                                    <FormControlLabel value="widow" control={<Radio />} label="Widow(er)"
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press this button if you are a widow or widower") }} />
 
                                 </RadioGroup>
                             </FormControl>
                             <FormControl>
-                                <FormLabel id="maritalStatus">Account Type</FormLabel>
+                                <FormLabel id="accountType" onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("2 options to specify requested account type") }}>Account Type</FormLabel>
                                 <RadioGroup
                                     row
                                     aria-labelledby="demo-row-radio-buttons-group-label"
                                     name="row-radio-buttons-group"
                                 >
-                                    <FormControlLabel value="Savings" control={<Radio />} label="Savings" />
-                                    <FormControlLabel value="Current" control={<Radio />} label="Current" />
+                                    <FormControlLabel value="Savings" control={<Radio />} label="Savings"
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press this button if you want to open a savings account") }} />
+                                    <FormControlLabel value="Checkings" control={<Radio />} label="Checkings"
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press this button if you want to open a checkings account") }} />
                                 </RadioGroup>
                             </FormControl>
                             <TextField
@@ -185,6 +207,7 @@ const OpenAccountForm = () => {
                                 InputProps={styles}
                                 multiline
                                 required
+                                onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text Field to enter your current address, please input a current address for delivery purposes") }}
                             />
                             <TextField
                                 sx={{ gridColumn: "span 4" }}
@@ -193,16 +216,20 @@ const OpenAccountForm = () => {
                                 InputProps={styles}
                                 multiline
                                 required
+                                onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text Field to enter your city") }}
                             />
                             <FormControl>
-                                <FormLabel id="previousCards">Do you have a credit card? (If yes fill in the following field)</FormLabel>
+                                <FormLabel id="previousCards"
+                                    onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("2 options to specify credit card ownership") }}>Do you have a credit card? (If yes fill in the following field)</FormLabel>
                                 <RadioGroup
                                     row
                                     aria-labelledby="demo-row-radio-buttons-group-label"
                                     name="row-radio-buttons-group"
                                 >
-                                    <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-                                    <FormControlLabel value="no" control={<Radio />} label="No" />
+                                    <FormControlLabel value="yes" control={<Radio />} label="Yes"
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press this button if you currently have a credit card, fill the following text field") }} />
+                                    <FormControlLabel value="no" control={<Radio />} label="No"
+                                        onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press this button if you do not currently have a credit card") }} />
                                 </RadioGroup>
                             </FormControl>
                             <TextField
@@ -212,11 +239,12 @@ const OpenAccountForm = () => {
                                 placeholder='Please list all your current credit cards and their issuing bank in as many lines as you need'
                                 InputProps={styles}
                                 multiline
+                                onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text Field to list your current credit cards, list all your cards and their issuing bank in as many lines as you need") }}
                             />
                             <div>
-                                <FormControl fullWidth sx={{display:'flex-row', marginBottom:3}}>
-                                    <Typography sx={{marginBottom: 1}} variant="h6" color='white'>Upload Personal Identification</Typography>
-                                    <input type="file" accept=".jpg, .jpeg, .png" onChange={handleFileChange} />
+                                <FormControl fullWidth sx={{ display: 'flex-row', marginBottom: 3 }}>
+                                    <Typography sx={{ marginBottom: 1 }} variant="h6" color='white'>Upload Personal Identification</Typography>
+                                    <input type="file" accept=".jpg, .jpeg, .png" onChange={handleFileChange} onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press this button to browse your computer and upload a personal identification document") }} />
                                 </FormControl>
                                 <div>
                                     <Typography variant="h6" gutterBottom>
@@ -228,13 +256,14 @@ const OpenAccountForm = () => {
                                     required
                                     control={<Checkbox />}
                                     label="Accept Terms and Conditions"
+                                    onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Check this box to accept terms and conditions") }}
                                 />
                             </div>
 
 
                         </Box>
                         <Box display="flex" justifyContent="end" mt="20px">
-                            {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained">
+                            {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained" onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press here to submit your form") }}>
                                 Apply
                             </Button>}
                         </Box>
