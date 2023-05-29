@@ -15,7 +15,6 @@ function Loan() {
     const { personalLoans, carLoans } = useSelector((state) => {
         return state.clients[0].loans;
     })
-    console.log(carLoans)
     return (
         // <div>
         //   <Header className='tc' title='Loans' subtitle=''/>
@@ -26,8 +25,14 @@ function Loan() {
         // </div>
 
         <div >
-            <Header title='Loans' subtitle='Loan History' />
+            <Header title='Loans' />
+            <div className='flex items-center' style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <LoanTypeCard alt='car loan' img={carloan} to='CarLoanForm' summary='Apply for a car loan to finance a new car purchase' title='Car Loans' />
+                <LoanTypeCard alt='personal loan' img={personalloan} to='PersonalLoanForm' summary='Apply for a personal loan to finance a personal venture' title='Personal Loans' />
+            </div>
+            <Header subtitle='Loan History' />
             <Header title='' subtitle='Active Loans' />
+
             {personalLoans.map((loan) => {
                 return loan.status === 'Active' ? <LoanCards key={loan.id} loan={loan} /> : <></>
             })}
@@ -41,10 +46,7 @@ function Loan() {
             {carLoans.map((loan) => {
                 return loan.status === 'Paid' ? <LoanCards key={loan.id} loan={loan} /> : <></>
             })}
-            <div className='flex items-center' style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <LoanTypeCard alt='car loan' img={carloan} to='CarLoanForm' summary='Apply for a car loan to finance a new car purchase' title='Car Loans' />
-                <LoanTypeCard alt='personal loan' img={personalloan} to='PersonalLoanForm' summary='Apply for a personal loan that can be used to start a business or buy a property' title='Personal Loans' />
-            </div>
+
 
             {/* <div class="cf ph2-ns">
                 <h3 class="mw5  pa3 ph5-ns">Apply for Loans</h3>

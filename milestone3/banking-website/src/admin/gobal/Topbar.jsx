@@ -27,13 +27,13 @@ function TopBar(){
             </IconButton> */}
          </Box>
          <Box display="flex">
-         <IconButton onClick={colorMode.toggleColorMode}>
+         {/* <IconButton onClick={colorMode.toggleColorMode}>
           {theme.palette.mode === "dark" ? (
             <DarkModeOutlinedIcon />
           ) : (
             <LightModeOutlinedIcon />
           )}
-        </IconButton>
+        </IconButton> */}
         <Link to='/sign-in'>
           <IconButton>
             <LogoutIcon />

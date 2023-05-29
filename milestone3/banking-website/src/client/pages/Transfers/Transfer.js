@@ -26,7 +26,14 @@ function Transfer() {
         // </div>
 
         <div >
-            <Header title='Transfers' subtitle='Recent Transfers' />
+            <Header title='Transfers' />
+            <div className='flex items-center' style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <LoanTypeCard alt='Domestic' img={personalloan} to='domestic' summary='' title='Domestic Transfer' />
+                <LoanTypeCard alt='Internal' img={personalloan} to='internal' summary='' title='Internal Transfer' />
+                <LoanTypeCard alt='International' img={personalloan} to='international' summary='' title='International Transfer' />
+            </div>
+            <Header subtitle='Recent Transfers' />
+
             {domestic.map((transfer) => {
                 return <TransferCards key={transfer.id} transfer={transfer} type='Domestic' />
             })}
@@ -36,11 +43,7 @@ function Transfer() {
             {international.map((transfer) => {
                 return <TransferCards key={transfer.id} transfer={transfer} type='International' />
             })}
-            <div className='flex items-center' style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <LoanTypeCard alt='Domestic' img='' to='domestic' summary='' title='Domestic Transfer' />
-                <LoanTypeCard alt='Internal' img='' to='internal' summary='' title='Internal Transfer' />
-                <LoanTypeCard alt='International' img='' to='international' summary='' title='International Transfer' />
-            </div>
+
 
             {/* <div class="cf ph2-ns">
                 <h3 class="mw5  pa3 ph5-ns">Apply for Loans</h3>

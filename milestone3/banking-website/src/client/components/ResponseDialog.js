@@ -29,30 +29,33 @@ function ResponseDialog({ submit, response, message }) {
 
     return (
         <div>
-            {submit==='Login'? 
-            <Button onClick={handleClickOpen} variant="contained" color="primary" type="submit" fullWidth style={{ color: 'white' }}>Login</Button>
-            :
-            <Button type="submit" color="secondary" variant="contained" onClick={handleClickOpen}>
-                {submit}
-            </Button>
+            {submit === 'Login' ?
+                <Button onClick={handleClickOpen} variant="contained" color="primary" type="submit" fullWidth style={{ color: 'white' }}>Login</Button>
+                :
+                <Button type="submit" color="secondary" variant="contained" onClick={handleClickOpen}>
+                    {submit}
+                </Button>
             }
-            
+
             <Dialog
                 open={open}
                 // TransitionComponent={Transition}
                 keepMounted
+                PaperProps={{
+                    style: { backgroundColor: '#0d0d0d' }
+                }}
                 onClose={handleClose}
                 aria-describedby="alert-dialog-slide-description"
-            >               
+            >
                 <div className='flex flex-col items-center m-3'>
-                    {response === "success"? <CheckCircleOutlineIcon style={{ color: 'green' }} fontSize='large'/>: <DangerousIcon style={{ color: 'red' }} fontSize='large'/>}
+                    {response === "success" ? <CheckCircleOutlineIcon style={{ color: 'green' }} fontSize='large' /> : <DangerousIcon style={{ color: 'red' }} fontSize='large' />}
                     <DialogContent>
-                    <DialogContentText id="alert-dialog-slide-description">
-                        {message!==undefined? message :response === "success"? 'Sent report successfully': 'Failed to send report'}
-                    </DialogContentText>
+                        <DialogContentText id="alert-dialog-slide-description" color='white'>
+                            {message !== undefined ? message : response === "success" ? 'Sent report successfully' : 'Failed to send report'}
+                        </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        <Button type="submit" color="secondary" variant="contained" onClick={handleClose}>Ok</Button>
+                        <Button type="submit" color="success" variant="contained" onClick={handleClose}>Ok</Button>
                     </DialogActions>
                 </div>
             </Dialog>
