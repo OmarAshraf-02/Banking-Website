@@ -14,7 +14,6 @@ import ApplyForReplacementDialog from '../components/ApplyForReplacementDialog.j
 import BackButton from '../../shared/components/BackButton.js';
 import { useParams } from 'react-router';
 import CheckIcon from '@mui/icons-material/Check';
-import CircularProgress from "@mui/material/CircularProgress";
 
 
 
@@ -65,7 +64,6 @@ const TheftLossDamageForm = () => {
                     handleBlur,
                     handleChange,
                     handleSubmit,
-                    isSubmitting
                     isSubmitting
                 }) => (
                     <form onSubmit={handleSubmit}>
@@ -143,7 +141,7 @@ const TheftLossDamageForm = () => {
         </Box>
     );
 };
-const checkoutSchema = yup.object().shape({
+const reportSchema = yup.object().shape({
     incidentType: yup.string(),
     report: yup.string().required("required"),
     dateOfIncident: yup.string(),
