@@ -65,6 +65,13 @@ function TopBar() {
       }
         </IconButton>
       </Link>
+      {/* <IconButton onMouseLeave={() => {cancel()}} onMouseEnter={() => {speakText("Dark Mode")}} onClick={colorMode.toggleColorMode}>
+        {theme.palette.mode === "dark" ? (
+          <DarkModeOutlinedIcon />
+        ) : (
+          <LightModeOutlinedIcon />
+        )}
+      </IconButton> */}
       <Link onMouseLeave={() => {cancel()}} onMouseEnter={() => {speakText("log out")}} to='/sign-in'>
           <IconButton>
             <LogoutIcon />

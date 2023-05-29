@@ -68,6 +68,13 @@ function TopBar() {
       }
         </IconButton>
       </Link>
+      {/* <IconButton onClick={colorMode.toggleColorMode}>
+        {theme.palette.mode === "dark" ? (
+          <DarkModeOutlinedIcon />
+        ) : (
+          <LightModeOutlinedIcon />
+        )}
+      </IconButton> */}
       <Link to='/sign-in'>
           <IconButton>
             <LogoutIcon />
