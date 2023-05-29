@@ -102,13 +102,6 @@ function AccountPage() {
                                 </Button>
                             </Box>
                         </Link>
-                        <Link to='prepaidCardForm'>
-                            <Box display="flex" justifyContent="end" mt="20px" margin={3} padding={3}>
-                                <Button type="submit" color="secondary" variant="contained" onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press here to apply for a new Prepaid Card") }}>
-                                    Apply for prepaid card
-                                </Button>
-                            </Box>
-                        </Link>
                     </div>
                 }
                 <TransactionHistory accountNumbers={[accountNumber]} isTitle={false} />

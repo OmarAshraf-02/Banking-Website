@@ -14,37 +14,30 @@ import ApplyForReplacementDialog from '../components/ApplyForReplacementDialog.j
 import BackButton from '../../shared/components/BackButton.js';
 import { useParams } from 'react-router';
 import CheckIcon from '@mui/icons-material/Check';
+import CircularProgress from "@mui/material/CircularProgress";
 
 
 
 const TheftLossDamageForm = () => {
     const [loading, setLoading] = useState(false);
+    const [isConfirmed, setIsConfirmed] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const { id } = useParams();
-    const [isConfirmed, setIsConfirmed] = useState(false);
-
     const handleFormSubmit = async (values, { resetForm, setSubmitting }) => {
-        // e.preventDefault();
         setLoading(true);
-
+    
         await new Promise(resolve => setTimeout(resolve, 2000));
-
+    
         resetForm();
         setLoading(false);
-
+    
         setIsConfirmed(true);
         await new Promise(resolve => setTimeout(resolve, 1000));
         setIsConfirmed(false);
-
+    
         setSubmitting(false);
     };
 
-
-    const initialValues = {
-        report: '',
-        incidentType: '',
-        date: null
-    };
     const styles = {
         textField: {
             height: '300px',
@@ -72,6 +65,7 @@ const TheftLossDamageForm = () => {
                     handleBlur,
                     handleChange,
                     handleSubmit,
+                    isSubmitting
                     isSubmitting
                 }) => (
                     <form onSubmit={handleSubmit}>
@@ -101,18 +95,21 @@ const TheftLossDamageForm = () => {
                                 </Field>
                             </FormControl>
                             <TextField
-                                sx={{ gridColumn: "span 4" }}
-                                variant="outlined"
-                                onBlur={handleBlur}
-                                label="Report"
-                                InputProps={styles}
-                                name='report'
-                                value={values.report}
-                                onChange={handleChange}
-                                placeholder="Write your explanation of the incident in detail, use as many lines as you need"
-                                multiline
-                                error={!!touched.report && !!errors.report}
-                                helperText={touched.report && errors.report}
+                            multiline
+                            fullWidth
+                            variant="filled"
+                            type="text"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            value={values.report}
+                            placeholder="Write your explanation of the incident in detail, use as many lines as you need"
+                            name="report"
+                            error={!!touched.report && !!errors.report}
+                            helperText={touched.report && errors.report}
+                            sx={{ gridColumn: "span 4" }}
+                            label="Report"
+                            InputProps={styles}
+                            required
                             />
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker
@@ -127,37 +124,37 @@ const TheftLossDamageForm = () => {
                                 />
                             </LocalizationProvider>
                         </Box>
-                        {/* <Box display="flex" justifyContent="end" mt="20px">
-                            {
-                                loading ? <div></div> : <ApplyForReplacementDialog />
-                            }
-                        </Box> */}
                         <Box display="flex" justifyContent="end" mt="20px">
-                        {isSubmitting ? (
+                            {isSubmitting ? (
                                 <CircularProgress color="secondary" size={24} />
                             ) : (
                                 <>
                                     {isConfirmed && <CheckIcon style={{ marginRight: '10px', color: 'green' }} />}
-                                    {/* <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
-                                        REPORT
-                                    </Button> */}
-                                    <ApplyForReplacementDialog isSubmitting={isSubmitting}/>
-
+                                    <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
+                                        Confirm
+                                    </Button>
+                                    
                                 </>
                             )}
-
-                        </Box>
+             </Box>
                     </form>
                 )}
             </Formik>
         </Box>
     );
 };
-const reportSchema = yup.object().shape({
+const checkoutSchema = yup.object().shape({
+    incidentType: yup.string(),
     report: yup.string().required("required"),
-    incidentType: yup.string().required("required"),
-    date: yup.date().required("required"),
+    dateOfIncident: yup.string(),
+
+
 });
+const initialValues = {
+    incidentType: '',
+    report: '',
+    dateOfIncident: ''
+};
 
 
 export default TheftLossDamageForm

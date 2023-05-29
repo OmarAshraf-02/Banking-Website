@@ -92,13 +92,6 @@ function AccountPage() {
                                 </Button>
                             </Box>
                         </Link>
-                        <Link to='prepaidCardForm'>
-                            <Box display="flex" justifyContent="end" mt="20px" margin={3} padding={3}>
-                                <Button type="submit" color="secondary" variant="contained">
-                                    Apply for prepaid card
-                                </Button>
-                            </Box>
-                        </Link>
                     </div>
                 }
                 <TransactionHistory accountNumbers={[accountNumber]} isTitle={false} />
