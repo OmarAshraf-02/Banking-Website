@@ -24,17 +24,17 @@ const LoanCards = ({ loan }) => {
             <div>
                 <p>Loan amount: ${loan.amount}</p>
                 <p>Interest rate: {loan.rate}%</p>
-                <p className='mb-3'>Loan duration: {loan.duration} months</p>
+                <p className={moreInfo?'':'mb-3'}>Loan duration: {loan.duration} months</p>
                 {moreInfo?
                     <div>
                         <p>Loan status: {loan.status}</p>
                         <p>Due Date: {loan.paymentDue}</p>
-                        <p>Date applied: {loan.date}</p>
+                        <p className={loan.loanType==='Car'?'':'mb-3'}>Date applied: {loan.date}</p>
                         {loan.loanType==='Car'? 
                             <div>
                                 <p>Car make: {loan.make}</p>
                                 <p>Car model: {loan.model}</p>
-                                <p>Car year: {loan.year}</p>
+                                <p className='mb-3'>Car year: {loan.year}</p>
                             </div>
                         :
                             <></>
