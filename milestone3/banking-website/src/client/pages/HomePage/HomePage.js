@@ -11,9 +11,17 @@ import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import PendingActionsOutlinedIcon from '@mui/icons-material/PendingActionsOutlined';
 import EventRepeatOutlinedIcon from '@mui/icons-material/EventRepeatOutlined';
 import { marvelCharacters } from "../../../data/mockdata";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { redeemPoints } from "../../../store";
+import RedeemPointsDialog from "../../components/RedeemPointsDialog";
+import { useEffect } from "react";
+import { useSpeechSynthesis } from 'react-speech-kit';
 const HomePage = () => {
+//   const { speak } = useSpeechSynthesis();
+
+//   const speakText = (text) => {
+//     speak({ text });
+//   };
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const creditCards = useSelector((state) => {
@@ -21,6 +29,7 @@ const HomePage = () => {
   })
   const creditCardArray = creditCards.map((hero, i) => {
     return (
+      hero.points===0?<></>:
 <Box
   key={`${hero.id}`}
   display="flex"
@@ -45,13 +54,21 @@ const HomePage = () => {
       Points: {hero.points}
     </Typography>
   </Box>
-  <Button color="secondary" variant="contained" style={{ marginLeft: '10px' , color: colors.grey[100] }}>
+  <RedeemPointsDialog creditCard={hero}/>
+  {/* <Button color="secondary" variant="contained" style={{ marginLeft: '10px' , color: colors.grey[100] }}>
     Redeem
-  </Button>
+  </Button> */}
 </Box>
 
     );
   });
+//   useEffect(() => {
+//     // Get all the text content from the page
+//     const pageText = document.body.innerText;
+
+//     // Speak the entire page content
+//     speak({ text: pageText });
+//   }, []);
   return (
     <Box m="20px">
       {/* HEADER */}
@@ -275,10 +292,15 @@ const HomePage = () => {
               Redeem Points
             </Typography>
           </Box>
-          
-          {creditCardArray}
+          {
+          creditCardArray.every(fragment => fragment.toString() === '<></>')?
+          <Typography color={colors.grey[100]} variant="h5" fontWeight="600" sx={{padding: '15px'}}>
+            No Credit Cards with Points
+          </Typography>
+          :
+          creditCardArray
+          }
         </Box>
-
       </Box>
     </Box>
   );

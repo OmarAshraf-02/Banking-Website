@@ -12,13 +12,14 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ApplyForReplacementDialog from '../components/ApplyForReplacementDialog.js';
 import BackButton from '../../shared/components/BackButton.js';
+import { useParams } from 'react-router';
 
 
 
 const TheftLossDamageForm = () => {
     const [loading, setLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
-
+    const { id } = useParams();
     const handleFormSubmit = async (values, { resetForm }) => {
         setLoading(true);
         resetForm({ values: '' });
@@ -43,7 +44,7 @@ const TheftLossDamageForm = () => {
     return (
         <Box m="20px">
             <Box display='flex' alignItems="center">
-                <BackButton to="/creditCards" />
+                <BackButton to={`/creditCards/${id}`} />
                 <Header title='Report Card Theft/Loss/Damage' subtitle='' />
             </Box>
 

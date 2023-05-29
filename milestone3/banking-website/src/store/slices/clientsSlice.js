@@ -186,29 +186,111 @@ const clientSlice = createSlice({
         creditCards: [
             {
               id: 1,
+              cardName: 'Leo Messi',
               cardNumber: 'CARD-1111',
               limit: 5000,
               validThru: '12/25',
               cvc: 123,
               points: 200,
               creditScore: 550,
+              status:'Active',
+              balance: 2500,
+              transactions: [
+                {
+                  id: 1,
+                  date: '2023-05-01',
+                  description: 'Online Purchase',
+                  amount: 50.25
+                },
+                {
+                  id: 2,
+                  date: '2023-05-05',
+                  description: 'Restaurant Bill',
+                  amount: 75.60
+                },
+                {
+                  id: 3,
+                  date: '2023-05-10',
+                  description: 'Grocery Shopping',
+                  amount: 120.45
+                },
+                {
+                  id: 4,
+                  date: '2023-05-12',
+                  description: 'Gas Station',
+                  amount: 35.20
+                },
+                {
+                  id: 5,
+                  date: '2023-05-15',
+                  description: 'Retail Store',
+                  amount: 60.80
+                },
+                {
+                  id: 6,
+                  date: '2023-05-20',
+                  description: 'Online Subscription',
+                  amount: 10.99
+                },  
+              ]
               // Add other valid attributes here
             },
             {
               id: 2,
+              cardName: 'Leo Messi',
               cardNumber: 'CARD-2222',
               limit: 3000,
               validThru: '11/24',
               cvc: 456,
               points: 300,
               creditScore: 990,
+              status:'Active',
+              balance: 2500,
+              transactions: [
+                {
+                  id: 1,
+                  date: '2023-05-01',
+                  description: 'Online Purchase',
+                  amount: -50.25
+                },
+                {
+                  id: 2,
+                  date: '2023-05-05',
+                  description: 'Restaurant Bill',
+                  amount: -75.60
+                },
+                {
+                  id: 3,
+                  date: '2023-05-10',
+                  description: 'Grocery Shopping',
+                  amount: -120.45
+                },
+                {
+                  id: 4,
+                  date: '2023-05-12',
+                  description: 'Gas Station',
+                  amount: -35.20
+                },
+                {
+                  id: 5,
+                  date: '2023-05-15',
+                  description: 'Retail Store',
+                  amount: -60.80
+                },
+                {
+                  id: 6,
+                  date: '2023-05-20',
+                  description: 'Online Subscription',
+                  amount: -10.99
+                }, 
+              ]
               // Add other valid attributes here
             },
             // Add more credit card objects as needed
           ],
         notifications: {
-            bankAnnouncements: [
-                {
+          status: 'inactive',
+                reminders: [{
                   id: 1,
                   message: 'Important announcement regarding system maintenance on June 1st.',
                   date: '2023-05-27',
@@ -223,8 +305,7 @@ const clientSlice = createSlice({
                   // Add other valid attributes here
                 },
                 // Add more bank announcement objects as needed
-              ],
-              issueResolution: [
+            
                 {
                   id: 1,
                   message: 'Your reported issue has been resolved. Please verify and provide feedback.',
@@ -240,8 +321,6 @@ const clientSlice = createSlice({
                   // Add other valid attributes here
                 },
                 // Add more issue resolution objects as needed
-              ],
-              loanApplication: [
                 {
                   id: 1,
                   message: 'Your personal loan application has been received and is currently being processed.',
@@ -257,8 +336,6 @@ const clientSlice = createSlice({
                   // Add other valid attributes here
                 },
                 // Add more loan application objects as needed
-              ],
-              creditCardApplication: [
                 {
                   id: 1,
                   message: 'We have received your credit card application. Our team will review it shortly.',
@@ -274,8 +351,6 @@ const clientSlice = createSlice({
                   // Add other valid attributes here
                 },
                 // Add more credit card application objects as needed
-              ],
-              debitCardApplication: [
                 {
                   id: 1,
                   message: 'Your debit card application has been submitted. We will notify you once it is processed.',
@@ -291,8 +366,6 @@ const clientSlice = createSlice({
                   // Add other valid attributes here
                 },
                 // Add more debit card application objects as needed
-              ],
-              prepaidCardApplication: [
                 {
                   id: 1,
                   message: 'Your prepaid card application is under review. We will inform you of the decision soon.',
@@ -308,8 +381,6 @@ const clientSlice = createSlice({
                   // Add other valid attributes here
                 },
                 // Add more prepaid card application objects as needed
-              ],
-              updates: [
                 {
                   id: 1,
                   message: 'We have updated our mobile banking app. Please download the latest version from your app store.',
@@ -323,9 +394,8 @@ const clientSlice = createSlice({
                   date: '2023-05-14',
                   severity: 'info'
                   // Add other valid attributes here
-                },
+                }]
                 // Add more update objects as needed
-              ],
         },
         applications: {
             loanApplication: {
@@ -592,15 +662,108 @@ const clientSlice = createSlice({
                 balance: account.balance,
             }
             state[0].transactions.push(transaction);
+            if(action.payload.type==='domestic'){
+              state[0].transfers.domestic.push(action.payload.transfer)
+            }else if(action.payload.type==='internal'){
+              state[0].transfers.internal.push(action.payload.transfer)
+            }else {
+              state[0].transfers.international.push(action.payload.transfer)
+            }
         },
         closeAccount(state,action){
           const account = state[0].accounts.find((account)=>{
             return account.accountNumber===action.payload.accountNumber
           });
           account.status = 'Inactive';
+        },
+        redeemPoints(state, action){
+          state[0].points -= action.payload.creditCard.points;
+          const creditCard = state[0].creditCards.find((card)=>{
+            return card.id === action.payload.creditCard.id
+          })
+          const account = state[0].accounts.find((account)=>{
+            return account.accountNumber===action.payload.accountNumber
+          });
+          creditCard.points = 0;
+          const increase = action.payload.creditCard.points*100;
+          account.balance += increase; 
+          const transaction ={
+            id: state[0].transactions.length + 1,
+            dateTime: new Date().toISOString().slice(0, 19).replace('T', ' '),
+            accountNumber: action.payload.accountNumber,
+            transactionType: "Redeem Points",
+            amount: increase,
+            balance: account.balance,
+          }
+          state[0].transactions.push(transaction);
+
+          
+        },
+        payCreditCardBill(state, action){
+          const creditCard = state[0].creditCards.find((card)=>{
+            return card.id === action.payload.creditCard.id
+          })
+          const account = state[0].accounts.find((account)=>{
+            return account.accountNumber===action.payload.accountNumber
+          });
+          if(account.balance<action.payload.amount) return;
+          var amount = creditCard.limit-creditCard.balance;
+          if(Number(action.payload.amount)>amount){
+              creditCard.balance+=amount
+          } else {
+            
+            amount = action.payload.amount
+            creditCard.balance+=Number(amount);
+
+          }
+          account.balance -= amount ; 
+          if(action.payload.amount>0){
+              creditCard.points+=100;
+          }
+          const transaction ={
+            id: state[0].transactions.length + 1,
+            dateTime: new Date().toISOString().slice(0, 19).replace('T', ' '),
+            accountNumber: action.payload.accountNumber,
+            transactionType: "Credit Card Bill",
+            amount: -1*amount,
+            balance: account.balance,
+          }
+          if(amount!==0){
+            state[0].transactions.push(transaction);
+          } 
+          const creditCardTransaction = {
+            id: creditCard.transactions.length + 1,
+            date: new Date().toISOString().slice(0, 19).replace('T', ' '),
+            description: 'Credit Card Bill',
+            amount: amount
+          }
+          if(amount!==0){
+            creditCard.transactions.push(creditCardTransaction);
+          }       
+      },
+      reportTheftLossDamage(state,action){
+        state[0].reports.theftLossDamage.push(action.payload.report);
+        const creditCard = state[0].creditCards.find((card)=>{
+          return card.id === action.payload.creditCard.id
+        })
+        creditCard.status = 'Inactive'
+      },
+      setReminder(state,action){
+        const notification = {
+          id: state[0].notifications.length + 1,
+          message: action.payload.message,
+          date: action.payload.date,
+          severity: 'warning'
         }
-    }
+        state[0].notifications.reminders.unshift(notification);
+        state[0].notifications.status = 'active'
+      },
+      clickOnBell(state,action){
+        state[0].notifications.status = 'inactive'
+      }
+    },
+    
 });
 
-export const { addClient, removeClient, payBill, payTransfer, closeAccount } = clientSlice.actions;
+export const { addClient,clickOnBell,setReminder, removeClient, payBill, payTransfer, closeAccount, redeemPoints, payCreditCardBill, reportTheftLossDamage } = clientSlice.actions;
 export const clientsReducer = clientSlice.reducer

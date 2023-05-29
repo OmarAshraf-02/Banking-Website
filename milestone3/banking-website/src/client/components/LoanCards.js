@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import './LoanCards.css';
 import "tachyons"
+import { Box, Button } from '@mui/material';
+import { useTheme } from '@emotion/react';
+import { tokens } from '../../themes';
+import SetReminderDialog from './SetReminderDialog';
 
 const LoanCards = ({ loan }) => {
     const [moreInfo, setMoreInfo] = useState(false);
     const handleMoreInfoOnChange = ()=>{
         setMoreInfo(!moreInfo);
     }
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
     return (
         // <div className="card">
         //   <h2 className="card-title">{name}</h2>
@@ -15,7 +21,7 @@ const LoanCards = ({ loan }) => {
         // </div>
         <div class="loan-card">
             <div class="loan-card-header">{loan.loanType} Loan Information</div>
-            <div class="loan-card-body">
+            <div>
                 <p>Loan amount: ${loan.amount}</p>
                 <p>Interest rate: {loan.rate}%</p>
                 <p>Loan duration: {loan.duration} months</p>
@@ -38,12 +44,14 @@ const LoanCards = ({ loan }) => {
                     <></>  
                 }
             </div>
-            <div class="loan-card-footer" style={{display: "flex", justifyContent: "flex-end"}}>
+            <Box  style={{display: "flex", justifyContent: "space-between"}}>
+                {loan.status==='Active'?<SetReminderDialog type={`${loan.loanType} loan`}/>:<></>}
                 {moreInfo?
-                    <button onClick={handleMoreInfoOnChange}> hide additional information</button>
+                   <Button onClick={handleMoreInfoOnChange} variant='contained' color="secondary" sx={{ fontSize: 12, color: colors.grey[250]}} size="medium">hide additional information</Button>
                     :
-                    <button onClick={handleMoreInfoOnChange}> view additional information</button>}
-            </div>
+                    <Button onClick={handleMoreInfoOnChange} variant='contained' color="secondary" sx={{ fontSize: 12, color: colors.grey[250]}} size="medium">view additional information</Button>
+                    }
+            </Box>
         </div>
 
 

@@ -6,6 +6,7 @@ import { payBill } from '../../store/index'
 import { useDispatch, useSelector } from 'react-redux'
 import Header from "../components/Header";
 import PayBillDialog from "../components/PayBillDialog";
+import SetReminderDialog from "../components/SetReminderDialog";
 
 function Bill() {
   const accounts = useSelector((state) => {
@@ -21,13 +22,15 @@ function Bill() {
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
-    console.log(value);
   };
-
   
+  
+
   const Dialog = ({params})=> (
     <div>
       <Button
+       type="submit" 
+       color="secondary" 
         variant="contained"
         size="small"
         style={{ marginLeft: 16 }}
@@ -81,6 +84,17 @@ function Bill() {
         // console.log(params)
         return (
           <Dialog params={params}/>
+        )
+      }
+    },
+    {
+      field: "reminder",
+      headerName: "Set Reminder",
+      flex: 1,
+      renderCell: (params) => {
+        // console.log(params)
+        return (
+          <SetReminderDialog type={`${params.row.payee} bill`}/>
         )
       }
     },

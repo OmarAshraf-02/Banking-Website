@@ -22,7 +22,6 @@ function AccountItem({ account }) {
         accountNumber,
         accountType,
         id,
-        creditScore,
         status
     } = account
     return (
@@ -31,12 +30,6 @@ function AccountItem({ account }) {
           <div>
             <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
               {accountType}
-            </Typography>
-            <Typography color="text.secondary">
-              Credit Score: {creditScore}
-            </Typography>
-            <Typography color="text.secondary">
-              Status: {status}
             </Typography>
           </div>
           <div class="" style={{display: "flex", justifyContent: "flex-end"}}>

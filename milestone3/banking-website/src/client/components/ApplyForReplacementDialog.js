@@ -10,19 +10,29 @@ import PersonIcon from '@mui/icons-material/Person';
 import AddIcon from '@mui/icons-material/Add';
 import { blue } from '@mui/material/colors';
 import { useDispatch, useSelector } from 'react-redux';
-import { payBill } from '../../store';
+import { payBill, reportTheftLossDamage } from '../../store';
 import Avatar from '@mui/material/Avatar';
 import { Button, DialogActions, DialogContent, DialogContentText, Slide } from '@mui/material';
+import { useParams } from 'react-router';
 
 
-function ApplyForReplacementDialog(props) {
+function ApplyForReplacementDialog() {
     const dispatch = useDispatch();
-    
+    const { id } = useParams();
+    const card = useSelector((state)=>{
+        return state.clients[0].creditCards.find((card)=>{
+            return card.id === Number(id);
+        })
+    }) 
     
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
+        dispatch(reportTheftLossDamage({
+            report: {},
+            creditCard: card
+        }))
     };
 
     const handleClose = () => {

@@ -18,7 +18,6 @@ function Accounts() {
   return (
     <div>
       <Header title='Accounts' subtitle=''/>
-      
       {accounts.map((account)=>{
         return <AccountItem id={account.id} account={account}/>
       })}

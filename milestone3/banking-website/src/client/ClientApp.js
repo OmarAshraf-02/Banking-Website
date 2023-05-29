@@ -15,7 +15,7 @@ import ClientSidebar from './components/SideBar';
 import TopBar from './components/Topbar'
 import ReportTechnicalIssue from './pages/ReportTechnicalIssues';
 import Accounts from './pages/Accounts/Accounts';
-import CreditCard from './pages/CreditCard';
+import CreditCard from './pages/CreditCards/CreditCard';
 import AccountPage from './pages/Accounts/AccountPage';
 import DebitCardForm from './pages/DebitCardForm';
 import PrepaidCardForm from './pages/PrepaidCardForm';
@@ -27,6 +27,7 @@ import InternalTransfer from './pages/Transfers/InternalTransfer';
 import TheftLossDamageForm from './pages/TheftLossDamageForm';
 import Notifications from './pages/Notifications/Notifications';
 import Applications from './pages/Applications/Applications';
+import CreditCardPage from './pages/CreditCards/CreditCardPage';
 function ClientApp() {
   const [theme, colorMode] = useMode();
   return (
@@ -70,7 +71,8 @@ function ClientApp() {
                 <Route path='transfer/internal' element={<InternalTransfer />} />
                 <Route path='transfer/international' element={<InternationalTransfer />} />
                 <Route path='creditCards' element={<CreditCard />} />
-                <Route path='creditCards/theftLossDamageForm' element={<TheftLossDamageForm />} />
+                <Route path='creditCards/:id' element={<CreditCardPage />} />
+                <Route path='creditCards/:id/theftLossDamageForm' element={<TheftLossDamageForm />} />
                 <Route path='notifications' element={<Notifications />} />
                 <Route path='applications' element={<Applications />} />
               </Routes>

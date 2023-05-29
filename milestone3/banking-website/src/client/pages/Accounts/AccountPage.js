@@ -3,7 +3,7 @@ import Cards from 'react-credit-cards-2';
 import 'react-credit-cards-2/dist/es/styles-compiled.css';
 import Typography from "@mui/material/Typography";
 import { tokens } from "../../../themes";
-import { Box, Button, useTheme } from '@mui/material';
+import { Box, Button, TextField, useTheme } from '@mui/material';
 // import './Homepage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import CardItem from './CardItem';
@@ -35,8 +35,43 @@ function AccountPage() {
         <div>
             <Box sx={{ margin: 3 }}>
                 <BackButton to="/accounts" />
-                <div className='flex flex-row items-center, justify-between'>
-                    <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
+                <div className='flex flex-row items-center justify-between'>
+                <TextField
+  label="Account Type"
+  value={accountType}
+  InputProps={{
+    readOnly: true,
+  }}
+  multiline
+  variant="filled"
+  fullWidth
+  sx={{ mb: 2 , mr:2 }}
+/>
+
+<TextField
+  label="Account Number"
+  value={accountNumber}
+  InputProps={{
+    readOnly: true,
+  }}
+  multiline
+  fullWidth
+  variant="filled"
+  sx={{ mb: 2, mr:2 }}
+/>
+
+<TextField
+  label="Balance"
+  fullWidth
+  value={balance}
+  InputProps={{
+    readOnly: true,
+  }}
+  multiline
+  variant="filled"
+  sx={{ mb: 2 , ml:2 }}
+/>
+                    {/* <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
                         {accountType}
                     </Typography>
                     <Typography variant="h5" component="div">
@@ -44,7 +79,7 @@ function AccountPage() {
                     </Typography>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                         Balance: {balance}
-                    </Typography>
+                    </Typography> */}
                 </div>
                 {card!==undefined&&Object.keys(card).length > 0 ?
                     <CardItem key={card.id} card={card} />

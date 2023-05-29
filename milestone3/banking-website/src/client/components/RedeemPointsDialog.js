@@ -11,29 +11,47 @@ import Dialog from '@mui/material/Dialog';
 import PersonIcon from '@mui/icons-material/Person';
 import AddIcon from '@mui/icons-material/Add';
 import { blue } from '@mui/material/colors';
-import { useDispatch } from 'react-redux';
-import { payBill } from '../../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { payBill, redeemPoints } from '../../store';
+import { useState } from 'react';
+import { Button } from '@mui/material';
+import { useTheme } from '@emotion/react';
+import { tokens } from '../../themes';
 
 
-function PayBillDialog(props) {
+function RedeemPointsDialog({creditCard}) {
+    const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const accounts = useSelector((state) => {
+    return state.clients[0].accounts;
+  })
     const dispatch = useDispatch();
+    const [open, setOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(accounts[0].accountNumber);
 
-    const { onClose, selectedValue, open, accounts, params } = props;
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-    const handleClose = () => {
-        onClose(selectedValue);
-    };
+  const handleClose = (value) => {
+    setOpen(false);
+    setSelectedValue(value);
+  };
 
     const handleListItemClick = (value) => {
-        onClose(value);
-        dispatch(payBill({
-            bill: params.row,
+        handleClose(value);
+        dispatch(redeemPoints({
+            creditCard: creditCard,
             accountNumber: value
         }));
     };
 
     return (
-        <Dialog onClose={handleClose} open={open} maxWidth="md" fullWidth>
+        <div>
+            <Button onClick={handleClickOpen} color="secondary" variant="contained" style={{ marginLeft: '10px' , color: colors.grey[100] }}>
+               Redeem
+            </Button>
+        <Dialog onClose={handleClose} open={open}>
             <DialogTitle>Choose an account</DialogTitle>
             <List sx={{ pt: 0 }}>
                 {accounts.map((account) => (
@@ -51,8 +69,9 @@ function PayBillDialog(props) {
                 ))}
             </List>
         </Dialog>
+        </div>
     );
 }
 
 
-export default PayBillDialog;
+export default RedeemPointsDialog;
