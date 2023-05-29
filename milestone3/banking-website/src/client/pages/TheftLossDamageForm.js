@@ -13,22 +13,31 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ApplyForReplacementDialog from '../components/ApplyForReplacementDialog.js';
 import BackButton from '../../shared/components/BackButton.js';
 import { useParams } from 'react-router';
+import CheckIcon from '@mui/icons-material/Check';
+import CircularProgress from "@mui/material/CircularProgress";
 
 
 
 const TheftLossDamageForm = () => {
     const [loading, setLoading] = useState(false);
+    const [isConfirmed, setIsConfirmed] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const { id } = useParams();
-    const handleFormSubmit = async (values, { resetForm }) => {
+    const handleFormSubmit = async (values, { resetForm, setSubmitting }) => {
         setLoading(true);
-        resetForm({ values: '' });
-        await setTimeout(() => { setLoading(false) }, 5000)
+    
+        await new Promise(resolve => setTimeout(resolve, 2000));
+    
+        resetForm();
+        setLoading(false);
+    
+        setIsConfirmed(true);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setIsConfirmed(false);
+    
+        setSubmitting(false);
     };
 
-    const initialValues = {
-        report: ''
-    };
     const styles = {
         textField: {
             height: '300px',
@@ -60,6 +69,7 @@ const TheftLossDamageForm = () => {
                     handleBlur,
                     handleChange,
                     handleSubmit,
+                    isSubmitting
                 }) => (
                     <form onSubmit={handleSubmit}>
                         <Box
@@ -84,12 +94,21 @@ const TheftLossDamageForm = () => {
                                 </Field>
                             </FormControl>
                             <TextField
-                                sx={{ gridColumn: "span 4" }}
-                                variant="outlined"
-                                label="Report"
-                                InputProps={styles}
-                                placeholder="Write your explanation of the incident in detail, use as many lines as you need"
-                                multiline
+                            multiline
+                            fullWidth
+                            variant="filled"
+                            type="text"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            value={values.report}
+                            placeholder="Write your explanation of the incident in detail, use as many lines as you need"
+                            name="report"
+                            error={!!touched.report && !!errors.report}
+                            helperText={touched.report && errors.report}
+                            sx={{ gridColumn: "span 4" }}
+                            label="Report"
+                            InputProps={styles}
+                            required
                             />
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker
@@ -99,10 +118,18 @@ const TheftLossDamageForm = () => {
                             </LocalizationProvider>
                         </Box>
                         <Box display="flex" justifyContent="end" mt="20px">
-                            {
-                                loading ? <div></div> : <ApplyForReplacementDialog />
-                            }
-                        </Box>
+                            {isSubmitting ? (
+                                <CircularProgress color="secondary" size={24} />
+                            ) : (
+                                <>
+                                    {isConfirmed && <CheckIcon style={{ marginRight: '10px', color: 'green' }} />}
+                                    <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
+                                        Confirm
+                                    </Button>
+                                    
+                                </>
+                            )}
+             </Box>
                     </form>
                 )}
             </Formik>
@@ -110,14 +137,17 @@ const TheftLossDamageForm = () => {
     );
 };
 const checkoutSchema = yup.object().shape({
-    make: yup.string().required("required"),
-    model: yup.string().required("required"),
-    loanAmount: yup.number().required('required'),
-    year: yup.number().required('required'),
-    annualIncome: yup.number().required('required'),
-    loanTerm: yup.string().required("required"),
-    employmentStatus: yup.string().required("required"),
+    incidentType: yup.string(),
+    report: yup.string().required("required"),
+    dateOfIncident: yup.string(),
+
+
 });
+const initialValues = {
+    incidentType: '',
+    report: '',
+    dateOfIncident: ''
+};
 
 
 export default TheftLossDamageForm

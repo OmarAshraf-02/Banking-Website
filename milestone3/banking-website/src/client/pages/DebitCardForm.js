@@ -9,26 +9,32 @@ import Header from '../components/Header.jsx';
 import SignaturePad from '../components/SignaturePad.js';
 import BackButton from '../../shared/components/BackButton.js';
 import { useParams } from 'react-router';
+import CheckIcon from '@mui/icons-material/Check';
+import CircularProgress from "@mui/material/CircularProgress";
+
+
 
 
 const DebitCardForm = () => {
     const [loading, setLoading] = useState(false);
+    const [isConfirmed, setIsConfirmed] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const { id } = useParams();
-
-    const handleFormSubmit = async (values, { resetForm }) => {
+    const handleFormSubmit = async (values, { resetForm, setSubmitting }) => {
         setLoading(true);
-        resetForm({ values: '' });
-        await setTimeout(() => { setLoading(false) }, 5000)
+    
+        await new Promise(resolve => setTimeout(resolve, 2000));
+    
+        resetForm();
+        setLoading(false);
+    
+        setIsConfirmed(true);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setIsConfirmed(false);
+    
+        setSubmitting(false);
     };
 
-    const initialValues = {
-        nationalId: '',
-        address: '',
-        city: '',
-        cardHolderName: '',
-
-    };
     const styles = {
         textField: {
             height: '300px',
@@ -60,6 +66,7 @@ const DebitCardForm = () => {
                     handleBlur,
                     handleChange,
                     handleSubmit,
+                    isSubmitting
                 }) => (
                     <form onSubmit={handleSubmit}>
                         <Box
@@ -72,37 +79,52 @@ const DebitCardForm = () => {
                         >
 
                             <TextField
-                                sx={{ gridColumn: "span 4" }}
-                                variant="outlined"
-                                label="National ID Number"
-                                InputProps={styles}
+                            multiline
+                            fullWidth
+                            variant="filled"
+                            type="text"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            value={values.nationalID}
+                            name="nationalID"
+                            error={!!touched.nationalID && !!errors.nationalID}
+                            helperText={touched.nationalID && errors.nationalID}
+                            sx={{ gridColumn: "span 4" }}
+                            label="National ID"
+                            InputProps={styles}
+                            required
+                            />
+                            <TextField
                                 multiline
+                                fullWidth
+                                variant="filled"
+                                type="text"
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                value={values.carholderName}
+                                name="carholderName"
+                                error={!!touched.carholderName && !!errors.carholderName}
+                                helperText={touched.carholderName && errors.carholderName}
+                                sx={{ gridColumn: "span 4" }}
+                                label="Cardholder name"
+                                InputProps={styles}
                                 required
                             />
                             <TextField
-                                sx={{ gridColumn: "span 4" }}
-                                variant="outlined"
-                                label="Cardholder Name"
-                                InputProps={styles}
-                                multiline
-                                required
-                            />
-                            <TextField
-                                sx={{ gridColumn: "span 4" }}
-                                variant="outlined"
-                                label="Address"
-                                placeholder="Please give a current address for card delivery purposes"
-                                InputProps={styles}
-                                multiline
-                                required
-                            />
-                            <TextField
-                                sx={{ gridColumn: "span 4" }}
-                                variant="outlined"
-                                label="City"
-                                InputProps={styles}
-                                multiline
-                                required
+                            multiline
+                            fullWidth
+                            variant="filled"
+                            type="text"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            value={values.address}
+                            name="address"
+                            error={!!touched.address && !!errors.address}
+                            helperText={touched.address && errors.address}
+                            sx={{ gridColumn: "span 4" }}
+                            label="Address"
+                            InputProps={styles}
+                            required
                             />
 
                             <div>
@@ -122,10 +144,18 @@ const DebitCardForm = () => {
 
                         </Box>
                         <Box display="flex" justifyContent="end" mt="20px">
-                            {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained">
-                                Apply
-                            </Button>}
-                        </Box>
+                            {isSubmitting ? (
+                                <CircularProgress color="secondary" size={24} />
+                            ) : (
+                                <>
+                                    {isConfirmed && <CheckIcon style={{ marginRight: '10px', color: 'green' }} />}
+                                    <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
+                                        Confirm
+                                    </Button>
+                                    
+                                </>
+                            )}
+             </Box>
                     </form>
                 )}
             </Formik>
@@ -136,13 +166,15 @@ const DebitCardForm = () => {
 
 
 const checkoutSchema = yup.object().shape({
-    make: yup.string().required("required"),
-    model: yup.string().required("required"),
-    loanAmount: yup.number().required('required'),
-    year: yup.number().required('required'),
-    annualIncome: yup.number().required('required'),
-    loanTerm: yup.string().required("required"),
-    employmentStatus: yup.string().required("required"),
+    nationalID: yup.string().required("required"),
+    carholderName: yup.string().required("required"),
+    address: yup.string().required('required'),
 });
+const initialValues = {
+    nationalID: '',
+    carholderName: '',
+    address: '',
+
+};
 
 export default DebitCardForm
