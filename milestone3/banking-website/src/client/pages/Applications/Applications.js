@@ -39,7 +39,7 @@ function Applications() {
       {/* <PrepaidCardApplicationItem prepaidcard={prepaidCardApplication}/> */}
       {/* <PersonalLoanApplicationItem loan={loanApplication}/> */}
       {/* <CarLoanApplicationItem loan={loanApplication}/> */}
-      <Header title={applications} />
+      <Header title={applications} subtitle=' ' />
       <FormControl fullWidth>
         <InputLabel sx={{ marginLeft: 3, marginRight: 3 }} id="demo-simple-select-label">Application Type</InputLabel>
         <Select sx={{ marginLeft: 3, marginRight: 3 }}

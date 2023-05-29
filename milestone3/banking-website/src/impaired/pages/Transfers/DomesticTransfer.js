@@ -8,8 +8,14 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import CheckIcon from '@mui/icons-material/Check';
 import { useSelector } from 'react-redux';
 import ResponseDialog from '../../components/ResponseDialog.js';
+import { useSpeechSynthesis } from 'react-speech-kit';
+
 
 const DomesticTransfer = () => {
+    const { speak , cancel } = useSpeechSynthesis();
+    const speakText = (text) => {
+      speak({ text });
+    };
     const [isLoading, setIsLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const [isConfirmed, setIsConfirmed] = useState(false);
@@ -96,6 +102,8 @@ const DomesticTransfer = () => {
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <InputLabel id="sender-account-number-label">Sender Account Number</InputLabel>
                                 <Select
+                                    onMouseLeave={() => cancel()}
+                                    onMouseEnter={() => {speakText('Drop down menu to choose sender account number' )}} 
                                     labelId="sender-account-number-label"
                                     id="sender-account-number"
                                     required
@@ -108,7 +116,10 @@ const DomesticTransfer = () => {
                                 >
                                     {accounts.map((account) => (
                                         account.status==='Active'?
-                                        <MenuItem key={account.id} value={account.id}>
+                                        <MenuItem 
+                                        onMouseLeave={() => cancel()}
+                                        onMouseEnter={() => {speakText('Press to choose account number ' + account.accountNumber)}} 
+                                        key={account.id} value={account.id}>
                                             {account.accountNumber}
                                         </MenuItem>:<></>
                                     ))}
@@ -140,6 +151,8 @@ const DomesticTransfer = () => {
                             </FormControl> */}
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
+                                    onMouseLeave={() => cancel()}
+                                    onMouseEnter={() => {speakText('Text Field to enter the recipient account number' )}} 
                                     label="Recipient Account Number"
                                     name="receiverAccountNumber"
                                     value={values.receiverAccountNumber}
@@ -152,6 +165,8 @@ const DomesticTransfer = () => {
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
+                                    onMouseLeave={() => cancel()}
+                                    onMouseEnter={() => {speakText('Text field to enter the recipent bank name' )}} 
                                     label="Recipient Bank Name"
                                     name="receiverBankName"
                                     value={values.receiverBankName}
@@ -163,8 +178,9 @@ const DomesticTransfer = () => {
                                 />
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
-
                                 <TextField
+                                    onMouseLeave={() => cancel()}
+                                    onMouseEnter={() => {speakText('Text field to enter the transfer amount')}} 
                                     sx={{ gridColumn: "span 4" }}
                                     fullWidth
                                     multiline
@@ -189,6 +205,8 @@ const DomesticTransfer = () => {
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
+                                    onMouseLeave={() => cancel()}
+                                    onMouseEnter={() => {speakText('Text field to enter the purpose of the domestic transfer' )}} 
                                     label="Purpose"
                                     name="purpose"
                                     value={values.purpose}

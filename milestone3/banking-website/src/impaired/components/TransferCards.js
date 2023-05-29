@@ -4,8 +4,14 @@ import "tachyons"
 import { Button, Typography } from '@mui/material';
 import { useTheme } from '@emotion/react';
 import { tokens } from '../../themes';
+import { useSpeechSynthesis } from 'react-speech-kit';
+
 
 const TransferCards = ({ transfer, type }) => {
+    const { speak , cancel } = useSpeechSynthesis();
+    const speakText = (text) => {
+      speak({ text });
+    };
     const [moreInfo, setMoreInfo] = useState(false);
     const handleMoreInfoOnChange = ()=>{
         setMoreInfo(!moreInfo);
@@ -18,8 +24,12 @@ const TransferCards = ({ transfer, type }) => {
         //   <p className="card-content">{summary}</p>
         //   {/* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"></link> */}
         // </div>
-        <div class="loan-card">
-            <Typography sx={{ fontSize: 23 }} color="text.secondary" gutterBottom>{type} Transfer Information</Typography>
+        <div 
+        class="loan-card"
+        onMouseLeave={() => cancel()} 
+        onMouseEnter={() => {speakText(type + " Sender account number is " + transfer.senderAccountNumber + " Receiver Account Number is " + transfer.recipientAccountNumber + " with an amount of " + transfer.amount )}}
+        >
+            <Typography sx={{ fontSize: 23 }} color="text.secondary" gutterBottom>{type} Transfer</Typography>
             <div>
                 <p>Sender Account Number: {transfer.senderAccountNumber}</p>
                 <p>Receiver Account Number: {transfer.recipientAccountNumber}</p>

@@ -8,8 +8,14 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import CheckIcon from '@mui/icons-material/Check';
 import { useSelector } from 'react-redux';
 import ResponseDialog from '../../components/ResponseDialog.js';
+import { useSpeechSynthesis } from 'react-speech-kit';
+
 
 const InternationalTransfer = () => {
+    const { speak , cancel } = useSpeechSynthesis();
+    const speakText = (text) => {
+      speak({ text });
+    };
     const [isLoading, setIsLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const [isConfirmed, setIsConfirmed] = useState(false);
@@ -119,6 +125,8 @@ const InternationalTransfer = () => {
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <InputLabel id="sender-account-number-label">Sender Account Number</InputLabel>
                                 <Select
+                                    onMouseLeave={() => cancel()}
+                                    onMouseEnter={() => {speakText('Drop down menu to choose sender account number' )}} 
                                     labelId="sender-account-number-label"
                                     id="sender-account-number"
                                     required
@@ -131,7 +139,9 @@ const InternationalTransfer = () => {
                                 >
                                     {accounts.map((account) => (
                                         account.status==='Active'?
-                                        <MenuItem key={account.id} value={account.id}>
+                                        <MenuItem  
+                                        onMouseLeave={() => cancel()}
+                                        onMouseEnter={() => {speakText('Press to choose account number ' + account.accountNumber)}} key={account.id} value={account.id}>
                                             {account.accountNumber}
                                         </MenuItem>:<></>
                                     ))}
@@ -140,6 +150,8 @@ const InternationalTransfer = () => {
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <InputLabel id="transfer-currency-label">Transfer Currency</InputLabel>
                                 <Select
+                                    onMouseLeave={() => cancel()}
+                                    onMouseEnter={() => {speakText('Drop down menu to select the transfer currency' )}} 
                                     labelId="transfer-currency-label"
                                     id="transfer-currency"
                                     required
@@ -151,7 +163,10 @@ const InternationalTransfer = () => {
                                     sx={{ height: '52.7167px' }}
                                 >
                                     {transferCurrencies.map((currency) => (
-                                        <MenuItem key={currency.value} value={currency.value}>
+                                        <MenuItem
+                                        onMouseLeave={() => cancel()}
+                                        onMouseEnter={() => {speakText('Press to choose ' + currency.label )}} 
+                                        key={currency.value} value={currency.value}>
                                             {currency.label}
                                         </MenuItem>
                                     ))}
@@ -161,6 +176,8 @@ const InternationalTransfer = () => {
                                 <TextField
                                     label="Transfer Amount"
                                     name="transferAmount"
+                                    onMouseLeave={() => cancel()}
+                                    onMouseEnter={() => {speakText('Text field to enter the transfer amount')}} 
                                     value={values.transferAmount}
                                     onChange={(event) => {
                                         const numericValue = event.target.value.replace(/[^0-9]/g, "");
@@ -181,6 +198,8 @@ const InternationalTransfer = () => {
 
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
+                                onMouseLeave={() => cancel()}
+                                onMouseEnter={() => {speakText('Text field to enter the Recipient\'s country')}} 
                                     label="Recipient Country"
                                     name="recipientCountry"
                                     value={values.recipientCountry}
@@ -194,6 +213,8 @@ const InternationalTransfer = () => {
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
+                                onMouseLeave={() => cancel()}
+                                onMouseEnter={() => {speakText('Text field to enter the Recipient\'s city')}} 
                                     label="Recipient City"
                                     name="recipientCity"
                                     value={values.recipientCity}
@@ -207,6 +228,8 @@ const InternationalTransfer = () => {
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
+                                    onMouseLeave={() => cancel()}
+                                    onMouseEnter={() => {speakText('Text field to enter the Recipient\'s Swift/BIC')}} 
                                     label="Recipient Swift/BIC"
                                     name="recipientSwiftBIC"
                                     value={values.recipientSwiftBIC}
@@ -220,6 +243,8 @@ const InternationalTransfer = () => {
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
+                                onMouseLeave={() => cancel()}
+                                onMouseEnter={() => {speakText('Text field to enter the Recipient\'s IBAN or Account Number')}} 
                                     label="Recipient IBAN or Account Number"
                                     name="recipientIBANorAccountNumber"
                                     value={values.recipientIBANorAccountNumber}
@@ -233,6 +258,8 @@ const InternationalTransfer = () => {
                             </FormControl>
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
+                                    onMouseLeave={() => cancel()}
+                                    onMouseEnter={() => {speakText('Text field to enter the Recipient\'s bank name')}} 
                                     label="Recipient Bank Name"
                                     name="recipientBankName"
                                     value={values.recipientBankName}
@@ -248,6 +275,8 @@ const InternationalTransfer = () => {
                                 <TextField
                                     label="Purpose"
                                     name="purpose"
+                                    onMouseLeave={() => cancel()}
+                                    onMouseEnter={() => {speakText('Text field to enter the purpose of the international transfer' )}} 
                                     value={values.purpose}
                                     onChange={handleChange}
                                     onBlur={handleBlur}

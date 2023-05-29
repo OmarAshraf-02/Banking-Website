@@ -75,7 +75,7 @@ function TransactionHistory({ accountNumbers, isTitle }) {
     <Box m="20px">
       {
         isTitle ?
-          <Header title='Transaction History' />
+          <Header title='Transaction History' subtitle=' ' />
           :
           <Header subtitle=' ' />
       }

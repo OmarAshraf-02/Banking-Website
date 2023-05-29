@@ -10,8 +10,14 @@ import BackButton from '../../../shared/components/BackButton.js';
 import CheckIcon from '@mui/icons-material/Check';
 import { useSelector } from 'react-redux';
 import ResponseDialog from '../../components/ResponseDialog.js';
+import { useSpeechSynthesis } from 'react-speech-kit';
+
 
 const InternalTransfer = () => {
+    const { speak , cancel } = useSpeechSynthesis();
+    const speakText = (text) => {
+      speak({ text });
+    };
     const [isLoading, setIsLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const [isConfirmed, setIsConfirmed] = useState(false);
@@ -109,6 +115,8 @@ const InternalTransfer = () => {
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <InputLabel id="sender-account-number-label">Sender Account Number</InputLabel>
                                 <Select
+                                    onMouseLeave={() => cancel()}
+                                    onMouseEnter={() => {speakText('Drop down menu to choose sender account number' )}} 
                                     labelId="sender-account-number-label"
                                     id="sender-account-number"
                                     required
@@ -121,7 +129,10 @@ const InternalTransfer = () => {
                                 >
                                     {accounts.map((account) => (
                                         account.status==='Active'?
-                                        <MenuItem key={account.id} value={account.id}>
+                                        <MenuItem
+                                        onMouseLeave={() => cancel()}
+                                        onMouseEnter={() => {speakText('Press to choose account number ' + account.accountNumber)}} 
+                                        key={account.id} value={account.id}>
                                             {account.accountNumber}
                                         </MenuItem>:<></>
                                     ))}
@@ -155,6 +166,8 @@ const InternalTransfer = () => {
 
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
                                 <TextField
+                                    onMouseLeave={() => cancel()}
+                                    onMouseEnter={() => {speakText('Text field to enter Recipient account number')}} 
                                     multiline
                                     required
                                     label="Recipient Account Number"
@@ -170,6 +183,8 @@ const InternalTransfer = () => {
                             <FormControl fullWidth sx={{ gridColumn: "span 4" }}>
 
                                 <TextField
+                                    onMouseLeave={() => cancel()}
+                                    onMouseEnter={() => {speakText('Text field to enter transfer amount')}} 
                                     multiline
                                     required
                                     label="Transfer Amount (EGP)"
@@ -192,6 +207,8 @@ const InternalTransfer = () => {
                             </FormControl>
 
                             <TextField
+                                onMouseLeave={() => cancel()}
+                                onMouseEnter={() => {speakText('Text field to enter the purpose of the Internal transfer' )}} 
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="Purpose"
