@@ -9,6 +9,8 @@ import Header from '../components/Header.jsx';
 import SignaturePad from '../components/SignaturePad.js';
 import BackButton from '../../shared/components/BackButton.js';
 import { useParams } from 'react-router';
+import SpeechRecognitionTextField from '../components/SpeechRecognitionTextField.js';
+import { useSpeechSynthesis } from 'react-speech-kit';
 
 
 const DebitCardForm = () => {
@@ -43,6 +45,11 @@ const DebitCardForm = () => {
     const handleCreditLimitChange = (event) => {
         setCreditLimit(event.target.value);
     };
+    const { speak, cancel } = useSpeechSynthesis();
+
+    const speakText = (text) => {
+        speak({ text });
+    };
 
     return (
         <Box m="20px">
@@ -71,23 +78,25 @@ const DebitCardForm = () => {
                             }}
                         >
 
-                            <TextField
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="National ID Number"
                                 InputProps={styles}
                                 multiline
                                 required
+                                onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text field to enter your national ID number") }}
                             />
-                            <TextField
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="Cardholder Name"
                                 InputProps={styles}
                                 multiline
                                 required
+                                onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text field to enter Card Holder Name") }}
                             />
-                            <TextField
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="Address"
@@ -95,14 +104,16 @@ const DebitCardForm = () => {
                                 InputProps={styles}
                                 multiline
                                 required
+                                onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text field to enter your address") }}
                             />
-                            <TextField
+                            <SpeechRecognitionTextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="City"
                                 InputProps={styles}
                                 multiline
                                 required
+                                onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text field to enter the city you live in") }}
                             />
 
                             <div>
@@ -116,13 +127,14 @@ const DebitCardForm = () => {
                                     required
                                     control={<Checkbox />}
                                     label="Accept Terms and Conditions"
+                                    onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Check this box to accept terms and conditions") }}
                                 />
                             </div>
 
 
                         </Box>
                         <Box display="flex" justifyContent="end" mt="20px">
-                            {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained">
+                            {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained" onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Press this button to submit your form") }}>
                                 Apply
                             </Button>}
                         </Box>
