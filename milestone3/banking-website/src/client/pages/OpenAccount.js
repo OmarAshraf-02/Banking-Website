@@ -21,7 +21,6 @@ const OpenAccountForm = () => {
     };
 
     const initialValues = {
-        limit: '',
         nationalId: '',
         annualIncome: '',
         employer: '',
@@ -40,9 +39,7 @@ const OpenAccountForm = () => {
             // Adjust the height as per your requirement
         },
     };
-    const textAreaStyle = {
-        backgroundColor: '#141b2d',
-    }
+
     // const [creditLimit, setCreditLimit] = useState('');
 
     // const handleCreditLimitChange = (event) => {
@@ -64,7 +61,7 @@ const OpenAccountForm = () => {
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
-                validationSchema={checkoutSchema}
+                validationSchema={openAccountSchema}
             >
                 {({
                     values,
@@ -83,45 +80,32 @@ const OpenAccountForm = () => {
                                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                             }}
                         >
-                            {/* <FormControl fullWidth sx={{ gridColumn: 'span 4' }}>
-                                <InputLabel htmlFor="outlined-adornment-amount" shrink>
-                                    Credit Limit
-                                </InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-amount"
-                                    sx={{ height: '52.7167px' }}
-                                    startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
-                                    label="Credit Limit"
-                                    value={creditLimit}
-                                    onChange={handleCreditLimitChange}
-                                    inputProps={{
-                                        'aria-label': 'credit-limit',
-                                    }}
-                                    required
-                                />
-                            </FormControl> */}
-                            <FormControl fullWidth sx={{ gridColumn: 'span 4' }}>
-                                <InputLabel htmlFor="outlined-adornment-amount" shrink>
-                                    Annual Income
-                                </InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-annualincome"
-                                    sx={{ height: '52.7167px' }}
-                                    startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
-                                    label="Annual Income"
-                                    inputProps={{
-                                        'aria-label': 'annualIncome',
-                                    }}
-                                    required
-                                />
-                            </FormControl>
                             <TextField
+                                sx={{ gridColumn: "span 4" }}
+                                variant="outlined"
+                                onBlur={handleBlur}
+                                label="Annual Income (EGP)"
+                                InputProps={styles}
+                                name='annualIncome'
+                                value={values.annualIncome}
+                                onChange={handleChange}
+                                multiline
+                                error={!!touched.annualIncome && !!errors.annualIncome}
+                                helperText={touched.annualIncome && errors.annualIncome}
+                            />
+                             <TextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
                                 label="National ID Number"
                                 InputProps={styles}
                                 multiline
                                 required
+                                name='nationalId'
+                                value={values.nationalId}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                error={!!touched.nationalId && !!errors.nationalId}
+                                helperText={touched.nationalId && errors.nationalId}
                             />
                             <TextField
                                 sx={{ gridColumn: "span 4" }}
@@ -247,14 +231,19 @@ const OpenAccountForm = () => {
 
 
 
-const checkoutSchema = yup.object().shape({
-    make: yup.string().required("required"),
-    model: yup.string().required("required"),
-    loanAmount: yup.number().required('required'),
-    year: yup.number().required('required'),
+const openAccountSchema = yup.object().shape({
+    nationalId: yup.string().required("required"),
     annualIncome: yup.number().required('required'),
-    loanTerm: yup.string().required("required"),
-    employmentStatus: yup.string().required("required"),
+    employer: yup.string().required('required'),
+    livingStatus: yup.string().required('required'),
+    address: yup.string().required("required"),
+    city: yup.string().required("required"),
+    occupation: yup.string().required("required"),
+    maritalStatus: yup.string().required("required"),
+    haveCreditCards: yup.string().required("required"),
+    currentCreditCards: yup.string().required("required"),
+    accountType: yup.string().required("required")
 });
+
 
 export default OpenAccountForm

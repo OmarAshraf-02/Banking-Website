@@ -1,20 +1,31 @@
 import React from 'react'
 import { useState } from "react";
-import { Box, Button, TextField, Select, InputLabel, MenuItem, FormControl, OutlinedInput, InputAdornment } from "@mui/material";
+import { Box, Button, TextField, Select, InputLabel, MenuItem, FormControl, OutlinedInput, InputAdornment, CircularProgress } from "@mui/material";
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { Form, Field, Formik } from "formik";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import * as yup from "yup";
 import Header from '../components/Header.jsx';
+import CheckIcon from '@mui/icons-material/Check';
 
 const ReportTechnicalIssue = () => {
     const [loading, setLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
+    const [isConfirmed, setIsConfirmed] = useState(false);
 
-    const handleFormSubmit = async (values, { resetForm }) => {
+    const handleFormSubmit = async (values, { resetForm, setSubmitting }) => {
         setLoading(true);
-        resetForm({ values: '' });
-        await setTimeout(() => { setLoading(false) }, 5000)
+
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        resetForm();
+        setLoading(false);
+
+        setIsConfirmed(true);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setIsConfirmed(false);
+
+        setSubmitting(false);
     };
 
     const initialValues = {
@@ -36,7 +47,7 @@ const ReportTechnicalIssue = () => {
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
-                validationSchema={checkoutSchema}
+                validationSchema={reportSchema}
             >
                 {({
                     values,
@@ -45,6 +56,7 @@ const ReportTechnicalIssue = () => {
                     handleBlur,
                     handleChange,
                     handleSubmit,
+                    isSubmitting
                 }) => (
                     <form onSubmit={handleSubmit}>
                         <Box
@@ -62,12 +74,30 @@ const ReportTechnicalIssue = () => {
                                 InputProps={styles}
                                 placeholder="Write your report for technical issues here in as many lines as you need"
                                 multiline
+                                value={values.report}
+                                name='report'
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                error={!!touched.report && !!errors.report}
+                                helperText={touched.report && errors.report}
                             />
                         </Box>
-                        <Box display="flex" justifyContent="end" mt="20px">
+                        {/* <Box display="flex" justifyContent="end" mt="20px">
                             {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained">
                                 Report
                             </Button>}
+                        </Box> */}
+                        <Box display="flex" justifyContent="end" mt="20px">
+                            {isSubmitting ? (
+                                <CircularProgress color="secondary" size={24} />
+                            ) : (
+                                <>
+                                    {isConfirmed && <CheckIcon style={{ marginRight: '10px', color: 'green' }} />}
+                                    <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
+                                        REPORT
+                                    </Button> 
+                                </>
+                            )}
                         </Box>
                     </form>
                 )}
@@ -78,14 +108,8 @@ const ReportTechnicalIssue = () => {
 
 
 
-const checkoutSchema = yup.object().shape({
-    make: yup.string().required("required"),
-    model: yup.string().required("required"),
-    loanAmount: yup.number().required('required'),
-    year: yup.number().required('required'),
-    annualIncome: yup.number().required('required'),
-    loanTerm: yup.string().required("required"),
-    employmentStatus: yup.string().required("required"),
+const reportSchema = yup.object().shape({
+    report: yup.string().required("required"),
 });
 
 export default ReportTechnicalIssue

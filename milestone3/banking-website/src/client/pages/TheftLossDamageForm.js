@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from "react";
-import { Box, Button, TextField, Select, InputLabel, MenuItem, FormControl, OutlinedInput, InputAdornment } from "@mui/material";
+import { Box, Button, TextField, Select, InputLabel, MenuItem, FormControl, OutlinedInput, InputAdornment, CircularProgress } from "@mui/material";
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { Form, Field, Formik } from "formik";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -44,10 +44,6 @@ const TheftLossDamageForm = () => {
             // Adjust the height as per your requirement
         },
     };
-    const textAreaStyle = {
-        backgroundColor: '#141b2d',
-    }
-
 
 
     return (
@@ -60,7 +56,7 @@ const TheftLossDamageForm = () => {
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
-                validationSchema={checkoutSchema}
+                validationSchema={reportSchema}
             >
                 {({
                     values,
@@ -69,6 +65,7 @@ const TheftLossDamageForm = () => {
                     handleBlur,
                     handleChange,
                     handleSubmit,
+                    isSubmitting
                     isSubmitting
                 }) => (
                     <form onSubmit={handleSubmit}>
@@ -86,7 +83,11 @@ const TheftLossDamageForm = () => {
                                 <InputLabel id="employmentSelect">Incident Type</InputLabel>
                                 <Field
                                     as={Select}
-                                    name="Incident"
+                                    name="incidentType"
+                                    value={values.incidentType}
+                                    onChange={handleChange}
+                                    error={!!touched.incidentType && !!errors.incidentType}
+                                    helperText={touched.incidentType && errors.incidentType}
                                 >
                                     <MenuItem value={"theft"}>Theft</MenuItem>
                                     <MenuItem value={"loss"}>Loss</MenuItem>
@@ -112,8 +113,14 @@ const TheftLossDamageForm = () => {
                             />
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker
+                                    value={values.date}
+                                    name='date'
+                                    // onChange={handleChange}
                                     label="Date of the Incident"
                                     slotProps={{ height: "200px" }}
+                                    error={!!touched.date && !!errors.date}
+                                    helperText={touched.date && errors.date}
+                                    onBlur={handleBlur}
                                 />
                             </LocalizationProvider>
                         </Box>
