@@ -206,10 +206,10 @@ const DomesticTransfer = () => {
                             ) : (
                                 <>
                                     {isConfirmed && <CheckIcon style={{ marginRight: '10px', color: 'green' }} />}
-                                    {/* <Button type="submit" color="secondary" variant="contained">
+                                    <Button type="submit" color="secondary" variant="contained">
                                         Confirm
-                                    </Button> */}
-                                    <ResponseDialog submit='CONFIRM' response='success'/>
+                                    </Button>
+                                    {/* <ResponseDialog submit='CONFIRM' response='success'/> */}
 
                                 </>
                             )}
