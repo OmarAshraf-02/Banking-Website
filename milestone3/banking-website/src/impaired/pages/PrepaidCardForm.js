@@ -117,13 +117,10 @@ const PrepaidCardForm = () => {
                 required
                 onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text field to enter the city you live in") }}
               />
-              <FormControl fullWidth sx={{ gridColumn: 'span 4' }}>
-                <InputLabel htmlFor="outlined-adornment-amount" shrink>
-                  Balance Limit
-                </InputLabel>
-                <OutlinedInput
+                <SpeechRecognitionTextField
                   id="outlined-adornment-amount"
-                  sx={{ height: '52.7167px' }}
+                  sx={{ height: '52.7167px' , gridColumn: "span 2" }}
+                  multiline
                   startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
                   label="Credit Limit"
                   value={creditLimit}
@@ -133,25 +130,20 @@ const PrepaidCardForm = () => {
                   }}
                   required
                   onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text field to enter the balance limit of your requested card") }}
-                />
-              </FormControl>
-              <FormControl fullWidth sx={{ gridColumn: 'span 4' }}>
-                <InputLabel htmlFor="outlined-adornment-amount" shrink>
-                  Starting Balance
-                </InputLabel>
-                <OutlinedInput
+                />        
+                <SpeechRecognitionTextField
                   id="outlined-adornment-amount"
-                  sx={{ height: '52.7167px' }}
+                  multiline
+                  sx={{ height: '52.7167px' , gridColumn: "span 2" }}
                   startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
                   label="Starting Balance"
-
+                  multiline
                   inputProps={{
                     'aria-label': 'credit-limit',
                   }}
                   required
                   onMouseLeave={() => cancel()} onMouseEnter={() => { speakText("Text field to specify the starting balance of your card") }}
                 />
-              </FormControl>
 
               <div>
                 <div>
