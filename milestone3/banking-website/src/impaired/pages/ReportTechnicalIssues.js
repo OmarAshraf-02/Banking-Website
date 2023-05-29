@@ -6,10 +6,16 @@ import { Form, Field, Formik } from "formik";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import * as yup from "yup";
 import Header from '../components/Header.jsx';
+import { useSpeechSynthesis } from 'react-speech-kit';
+
 
 const ReportTechnicalIssue = () => {
     const [loading, setLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
+    const { speak , cancel } = useSpeechSynthesis();
+    const speakText = (text) => {
+      speak({ text });
+    };
 
     const handleFormSubmit = async (values, { resetForm }) => {
         setLoading(true);
@@ -32,7 +38,7 @@ const ReportTechnicalIssue = () => {
 
     return (
         <Box m="20px">
-            <Header title='Report Technical Issues' subtitle='' />
+            <Header  title='Report Technical Issues' subtitle='' />
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
@@ -62,10 +68,12 @@ const ReportTechnicalIssue = () => {
                                 InputProps={styles}
                                 placeholder="Write your report for technical issues here in as many lines as you need"
                                 multiline
+                                onMouseLeave={() => cancel()} 
+                                onMouseEnter={() => {speakText('Report Text Field please press enter then type your report')}}
                             />
                         </Box>
-                        <Box display="flex" justifyContent="end" mt="20px">
-                            {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained">
+                        <Box  display="flex" justifyContent="end" mt="20px">
+                            {loading ? <div></div> : <Button onMouseLeave={() => cancel()} onMouseEnter={() => {speakText("Report button press to submit your report")}} type="submit" color="secondary" variant="contained">
                                 Report
                             </Button>}
                         </Box>
