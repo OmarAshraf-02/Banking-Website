@@ -94,7 +94,7 @@ function Bill() {
       renderCell: (params) => {
         // console.log(params)
         return (
-          <SetReminderDialog type={`${params.row.payee} bill`}/>
+          <SetReminderDialog dueDate={params.row.dueDate} type={`${params.row.payee} bill`}/>
         )
       }
     },

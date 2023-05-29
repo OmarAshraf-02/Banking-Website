@@ -4,16 +4,16 @@ import { useState } from "react";
 import { tokens } from "../../themes";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setReminder } from "../../store";
 
-const SetReminderDialog = ({ id, type }) => {
+const SetReminderDialog = ({ dueDate, type }) => {
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState(null);
   const handleDateChange = (value) => {
     setDate(value);
   };
-
+  
   const dispatch = useDispatch();
   const handleClick = () => {
     setOpen(true);
@@ -22,9 +22,7 @@ const SetReminderDialog = ({ id, type }) => {
   const handleClose = () => {
     setOpen(false);
     if (date) {
-      const message = `We are reminding you that your ${type} is due on ${date.format(
-        "YYYY-MM-DD"
-      )}`;
+      const message = `We are reminding you that your ${type} is due on ${dueDate}`;
       dispatch(
         setReminder({
           message: message,
@@ -41,39 +39,39 @@ const SetReminderDialog = ({ id, type }) => {
 
   return (
     <Box>
-      <Button
-        type="submit"
-        color="secondary"
-        variant="contained"
-        size="small"
-        style={{ margin: 2 }}
-        onClick={handleClick}
-      >
-        Set Reminder
-      </Button>
-      <Dialog onClose={handleClose} open={open} maxWidth="md">
-        <DialogTitle>Set Reminder</DialogTitle>
-        <Box sx={{ margin: 2 }}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              value={date}
-              onChange={handleDateChange}
-              label="Date of the Reminder"
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
-        </Box>
         <Button
           type="submit"
           color="secondary"
           variant="contained"
           size="small"
-          style={{ margin: "10px" }}
-          onClick={handleClose}
+          style={{ margin: 2 }}
+          onClick={handleClick}
         >
-          Set
+          Set Reminder
         </Button>
-      </Dialog>
+        <Dialog onClose={handleClose} open={open} maxWidth="md">
+          <DialogTitle>Set Reminder</DialogTitle>
+          <Box sx={{ margin: 2 }}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                value={date}
+                onChange={handleDateChange}
+                label="Date of the Reminder"
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+          </Box>
+          <Button
+            type="submit"
+            color="secondary"
+            variant="contained"
+            size="small"
+            style={{ margin: "10px" }}
+            onClick={handleClose}
+          >
+            Set
+          </Button>
+        </Dialog>
     </Box>
   );
 };

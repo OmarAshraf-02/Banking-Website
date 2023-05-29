@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const clientSlice = createSlice({
-    name: 'clients',
+const impairedSlice = createSlice({
+    name: 'impaired',
     initialState: [{
         points: 200,
         name: 'leo',
-        password: 'client',
-        email: 'client',
+        password: 'impaired',
+        email: 'impaired',
         phoneNumber: '+201204450819',
         address: 'france',
         national_id: '01566214852624',
@@ -195,7 +195,6 @@ const clientSlice = createSlice({
               creditScore: 550,
               status:'Active',
               balance: 2500,
-              paymentDue: '2023-05-04',
               transactions: [
                 {
                   id: 1,
@@ -247,7 +246,6 @@ const clientSlice = createSlice({
               creditScore: 990,
               status:'Active',
               balance: 2500,
-              paymentDue: '2023-06-04',
               transactions: [
                 {
                   id: 1,
@@ -767,5 +765,5 @@ const clientSlice = createSlice({
     
 });
 
-export const { addClient,clickOnBell,setReminder, removeClient, payBill, payTransfer, closeAccount, redeemPoints, payCreditCardBill, reportTheftLossDamage } = clientSlice.actions;
-export const clientsReducer = clientSlice.reducer
+export const { addClient,clickOnBell,setReminder, removeClient, payBill, payTransfer, closeAccount, redeemPoints, payCreditCardBill, reportTheftLossDamage } = impairedSlice.actions;
+export const impairedReducer = impairedSlice.reducer

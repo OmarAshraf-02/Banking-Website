@@ -1,5 +1,5 @@
 import { Box, IconButton, useTheme, Typography } from "@mui/material";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ColorModeContext, tokens } from "../../themes";
 import InputBase from "@mui/material/InputBase";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
@@ -13,7 +13,7 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clickOnBell } from "../../store";
-
+import './Notification.css'
 function TopBar() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -21,8 +21,33 @@ function TopBar() {
   const status = useSelector((state)=>{
     return state.clients[0].notifications.status
   })
+  const [isShaking, setIsShaking] = useState(false);
   const dispatch = useDispatch();
-  return (<Box display="flex" justifyContent="space-between" p={2}>
+  const handleClick = () => {
+    dispatch(clickOnBell());
+    setIsShaking(true);
+
+    // Reset shaking state after a certain duration
+    setTimeout(() => {
+      setIsShaking(false);
+    }, 1000);
+  };
+  useEffect(() => {
+    let shakeInterval;
+
+    if (status === 'active') {
+      shakeInterval = setInterval(() => {
+        setIsShaking((prevIsShaking) => !prevIsShaking);
+      }, 2000); // Set the interval duration in milliseconds (e.g., 2000ms = 2 seconds)
+    }
+
+    return () => {
+      clearInterval(shakeInterval);
+    };
+  }, [status]);
+
+  return (
+  <Box display="flex" justifyContent="space-between" p={2}>
     <Box display="flex"
       // backgroundColor = {colors.primary[400]}
       borderRadius="3px"
@@ -34,28 +59,12 @@ function TopBar() {
     </Box>
     <Box display="flex">
       <Link to='notifications'>
-        <IconButton onClick={()=>dispatch(clickOnBell())}>
+        <IconButton onClick={handleClick} className={isShaking  ? 'shake' : ''}>
           <NotificationsOutlinedIcon />
           {status === 'active' ? (
-        <span
-          style={{
-            position: 'absolute',
-            top: '-8px',
-            right: '-8px',
-            backgroundColor: 'red',
-            color: 'white',
-            borderRadius: '50%',
-            width: '20px',
-            height: '20px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            fontSize: '12px',
-          }}
-        >
-          !
-        </span>):
-       <></> 
+            <span className={`notification-badge ${isShaking  ? 'shake' : ''}`}>!</span>
+          ):
+          <></> 
       }
         </IconButton>
       </Link>

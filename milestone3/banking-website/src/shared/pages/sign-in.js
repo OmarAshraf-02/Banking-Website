@@ -125,6 +125,11 @@ const SignIn = () => {
                                                     <Button variant="contained" color="primary" type="submit" fullWidth style={{ color: 'white' }}>Login</Button>
                                                 </Link>
                                                 :
+                                                email==='impaired' && password ==='impaired'?
+                                                <Link to='/impaired'>
+                                                    <Button variant="contained" color="primary" type="submit" fullWidth style={{ color: 'white' }}>Login</Button>
+                                                </Link>
+                                                :
                                                 <Button variant="contained" color="primary" type="submit" fullWidth style={{ color: 'white' }}>Login</Button>
                                         )
                                 )   

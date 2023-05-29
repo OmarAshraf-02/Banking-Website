@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './LoanCards.css';
 import "tachyons"
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { useTheme } from '@emotion/react';
 import { tokens } from '../../themes';
 import SetReminderDialog from './SetReminderDialog';
@@ -20,11 +20,11 @@ const LoanCards = ({ loan }) => {
         //   {/* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"></link> */}
         // </div>
         <div class="loan-card">
-            <div class="loan-card-header">{loan.loanType} Loan Information</div>
+            <Typography sx={{ fontSize: 23 }} color="text.secondary" gutterBottom>{loan.loanType} Loan Information</Typography>
             <div>
                 <p>Loan amount: ${loan.amount}</p>
                 <p>Interest rate: {loan.rate}%</p>
-                <p>Loan duration: {loan.duration} months</p>
+                <p className='mb-3'>Loan duration: {loan.duration} months</p>
                 {moreInfo?
                     <div>
                         <p>Loan status: {loan.status}</p>
@@ -45,7 +45,7 @@ const LoanCards = ({ loan }) => {
                 }
             </div>
             <Box  style={{display: "flex", justifyContent: "space-between"}}>
-                {loan.status==='Active'?<SetReminderDialog type={`${loan.loanType} loan`}/>:<></>}
+                {loan.status==='Active'?<SetReminderDialog dueDate={loan.paymentDue} type={`${loan.loanType} loan`}/>:<></>}
                 {moreInfo?
                    <Button onClick={handleMoreInfoOnChange} variant='contained' color="secondary" sx={{ fontSize: 12, color: colors.grey[250]}} size="medium">hide additional information</Button>
                     :

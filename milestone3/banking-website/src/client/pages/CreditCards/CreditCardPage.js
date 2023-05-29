@@ -31,87 +31,88 @@ function CreditCardPage() {
         creditScore,
         status,
         balance,
-        transactions
+        transactions,
+        paymentDue
     } = card
   return (
     <div className='m-5'>
-        <Box display='flex'  alignItems="center">
-            <BackButton to="/creditCards"/>
-            <Header title={cardNumber}/>
-        </Box>
-        <Box display='flex' justifyContent='center' alignItems='center' >
-        <Box>
-           <Cards number={cardNumber} expiry={validThru} cvc={cvc} name={cardName} focused="" />
-        </Box>
+            <Box display='flex'  alignItems="center">
+                <BackButton to="/creditCards"/>
+                <Header title={cardNumber}/>
+            </Box>
+            <Box display='flex' justifyContent='center' alignItems='center' >
+            <Box>
+              <Cards number={cardNumber} expiry={validThru} cvc={cvc} name={cardName} focused="" />
+            </Box>
             <Box className='flex flex-col ml-4'>
-    <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-      <TextField
-        label="Name on card"
-        value={cardName}
-        InputProps={{
-          readOnly: true,
-        }}
-        multiline
-        variant="filled"
-        sx={{ mr: 2, mb: 2 }}
-      />
-      <TextField
-        label="Credit Score"
-        value={creditScore}
-        InputProps={{
-          readOnly: true,
-        }}
-        multiline
-        variant="filled"
-        sx={{ mb: 2 }}
-      />
-    </Box>
-    <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-      <TextField
-        label="Limit"
-        value={limit}
-        InputProps={{
-          readOnly: true,
-        }}
-        multiline
-        variant="filled"
-        sx={{ mr: 2, mb: 2 }}
-      />
-      <TextField
-        label="Points"
-        value={points}
-        InputProps={{
-          readOnly: true,
-        }}
-        multiline
-        variant="filled"
-        sx={{ mb: 2 }}
-      />
-    </Box >
-    <Box sx={{ display: 'flex', flexDirection: 'row' }}> 
-    <TextField
-      label="Valid till"
-      value={validThru}
-      InputProps={{
-        readOnly: true,
-      }}
-      multiline
-      variant="filled"
-      sx={{ mr: 2, mb: 2 }}
-    />
-    <TextField
-        label="Current Balance"
-        value={balance}
-        InputProps={{
-          readOnly: true,
-        }}
-        multiline
-        variant="filled"
-        sx={{ mb: 2 }}
-      />
-      </Box>
-  </Box>
-        </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+              <TextField
+                label="Name on card"
+                value={cardName}
+                InputProps={{
+                  readOnly: true,
+                }}
+                multiline
+                variant="filled"
+                sx={{ mr: 2, mb: 2 }}
+              />
+              <TextField
+                label="Credit Score"
+                value={creditScore}
+                InputProps={{
+                  readOnly: true,
+                }}
+                multiline
+                variant="filled"
+                sx={{ mb: 2 }}
+              />
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+              <TextField
+                label="Limit"
+                value={limit}
+                InputProps={{
+                  readOnly: true,
+                }}
+                multiline
+                variant="filled"
+                sx={{ mr: 2, mb: 2 }}
+              />
+              <TextField
+                label="Points"
+                value={points}
+                InputProps={{
+                  readOnly: true,
+                }}
+                multiline
+                variant="filled"
+                sx={{ mb: 2 }}
+              />
+            </Box >
+            <Box sx={{ display: 'flex', flexDirection: 'row' }}> 
+              <TextField
+                label="Valid till"
+                value={validThru}
+                InputProps={{
+                  readOnly: true,
+                }}
+                multiline
+                variant="filled"
+                sx={{ mr: 2, mb: 2 }}
+              />
+              <TextField
+                  label="Current Balance"
+                  value={balance}
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  multiline
+                  variant="filled"
+                  sx={{ mb: 2 }}
+                />
+              </Box>
+            </Box>
+          </Box>
         <Box className='flex flex-end m-4' display='flex' justifyContent='center' alignItems='center'>
            {status === 'Active' ? (
             <Box display='flex'>
@@ -119,7 +120,7 @@ function CreditCardPage() {
                     <Button variant='contained' color="secondary" sx={{ mr:2 ,fontSize: 12, color: colors.grey[250]}} size="medium">Report Theft/Loss/Damage</Button>
                 </Link>
                 <PayCreditCardBillDialog creditCard={card}/>
-                <SetReminderDialog type='credit card bill'/>
+                <SetReminderDialog dueDate={paymentDue} type='credit card bill'/>
             </Box>
             ) : (
               <></>
