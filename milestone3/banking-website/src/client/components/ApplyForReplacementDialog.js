@@ -16,7 +16,7 @@ import { Button, DialogActions, DialogContent, DialogContentText, Slide } from '
 import { useParams } from 'react-router';
 
 
-function ApplyForReplacementDialog() {
+function ApplyForReplacementDialog({ isSubmitting }) {
     const dispatch = useDispatch();
     const { id } = useParams();
     const card = useSelector((state)=>{
@@ -28,6 +28,9 @@ function ApplyForReplacementDialog() {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
+        // if(!isSubmitting){
+        //     return
+        // }
         setOpen(true);
         dispatch(reportTheftLossDamage({
             report: {},
@@ -41,7 +44,7 @@ function ApplyForReplacementDialog() {
 
     return (
         <div>
-            <Button type="submit" color="secondary" variant="contained" onClick={handleClickOpen}>
+            <Button type="submit" color="secondary" variant="contained" onClick={handleClickOpen} disabled={isSubmitting}>
                 Report
             </Button>
             <Dialog

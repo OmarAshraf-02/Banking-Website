@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from "react";
-import { Box, Button, TextField, Select, InputLabel, MenuItem, FormControl, OutlinedInput, InputAdornment, Radio, RadioGroup, FormControlLabel, FormLabel, Checkbox, Typography } from "@mui/material";
+import { Box, Button, TextField, Select, InputLabel, MenuItem, FormControl, OutlinedInput, InputAdornment, Radio, RadioGroup, FormControlLabel, FormLabel, Checkbox, Typography, CircularProgress } from "@mui/material";
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { Form, Field, Formik } from "formik";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -10,6 +10,7 @@ import SignaturePad from '../components/SignaturePad.js';
 import BackButton from '../../shared/components/BackButton.js';
 import { useTheme } from '@emotion/react';
 import { tokens } from '../../themes.js';
+import CheckIcon from '@mui/icons-material/Check';
 
 
 const CreditCardForm = () => {
@@ -17,16 +18,25 @@ const CreditCardForm = () => {
     const colors = tokens(theme.palette.mode);
     const [loading, setLoading] = useState(false);
     const isNonMobile = useMediaQuery("(min-width:600px)");
+    const [isConfirmed, setIsConfirmed] = useState(false);
 
-    const handleFormSubmit = async (values, { resetForm }) => {
+    const handleFormSubmit = async (values, { resetForm, setSubmitting }) => {
         setLoading(true);
-        resetForm({ values: '' });
-        await setTimeout(() => { setLoading(false) }, 5000)
+
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        resetForm();
+        setLoading(false);
+
+        setIsConfirmed(true);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setIsConfirmed(false);
+
+        setSubmitting(false);
     };
 
 
     const initialValues = {
-        limit: '',
         nationalId: '',
         annualIncome: '',
         employer: '',
@@ -44,12 +54,6 @@ const CreditCardForm = () => {
             height: '300px',
             // Adjust the height as per your requirement
         },
-    };
-    
-    const [creditLimit, setCreditLimit] = useState('');
-
-    const handleCreditLimitChange = (event) => {
-        setCreditLimit(event.target.value);
     };
 
     return (
@@ -70,6 +74,7 @@ const CreditCardForm = () => {
                     handleBlur,
                     handleChange,
                     handleSubmit,
+                    isSubmitting
                 }) => (
                     <form onSubmit={handleSubmit}>
                         <Box
@@ -80,40 +85,19 @@ const CreditCardForm = () => {
                                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                             }}
                         >
-                            {/* <FormControl fullWidth sx={{ gridColumn: 'span 4' }}>
-                                <InputLabel htmlFor="outlined-adornment-amount" shrink>
-                                    Credit Limit
-                                </InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-amount"
-                                    sx={{ height: '52.7167px' }}
-                                    startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
-                                    label="Credit Limit"
-                                    value={creditLimit}
-                                    onChange={handleCreditLimitChange}
-                                    inputProps={{
-                                        'aria-label': 'credit-limit',
-                                    }}
-                                    required
-                                />
-                            </FormControl> */}
-                            <FormControl fullWidth sx={{ gridColumn: 'span 4' }}>
-                                <InputLabel htmlFor="outlined-adornment-amount" shrink>
-                                    Annual Income
-                                </InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-annualincome"
-                                    sx={{ height: '52.7167px' }}
-                                    startAdornment={<InputAdornment position="start">EGP</InputAdornment>}
-                                    label="Annual Income"
-
-
-                                    inputProps={{
-                                        'aria-label': 'annualIncome',
-                                    }}
-                                    required
-                                />
-                            </FormControl>
+                            <TextField
+                                sx={{ gridColumn: "span 4" }}
+                                variant="outlined"
+                                onBlur={handleBlur}
+                                label="Annual Income (EGP)"
+                                InputProps={styles}
+                                name='annualIncome'
+                                value={values.annualIncome}
+                                onChange={handleChange}
+                                multiline
+                                error={!!touched.annualIncome && !!errors.annualIncome}
+                                helperText={touched.annualIncome && errors.annualIncome}
+                            />
                             <TextField
                                 sx={{ gridColumn: "span 4" }}
                                 variant="outlined"
@@ -121,6 +105,12 @@ const CreditCardForm = () => {
                                 InputProps={styles}
                                 multiline
                                 required
+                                name='nationalId'
+                                value={values.nationalId}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                error={!!touched.nationalId && !!errors.nationalId}
+                                helperText={touched.nationalId && errors.nationalId}
                             />
                             <TextField
                                 sx={{ gridColumn: "span 4" }}
@@ -129,6 +119,12 @@ const CreditCardForm = () => {
                                 InputProps={styles}
                                 multiline
                                 required
+                                name='occupation'
+                                value={values.occupation}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                error={!!touched.occupation && !!errors.occupation}
+                                helperText={touched.occupation && errors.occupation}
                             />
                             <TextField
                                 sx={{ gridColumn: "span 4" }}
@@ -138,17 +134,55 @@ const CreditCardForm = () => {
                                 placeholder="If not applicable, clarify here if currently Self-Employed or Unemployed"
                                 multiline
                                 required
+                                name='employer'
+                                value={values.employer}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                error={!!touched.employer && !!errors.employer}
+                                helperText={touched.employer && errors.employer}
                             />
                             <FormControl>
                                 <FormLabel id="livingStatus">Are you a</FormLabel>
                                 <RadioGroup
                                     row
                                     aria-labelledby="demo-row-radio-buttons-group-label"
-                                    name="row-radio-buttons-group"
+                                    name="livingStatus"
+                                    value={values.livingStatus}
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    error={!!touched.livingStatus && !!errors.livingStatus}
+                                    helperText={touched.livingStatus && errors.livingStatus}
                                 >
-                                    <FormControlLabel value="homeOwner" control={<Radio />} label="Homeowner" />
-                                    <FormControlLabel value="renter" control={<Radio />} label="Renter" />
-                                    <FormControlLabel value="other" control={<Radio />} label="Other" />
+                                    <FormControlLabel 
+                                        value="homeOwner" 
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }}
+                                        label="Homeowner" 
+                                    />
+                                    <FormControlLabel 
+                                        value="renter" 
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }} 
+                                        label="Renter" 
+                                    />
+                                    <FormControlLabel 
+                                        value="other" 
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }}
+                                        label="Other" 
+                                    />
                                 </RadioGroup>
                             </FormControl>
                             <FormControl>
@@ -156,12 +190,53 @@ const CreditCardForm = () => {
                                 <RadioGroup
                                     row
                                     aria-labelledby="demo-row-radio-buttons-group-label"
-                                    name="row-radio-buttons-group"
+                                    name="maritalStatus"
+                                    value={values.maritalStatus}
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    error={!!touched.maritalStatus && !!errors.maritalStatus}
+                                    helperText={touched.maritalStatus && errors.maritalStatus}
                                 >
-                                    <FormControlLabel value="single" control={<Radio />} label="Single" />
-                                    <FormControlLabel value="married" control={<Radio />} label="Married" />
-                                    <FormControlLabel value="divorced" control={<Radio />} label="Divorced" />
-                                    <FormControlLabel value="widow" control={<Radio />} label="Widow(er)" />
+                                    <FormControlLabel 
+                                        value="single" 
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }} 
+                                        label="Single" 
+                                    />
+                                    <FormControlLabel 
+                                        value="married" 
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }} 
+                                        label="Married" 
+                                    />
+                                    <FormControlLabel 
+                                        value="divorced" 
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }} 
+                                        label="Divorced"
+                                    />
+                                    <FormControlLabel 
+                                        value="widow" 
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }} 
+                                        label="Widow(er)" 
+                                    />
                                 </RadioGroup>
                             </FormControl> 
                             <TextField
@@ -172,6 +247,12 @@ const CreditCardForm = () => {
                                 InputProps={styles}
                                 multiline
                                 required
+                                name="address"
+                                value={values.address}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                error={!!touched.address && !!errors.address}
+                                helperText={touched.address && errors.address}
                             />
                             <TextField
                                 sx={{ gridColumn: "span 4" }}
@@ -180,16 +261,46 @@ const CreditCardForm = () => {
                                 InputProps={styles}
                                 multiline
                                 required
+                                name="city"
+                                value={values.city}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                error={!!touched.city && !!errors.city}
+                                helperText={touched.city && errors.city}
                             />
                             <FormControl>
                                 <FormLabel id="previousCards">Do you have a credit card? (If yes fill in the following field)</FormLabel>
                                 <RadioGroup
                                     row
                                     aria-labelledby="demo-row-radio-buttons-group-label"
-                                    name="row-radio-buttons-group"
+                                    // name="row-radio-buttons-group"
+                                    name="haveCreditCards"
+                                    value={values.haveCreditCards}
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    error={!!touched.haveCreditCards && !!errors.haveCreditCards}
+                                    helperText={touched.haveCreditCards && errors.haveCreditCards}
                                 >
-                                    <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-                                    <FormControlLabel value="no" control={<Radio />} label="No" />
+                                    <FormControlLabel 
+                                    value="yes" 
+                                    control={<Radio color="primary" />} 
+                                    label="Yes"
+                                    sx={{
+                                        '& .Mui-checked': {
+                                        color: colors.grey[200], 
+                                        },
+                                    }}/>
+                                    <FormControlLabel 
+                                        value="no" 
+                                        label="No"
+                                        control={<Radio color='primary'/>} 
+                                        sx={{
+                                            '& .Mui-checked': {
+                                            color: colors.grey[200], 
+                                            },
+                                        }}
+                                    /> 
+                                    
                                 </RadioGroup>
                             </FormControl>
                             <TextField
@@ -199,6 +310,12 @@ const CreditCardForm = () => {
                                 placeholder='Please list all your current credit cards and their issuing bank in as many lines as you need'
                                 InputProps={styles}
                                 multiline
+                                name="currentCreditCards"
+                                value={values.currentCreditCards}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                error={!!touched.currentCreditCards && !!errors.currentCreditCards}
+                                helperText={touched.currentCreditCards && errors.currentCreditCards}
                             />
                             <div>
                                 <div>
@@ -209,17 +326,34 @@ const CreditCardForm = () => {
                                 </div>
                                 <FormControlLabel
                                     required
-                                    control={<Checkbox />}
+                                    control={<Checkbox color="primary" // Use "primary" or "secondary" color for the tick
+                                    sx={{
+                                      '&.Mui-checked': {
+                                        color: colors.grey[200], // Replace with your desired color
+                                      },
+                                    }}/>}
                                     label="Accept Terms and Conditions"
                                 />
                             </div>
 
 
                         </Box>
-                        <Box display="flex" justifyContent="end" mt="20px">
+                        {/* <Box display="flex" justifyContent="end" mt="20px">
                             {loading ? <div></div> : <Button type="submit" color="secondary" variant="contained">
                                 Apply
                             </Button>}
+                        </Box> */}
+                        <Box display="flex" justifyContent="end" mt="20px">
+                            {isSubmitting ? (
+                                <CircularProgress color="secondary" size={24} />
+                            ) : (
+                                <>
+                                    {isConfirmed && <CheckIcon style={{ marginRight: '10px', color: 'green' }} />}
+                                    <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
+                                        APPLY
+                                    </Button> 
+                                </>
+                            )}
                         </Box>
                     </form>
                 )}
@@ -230,7 +364,6 @@ const CreditCardForm = () => {
 
 
 const creditCardFormSchema = yup.object().shape({
-    limit: yup.number().required("required"),
     nationalId: yup.string().required("required"),
     annualIncome: yup.number().required('required'),
     employer: yup.string().required('required'),
@@ -242,5 +375,6 @@ const creditCardFormSchema = yup.object().shape({
     haveCreditCards: yup.string(),
     currentCreditCards: yup.string(),
 });
+
 
 export default CreditCardForm

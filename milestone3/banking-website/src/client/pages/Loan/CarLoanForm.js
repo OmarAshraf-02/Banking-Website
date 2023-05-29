@@ -223,15 +223,6 @@ const CarLoanForm = () => {
                                     <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
                                         Confirm
                                     </Button> 
-                                    {/* {
-                                        (values.make==='' || values.model==='' || values.year===null||values.loanAmount===''||values.loanTerm===''||values.annualIncome===''||values.employmentStatus==='')?
-                                            <Button type="submit" color="secondary" variant="contained" disabled={isSubmitting}>
-                                                Confirm
-                                            </Button> 
-                                            :
-                                            <ResponseDialog response='success' submit='CONFIRM'/>
-                                        
-                                    } */}
                                 </>
                             )}
                         </Box>
