@@ -102,7 +102,7 @@ const TheftLossDamageForm = () => {
                             <TextField
                             multiline
                             fullWidth
-                            variant="filled"
+                            variant="outlined"
                             type="text"
                             onBlur={handleBlur}
                             onChange={handleChange}
