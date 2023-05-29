@@ -11,7 +11,10 @@ const Header = ({ title, subtitle }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     return (
-        <div onMouseLeave={() => cancel()} onMouseEnter={() => {speakText(title + " " + subtitle)}}>
+        <div onMouseLeave={() => cancel()} onMouseEnter={() => {
+            const x = title? title : " ";
+            const y = subtitle? subtitle : " ";
+            speakText(x + " " + y)}}>
             <Box m="30px">
                 <Typography
                     variant="h2"
