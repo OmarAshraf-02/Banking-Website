@@ -20,6 +20,7 @@ The banking-application provides various functionalities for different users, in
 13. **Report Technical Issues**: Clients can report technical issues with the system through the application.
 14. **Receive Notifications**: Clients receive notifications about issue resolution and bank announcements.
 15. **View Submitted Applications**: Clients can view their submitted prepaid , credit card, debit card, car loan and personal loan applications.
+16. **Report Theft/Loss/Damage Issues**: Clients can report theft/loss/damage incidents through the application. 
 
 ### Banker
 
@@ -37,6 +38,7 @@ The banking-application provides various functionalities for different users, in
 12. **Create an Account for a New Client**: Bankers can create an account for new clients.
 13. **Send Notifications**: Bankers can send notifications to all clients/admins/bankers or a certain client/admin/banker.
 14. **View Theft/Loss/Damage Reports**: Bankers can view the reports sent by clients regarding theft/loss/damage of credit cards and can reject or reply to them.
+15. **View All Transactions**: Bankers can view all transactions of all clients.  
 
 ### Admin
 
@@ -64,4 +66,5 @@ The class diagrams should demonstrate the implementation of at least three uniqu
 - [Omar Ashraf](https://github.com/OmarAshraf-02)
 - [Karim Gamaleldin](https://github.com/karimgamaleldin)
 - [Basel Farouk](https://github.com/basel68)
+- [Marwan Amgad](https://github.com/marwanamgad)
 
