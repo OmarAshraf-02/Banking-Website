@@ -60,6 +60,42 @@ The banking application is designed to be accessible to visually impaired client
 
 The class diagrams should demonstrate the implementation of at least three unique design patterns.
 
+# To use the app
+## Prerequisites
+
+Make sure you have the following installed before proceeding:
+
+- Node.js: [Download and Install Node.js](https://nodejs.org)
+- npm: npm is installed along with Node.js
+
+## Getting Started
+Follow the steps below to download and set up the React app:
+
+### Clone the repository or download the source code.
+<pre><code>git clone https://github.com/software-engineering-2023/404</code></pre>
+
+### Navigate to the project's root directory.
+<pre><code>cd milestone3/banking-website</code></pre>
+
+### Install the required dependencies using npm.
+<pre><code>npm install</code></pre>
+
+### Start the development server.
+<pre><code>npm start</code></pre>
+
+## Login as as:
+- Client:
+  1. Username: client
+  2. Password: client
+- Banker:
+  1. Username: banker
+  2. Password: banker
+- Admin:
+  1. Username: admin
+  2. Password: admin
+- Visually impaired:
+  1. Username: impaired
+  2. Password: impaired
 ## Authors
 
 - [Aly Raafat](https://github.com/alyraafat)
