@@ -8,7 +8,7 @@ function LoanTypeCard({ img, alt, title, summary, to }) {
     const colors = tokens(theme.palette.mode);
     return (
         <Link to={to}>
-            <Card sx={{ maxWidth: 400, backgroundColor: colors.grey[300], margin: 5 }}>
+            <Card sx={{ maxWidth: 400, backgroundColor: colors.grey[400], margin: 5 }}>
                 <CardActionArea>
                     {/* <CardMedia
                     component="img"
