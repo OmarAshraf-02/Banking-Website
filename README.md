@@ -7,6 +7,7 @@ The banking-application provides various functionalities for different users, in
 - [Functionalities](#functionalities)
 - [Diagrams](#diagrams)
 - [To use the app](#to-use-the-app)
+- [Emails and Passwords](#login-as)
   
 ## Functionalities
 
