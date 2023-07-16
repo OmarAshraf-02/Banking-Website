@@ -1,5 +1,5 @@
 # 404
-The banking-application provides various functionalities for different users, including clients, bankers, admins, and visually impaired users. The goal of the project is to develop a user-friendly and accessible banking application that caters to the needs of different stakeholders. The application allows users to perform banking transactions, manage accounts, apply for credit cards and loans, view transactions, and more. View site: https://remarkable-kleicha-4d8065.netlify.app/
+The banking-application provides various functionalities for different users, including clients, bankers, admins, and visually impaired users. The goal of the project is to develop a user-friendly and accessible banking application that caters to the needs of different stakeholders. The application allows users to perform banking transactions, manage accounts, apply for credit cards and loans, view transactions, and more.
 
 
 ## Table of Contents
