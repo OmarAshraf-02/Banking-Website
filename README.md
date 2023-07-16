@@ -1,6 +1,13 @@
 # 404
 The banking-application provides various functionalities for different users, including clients, bankers, admins, and visually impaired users. The goal of the project is to develop a user-friendly and accessible banking application that caters to the needs of different stakeholders. The application allows users to perform banking transactions, manage accounts, apply for credit cards and loans, view transactions, and more.
 
+
+## Table of Contents
+
+- [Functionalities](#functionalities)
+- [Diagrams](#diagrams)
+- [To use the app](#to-use-the-app)
+  
 ## Functionalities
 
 ### Client
@@ -70,6 +77,10 @@ Make sure you have the following installed before proceeding:
 
 ## Getting Started
 Follow the steps below to download and set up the React app:
+### View Site
+  https://main--creative-chimera-6f4332.netlify.app/
+
+## OR
 
 ### Clone the repository or download the source code.
 <pre><code>git clone https://github.com/software-engineering-2023/404</code></pre>
@@ -83,7 +94,7 @@ Follow the steps below to download and set up the React app:
 ### Start the development server.
 <pre><code>npm start</code></pre>
 
-## Login as as:
+## Login as:
 - Client:
   1. Username: client
   2. Password: client
